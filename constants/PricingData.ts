@@ -2,14 +2,42 @@ const PricingServices = [
 	{
 		name: "Starter",
 		description: "",
-		price: "$19",
+		price_per_gb: {
+			0.1: "Free",
+			10: ["$49", "$39"],
+			20: ["$99", "$79"],
+		},
 		features: {
-			data: "999",
-			xfer: "999",
-			carving: "999",
-			time: "999",
-			assets: "999",
-			projects: "999",
+			data_per_gb: {
+				0.1: "0.1",
+				10: "10",
+				20: "20",
+			},
+			xfer_per_gb: {
+				0.1: "0.1",
+				10: "10",
+				20: "20",
+			},
+			carving_per_gb: {
+				0.1: "0.1",
+				10: "10",
+				20: "20",
+			},
+			time_per_gb: {
+				0.1: "0.1",
+				10: "10",
+				20: "20",
+			},
+			assets_per_gb: {
+				0.1: "0.1",
+				10: "10",
+				20: "20",
+			},
+			projects_per_gb: {
+				0.1: "0.1",
+				10: "10",
+				20: "20",
+			},
 			price_per_gb: "999",
 			ana_std: "999",
 			ana_prem: "999",
