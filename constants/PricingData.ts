@@ -1,29 +1,37 @@
 const PricingServices = [
 	{
-		name: "Basic",
-		description: "Oat cake chocolate liquorice jelly shortbread cake oat.",
+		name: "Starter",
+		description: "",
 		price: "$19",
 		features: {
-			// Features,
-			Cupcakes: "10",
-			Marshmallow: true,
-			Biscuit: false,
-			Brownie: false,
-			// Analytics,
-			Lollipop: "Strawberry",
-			Muffin: true,
-			Pudding: false,
-			Cookie: false,
-			// Support
-			Chocolate: true,
-			Marzipan: false,
-			Gingerbread: false,
+			data: "999",
+			xfer: "999",
+			carving: "999",
+			time: "999",
+			assets: "999",
+			projects: "999",
+			price_per_gb: "999",
+			ana_std: "999",
+			ana_prem: "999",
+			enr_std: "999",
+			enr_prem: "999",
+			ds_prem: "999",
+			mfa: "999",
+			sso: "999",
+			team_adm: "999",
+			team_pool: "999",
+			slf_hosted: "999",
+			slo: "999",
+			proj_share: "999",
+			ver_his: "999",
+			data_stream: "999",
+			audio: "999",
 		},
 	},
 	{
 		name: "Pro",
 		isPopular: true,
-		description: "Caramels cupcake topping cookie tootsie roll macaroon.",
+		description: "",
 		price: "$29",
 		features: {
 			// Features,
@@ -43,9 +51,29 @@ const PricingServices = [
 		},
 	},
 	{
-		name: "Ultimate",
-		description: "Chocolate macaroon liquorice cheesecake donut toffee.",
+		name: "Team",
+		description: "",
 		price: "$49",
+		features: {
+			// Features,
+			Cupcakes: "Unlimited",
+			Marshmallow: true,
+			Biscuit: true,
+			Brownie: true,
+			// Analytics,
+			Lollipop: "Apple",
+			Muffin: true,
+			Pudding: true,
+			Cookie: true,
+			// Support
+			Chocolate: true,
+			Marzipan: true,
+			Gingerbread: true,
+		},
+	},
+	{
+		name: "Enterprise",
+		description: "Contact for details.",
 		features: {
 			// Features,
 			Cupcakes: "Unlimited",
@@ -75,46 +103,116 @@ interface Feature {
 
 export const PricingFeatures: Feature[] = [
 	{
-		category: "Features",
+		category: "Resource Limits",
 		items: [
-			{ name: "Marshmallow" },
 			{
-				name: "Cupcakes",
-				tooltip:
-					"Tiramisu caramels topping donut oat cake chocolate bar cookie jujubes.",
+				key: "data",
+				name: "Data Under Analysis (GB)",
+				// tooltip: "Tiramisu caramels topping donut oat cake chocolate bar cookie jujubes.",
 			},
 			{
-				name: "Biscuit",
-				tooltip:
-					"Tiramisu caramels topping donut oat cake chocolate bar cookie jujubes.",
+				key: "xfer",
+				name: "Monthly Transfer Limit (GB)",
 			},
-			{ name: "Brownie" },
+			{
+				key: "carving",
+				name: "Data Carving Size Limit (GB)",
+			},
+			{
+				key: "time",
+				name: "Analysis Time Range",
+			},
+			{
+				key: "assets",
+				name: "Total Assets",
+			},
+			{
+				key: "projects",
+				name: "Total Projects",
+			},
+			{
+				key: "price_per_gb",
+				name: "Price per GB (annual)",
+			},
 		],
 	},
 	{
-		category: "Analytics",
+		category: "Features",
 		items: [
-			{ name: "Lollipop" },
 			{
-				name: "Muffin",
-				tooltip:
-					"Tiramisu caramels topping donut oat cake chocolate bar cookie jujubes.",
+				key: "ana_std",
+				name: "Standard analytics",
 			},
-			{ name: "Pudding" },
-			{ name: "Cookie" },
+			{
+				key: "enr_std",
+				name: "Standard threat intel enrichments",
+			},
+		],
+	},
+	{
+		category: "Teams & Security",
+		items: [
+			{
+				key: "mfa",
+				name: "MFA",
+			},
+			{
+				key: "sso",
+				name: "Single Sign-On (SSO)",
+			},
+			{
+				key: "team_adm",
+				name: "Unified Admin & Billing",
+			},
+			{
+				key: "team_pool",
+				name: "Team Resource Pooling",
+			},
+			{
+				key: "slf_hosted",
+				name: "Self-Hosted",
+			},
 		],
 	},
 	{
 		category: "Support",
+		items: [{ key: "slo", name: "SLO" }],
+	},
+	{
+		category: "Coming Soon",
 		items: [
-			{ name: "Chocolate" },
-			{ name: "Marzipan" },
 			{
-				name: "Gingerbread",
-				tooltip:
-					"Tiramisu caramels topping donut oat cake chocolate bar cookie jujubes.",
+				key: "proj_share",
+				name: "Project Sharing",
 			},
-			{ name: "Brownie" },
+			{
+				key: "enr_prem",
+				name: "Premium threat intel enrichments",
+			},
+			{
+				key: "ana_prem",
+				name: "Premium analytics",
+			},
+			{
+				key: "ds_prem",
+				name: "Data Science Add-on Package",
+			},
+			{
+				key: "ver_his",
+				name: "Version History",
+			},
+			{
+				key: "data_stream",
+				name: "Data streaming",
+			},
+			{
+				key: "nvme",
+				name: "NVME-backed Storage",
+			},
+			{
+				key: "audio",
+				name: "Audio Chat",
+			},
 		],
 	},
 ]
