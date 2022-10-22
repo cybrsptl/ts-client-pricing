@@ -30,7 +30,9 @@ export const ProductOverviewTable = (props: ProductOverviewTableProps) => {
 						<Td key={id} fontSize="xl" fontWeight="semibold">
 							<HStack>
 								<Text>{product.name}</Text>
-								{product.isPopular && <Badge colorScheme="blue">Popular</Badge>}
+								{product.isPopular && (
+									<Badge colorScheme="green">Popular</Badge>
+								)}
 							</HStack>
 						</Td>
 					))}
@@ -43,20 +45,23 @@ export const ProductOverviewTable = (props: ProductOverviewTableProps) => {
 						<Td key={id} whiteSpace="normal" borderBottomWidth="0px">
 							<Stack spacing="6">
 								<Stack spacing="4">
-									<Stack direction="row" align="baseline" spacing="1">
-										<Heading size="lg" color="default">
-											{product.price}
-										</Heading>
-										<Text fontWeight="medium" fontSize="medium" color="muted">
-											/mo
-										</Text>
-									</Stack>
+									{product.price && (
+										<Stack direction="row" align="baseline" spacing="1">
+											<Heading size="lg" color="default">
+												{product.price}
+											</Heading>
+											<Text fontWeight="medium" fontSize="medium" color="muted">
+												/mo
+											</Text>
+										</Stack>
+									)}
 
 									<Text color="muted" fontSize="sm" whiteSpace="normal">
 										{product.description}
 									</Text>
 								</Stack>
-								<Button variant="primary">Buy now</Button>
+
+								{/* <Button variant="primary">Buy now</Button> */}
 							</Stack>
 						</Td>
 					))}

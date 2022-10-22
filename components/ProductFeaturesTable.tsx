@@ -35,7 +35,12 @@ export const ProductFeaturesTable = (props: ProductFeaturesTableProps) => {
 				>
 					<Thead>
 						<Tr>
-							<Th colSpan={products.length + 1} color="accent" fontSize="sm">
+							<Th
+								colSpan={products.length + 1}
+								color="accent"
+								fontSize="sm"
+								borderColor="green.500"
+							>
 								{feature.category}
 							</Th>
 						</Tr>
@@ -67,7 +72,7 @@ export const ProductFeaturesTable = (props: ProductFeaturesTableProps) => {
 										height="16"
 										color="muted"
 									>
-										<Feature value={product.features[item.name]} />
+										<Feature value={product.features[item.key]} />
 									</Td>
 								))}
 							</Tr>
