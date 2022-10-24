@@ -1,44 +1,49 @@
-const PricingServices = [
+import AppConfig from "@common/constants/AppConfig"
+
+const PricingAccountTypes = [
 	{
 		name: "Starter",
 		description: "",
-		price_per_gb: {
-			0.1: "Free",
-			10: ["$49", "$39"],
-			20: ["$99", "$79"],
+		tiers_by_gb: {
+			0.1: null,
+			10: AppConfig.stripe_test_mode
+				? "prod_MeU6p5nJCScRjT"
+				: "prod_MfuUHskBj85gTF",
+			20: AppConfig.stripe_test_mode
+				? "prod_MfF4EP6muijTDC"
+				: "prod_MfuUDm2rcXbhbj",
 		},
 		features: {
-			data_per_gb: {
+			data_by_tier: {
+				0.1: "0.1 GB",
+				10: "10 GB",
+				20: "20 GB",
+			},
+			xfer_by_tier: {
 				0.1: "0.1",
 				10: "10",
 				20: "20",
 			},
-			xfer_per_gb: {
+			carving_by_tier: {
 				0.1: "0.1",
 				10: "10",
 				20: "20",
 			},
-			carving_per_gb: {
+			history_by_tier: {
 				0.1: "0.1",
 				10: "10",
 				20: "20",
 			},
-			history_per_gb: {
+			assets_by_tier: {
 				0.1: "0.1",
 				10: "10",
 				20: "20",
 			},
-			assets_per_gb: {
+			projects_by_tier: {
 				0.1: "0.1",
 				10: "10",
 				20: "20",
 			},
-			projects_per_gb: {
-				0.1: "0.1",
-				10: "10",
-				20: "20",
-			},
-			price_per_gb: "$4.90",
 			ana_std: true,
 			ana_prem: false,
 			enr_std: true,
@@ -61,38 +66,48 @@ const PricingServices = [
 		name: "Pro",
 		isPopular: true,
 		description: "",
+		tiers_by_gb: {
+			100: AppConfig.stripe_test_mode
+				? "prod_MeU7K4Gq8jKxec"
+				: "prod_MfuUY9YItO6jKO",
+			200: AppConfig.stripe_test_mode
+				? "prod_MfF9dP3mPJBGtV"
+				: "prod_MfuUl19Z99KKuR",
+			300: AppConfig.stripe_test_mode
+				? "prod_MfFAyBr9OXVxJG"
+				: "prod_MfpQXEGqW8HjMR",
+		},
 		features: {
-			data_per_gb: {
-				0.1: "0.1",
-				10: "10",
-				20: "20",
+			data_by_tier: {
+				100: "100 GB",
+				200: "200 GB",
+				300: "300 GB",
 			},
-			xfer_per_gb: {
-				0.1: "0.1",
-				10: "10",
-				20: "20",
+			xfer_by_tier: {
+				100: "1 TB",
+				200: "2 TB",
+				300: "3 TB",
 			},
-			carving_per_gb: {
-				0.1: "0.1",
-				10: "10",
-				20: "20",
+			carving_by_tier: {
+				100: "10 GB",
+				200: "20 GB",
+				300: "30 GB",
 			},
-			history_per_gb: {
-				0.1: "0.1",
-				10: "10",
-				20: "20",
+			history_by_tier: {
+				100: "Unlimited",
+				200: "Unlimited",
+				300: "Unlimited",
 			},
-			assets_per_gb: {
-				0.1: "0.1",
-				10: "10",
-				20: "20",
+			assets_by_tier: {
+				100: "Unlimited",
+				200: "Unlimited",
+				300: "Unlimited",
 			},
-			projects_per_gb: {
-				0.1: "0.1",
-				10: "10",
-				20: "20",
+			projects_by_tier: {
+				100: "25",
+				200: "50",
+				300: "100",
 			},
-			price_per_gb: "$2.49",
 			ana_std: true,
 			ana_prem: true,
 			enr_std: true,
@@ -115,38 +130,30 @@ const PricingServices = [
 		name: "Team",
 		description: "Coming soon.",
 		isDisabled: true,
+		tiers_by_gb: {
+			500: AppConfig.stripe_test_mode
+				? "prod_MeU7Sd8NfyG2y1"
+				: "prod_Mfuxsa5JWXtFO6",
+		},
 		features: {
-			data_per_gb: {
-				0.1: "0.1",
-				10: "10",
-				20: "20",
+			data_by_tier: {
+				500: "500 GB",
 			},
-			xfer_per_gb: {
-				0.1: "0.1",
-				10: "10",
-				20: "20",
+			xfer_by_tier: {
+				500: "5 TB",
 			},
-			carving_per_gb: {
-				0.1: "0.1",
-				10: "10",
-				20: "20",
+			carving_by_tier: {
+				500: "Call Us",
 			},
-			history_per_gb: {
-				0.1: "0.1",
-				10: "10",
-				20: "20",
+			history_by_tier: {
+				500: "Unlimited",
 			},
-			assets_per_gb: {
-				0.1: "0.1",
-				10: "10",
-				20: "20",
+			assets_by_tier: {
+				500: "Unlimited",
 			},
-			projects_per_gb: {
-				0.1: "0.1",
-				10: "10",
-				20: "20",
+			projects_by_tier: {
+				500: "100",
 			},
-			price_per_gb: "$1.00",
 			ana_std: true,
 			ana_prem: true,
 			enr_std: true,
@@ -170,37 +177,24 @@ const PricingServices = [
 		description: "Contact for details.",
 		isDisabled: true,
 		features: {
-			data_per_gb: {
-				0.1: "0.1",
-				10: "10",
-				20: "20",
+			data_by_tier: {
+				500: "Call Us",
 			},
-			xfer_per_gb: {
-				0.1: "0.1",
-				10: "10",
-				20: "20",
+			xfer_by_tier: {
+				500: "Call Us",
 			},
-			carving_per_gb: {
-				0.1: "0.1",
-				10: "10",
-				20: "20",
+			carving_by_tier: {
+				500: "Call Us",
 			},
-			history_per_gb: {
-				0.1: "0.1",
-				10: "10",
-				20: "20",
+			history_by_tier: {
+				500: "Unlimited",
 			},
-			assets_per_gb: {
-				0.1: "0.1",
-				10: "10",
-				20: "20",
+			assets_by_tier: {
+				500: "Unlimited",
 			},
-			projects_per_gb: {
-				0.1: "0.1",
-				10: "10",
-				20: "20",
+			projects_by_tier: {
+				500: "Unlimited",
 			},
-			price_per_gb: "",
 			ana_std: true,
 			ana_prem: true,
 			enr_std: true,
@@ -225,7 +219,7 @@ interface Feature {
 	category: string
 	items: {
 		name: string
-		key: keyof typeof PricingServices[number]["features"]
+		key: keyof typeof PricingAccountTypes[number]["features"]
 		tooltip?: string
 	}[]
 }
@@ -235,34 +229,35 @@ export const PricingFeatures: Feature[] = [
 		category: "Resource Limits",
 		items: [
 			{
-				key: "data_per_gb",
+				key: "data_by_tier",
 				name: "Data Under Analysis (GB)",
 				// tooltip: "Tiramisu caramels topping donut oat cake chocolate bar cookie jujubes.",
 			},
 			{
-				key: "xfer_per_gb",
+				key: "xfer_by_tier",
 				name: "Monthly Transfer Limit (GB)",
 			},
 			{
-				key: "carving_per_gb",
+				key: "carving_by_tier",
 				name: "Data Carving Size Limit (GB)",
 			},
 			{
-				key: "history_per_gb",
+				key: "history_by_tier",
 				name: "Analysis Time Range",
 			},
 			{
-				key: "assets_per_gb",
+				key: "assets_by_tier",
 				name: "Total Assets",
 			},
 			{
-				key: "projects_per_gb",
+				key: "projects_by_tier",
 				name: "Total Projects",
 			},
-			{
-				key: "price_per_gb",
-				name: "Price per GB (annual)",
-			},
+			// { // @todo finish me
+			// 	key: "price_by_tier",
+			// 	name: "Price per GB (annual)",
+			// 	forumula: "PRICE_BY_TIER"
+			// },
 		],
 	},
 	{
@@ -349,6 +344,6 @@ export const PricingFeatures: Feature[] = [
 export type ElementType<T extends ReadonlyArray<unknown>> =
 	T extends ReadonlyArray<infer ElementType> ? ElementType : never
 
-export type PricingServicesType = ElementType<typeof PricingServices>
+export type PricingServicesType = ElementType<typeof PricingAccountTypes>
 
-export default PricingServices
+export default PricingAccountTypes
