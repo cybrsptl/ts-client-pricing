@@ -17,7 +17,7 @@ import {
 import Card from "@common/components/Card"
 import UserSubscriptionInfoCard from "@common/components/UserSubscriptionInfoCard"
 import AppConfig from "@common/constants/AppConfig"
-import { PricingServicesType } from "../constants/PricingData"
+import { PricingServicesType } from "../constants/CustomPricingData"
 import { PricingBillingMode } from "./PricingView"
 
 interface ProductTierSelectionProps extends TableProps {

@@ -12,7 +12,7 @@ import {
 	Thead,
 	Tr,
 } from "@chakra-ui/react"
-import { PricingServicesType } from "../constants/PricingData"
+import { PricingServicesType } from "../constants/CustomPricingData"
 
 interface ProductOverviewTableProps extends TableProps {
 	products: PricingServicesType[]

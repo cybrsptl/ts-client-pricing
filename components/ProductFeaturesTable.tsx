@@ -14,7 +14,10 @@ import {
 	Tooltip,
 	Tr,
 } from "@chakra-ui/react"
-import { PricingFeatures, PricingServicesType } from "../constants/PricingData"
+import {
+	PricingFeatures,
+	PricingServicesType,
+} from "../constants/CustomPricingData"
 import { Feature } from "./Feature"
 
 interface ProductFeaturesTableProps extends TableProps {

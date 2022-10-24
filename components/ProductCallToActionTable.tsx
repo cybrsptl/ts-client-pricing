@@ -2,7 +2,7 @@ import * as React from "react"
 import { useAuthUser } from "@auth/components/AuthUserProvider"
 import { Button, Table, TableProps, Tbody, Td, Tr } from "@chakra-ui/react"
 import AppConfig from "@common/constants/AppConfig"
-import { PricingServicesType } from "../constants/PricingData"
+import { PricingServicesType } from "../constants/CustomPricingData"
 
 interface ProductCallToActionTableProps extends TableProps {
 	products: PricingServicesType[]

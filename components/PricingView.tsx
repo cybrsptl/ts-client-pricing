@@ -1,6 +1,6 @@
 import * as React from "react"
 import { Box, Stack } from "@chakra-ui/react"
-import PricingServices from "../constants/PricingData"
+import PricingAccountTypes from "../constants/CustomPricingData"
 import { ProductCallToActionTable } from "./ProductCallToActionTable"
 import { ProductFeaturesTable } from "./ProductFeaturesTable"
 import { ProductOverviewTable } from "./ProductOverviewTable"
@@ -16,7 +16,7 @@ export const PricingView = () => {
 		PricingBillingMode.ANNUAL
 	)
 	const [billingTier, setBillingTier] = React.useState(0)
-	const products = PricingServices
+	const products = PricingAccountTypes
 
 	return (
 		<Box as="section" bg="bg-surface">
@@ -30,13 +30,13 @@ export const PricingView = () => {
 						setBillingTier,
 					}}
 				/>
-				<ProductOverviewTable products={PricingServices} />
+				<ProductOverviewTable products={PricingAccountTypes} />
 				<ProductCallToActionTable
-					products={PricingServices}
+					products={PricingAccountTypes}
 					marginTop="0px important"
 				/>
-				<ProductFeaturesTable products={PricingServices} />
-				<ProductCallToActionTable products={PricingServices} />
+				<ProductFeaturesTable products={PricingAccountTypes} />
+				<ProductCallToActionTable products={PricingAccountTypes} />
 			</Stack>
 		</Box>
 	)
