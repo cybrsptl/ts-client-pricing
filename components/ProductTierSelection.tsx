@@ -130,20 +130,6 @@ export const ProductTierSelection = ({
 						</SliderThumb>
 					</Slider>
 				</Box>
-				{/* <a href={AppConfig.stripe_customer_portal_url} target="_blank">
-						<Button
-							variant="primary"
-							size="lg"
-							sx={{
-								bg: "green.500",
-								_hover: {
-									bg: "green.400",
-								},
-							}}
-						>
-							Subscription Management
-						</Button>
-					</a> */}
 			</Stack>
 		</Card>
 		// <Box pt={6} pb={2} width="50%" margin="auto">

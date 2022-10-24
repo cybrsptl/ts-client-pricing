@@ -1,4 +1,5 @@
 import * as React from "react"
+import { useAuthUser } from "@auth/components/AuthUserProvider"
 import { Button, Table, TableProps, Tbody, Td, Tr } from "@chakra-ui/react"
 import AppConfig from "@common/constants/AppConfig"
 import { PricingServicesType } from "../constants/PricingData"
@@ -11,6 +12,8 @@ export const ProductCallToActionTable = (
 	props: ProductCallToActionTableProps
 ) => {
 	const { products, ...tableProps } = props
+	const { userInfo } = useAuthUser()
+
 	return (
 		<Table sx={{ tableLayout: "fixed" }} {...tableProps}>
 			<Tbody>
@@ -27,7 +30,12 @@ export const ProductCallToActionTable = (
 								</Button> */}
 							{/* </Stack> */}
 							{/* eslint-disable-next-line react/jsx-no-target-blank */}
-							<a href={AppConfig.stripe_customer_portal_url} target="_blank">
+							<a
+								href={`${
+									AppConfig.stripe_customer_portal_url
+								}?prefilled_email=${encodeURIComponent(userInfo?.email)}`}
+								target="_blank"
+							>
 								<Button
 									variant={products[id].isDisabled ? "solid" : "primary"}
 									size="lg"
