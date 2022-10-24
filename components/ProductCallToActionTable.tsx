@@ -38,7 +38,8 @@ export const ProductCallToActionTable = (
 							>
 								<Button
 									variant={products[id].isDisabled ? "solid" : "primary"}
-									size="lg"
+									size={products[id].isDisabled ? "sm" : "lg"}
+									height={12}
 									sx={
 										products[id].isDisabled
 											? {}
@@ -51,7 +52,7 @@ export const ProductCallToActionTable = (
 									}
 									disabled={products[id].isDisabled}
 								>
-									{products[id].isDisabled ? "Soon" : "Buy Now"}
+									{products[id].isDisabled ? "Coming Soon" : "Buy Now"}
 								</Button>
 							</a>
 						</Td>
