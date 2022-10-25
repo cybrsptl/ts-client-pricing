@@ -17,6 +17,7 @@ import {
 } from "@chakra-ui/react"
 import { useTenants } from "@common/components/AppTenantsProvider"
 import Card from "@common/components/Card"
+import Logo from "@common/components/Logo"
 import AppConfig from "@common/constants/AppConfig"
 import PricingAccountTypes from "../constants/CustomPricingData"
 import {
@@ -26,6 +27,7 @@ import {
 import { PricingDataDev, PricingDataProd } from "../constants/StripePricingData"
 
 interface ProductTierSelectionProps extends TableProps {
+	accountTiers: object
 	billingMode: PricingBillingMode
 	setBillingMode: (PricingBillingMode) => void
 	billingTier: number
@@ -33,57 +35,24 @@ interface ProductTierSelectionProps extends TableProps {
 }
 
 export const ProductTierSelection = ({
+	accountTiers,
 	billingMode,
 	setBillingMode,
 	billingTier,
 	setBillingTier,
 }: ProductTierSelectionProps) => {
-	const { activeTenant } = useTenants()
-	const PricingData = AppConfig.stripe_test_mode
-		? PricingDataDev
-		: PricingDataProd
+	const { accountTierSliderIntervalCount, accountTierSliderIntervals } =
+		useMemo(() => {
+			const accountTierSliderIntervals = Object.keys(accountTiers).sort(
+				(a, b) => parseFloat(a) - parseFloat(b)
+			)
+			const accountTierSliderIntervalCount = accountTierSliderIntervals.length
 
-	const {
-		accountTiers,
-		accountTierSliderIntervalCount,
-		accountTierSliderIntervals,
-	} = useMemo(() => {
-		const accountTiers = {}
-		PricingAccountTypes.forEach((type) => {
-			if (!type.tiers_by_gb) {
-				return
+			return {
+				accountTierSliderIntervals,
+				accountTierSliderIntervalCount,
 			}
-			Object.entries(type.tiers_by_gb).forEach(([k, v]) => {
-				const prodKey = `${v}|${PricingBillingModeToStripe[billingMode]}`
-
-				// Blank tiers_by_gb values indicate free tiers
-				if (!v) {
-					accountTiers[k] = null
-					return
-				}
-
-				if (!PricingData[prodKey]) {
-					console.warn(
-						"ProductTierSelection :: No pricing data found for ",
-						prodKey
-					)
-					return
-				}
-				accountTiers[k] = PricingData[prodKey]
-			})
-		})
-
-		const accountTierSliderIntervals = Object.keys(accountTiers).sort(
-			(a, b) => parseFloat(a) - parseFloat(b)
-		)
-		const accountTierSliderIntervalCount = accountTierSliderIntervals.length
-
-		return {
-			accountTiers,
-			accountTierSliderIntervals,
-			accountTierSliderIntervalCount,
-		}
-	}, [PricingData, billingMode])
+		}, [accountTiers])
 
 	console.log(accountTiers)
 
@@ -170,6 +139,7 @@ export const ProductTierSelection = ({
 							// ml="-2"
 						>
 							<Box color="green.500" as={MdGraphicEq} />
+							{/* <Logo color="green.500" logoStyle="symbol" height={24} /> */}
 						</SliderThumb>
 					</Slider>
 				</Box>

@@ -44,7 +44,7 @@ export const ProductOverviewTable = (props: ProductOverviewTableProps) => {
 						<Td key={id} whiteSpace="normal" borderBottomWidth="0px">
 							<Stack spacing="6">
 								<Stack spacing="4">
-									{/* {product?.price_per_gb && (
+									{product?.price_per_gb && (
 										<Stack direction="row" align="baseline" spacing="1">
 											<Heading size="lg" color="default">
 												{product.price}
@@ -53,14 +53,12 @@ export const ProductOverviewTable = (props: ProductOverviewTableProps) => {
 												/mo
 											</Text>
 										</Stack>
-									)} */}
+									)}
 
 									<Text color="muted" fontSize="sm" whiteSpace="normal">
 										{product.description}
 									</Text>
 								</Stack>
-
-								{/* <Button variant="primary">Buy now</Button> */}
 							</Stack>
 						</Td>
 					))}

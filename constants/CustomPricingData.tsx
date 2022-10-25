@@ -1,4 +1,7 @@
+import Link from "next/link"
+import { Button } from "@chakra-ui/react"
 import AppConfig from "@common/constants/AppConfig"
+import { DevPricingButton } from "../components/DevPricingButton"
 
 const PricingAccountTypes = [
 	{
@@ -14,6 +17,18 @@ const PricingAccountTypes = [
 				: "prod_MfuUDm2rcXbhbj",
 		},
 		features: {
+			dev_purchase_buttons: (
+				<>
+					<DevPricingButton
+						caption="s50 (year)"
+						href="https://buy.stripe.com/test_9AQ7wt4rFaSm2Dm9De"
+					/>
+					<DevPricingButton
+						caption="s100 (month)"
+						href="https://buy.stripe.com/test_5kA7wt7DR7Ga0ve5n3"
+					/>
+				</>
+			),
 			data_by_tier: {
 				0.1: "0.1 GB",
 				10: "10 GB",
@@ -78,6 +93,22 @@ const PricingAccountTypes = [
 				: "prod_MfpQXEGqW8HjMR",
 		},
 		features: {
+			dev_purchase_buttons: (
+				<>
+					<DevPricingButton
+						caption="p200 (year)"
+						href="https://buy.stripe.com/test_6oE8AxbU72lQ91KbLs"
+					/>
+					<DevPricingButton
+						caption="p300 (year)"
+						href="https://buy.stripe.com/test_dR67wt3nB1hM1zi6ra"
+					/>
+					<DevPricingButton
+						caption="p500 (month)"
+						href="https://buy.stripe.com/test_5kA6sp2jxd0u0vebLn"
+					/>
+				</>
+			),
 			data_by_tier: {
 				100: "100 GB",
 				200: "200 GB",
@@ -226,6 +257,16 @@ interface Feature {
 
 export const PricingFeatures: Feature[] = [
 	{
+		category: "Dev Tools",
+		items: [
+			{
+				key: "dev_purchase_buttons",
+				name: "Hardcoded Purchase Links",
+				// tooltip: "Tiramisu caramels topping donut oat cake chocolate bar cookie jujubes.",
+			},
+		],
+	},
+	{
 		category: "Resource Limits",
 		items: [
 			{
@@ -327,7 +368,11 @@ export const PricingFeatures: Feature[] = [
 			},
 			{
 				key: "audio",
-				name: "Audio Chat",
+				name: "Live Collaboration",
+			},
+			{
+				key: "audio",
+				name: "Team Audio Chat",
 			},
 			{
 				key: "data_stream",

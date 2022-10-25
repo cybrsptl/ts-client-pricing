@@ -14,18 +14,19 @@ import {
 	Tooltip,
 	Tr,
 } from "@chakra-ui/react"
-import {
+import PricingAccountTypes, {
 	PricingFeatures,
-	PricingServicesType,
 } from "../constants/CustomPricingData"
+import { PricingBillingMode } from "../constants/PricingConstants"
 import { Feature } from "./Feature"
 
 interface ProductFeaturesTableProps extends TableProps {
-	products: PricingServicesType[]
+	billingMode: PricingBillingMode
+	billingTier: number
 }
 
 export const ProductFeaturesTable = (props: ProductFeaturesTableProps) => {
-	const { products, ...tableProps } = props
+	const { billingMode, billingTier, ...tableProps } = props
 
 	return (
 		<>
@@ -39,7 +40,7 @@ export const ProductFeaturesTable = (props: ProductFeaturesTableProps) => {
 					<Thead>
 						<Tr>
 							<Th
-								colSpan={products.length + 1}
+								colSpan={PricingAccountTypes.length + 1}
 								color="accent"
 								fontSize="sm"
 								borderColor="green.500"
@@ -68,14 +69,20 @@ export const ProductFeaturesTable = (props: ProductFeaturesTableProps) => {
 										)}
 									</HStack>
 								</Td>
-								{products.map((product, id) => (
+								{PricingAccountTypes.map((product, id) => (
 									<Td
 										key={id}
-										textAlign={products.length > 1 ? "center" : "right"}
+										textAlign={
+											PricingAccountTypes.length > 1 ? "center" : "right"
+										}
 										height="16"
 										color="muted"
 									>
-										<Feature value={product.features[item.key]} />
+										<Feature
+											key={item.key}
+											value={product.features[item.key]}
+											{...{ billingMode, billingTier }}
+										/>
 									</Td>
 								))}
 							</Tr>
