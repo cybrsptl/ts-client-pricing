@@ -1,4 +1,5 @@
 import * as React from "react"
+import { useMemo } from "react"
 import { MdGraphicEq } from "react-icons/md"
 import {
 	Box,
@@ -16,15 +17,19 @@ import {
 } from "@chakra-ui/react"
 import { useTenants } from "@common/components/AppTenantsProvider"
 import Card from "@common/components/Card"
-import { PricingServicesType } from "../constants/CustomPricingData"
-import { PricingBillingMode } from "./PricingView"
+import AppConfig from "@common/constants/AppConfig"
+import PricingAccountTypes from "../constants/CustomPricingData"
+import {
+	PricingBillingMode,
+	PricingBillingModeToStripe,
+} from "../constants/PricingConstants"
+import { PricingDataDev, PricingDataProd } from "../constants/StripePricingData"
 
 interface ProductTierSelectionProps extends TableProps {
 	billingMode: PricingBillingMode
 	setBillingMode: (PricingBillingMode) => void
 	billingTier: number
 	setBillingTier: (int) => void
-	products: PricingServicesType[]
 }
 
 export const ProductTierSelection = ({
@@ -32,9 +37,55 @@ export const ProductTierSelection = ({
 	setBillingMode,
 	billingTier,
 	setBillingTier,
-	products,
 }: ProductTierSelectionProps) => {
 	const { activeTenant } = useTenants()
+	const PricingData = AppConfig.stripe_test_mode
+		? PricingDataDev
+		: PricingDataProd
+
+	const {
+		accountTiers,
+		accountTierSliderIntervalCount,
+		accountTierSliderIntervals,
+	} = useMemo(() => {
+		const accountTiers = {}
+		PricingAccountTypes.forEach((type) => {
+			if (!type.tiers_by_gb) {
+				return
+			}
+			Object.entries(type.tiers_by_gb).forEach(([k, v]) => {
+				const prodKey = `${v}|${PricingBillingModeToStripe[billingMode]}`
+
+				// Blank tiers_by_gb values indicate free tiers
+				if (!v) {
+					accountTiers[k] = null
+					return
+				}
+
+				if (!PricingData[prodKey]) {
+					console.warn(
+						"ProductTierSelection :: No pricing data found for ",
+						prodKey
+					)
+					return
+				}
+				accountTiers[k] = PricingData[prodKey]
+			})
+		})
+
+		const accountTierSliderIntervals = Object.keys(accountTiers).sort(
+			(a, b) => parseFloat(a) - parseFloat(b)
+		)
+		const accountTierSliderIntervalCount = accountTierSliderIntervals.length
+
+		return {
+			accountTiers,
+			accountTierSliderIntervals,
+			accountTierSliderIntervalCount,
+		}
+	}, [PricingData, billingMode])
+
+	console.log(accountTiers)
 
 	// const tierLevels = useMemo(() => {
 	// 	const levels = []
@@ -67,7 +118,7 @@ export const ProductTierSelection = ({
 					<Heading size="md" mb="8">
 						Billing Plan:
 					</Heading>
-					<Text size="lg">Data to analyze:</Text>
+					<Text size="lg">Data to analyze (GB):</Text>
 				</Box>
 				{/* <Box flex=".5">
 					<UserSubscriptionInfoCard />
@@ -85,30 +136,21 @@ export const ProductTierSelection = ({
 						</Stack>
 					</RadioGroup>
 					<Slider
+						min={0}
+						max={accountTierSliderIntervalCount - 1}
 						aria-label="slider-ex-6"
 						onChange={(val) => setBillingTier(val)}
 						value={billingTier}
-						step={25}
-						// min={1}
+						step={1}
 						ml={2}
 						// pb="4"
 						// height="8"
 					>
-						<SliderMark value={0} {...labelStyles}>
-							0.1 GB
-						</SliderMark>
-						<SliderMark value={25} {...labelStyles}>
-							10 GB
-						</SliderMark>
-						<SliderMark value={50} {...labelStyles}>
-							20 GB
-						</SliderMark>
-						<SliderMark value={75} {...labelStyles}>
-							200 GB
-						</SliderMark>
-						<SliderMark value={100} {...labelStyles}>
-							1k GB
-						</SliderMark>
+						{accountTierSliderIntervals.map((tier, index) => (
+							<SliderMark value={index} {...labelStyles} key={index}>
+								{tier}
+							</SliderMark>
+						))}
 						{/* <SliderMark
 							value={billingTier}
 							textAlign="center"

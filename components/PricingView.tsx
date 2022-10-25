@@ -1,17 +1,15 @@
 import * as React from "react"
 import { Box, Stack } from "@chakra-ui/react"
+import { useTenantUsage } from "@common/components/AppTenantUsage"
 import PricingAccountTypes from "../constants/CustomPricingData"
+import { PricingBillingMode } from "../constants/PricingConstants"
 import { ProductCallToActionTable } from "./ProductCallToActionTable"
 import { ProductFeaturesTable } from "./ProductFeaturesTable"
 import { ProductOverviewTable } from "./ProductOverviewTable"
 import { ProductTierSelection } from "./ProductTierSelection"
 
-export enum PricingBillingMode {
-	MONTHLY = "MONTHLY",
-	ANNUAL = "ANNUAL",
-}
-
 export const PricingView = () => {
+	const { usage } = useTenantUsage()
 	const [billingMode, setBillingMode] = React.useState<PricingBillingMode>(
 		PricingBillingMode.ANNUAL
 	)
@@ -23,7 +21,6 @@ export const PricingView = () => {
 			<Stack spacing={{ base: "5", md: "7" }} width="100%" mb={8}>
 				<ProductTierSelection
 					{...{
-						products,
 						billingMode,
 						setBillingMode,
 						billingTier,
