@@ -1,6 +1,7 @@
 import * as React from "react"
 import { useAuthUser } from "@auth/components/AuthUserProvider"
 import { Button, Table, TableProps, Tbody, Td, Tr } from "@chakra-ui/react"
+import { useTenants } from "@common/components/AppTenantsProvider"
 import AppConfig from "@common/constants/AppConfig"
 import { PricingServicesType } from "../constants/CustomPricingData"
 
@@ -13,6 +14,11 @@ export const ProductCallToActionTable = (
 ) => {
 	const { products, ...tableProps } = props
 	const { userInfo } = useAuthUser()
+	const { activeTenant } = useTenants()
+
+	if (activeTenant?.tier?.name.toUpperCase() !== "FREE") {
+		return
+	}
 
 	return (
 		<Table sx={{ tableLayout: "fixed" }} {...tableProps}>

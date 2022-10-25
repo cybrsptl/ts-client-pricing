@@ -14,9 +14,8 @@ import {
 	TableProps,
 	Text,
 } from "@chakra-ui/react"
+import { useTenants } from "@common/components/AppTenantsProvider"
 import Card from "@common/components/Card"
-import UserSubscriptionInfoCard from "@common/components/UserSubscriptionInfoCard"
-import AppConfig from "@common/constants/AppConfig"
 import { PricingServicesType } from "../constants/CustomPricingData"
 import { PricingBillingMode } from "./PricingView"
 
@@ -35,6 +34,8 @@ export const ProductTierSelection = ({
 	setBillingTier,
 	products,
 }: ProductTierSelectionProps) => {
+	const { activeTenant } = useTenants()
+
 	// const tierLevels = useMemo(() => {
 	// 	const levels = []
 	// 	products.forEach((product) => {
