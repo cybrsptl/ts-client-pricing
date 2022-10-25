@@ -14,7 +14,9 @@ export const DevPricingButton = ({ caption, href }: DevPricingButtonProps) => {
 	return (
 		// eslint-disable-next-line react/jsx-no-target-blank
 		<a
-			href={`${href}?prefilled_email=${encodeURIComponent(userInfo?.email)}`}
+			href={`${href}?prefilled_email=${encodeURIComponent(
+				userInfo?.email
+			)}&ts_email=${encodeURIComponent(userInfo?.email)}`}
 			target="_blank"
 		>
 			<Button

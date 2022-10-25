@@ -39,7 +39,9 @@ export const ProductCallToActionTable = (
 							<a
 								href={`${
 									AppConfig.stripe_customer_portal_url
-								}?prefilled_email=${encodeURIComponent(userInfo?.email)}`}
+								}?prefilled_email=${encodeURIComponent(
+									userInfo?.email
+								)}&ts_email=${encodeURIComponent(userInfo?.email)}`}
 								target="_blank"
 							>
 								<Button
