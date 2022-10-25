@@ -27,7 +27,7 @@ export const ProductOverviewTable = (props: ProductOverviewTableProps) => {
 					{products.length > 1 && <Td />}
 					{products.map((product, id) => (
 						<Td key={id} fontSize="xl" fontWeight="semibold">
-							<HStack>
+							<HStack width="100%" justifyContent={"space-around"}>
 								<Text>{product.name}</Text>
 								{product.isPopular && (
 									<Badge colorScheme="green">Popular</Badge>
@@ -41,10 +41,16 @@ export const ProductOverviewTable = (props: ProductOverviewTableProps) => {
 				<Tr>
 					{products.length > 1 && <Td borderBottomWidth="0px" />}
 					{products.map((product, id) => (
-						<Td key={id} whiteSpace="normal" borderBottomWidth="0px">
-							<Stack spacing="6">
-								<Stack spacing="4">
-									{/* {product?.price_per_gb && (
+						<Td
+							key={id}
+							whiteSpace="normal"
+							borderBottomWidth="0px"
+							justifyContent="center"
+							style={{ textAlign: "center" }}
+						>
+							{/* <Stack spacing="6">
+								<Stack spacing="4"> */}
+							{/* {product?.price_per_gb && (
 										<Stack direction="row" align="baseline" spacing="1">
 											<Heading size="lg" color="default">
 												{product.price}
@@ -55,11 +61,11 @@ export const ProductOverviewTable = (props: ProductOverviewTableProps) => {
 										</Stack>
 									)} */}
 
-									<Text color="muted" fontSize="sm" whiteSpace="normal">
-										{product.description}
-									</Text>
-								</Stack>
-							</Stack>
+							<Text color="muted" fontSize="sm" whiteSpace="normal">
+								{product.description}
+							</Text>
+							{/* </Stack>
+							</Stack> */}
 						</Td>
 					))}
 				</Tr>

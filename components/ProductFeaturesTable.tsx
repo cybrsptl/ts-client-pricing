@@ -72,9 +72,11 @@ export const ProductFeaturesTable = (props: ProductFeaturesTableProps) => {
 								{PricingAccountTypes.map((product, id) => (
 									<Td
 										key={id}
-										textAlign={
-											PricingAccountTypes.length > 1 ? "center" : "right"
-										}
+										// textAlign={
+										// 	"center"
+										// 	// PricingAccountTypes.length > 1 ? "center" : "right"
+										// }
+										style={{ textAlign: "center" }}
 										height="16"
 										color="muted"
 									>
