@@ -110,7 +110,7 @@ export const PricingView = () => {
 			// Default to first tier of each product if requested resources are already over the highest tier
 			if (lowestTierIndex === undefined) {
 				pricingAccount.isBelowDesiredLimits = true
-				lowestTierIndex = tiersAsc[0]
+				lowestTierIndex = tiersAsc[tiersAsc.length - 1]
 			}
 
 			const lowestTierProductId = pricingAccount.tiersByGB[lowestTierIndex]

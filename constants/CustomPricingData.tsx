@@ -4,7 +4,7 @@ const PricingAccounts = [
 	{
 		name: "Free",
 		prodType: "starter",
-		description: "",
+		// description: "Welcome to Teleseer!",
 		tiersByGB: {
 			0.1: null,
 			5: AppConfig.stripe_test_mode
@@ -23,7 +23,7 @@ const PricingAccounts = [
 			assets: "",
 			projects: "",
 			dataByTier: {
-				0.1: "0.1 GB",
+				0.1: "100 MB",
 				5: "5 GB",
 				20: "20 GB",
 			},
@@ -261,7 +261,7 @@ export const PricingFeatures: Feature[] = [
 		items: [
 			{
 				key: "data",
-				name: "Data Under Analysis (GB)",
+				name: "Data Under Analysis",
 				// tooltip: "Tiramisu caramels topping donut oat cake chocolate bar cookie jujubes.",
 			},
 			// {

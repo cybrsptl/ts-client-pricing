@@ -107,14 +107,9 @@ export const ProductOverviewTable = (props: ProductOverviewTableProps) => {
 										</Stack>
 									)} */}
 
-							<Text
-								color="muted"
-								fontSize="sm"
-								whiteSpace="normal"
-								// fontStyle={"italic"}
-							>
+							<Box color="muted" whiteSpace="normal">
 								{product.isBelowDesiredLimits ? (
-									<Text fontWeight="bold">
+									<Text fontSize="xs" fontWeight="bold">
 										(Insufficient for {billingTier} GB workloads)
 									</Text>
 								) : !product.pricePerMonth &&
@@ -123,7 +118,7 @@ export const ProductOverviewTable = (props: ProductOverviewTableProps) => {
 								) : (
 									<i>{product.description}</i>
 								)}
-							</Text>
+							</Box>
 							{/* </Stack>
 							</Stack> */}
 						</Td>
