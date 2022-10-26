@@ -314,14 +314,6 @@ export const PricingFeatures: Feature[] = [
 				key: "enr_std",
 				name: "Standard threat intel enrichments",
 			},
-			{
-				key: "ana_prem",
-				name: "Premium analytics",
-			},
-			{
-				key: "enr_prem",
-				name: "Premium threat intel enrichments",
-			},
 			// {
 			// 	key: "ds_prem",
 			// 	name: "Data Science Add-on Package",
@@ -363,6 +355,14 @@ export const PricingFeatures: Feature[] = [
 			{
 				key: "proj_share",
 				name: "Project Sharing",
+			},
+			{
+				key: "ana_prem",
+				name: "Premium analytics",
+			},
+			{
+				key: "enr_prem",
+				name: "Premium threat intel enrichments",
 			},
 			{
 				key: "ver_his",
