@@ -176,7 +176,8 @@ const PricingAccounts = [
 	{
 		name: "Team 1000",
 		prodType: "team",
-		description: "Coming soon.",
+		isComingSoon: true,
+		description: "",
 		isDisabled: true,
 		tiers_by_gb: {
 			500: AppConfig.stripe_test_mode
@@ -222,10 +223,11 @@ const PricingAccounts = [
 	},
 	{
 		name: "Enterprise",
-		description: "Contact for details.",
+		description: "",
 		prodType: "enterprise",
 		isDisabled: true,
 		features: {
+			data: "Contact for details.",
 			data_by_tier: {
 				500: "Call us",
 			},
@@ -416,6 +418,7 @@ export type PricingAccountForTierType = {
 	tiers_by_gb: { [key: number]: string }
 	features: { [key: string]: object | string | boolean }
 	isPopular: boolean
+	isComingSoon: boolean
 	isDisabled: boolean
 	isCurrent: boolean
 }

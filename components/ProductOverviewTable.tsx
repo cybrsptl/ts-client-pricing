@@ -27,10 +27,22 @@ export const ProductOverviewTable = (props: ProductOverviewTableProps) => {
 				<Tr>
 					{products.length > 1 && <Td />}
 					{products.map((product, id) => (
-						<Td key={id} fontSize="xl" fontWeight="semibold">
-							<VStack width="100%" justifyContent={"space-around"}>
+						<Td
+							key={id}
+							fontSize="xl"
+							fontWeight="semibold"
+							verticalAlign="bottom"
+						>
+							<VStack
+								width="100%"
+								justifyContent={"space-around"}
+								// alignItems="baseline"
+							>
 								{product.isPopular && (
 									<Badge colorScheme="green">Popular</Badge>
+								)}
+								{product.isComingSoon && (
+									<Badge colorScheme="gray">Coming Soon</Badge>
 								)}
 								<Text>{product.name}</Text>
 							</VStack>
