@@ -1,5 +1,7 @@
 import AppConfig from "@common/constants/AppConfig"
 
+// Note: Tier thresholds should match out latest values in https://docs.google.com/spreadsheets/d/1rQRlPnumgwwRB2d-18kU82fpEOwILBEXys_FgbVdjc0/edit?usp=sharing
+
 const PricingAccounts = [
 	{
 		name: "Free",
