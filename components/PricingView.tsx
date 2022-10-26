@@ -48,6 +48,7 @@ export const PricingView = () => {
 
 		// console.log("pricingData", data)
 		return data
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [AppConfig?.stripe_test_mode])
 
 	// Enumerate all account tiers
@@ -92,8 +93,8 @@ export const PricingView = () => {
 				return
 			}
 
-			console.log("------")
-			console.log("pricingAccount.name", pricingAccount.name)
+			// console.log("------")
+			// console.log("pricingAccount.name", pricingAccount.name)
 
 			// Find the lowest tier for this account type with enough GB to satisfy current billingTier selection
 
@@ -152,17 +153,20 @@ export const PricingView = () => {
 				)
 				pricingAccount.dataInGB = lowestTierIndex
 				pricingAccount.billingFrequency = pricingData[tierProdKey].interval
+				if (!pricingAccount.isBelowDesiredLimits) {
+					pricingAccount.purchaseLink = pricingData[tierProdKey].link
+				}
 			} else {
 				pricingAccount.isDisabled = true
 			}
 
-			console.log("billingTier", billingTier)
-			console.log("pricingData", pricingData)
-			console.log("lowestTierProductId", lowestTierProductId)
-			console.log("pricingData[tierProdKey]", pricingData[tierProdKey])
+			// console.log("billingTier", billingTier)
+			// console.log("pricingData", pricingData)
+			// console.log("lowestTierProductId", lowestTierProductId)
+			// console.log("pricingData[tierProdKey]", pricingData[tierProdKey])
 		})
 
-		console.log("accountTypesForChosenTier", accountTypesForChosenTier)
+		// console.log("accountTypesForChosenTier", accountTypesForChosenTier)
 		return accountTypesForChosenTier
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [PricingAccounts, billingTier, billingMode, pricingData])

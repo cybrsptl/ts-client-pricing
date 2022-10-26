@@ -25,8 +25,8 @@ export const ProductCallToActionTable = (
 			<Tbody>
 				<Tr>
 					{products.length > 1 && <Td borderBottomWidth="0px" />}
-					{products.map((_, id) => (
-						<Td key={id} borderBottomWidth="0px">
+					{Object.values(products).map((product) => (
+						<Td key={product.name} borderBottomWidth="0px">
 							{/* <Stack spacing="3"> */}
 							{/* <Button variant="primary" width="full">
 									Buy now
@@ -35,22 +35,22 @@ export const ProductCallToActionTable = (
 									Talk to sales
 								</Button> */}
 							{/* </Stack> */}
-							{!products[id].isDisabled && (
+							{product.purchaseLink && !product.isDisabled && (
 								/* eslint-disable-next-line react/jsx-no-target-blank */
 								<a
 									href={`${
-										AppConfig.stripe_customer_portal_url
+										product.purchaseLink
 									}?prefilled_email=${encodeURIComponent(
 										userInfo?.email
 									)}&ts_email=${encodeURIComponent(userInfo?.email)}`}
 									target="_blank"
 								>
 									<Button
-										variant={products[id].isDisabled ? "solid" : "primary"}
-										size={products[id].isDisabled ? "sm" : "lg"}
+										variant={product.isDisabled ? "solid" : "primary"}
+										size={product.isDisabled ? "sm" : "lg"}
 										height={12}
 										sx={
-											products[id].isDisabled
+											product.isDisabled
 												? {}
 												: {
 														bg: "green.500",
@@ -59,9 +59,9 @@ export const ProductCallToActionTable = (
 														},
 												  }
 										}
-										disabled={products[id].isDisabled}
+										disabled={product.isDisabled}
 									>
-										{products[id].isDisabled ? "Coming Soon" : "Buy Now"}
+										{product.isDisabled ? "Coming Soon" : "Buy Now"}
 									</Button>
 								</a>
 							)}
