@@ -14,11 +14,9 @@ import {
 	Tooltip,
 	Tr,
 } from "@chakra-ui/react"
-import {
-	PricingAccountForTierType,
-	PricingFeatures,
-} from "../constants/CustomPricingData"
+import { PricingFeatures } from "../constants/CustomPricingData"
 import { PricingBillingMode } from "../constants/PricingConstants"
+import { PricingAccountForTierType } from "../constants/PricingTypes"
 import { Feature } from "./Feature"
 
 interface ProductFeaturesTableProps extends TableProps {

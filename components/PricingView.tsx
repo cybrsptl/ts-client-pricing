@@ -4,14 +4,15 @@ import { useEffect, useMemo, useState } from "react"
 import { Box, Stack } from "@chakra-ui/react"
 import { useTenants } from "@common/components/AppTenantsProvider"
 import AppConfig from "@common/constants/AppConfig"
-import PricingAccounts, {
-	PricingAccountForTierType,
-} from "../constants/CustomPricingData"
+import PricingAccounts from "../constants/CustomPricingData"
 import {
 	PricingBillingMode,
 	PricingBillingModeToStripe,
 } from "../constants/PricingConstants"
-import { StripePricingDataList } from "../constants/PricingTypes"
+import {
+	PricingAccountForTierType,
+	StripePricingDataList,
+} from "../constants/PricingTypes"
 import { PricingDataDev, PricingDataProd } from "../constants/StripePricingData"
 import { ProductCallToActionTable } from "./ProductCallToActionTable"
 import { ProductFeaturesTable } from "./ProductFeaturesTable"
@@ -54,13 +55,13 @@ export const PricingView = () => {
 	const pricingTiers = useMemo(() => {
 		const pricingTiers = {}
 		PricingAccounts.forEach((type) => {
-			if (!type.tiers_by_gb) {
+			if (!type.tiersByGB) {
 				return
 			}
-			Object.entries(type.tiers_by_gb).forEach(([k, v]) => {
+			Object.entries(type.tiersByGB).forEach(([k, v]) => {
 				const prodKey = `${v}|${PricingBillingModeToStripe[billingMode]}`
 
-				// Blank tiers_by_gb values indicate free tiers
+				// Blank tiersByGB values indicate free tiers
 				if (!v) {
 					pricingTiers[k] = null
 					return
@@ -80,14 +81,14 @@ export const PricingView = () => {
 	}, [pricingData, billingMode])
 
 	// Normalize PricingAccountTypes
-	// (Flattens all XXX_by_tier values into a pricing-tier-aligned feature/pricing matrix to be rendered by child components).
+	// (Flattens all XXXByTier values into a pricing-tier-aligned feature/pricing matrix to be rendered by child components).
 	const accountTypesForChosenTier = React.useMemo(() => {
 		const accountTypesForChosenTier: PricingAccountForTierType[] = JSON.parse(
 			JSON.stringify(PricingAccounts)
 		)
 
 		accountTypesForChosenTier.forEach((pricingAccount) => {
-			if (!pricingAccount.tiers_by_gb) {
+			if (!pricingAccount.tiersByGB) {
 				return
 			}
 
@@ -96,30 +97,32 @@ export const PricingView = () => {
 
 			// Find the lowest tier for this account type with enough GB to satisfy current billingTier selection
 
-			const tiersAsc: number[] = Object.keys(pricingAccount.tiers_by_gb)
+			const tiersAsc: number[] = Object.keys(pricingAccount.tiersByGB)
 				.sort((a, b) => parseFloat(a) - parseFloat(b))
 				.map((k) => parseFloat(k))
 
 			// console.log("tiersAsc", tiersAsc)
 
-			const lowestTierIndex: number = tiersAsc.find(
+			let lowestTierIndex: number = tiersAsc.find(
 				(tierDataLimit) => tierDataLimit >= billingTier
 			)
-			const lowestTierProductId = lowestTierIndex
-				? pricingAccount.tiers_by_gb[lowestTierIndex]
-				: null
+
+			// Default to first tier of each product if requested resources are already over the highest tier
+			if (lowestTierIndex === undefined) {
+				pricingAccount.isBelowDesiredLimits = true
+				lowestTierIndex = tiersAsc[0]
+			}
+
+			const lowestTierProductId = pricingAccount.tiersByGB[lowestTierIndex]
 			const tierProdKey = `${lowestTierProductId}|${PricingBillingModeToStripe[billingMode]}`
 
-			// Flatten _by_tier values to match current tier
+			// Flatten ByTier values to match current tier
 			Object.entries(pricingAccount?.features || {}).forEach(
 				([featureKey, featureVal]) => {
-					if (
-						!featureKey.endsWith("_by_tier") ||
-						!featureVal[lowestTierIndex]
-					) {
+					if (!featureKey.endsWith("ByTier") || !featureVal[lowestTierIndex]) {
 						return
 					}
-					const featureKeyNormalized = featureKey.replace("_by_tier", "")
+					const featureKeyNormalized = featureKey.replace("ByTier", "")
 					// console.log(
 					// 	"featureKeyNormalized",
 					// 	featureKeyNormalized,
@@ -140,7 +143,14 @@ export const PricingView = () => {
 				pricingAccount.name = `${_.startCase(
 					pricingData[tierProdKey].prodType
 				)} ${pricingData[tierProdKey].prodTier}`
-				pricingAccount.price = `$${pricingData[tierProdKey].cost / 100}`
+				pricingAccount.price = `${pricingData[tierProdKey].cost / 100}`
+
+				pricingAccount.pricePerMonth = Math.floor(
+					pricingData[tierProdKey].cost /
+						100 /
+						(pricingData[tierProdKey].interval === "year" ? 12 : 1)
+				)
+				pricingAccount.dataInGB = lowestTierIndex
 				pricingAccount.billingFrequency = pricingData[tierProdKey].interval
 			} else {
 				pricingAccount.isDisabled = true
@@ -169,7 +179,13 @@ export const PricingView = () => {
 						setBillingTier,
 					}}
 				/>
-				<ProductOverviewTable products={accountTypesForChosenTier} />
+				<ProductOverviewTable
+					{...{
+						billingMode,
+						billingTier,
+						products: accountTypesForChosenTier,
+					}}
+				/>
 				<ProductCallToActionTable
 					products={accountTypesForChosenTier}
 					marginTop="0px important"

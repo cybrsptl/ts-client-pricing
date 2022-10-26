@@ -16,7 +16,7 @@ export const Feature = ({
 	billingMode,
 	billingTier,
 }: FeatureProps) => {
-	// if (key && key.endsWith("_by_tier")) {
+	// if (key && key.endsWith("ByTier")) {
 	// 	return <>{value}</>
 	// }
 

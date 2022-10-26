@@ -1,7 +1,8 @@
 import * as React from "react"
 import {
 	Badge,
-	HStack,
+	Box,
+	Flex,
 	Heading,
 	Stack,
 	Table,
@@ -13,14 +14,17 @@ import {
 	Tr,
 	VStack,
 } from "@chakra-ui/react"
-import { PricingAccountForTierType } from "../constants/CustomPricingData"
+import { PricingBillingMode } from "../constants/PricingConstants"
+import { PricingAccountForTierType } from "../constants/PricingTypes"
 
 interface ProductOverviewTableProps extends TableProps {
 	products: PricingAccountForTierType[]
+	billingMode: PricingBillingMode
+	billingTier: number
 }
 
 export const ProductOverviewTable = (props: ProductOverviewTableProps) => {
-	const { products, ...tableProps } = props
+	const { products, billingMode, billingTier, ...tableProps } = props
 	return (
 		<Table sx={{ tableLayout: "fixed" }} {...tableProps}>
 			<Thead>
@@ -33,11 +37,7 @@ export const ProductOverviewTable = (props: ProductOverviewTableProps) => {
 							fontWeight="semibold"
 							verticalAlign="bottom"
 						>
-							<VStack
-								width="100%"
-								justifyContent={"space-around"}
-								// alignItems="baseline"
-							>
+							<VStack width="100%" justifyContent={"space-around"}>
 								{product.isPopular && (
 									<Badge colorScheme="green">Popular</Badge>
 								)}
@@ -61,15 +61,38 @@ export const ProductOverviewTable = (props: ProductOverviewTableProps) => {
 							justifyContent="center"
 							style={{ textAlign: "center" }}
 						>
-							{product.price && (
-								<Stack direction="row" align="baseline" spacing="1">
-									<Heading size="lg" color="default">
-										{product.price}
-									</Heading>
-									<Text fontWeight="medium" fontSize="medium" color="muted">
-										/{product.billingFrequency}
-									</Text>
-								</Stack>
+							{!product.isBelowDesiredLimits && product.pricePerMonth && (
+								<>
+									<Flex
+										direction="row"
+										align="baseline"
+										justifyContent="space-between"
+									>
+										<Heading size="lg" color="default">
+											${product.pricePerMonth.toLocaleString()}
+										</Heading>
+										<Box fontSize="sm" color="muted">
+											/mo
+										</Box>
+									</Flex>
+									{product.pricePerMonth && product.dataInGB && (
+										<Flex
+											direction="row"
+											align="baseline"
+											justifyContent="space-between"
+										>
+											<Heading size="sm" color="default" ml={3}>
+												$
+												{(product.pricePerMonth / product.dataInGB)
+													.toFixed(2)
+													.toLocaleString()}
+											</Heading>
+											<Box fontSize="sm" color="muted">
+												/GB
+											</Box>
+										</Flex>
+									)}
+								</>
 							)}
 							{/* <Stack spacing="6">
 								<Stack spacing="4"> */}
@@ -90,7 +113,16 @@ export const ProductOverviewTable = (props: ProductOverviewTableProps) => {
 								whiteSpace="normal"
 								// fontStyle={"italic"}
 							>
-								{product.description}
+								{product.isBelowDesiredLimits ? (
+									<Text fontWeight="bold">
+										(Insufficient for {billingTier} GB workloads)
+									</Text>
+								) : !product.pricePerMonth &&
+								  billingMode === PricingBillingMode.MONTHLY ? (
+									<b>Annual billing only.</b>
+								) : (
+									<i>{product.description}</i>
+								)}
 							</Text>
 							{/* </Stack>
 							</Stack> */}

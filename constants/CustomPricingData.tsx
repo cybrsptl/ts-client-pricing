@@ -1,71 +1,55 @@
-import { Text } from "@chakra-ui/react"
 import AppConfig from "@common/constants/AppConfig"
-import { DevPricingButton } from "../components/DevPricingButton"
-
-const MSG_DATA_TOO_LOW = "Too small for your analysis needs."
-// <Text fontWeight="bold">Too small for your analysis needs.</Text>
 
 const PricingAccounts = [
 	{
 		name: "Free",
 		prodType: "starter",
 		description: "",
-		tiers_by_gb: {
+		tiersByGB: {
 			0.1: null,
-			10: AppConfig.stripe_test_mode
+			5: AppConfig.stripe_test_mode
 				? "prod_MeU6p5nJCScRjT"
 				: "prod_MfuUHskBj85gTF",
 			20: AppConfig.stripe_test_mode
 				? "prod_MfF4EP6muijTDC"
 				: "prod_MfuUDm2rcXbhbj",
 		},
+		dataInGB: 0.0,
 		features: {
-			// dev_purchase_buttons: (
-			// 	<>
-			// 		<DevPricingButton
-			// 			caption="s50 (year)"
-			// 			href="https://buy.stripe.com/test_9AQ7wt4rFaSm2Dm9De"
-			// 		/>
-			// 		<DevPricingButton
-			// 			caption="s100 (month)"
-			// 			href="https://buy.stripe.com/test_5kA7wt7DR7Ga0ve5n3"
-			// 		/>
-			// 	</>
-			// ),
-			data: MSG_DATA_TOO_LOW,
+			data: "",
 			xfer: "",
 			carving: "",
 			history: "",
 			assets: "",
 			projects: "",
-			data_by_tier: {
+			dataByTier: {
 				0.1: "0.1 GB",
-				10: "10 GB",
+				5: "5 GB",
 				20: "20 GB",
 			},
-			xfer_by_tier: {
+			xferByTier: {
 				0.1: "10",
-				10: "25",
+				5: "25",
 				20: "20",
 			},
-			carving_by_tier: {
+			carvingByTier: {
 				0.1: "0.01",
-				10: "1",
+				5: "1",
 				20: "2",
 			},
-			history_by_tier: {
+			historyByTier: {
 				0.1: "30 days",
-				10: "90 days",
+				5: "90 days",
 				20: "90 days",
 			},
-			assets_by_tier: {
+			assetsByTier: {
 				0.1: "1,000",
-				10: "Unlimited",
+				5: "Unlimited",
 				20: "Unlimited",
 			},
-			projects_by_tier: {
+			projectsByTier: {
 				0.1: "3",
-				10: "5",
+				5: "5",
 				20: "10",
 			},
 			ana_std: true,
@@ -91,7 +75,7 @@ const PricingAccounts = [
 		prodType: "pro",
 		isPopular: true,
 		description: "",
-		tiers_by_gb: {
+		tiersByGB: {
 			100: AppConfig.stripe_test_mode
 				? "prod_MeU7K4Gq8jKxec"
 				: "prod_MfuUY9YItO6jKO",
@@ -119,38 +103,38 @@ const PricingAccounts = [
 			// 		/>
 			// 	</>
 			// ),
-			data: MSG_DATA_TOO_LOW,
+			data: "",
 			xfer: "",
 			carving: "",
 			history: "",
 			assets: "",
 			projects: "",
-			data_by_tier: {
+			dataByTier: {
 				100: "100 GB",
 				200: "200 GB",
 				300: "300 GB",
 			},
-			xfer_by_tier: {
+			xferByTier: {
 				100: "1 TB",
 				200: "2 TB",
 				300: "3 TB",
 			},
-			carving_by_tier: {
+			carvingByTier: {
 				100: "10 GB",
 				200: "20 GB",
 				300: "30 GB",
 			},
-			history_by_tier: {
+			historyByTier: {
 				100: "Unlimited",
 				200: "Unlimited",
 				300: "Unlimited",
 			},
-			assets_by_tier: {
+			assetsByTier: {
 				100: "Unlimited",
 				200: "Unlimited",
 				300: "Unlimited",
 			},
-			projects_by_tier: {
+			projectsByTier: {
 				100: "25",
 				200: "50",
 				300: "100",
@@ -179,28 +163,28 @@ const PricingAccounts = [
 		isComingSoon: true,
 		description: "",
 		isDisabled: true,
-		tiers_by_gb: {
+		tiersByGB: {
 			500: AppConfig.stripe_test_mode
 				? "prod_MeU7Sd8NfyG2y1"
 				: "prod_Mfuxsa5JWXtFO6",
 		},
 		features: {
-			data_by_tier: {
+			dataByTier: {
 				500: "500 GB",
 			},
-			xfer_by_tier: {
+			xferByTier: {
 				500: "5 TB",
 			},
-			carving_by_tier: {
+			carvingByTier: {
 				500: "Call us",
 			},
-			history_by_tier: {
+			historyByTier: {
 				500: "Unlimited",
 			},
-			assets_by_tier: {
+			assetsByTier: {
 				500: "Unlimited",
 			},
-			projects_by_tier: {
+			projectsByTier: {
 				500: "100",
 			},
 			ana_std: true,
@@ -223,29 +207,15 @@ const PricingAccounts = [
 	},
 	{
 		name: "Enterprise",
-		description: "",
+		description: "Contact for details.",
 		prodType: "enterprise",
 		isDisabled: true,
 		features: {
-			data: "Contact for details.",
-			data_by_tier: {
-				500: "Call us",
-			},
-			xfer_by_tier: {
-				500: "Call us",
-			},
-			carving_by_tier: {
-				500: "Call us",
-			},
-			history_by_tier: {
-				500: "Unlimited",
-			},
-			assets_by_tier: {
-				500: "Unlimited",
-			},
-			projects_by_tier: {
-				500: "Unlimited",
-			},
+			data: "Unlimited",
+			xfer: "Unlimited",
+			carving: "Unlimited",
+			assets: "Unlimited",
+			projects: "Unlimited",
 			ana_std: true,
 			ana_prem: true,
 			enr_std: true,
@@ -315,9 +285,9 @@ export const PricingFeatures: Feature[] = [
 				name: "Total Projects",
 			},
 			// { // @todo finish me
-			// 	key: "price_by_tier",
+			// 	key: "priceByTier",
 			// 	name: "Price per GB (annual)",
-			// 	forumula: "PRICE_BY_TIER"
+			// 	forumula: "PRICEByTier"
 			// },
 		],
 	},
@@ -410,19 +380,5 @@ export type ElementType<T extends ReadonlyArray<unknown>> =
 	T extends ReadonlyArray<infer ElementType> ? ElementType : never
 
 export type PricingAccountsType = ElementType<typeof PricingAccounts>
-
-export type PricingAccountForTierType = {
-	name: string
-	price: string
-	billingFrequency: string
-	prodType: string
-	description: string
-	tiers_by_gb: { [key: number]: string }
-	features: { [key: string]: object | string | boolean }
-	isPopular: boolean
-	isComingSoon: boolean
-	isDisabled: boolean
-	isCurrent: boolean
-}
 
 export default PricingAccounts
