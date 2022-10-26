@@ -191,7 +191,7 @@ const PricingAccounts = [
 				500: "5 TB",
 			},
 			carving_by_tier: {
-				500: "Call Us",
+				500: "Call us",
 			},
 			history_by_tier: {
 				500: "Unlimited",
@@ -227,13 +227,13 @@ const PricingAccounts = [
 		isDisabled: true,
 		features: {
 			data_by_tier: {
-				500: "Call Us",
+				500: "Call us",
 			},
 			xfer_by_tier: {
-				500: "Call Us",
+				500: "Call us",
 			},
 			carving_by_tier: {
-				500: "Call Us",
+				500: "Call us",
 			},
 			history_by_tier: {
 				500: "Unlimited",
@@ -254,7 +254,7 @@ const PricingAccounts = [
 			team_adm: true,
 			team_pool: true,
 			slf_hosted: true,
-			slo: "Call Us",
+			slo: "Call us",
 			proj_share: true,
 			ver_his: true,
 			data_stream: true,
