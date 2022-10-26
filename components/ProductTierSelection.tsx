@@ -19,7 +19,7 @@ import { useTenants } from "@common/components/AppTenantsProvider"
 import Card from "@common/components/Card"
 import Logo from "@common/components/Logo"
 import AppConfig from "@common/constants/AppConfig"
-import PricingAccountTypes from "../constants/CustomPricingData"
+import PricingAccounts from "../constants/CustomPricingData"
 import {
 	PricingBillingMode,
 	PricingBillingModeToStripe,
@@ -27,7 +27,7 @@ import {
 import { PricingDataDev, PricingDataProd } from "../constants/StripePricingData"
 
 interface ProductTierSelectionProps extends TableProps {
-	accountTiers: object
+	pricingTiers: object
 	billingMode: PricingBillingMode
 	setBillingMode: (PricingBillingMode) => void
 	billingTier: number
@@ -35,7 +35,7 @@ interface ProductTierSelectionProps extends TableProps {
 }
 
 export const ProductTierSelection = ({
-	accountTiers,
+	pricingTiers,
 	billingMode,
 	setBillingMode,
 	billingTier,
@@ -43,7 +43,7 @@ export const ProductTierSelection = ({
 }: ProductTierSelectionProps) => {
 	const { accountTierSliderIntervalCount, accountTierSliderIntervals } =
 		useMemo(() => {
-			const accountTierSliderIntervals = Object.keys(accountTiers).sort(
+			const accountTierSliderIntervals = Object.keys(pricingTiers).sort(
 				(a, b) => parseFloat(a) - parseFloat(b)
 			)
 			const accountTierSliderIntervalCount = accountTierSliderIntervals.length
@@ -52,9 +52,7 @@ export const ProductTierSelection = ({
 				accountTierSliderIntervals,
 				accountTierSliderIntervalCount,
 			}
-		}, [accountTiers])
-
-	console.log(accountTiers)
+		}, [pricingTiers])
 
 	// const tierLevels = useMemo(() => {
 	// 	const levels = []

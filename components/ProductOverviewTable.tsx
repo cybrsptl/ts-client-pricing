@@ -12,10 +12,10 @@ import {
 	Thead,
 	Tr,
 } from "@chakra-ui/react"
-import { PricingServicesType } from "../constants/CustomPricingData"
+import { PricingAccountForTierType } from "../constants/CustomPricingData"
 
 interface ProductOverviewTableProps extends TableProps {
-	products: PricingServicesType[]
+	products: PricingAccountForTierType[]
 }
 
 export const ProductOverviewTable = (props: ProductOverviewTableProps) => {
@@ -61,7 +61,12 @@ export const ProductOverviewTable = (props: ProductOverviewTableProps) => {
 										</Stack>
 									)} */}
 
-							<Text color="muted" fontSize="sm" whiteSpace="normal">
+							<Text
+								color="muted"
+								fontSize="sm"
+								whiteSpace="normal"
+								// fontStyle={"italic"}
+							>
 								{product.description}
 							</Text>
 							{/* </Stack>

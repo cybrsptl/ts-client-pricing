@@ -1,11 +1,10 @@
-import Link from "next/link"
-import { Button } from "@chakra-ui/react"
 import AppConfig from "@common/constants/AppConfig"
 import { DevPricingButton } from "../components/DevPricingButton"
 
-const PricingAccountTypes = [
+const PricingAccounts = [
 	{
-		name: "Starter",
+		name: "Free",
+		prodType: "starter",
 		description: "",
 		tiers_by_gb: {
 			0.1: null,
@@ -79,6 +78,7 @@ const PricingAccountTypes = [
 	},
 	{
 		name: "Pro",
+		prodType: "pro",
 		isPopular: true,
 		description: "",
 		tiers_by_gb: {
@@ -159,6 +159,7 @@ const PricingAccountTypes = [
 	},
 	{
 		name: "Team",
+		prodType: "team",
 		description: "Coming soon.",
 		isDisabled: true,
 		tiers_by_gb: {
@@ -206,6 +207,7 @@ const PricingAccountTypes = [
 	{
 		name: "Enterprise",
 		description: "Contact for details.",
+		prodType: "enterprise",
 		isDisabled: true,
 		features: {
 			data_by_tier: {
@@ -250,22 +252,22 @@ interface Feature {
 	category: string
 	items: {
 		name: string
-		key: keyof typeof PricingAccountTypes[number]["features"]
+		key: keyof typeof PricingAccounts[number]["features"]
 		tooltip?: string
 	}[]
 }
 
 export const PricingFeatures: Feature[] = [
-	{
-		category: "Dev Tools",
-		items: [
-			{
-				key: "dev_purchase_buttons",
-				name: "Hardcoded Purchase Links",
-				// tooltip: "Tiramisu caramels topping donut oat cake chocolate bar cookie jujubes.",
-			},
-		],
-	},
+	// {
+	// 	category: "Dev Tools",
+	// 	items: [
+	// 		{
+	// 			key: "dev_purchase_buttons",
+	// 			name: "Hardcoded Purchase Links",
+	// 			// tooltip: "Tiramisu caramels topping donut oat cake chocolate bar cookie jujubes.",
+	// 		},
+	// 	],
+	// },
 	{
 		category: "Resource Limits",
 		items: [
@@ -389,6 +391,16 @@ export const PricingFeatures: Feature[] = [
 export type ElementType<T extends ReadonlyArray<unknown>> =
 	T extends ReadonlyArray<infer ElementType> ? ElementType : never
 
-export type PricingServicesType = ElementType<typeof PricingAccountTypes>
+export type PricingAccountsType = ElementType<typeof PricingAccounts>
 
-export default PricingAccountTypes
+export type PricingAccountForTierType = {
+	name: string
+	prodType: string
+	description: string
+	tiers_by_gb: { [key: number]: string }
+	features: { [key: string]: object | string | boolean }
+	isPopular: boolean
+	isDisabled: boolean
+}
+
+export default PricingAccounts

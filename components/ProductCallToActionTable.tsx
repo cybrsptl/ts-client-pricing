@@ -3,10 +3,10 @@ import { useAuthUser } from "@auth/components/AuthUserProvider"
 import { Button, Table, TableProps, Tbody, Td, Tr } from "@chakra-ui/react"
 import { useTenants } from "@common/components/AppTenantsProvider"
 import AppConfig from "@common/constants/AppConfig"
-import { PricingServicesType } from "../constants/CustomPricingData"
+import { PricingAccountForTierType } from "../constants/CustomPricingData"
 
 interface ProductCallToActionTableProps extends TableProps {
-	products: PricingServicesType[]
+	products: PricingAccountForTierType[]
 }
 
 export const ProductCallToActionTable = (
