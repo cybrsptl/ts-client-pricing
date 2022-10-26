@@ -413,6 +413,8 @@ export type PricingAccountsType = ElementType<typeof PricingAccounts>
 
 export type PricingAccountForTierType = {
 	name: string
+	price: string
+	billingFrequency: string
 	prodType: string
 	description: string
 	tiers_by_gb: { [key: number]: string }

@@ -61,6 +61,16 @@ export const ProductOverviewTable = (props: ProductOverviewTableProps) => {
 							justifyContent="center"
 							style={{ textAlign: "center" }}
 						>
+							{product.price && (
+								<Stack direction="row" align="baseline" spacing="1">
+									<Heading size="lg" color="default">
+										{product.price}
+									</Heading>
+									<Text fontWeight="medium" fontSize="medium" color="muted">
+										/{product.billingFrequency}
+									</Text>
+								</Stack>
+							)}
 							{/* <Stack spacing="6">
 								<Stack spacing="4"> */}
 							{/* {product?.price_per_gb && (

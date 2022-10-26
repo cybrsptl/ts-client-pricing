@@ -110,21 +110,7 @@ export const PricingView = () => {
 				: null
 			const tierProdKey = `${lowestTierProductId}|${PricingBillingModeToStripe[billingMode]}`
 
-			if (pricingData[tierProdKey]) {
-				pricingAccount.name = `${_.startCase(
-					pricingData[tierProdKey].prodType
-				)} ${pricingData[tierProdKey].prodTier}`
-			} else {
-				pricingAccount.isDisabled = true
-			}
-
-			console.log("billingTier", billingTier)
-			console.log("pricingData", pricingData)
-			console.log("lowestTierProductId", lowestTierProductId)
-			console.log("pricingData[tierProdKey]", pricingData[tierProdKey])
-
 			// Flatten _by_tier values to match current tier
-			// Inject additional values by cross-referencing with (Stripe authoritative) pricingData
 			Object.entries(pricingAccount?.features || {}).forEach(
 				([featureKey, featureVal]) => {
 					if (
@@ -147,6 +133,23 @@ export const PricingView = () => {
 						featureVal[lowestTierIndex]
 				}
 			)
+
+			// Inject additional values by cross-referencing with (Stripe authoritative) pricingData
+
+			if (pricingData[tierProdKey]) {
+				pricingAccount.name = `${_.startCase(
+					pricingData[tierProdKey].prodType
+				)} ${pricingData[tierProdKey].prodTier}`
+				pricingAccount.price = `$${pricingData[tierProdKey].cost / 100}`
+				pricingAccount.billingFrequency = pricingData[tierProdKey].interval
+			} else {
+				pricingAccount.isDisabled = true
+			}
+
+			console.log("billingTier", billingTier)
+			console.log("pricingData", pricingData)
+			console.log("lowestTierProductId", lowestTierProductId)
+			console.log("pricingData[tierProdKey]", pricingData[tierProdKey])
 		})
 
 		console.log("accountTypesForChosenTier", accountTypesForChosenTier)
