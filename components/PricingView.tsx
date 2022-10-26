@@ -97,16 +97,16 @@ export const PricingView = () => {
 
 			const tierProdKey = `${lowestTierProductId}|${PricingBillingModeToStripe[billingMode]}`
 
-			console.log("------")
-			console.log("pricingAccount.name", pricingAccount.name)
-			console.log("pricingData", pricingData)
-			console.log("lowestTierProductId", tierProdKey)
-			console.log("pricingData[tierProdKey]", pricingData[tierProdKey])
+			// console.log("------")
+			// console.log("pricingAccount.name", pricingAccount.name)
+			// console.log("pricingData", pricingData)
+			// console.log("lowestTierProductId", tierProdKey)
+			// console.log("pricingData[tierProdKey]", pricingData[tierProdKey])
 
 			if (!pricingData[tierProdKey]) {
 				pricingAccount.isDisabled = true
 				return
-			} 
+			}
 
 			pricingAccount.name = `${pricingData[tierProdKey].prodType} ${pricingData[tierProdKey].prodTier}`
 
