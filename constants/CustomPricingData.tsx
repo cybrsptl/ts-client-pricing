@@ -1,5 +1,9 @@
+import { Text } from "@chakra-ui/react"
 import AppConfig from "@common/constants/AppConfig"
 import { DevPricingButton } from "../components/DevPricingButton"
+
+const MSG_DATA_TOO_LOW = "Too small for your analysis needs."
+// <Text fontWeight="bold">Too small for your analysis needs.</Text>
 
 const PricingAccounts = [
 	{
@@ -16,47 +20,53 @@ const PricingAccounts = [
 				: "prod_MfuUDm2rcXbhbj",
 		},
 		features: {
-			dev_purchase_buttons: (
-				<>
-					<DevPricingButton
-						caption="s50 (year)"
-						href="https://buy.stripe.com/test_9AQ7wt4rFaSm2Dm9De"
-					/>
-					<DevPricingButton
-						caption="s100 (month)"
-						href="https://buy.stripe.com/test_5kA7wt7DR7Ga0ve5n3"
-					/>
-				</>
-			),
+			// dev_purchase_buttons: (
+			// 	<>
+			// 		<DevPricingButton
+			// 			caption="s50 (year)"
+			// 			href="https://buy.stripe.com/test_9AQ7wt4rFaSm2Dm9De"
+			// 		/>
+			// 		<DevPricingButton
+			// 			caption="s100 (month)"
+			// 			href="https://buy.stripe.com/test_5kA7wt7DR7Ga0ve5n3"
+			// 		/>
+			// 	</>
+			// ),
+			data: MSG_DATA_TOO_LOW,
+			xfer: "",
+			carving: "",
+			history: "",
+			assets: "",
+			projects: "",
 			data_by_tier: {
 				0.1: "0.1 GB",
 				10: "10 GB",
 				20: "20 GB",
 			},
 			xfer_by_tier: {
-				0.1: "0.1",
-				10: "10",
+				0.1: "10",
+				10: "25",
 				20: "20",
 			},
 			carving_by_tier: {
-				0.1: "0.1",
-				10: "10",
-				20: "20",
+				0.1: "0.01",
+				10: "1",
+				20: "2",
 			},
 			history_by_tier: {
-				0.1: "0.1",
-				10: "10",
-				20: "20",
+				0.1: "30 days",
+				10: "90 days",
+				20: "90 days",
 			},
 			assets_by_tier: {
-				0.1: "0.1",
-				10: "10",
-				20: "20",
+				0.1: "1,000",
+				10: "Unlimited",
+				20: "Unlimited",
 			},
 			projects_by_tier: {
-				0.1: "0.1",
-				10: "10",
-				20: "20",
+				0.1: "3",
+				10: "5",
+				20: "10",
 			},
 			ana_std: true,
 			ana_prem: false,
@@ -93,22 +103,28 @@ const PricingAccounts = [
 				: "prod_MfpQXEGqW8HjMR",
 		},
 		features: {
-			dev_purchase_buttons: (
-				<>
-					<DevPricingButton
-						caption="p200 (year)"
-						href="https://buy.stripe.com/test_6oE8AxbU72lQ91KbLs"
-					/>
-					<DevPricingButton
-						caption="p300 (year)"
-						href="https://buy.stripe.com/test_dR67wt3nB1hM1zi6ra"
-					/>
-					<DevPricingButton
-						caption="p500 (month)"
-						href="https://buy.stripe.com/test_5kA6sp2jxd0u0vebLn"
-					/>
-				</>
-			),
+			// dev_purchase_buttons: (
+			// 	<>
+			// 		<DevPricingButton
+			// 			caption="p200 (year)"
+			// 			href="https://buy.stripe.com/test_6oE8AxbU72lQ91KbLs"
+			// 		/>
+			// 		<DevPricingButton
+			// 			caption="p300 (year)"
+			// 			href="https://buy.stripe.com/test_dR67wt3nB1hM1zi6ra"
+			// 		/>
+			// 		<DevPricingButton
+			// 			caption="p500 (month)"
+			// 			href="https://buy.stripe.com/test_5kA6sp2jxd0u0vebLn"
+			// 		/>
+			// 	</>
+			// ),
+			data: MSG_DATA_TOO_LOW,
+			xfer: "",
+			carving: "",
+			history: "",
+			assets: "",
+			projects: "",
 			data_by_tier: {
 				100: "100 GB",
 				200: "200 GB",
@@ -272,28 +288,28 @@ export const PricingFeatures: Feature[] = [
 		category: "Resource Limits",
 		items: [
 			{
-				key: "data_by_tier",
+				key: "data",
 				name: "Data Under Analysis (GB)",
 				// tooltip: "Tiramisu caramels topping donut oat cake chocolate bar cookie jujubes.",
 			},
+			// {
+			// 	key: "xfer",
+			// 	name: "Monthly Transfer Limit (GB)",
+			// },
+			// {
+			// 	key: "carving",
+			// 	name: "Data Carving Size Limit (GB)",
+			// },
+			// {
+			// 	key: "history",
+			// 	name: "Analysis Time Range",
+			// },
 			{
-				key: "xfer_by_tier",
-				name: "Monthly Transfer Limit (GB)",
-			},
-			{
-				key: "carving_by_tier",
-				name: "Data Carving Size Limit (GB)",
-			},
-			{
-				key: "history_by_tier",
-				name: "Analysis Time Range",
-			},
-			{
-				key: "assets_by_tier",
+				key: "assets",
 				name: "Total Assets",
 			},
 			{
-				key: "projects_by_tier",
+				key: "projects",
 				name: "Total Projects",
 			},
 			// { // @todo finish me

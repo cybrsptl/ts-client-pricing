@@ -11,6 +11,7 @@ import {
 	Text,
 	Thead,
 	Tr,
+	VStack,
 } from "@chakra-ui/react"
 import { PricingAccountForTierType } from "../constants/CustomPricingData"
 
@@ -27,12 +28,12 @@ export const ProductOverviewTable = (props: ProductOverviewTableProps) => {
 					{products.length > 1 && <Td />}
 					{products.map((product, id) => (
 						<Td key={id} fontSize="xl" fontWeight="semibold">
-							<HStack width="100%" justifyContent={"space-around"}>
-								<Text>{product.name}</Text>
+							<VStack width="100%" justifyContent={"space-around"}>
 								{product.isPopular && (
 									<Badge colorScheme="green">Popular</Badge>
 								)}
-							</HStack>
+								<Text>{product.name}</Text>
+							</VStack>
 						</Td>
 					))}
 				</Tr>

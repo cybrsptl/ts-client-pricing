@@ -99,7 +99,9 @@ export const PricingView = () => {
 			const tiersAsc: number[] = Object.keys(pricingAccount.tiers_by_gb)
 				.sort((a, b) => parseFloat(a) - parseFloat(b))
 				.map((k) => parseFloat(k))
-			console.log("tiersAsc", tiersAsc)
+
+			// console.log("tiersAsc", tiersAsc)
+
 			const lowestTierIndex: number = tiersAsc.find(
 				(tierDataLimit) => tierDataLimit >= billingTier
 			)
@@ -108,14 +110,13 @@ export const PricingView = () => {
 				: null
 			const tierProdKey = `${lowestTierProductId}|${PricingBillingModeToStripe[billingMode]}`
 
-			if (!pricingData[tierProdKey]) {
+			if (pricingData[tierProdKey]) {
+				pricingAccount.name = `${_.startCase(
+					pricingData[tierProdKey].prodType
+				)} ${pricingData[tierProdKey].prodTier}`
+			} else {
 				pricingAccount.isDisabled = true
-				return
 			}
-
-			pricingAccount.name = `${_.startCase(
-				pricingData[tierProdKey].prodType
-			)} ${pricingData[tierProdKey].prodTier}`
 
 			console.log("billingTier", billingTier)
 			console.log("pricingData", pricingData)
@@ -124,6 +125,28 @@ export const PricingView = () => {
 
 			// Flatten _by_tier values to match current tier
 			// Inject additional values by cross-referencing with (Stripe authoritative) pricingData
+			Object.entries(pricingAccount?.features || {}).forEach(
+				([featureKey, featureVal]) => {
+					if (
+						!featureKey.endsWith("_by_tier") ||
+						!featureVal[lowestTierIndex]
+					) {
+						return
+					}
+					const featureKeyNormalized = featureKey.replace("_by_tier", "")
+					// console.log(
+					// 	"featureKeyNormalized",
+					// 	featureKeyNormalized,
+					// 	"featureVal",
+					// 	featureVal,
+					// 	"pricingAccount.features[featureKeyNormalized]",
+					// 	(pricingAccount.features[featureKeyNormalized] =
+					// 		featureVal[lowestTierIndex])
+					// )
+					pricingAccount.features[featureKeyNormalized] =
+						featureVal[lowestTierIndex]
+				}
+			)
 		})
 
 		console.log("accountTypesForChosenTier", accountTypesForChosenTier)
@@ -152,6 +175,7 @@ export const PricingView = () => {
 					{...{
 						billingMode,
 						billingTier,
+						accountTypesForChosenTier,
 					}}
 				/>
 				<ProductCallToActionTable products={accountTypesForChosenTier} />

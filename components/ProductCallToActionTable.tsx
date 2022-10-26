@@ -35,34 +35,36 @@ export const ProductCallToActionTable = (
 									Talk to sales
 								</Button> */}
 							{/* </Stack> */}
-							{/* eslint-disable-next-line react/jsx-no-target-blank */}
-							<a
-								href={`${
-									AppConfig.stripe_customer_portal_url
-								}?prefilled_email=${encodeURIComponent(
-									userInfo?.email
-								)}&ts_email=${encodeURIComponent(userInfo?.email)}`}
-								target="_blank"
-							>
-								<Button
-									variant={products[id].isDisabled ? "solid" : "primary"}
-									size={products[id].isDisabled ? "sm" : "lg"}
-									height={12}
-									sx={
-										products[id].isDisabled
-											? {}
-											: {
-													bg: "green.500",
-													_hover: {
-														bg: "green.400",
-													},
-											  }
-									}
-									disabled={products[id].isDisabled}
+							{!products[id].isDisabled && (
+								/* eslint-disable-next-line react/jsx-no-target-blank */
+								<a
+									href={`${
+										AppConfig.stripe_customer_portal_url
+									}?prefilled_email=${encodeURIComponent(
+										userInfo?.email
+									)}&ts_email=${encodeURIComponent(userInfo?.email)}`}
+									target="_blank"
 								>
-									{products[id].isDisabled ? "Coming Soon" : "Buy Now"}
-								</Button>
-							</a>
+									<Button
+										variant={products[id].isDisabled ? "solid" : "primary"}
+										size={products[id].isDisabled ? "sm" : "lg"}
+										height={12}
+										sx={
+											products[id].isDisabled
+												? {}
+												: {
+														bg: "green.500",
+														_hover: {
+															bg: "green.400",
+														},
+												  }
+										}
+										disabled={products[id].isDisabled}
+									>
+										{products[id].isDisabled ? "Coming Soon" : "Buy Now"}
+									</Button>
+								</a>
+							)}
 						</Td>
 					))}
 				</Tr>

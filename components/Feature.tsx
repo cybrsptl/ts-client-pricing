@@ -16,9 +16,9 @@ export const Feature = ({
 	billingMode,
 	billingTier,
 }: FeatureProps) => {
-	if (key && key.endsWith("_by_tier")) {
-		return <>{value}</>
-	}
+	// if (key && key.endsWith("_by_tier")) {
+	// 	return <>{value}</>
+	// }
 
 	if (typeof value === "boolean") {
 		return (
@@ -31,10 +31,13 @@ export const Feature = ({
 	}
 
 	if (typeof value === "object") {
+		console.log("Product feature object value", value)
+		console.log("React.isValidElement", React.isValidElement(value))
 		if (React.isValidElement(value)) {
 			return value
 		}
-		return <>WIP</>
+
+		return <>{value}</>
 		//	return <>{JSON.stringify(value)}</>
 	}
 

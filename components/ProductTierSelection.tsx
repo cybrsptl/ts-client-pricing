@@ -15,16 +15,8 @@ import {
 	TableProps,
 	Text,
 } from "@chakra-ui/react"
-import { useTenants } from "@common/components/AppTenantsProvider"
 import Card from "@common/components/Card"
-import Logo from "@common/components/Logo"
-import AppConfig from "@common/constants/AppConfig"
-import PricingAccounts from "../constants/CustomPricingData"
-import {
-	PricingBillingMode,
-	PricingBillingModeToStripe,
-} from "../constants/PricingConstants"
-import { PricingDataDev, PricingDataProd } from "../constants/StripePricingData"
+import { PricingBillingMode } from "../constants/PricingConstants"
 
 interface ProductTierSelectionProps extends TableProps {
 	pricingTiers: object
@@ -148,8 +140,5 @@ export const ProductTierSelection = ({
 				</Box>
 			</Stack>
 		</Card>
-		// <Box pt={6} pb={2} width="50%" margin="auto">
-
-		// </Box>
 	)
 }

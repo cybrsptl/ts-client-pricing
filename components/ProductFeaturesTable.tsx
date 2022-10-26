@@ -14,7 +14,8 @@ import {
 	Tooltip,
 	Tr,
 } from "@chakra-ui/react"
-import PricingAccounts, {
+import {
+	PricingAccountForTierType,
 	PricingFeatures,
 } from "../constants/CustomPricingData"
 import { PricingBillingMode } from "../constants/PricingConstants"
@@ -23,10 +24,12 @@ import { Feature } from "./Feature"
 interface ProductFeaturesTableProps extends TableProps {
 	billingMode: PricingBillingMode
 	billingTier: number
+	accountTypesForChosenTier: PricingAccountForTierType[]
 }
 
 export const ProductFeaturesTable = (props: ProductFeaturesTableProps) => {
-	const { billingMode, billingTier, ...tableProps } = props
+	const { billingMode, billingTier, accountTypesForChosenTier, ...tableProps } =
+		props
 
 	return (
 		<>
@@ -40,7 +43,7 @@ export const ProductFeaturesTable = (props: ProductFeaturesTableProps) => {
 					<Thead>
 						<Tr>
 							<Th
-								colSpan={PricingAccounts.length + 1}
+								colSpan={accountTypesForChosenTier.length + 1}
 								color="accent"
 								fontSize="sm"
 								borderColor="green.500"
@@ -69,7 +72,7 @@ export const ProductFeaturesTable = (props: ProductFeaturesTableProps) => {
 										)}
 									</HStack>
 								</Td>
-								{PricingAccounts.map((product, id) => (
+								{accountTypesForChosenTier.map((product, id) => (
 									<Td
 										key={id}
 										// textAlign={
