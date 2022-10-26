@@ -158,7 +158,7 @@ const PricingAccounts = [
 		},
 	},
 	{
-		name: "Team",
+		name: "Team 1000",
 		prodType: "team",
 		description: "Coming soon.",
 		isDisabled: true,
@@ -401,6 +401,7 @@ export type PricingAccountForTierType = {
 	features: { [key: string]: object | string | boolean }
 	isPopular: boolean
 	isDisabled: boolean
+	isCurrent: boolean
 }
 
 export default PricingAccounts

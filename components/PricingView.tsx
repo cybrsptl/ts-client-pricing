@@ -1,6 +1,8 @@
+import _ from "lodash"
 import * as React from "react"
-import { useMemo, useState } from "react"
+import { useEffect, useMemo, useState } from "react"
 import { Box, Stack } from "@chakra-ui/react"
+import { useTenants } from "@common/components/AppTenantsProvider"
 import AppConfig from "@common/constants/AppConfig"
 import PricingAccounts, {
 	PricingAccountForTierType,
@@ -17,10 +19,19 @@ import { ProductOverviewTable } from "./ProductOverviewTable"
 import { ProductTierSelection } from "./ProductTierSelection"
 
 export const PricingView = () => {
+	const { activeTenant } = useTenants()
 	const [billingMode, setBillingMode] = React.useState<PricingBillingMode>(
 		PricingBillingMode.ANNUAL
 	)
-	const [billingTier, setBillingTier] = useState(0)
+	const [billingTier, setBillingTier] = useState(-1)
+
+	// Automatically set billing tier to current tenant limit when page loads
+	useEffect(() => {
+		if (billingTier !== -1 || !activeTenant?.tier?.data_under_analysis) {
+			return
+		}
+		setBillingTier(activeTenant.tier.data_under_analysis / (1000 * 1000 * 1000))
+	}, [billingTier, activeTenant?.tier?.data_under_analysis])
 
 	const pricingData = useMemo(() => {
 		const data = (
@@ -34,13 +45,13 @@ export const PricingView = () => {
 			v.prodTier = parseInt(prodNameParsed.groups.tier)
 		})
 
-		console.log("pricingData", data)
+		// console.log("pricingData", data)
 		return data
 	}, [AppConfig?.stripe_test_mode])
 
 	// Enumerate all account tiers
 	// (Used to determine where to place the discrete stops for the ProductTierSelection slider).
-	const pricingTiers = React.useMemo(() => {
+	const pricingTiers = useMemo(() => {
 		const pricingTiers = {}
 		PricingAccounts.forEach((type) => {
 			if (!type.tiers_by_gb) {
@@ -80,35 +91,36 @@ export const PricingView = () => {
 				return
 			}
 
+			console.log("------")
+			console.log("pricingAccount.name", pricingAccount.name)
+
 			// Find the lowest tier for this account type with enough GB to satisfy current billingTier selection
-			let lowestTier: number = null
-			let lowestTierProductId = null
-			Object.entries(pricingAccount.tiers_by_gb).forEach(([k, v]) => {
-				const tierDataLimit = parseFloat(k)
-				if (
-					tierDataLimit < billingTier ||
-					(lowestTier && tierDataLimit > lowestTier)
-				) {
-					return
-				}
-				lowestTier = tierDataLimit
-				lowestTierProductId = v
-			})
 
+			const tiersAsc: number[] = Object.keys(pricingAccount.tiers_by_gb)
+				.sort((a, b) => parseFloat(a) - parseFloat(b))
+				.map((k) => parseFloat(k))
+			console.log("tiersAsc", tiersAsc)
+			const lowestTierIndex: number = tiersAsc.find(
+				(tierDataLimit) => tierDataLimit >= billingTier
+			)
+			const lowestTierProductId = lowestTierIndex
+				? pricingAccount.tiers_by_gb[lowestTierIndex]
+				: null
 			const tierProdKey = `${lowestTierProductId}|${PricingBillingModeToStripe[billingMode]}`
-
-			// console.log("------")
-			// console.log("pricingAccount.name", pricingAccount.name)
-			// console.log("pricingData", pricingData)
-			// console.log("lowestTierProductId", tierProdKey)
-			// console.log("pricingData[tierProdKey]", pricingData[tierProdKey])
 
 			if (!pricingData[tierProdKey]) {
 				pricingAccount.isDisabled = true
 				return
 			}
 
-			pricingAccount.name = `${pricingData[tierProdKey].prodType} ${pricingData[tierProdKey].prodTier}`
+			pricingAccount.name = `${_.startCase(
+				pricingData[tierProdKey].prodType
+			)} ${pricingData[tierProdKey].prodTier}`
+
+			console.log("billingTier", billingTier)
+			console.log("pricingData", pricingData)
+			console.log("lowestTierProductId", lowestTierProductId)
+			console.log("pricingData[tierProdKey]", pricingData[tierProdKey])
 
 			// Flatten _by_tier values to match current tier
 			// Inject additional values by cross-referencing with (Stripe authoritative) pricingData

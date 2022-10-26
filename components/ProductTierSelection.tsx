@@ -43,9 +43,9 @@ export const ProductTierSelection = ({
 }: ProductTierSelectionProps) => {
 	const { accountTierSliderIntervalCount, accountTierSliderIntervals } =
 		useMemo(() => {
-			const accountTierSliderIntervals = Object.keys(pricingTiers).sort(
-				(a, b) => parseFloat(a) - parseFloat(b)
-			)
+			const accountTierSliderIntervals = Object.keys(pricingTiers)
+				.sort((a, b) => parseFloat(a) - parseFloat(b))
+				.map((k) => parseFloat(k))
 			const accountTierSliderIntervalCount = accountTierSliderIntervals.length
 
 			return {
@@ -53,6 +53,9 @@ export const ProductTierSelection = ({
 				accountTierSliderIntervalCount,
 			}
 		}, [pricingTiers])
+
+	// console.log("billingTier", billingTier)
+	// console.log("accountTierSliderIntervals", accountTierSliderIntervals)
 
 	// const tierLevels = useMemo(() => {
 	// 	const levels = []
@@ -106,8 +109,10 @@ export const ProductTierSelection = ({
 						min={0}
 						max={accountTierSliderIntervalCount - 1}
 						aria-label="slider-ex-6"
-						onChange={(val) => setBillingTier(val)}
-						value={billingTier}
+						onChange={(val) => setBillingTier(accountTierSliderIntervals[val])}
+						value={accountTierSliderIntervals.findIndex(
+							(v) => v == billingTier
+						)}
 						step={1}
 						ml={2}
 						// pb="4"
