@@ -49,7 +49,7 @@ export const PricingView = ({
 		) as StripePricingDataList
 
 		Object.entries(data).forEach(([k, v]) => {
-			const regex = /(Teleseer\s?)?(?<type>\w+)\s(?<tier>\w+)/
+			const regex = /(Teleseer\s?)?(?<type>\w+)\s\((?<tier>.+)\)/
 			const prodNameParsed = v.prodName.match(regex)
 			v.prodType = prodNameParsed.groups.type.toLowerCase()
 			v.prodTier = parseInt(prodNameParsed.groups.tier)
