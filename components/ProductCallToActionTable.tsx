@@ -6,14 +6,21 @@ interface ProductCallToActionTableProps extends TableProps {
 	products: PricingAccountForTierType[]
 	userEmail?: string
 	tenantTierName?: string
+	purchaseEnabled?: boolean
 }
 
 export const ProductCallToActionTable = (
 	props: ProductCallToActionTableProps
 ) => {
-	const { products, userEmail, tenantTierName, ...tableProps } = props
+	const {
+		products,
+		userEmail,
+		tenantTierName,
+		purchaseEnabled,
+		...tableProps
+	} = props
 
-	if (tenantTierName.toUpperCase() !== "FREE") {
+	if (purchaseEnabled) {
 		return
 	}
 

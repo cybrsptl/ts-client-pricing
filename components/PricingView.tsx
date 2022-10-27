@@ -22,12 +22,14 @@ type PricingViewParams = {
 	tenantDataUnderAnalysis?: number
 	tenantTierName?: string
 	userEmail?: string
+	purchaseEnabled?: boolean
 }
 
 export const PricingView = ({
 	tenantDataUnderAnalysis,
 	tenantTierName,
 	userEmail,
+	purchaseEnabled,
 }: PricingViewParams) => {
 	const [billingMode, setBillingMode] = React.useState<PricingBillingMode>(
 		PricingBillingMode.ANNUAL
@@ -210,6 +212,7 @@ export const PricingView = ({
 				<ProductCallToActionTable
 					{...{
 						products,
+						purchaseEnabled,
 					}}
 				/>
 				<ProductFeaturesTable
