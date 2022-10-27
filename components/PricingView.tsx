@@ -105,8 +105,15 @@ export const PricingView = ({
 			// console.log("------")
 			// console.log("pricingAccount.name", pricingAccount.name)
 
-			// Find the lowest tier for this account type with enough GB to satisfy current billingTier selection
+			// Copy product descriptions from source PricingAccounts data, as React nodes can't survive JSON serialization.
+			const sourcePricingAccount = PricingAccounts.find(
+				(p) => p.prodType === product.prodType
+			)
+			if (sourcePricingAccount) {
+				product.description = sourcePricingAccount.description
+			}
 
+			// Find the lowest tier for this account type with enough GB to satisfy current billingTier selection
 			const tiersAsc: number[] = Object.keys(product.tiersByGB)
 				.sort((a, b) => parseFloat(a) - parseFloat(b))
 				.map((k) => parseFloat(k))
@@ -178,6 +185,15 @@ export const PricingView = ({
 				product.annualBillingOnly = true
 			}
 
+			// Calculate $/GB for each product
+			if (product.pricePerMonth && product.dataInGB) {
+				product.features.pricePerGB = `$${(
+					product.pricePerMonth / product.dataInGB
+				)
+					.toFixed(2)
+					.toLocaleString()}`
+			}
+
 			// console.log("billingTier", billingTier)
 			// console.log("pricingData", pricingData)
 			// console.log("lowestTierProductId", lowestTierProductId)
@@ -192,15 +208,6 @@ export const PricingView = ({
 	return (
 		<Box as="section">
 			<Stack spacing={{ base: "5", md: "7" }} width="100%" mb={8}>
-				<ProductTierSelection
-					{...{
-						pricingTiers,
-						billingMode,
-						setBillingMode,
-						billingTier,
-						setBillingTier,
-					}}
-				/>
 				<ProductOverview
 					{...{
 						products,
@@ -209,6 +216,15 @@ export const PricingView = ({
 						userEmail,
 						tenantTierName,
 						purchaseEnabled,
+					}}
+				/>
+				<ProductTierSelection
+					{...{
+						pricingTiers,
+						billingMode,
+						setBillingMode,
+						billingTier,
+						setBillingTier,
 					}}
 				/>
 				<ProductFeatures
