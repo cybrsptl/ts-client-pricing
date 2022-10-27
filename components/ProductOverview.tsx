@@ -24,7 +24,13 @@ interface ProductOverviewProps extends TableProps {
 }
 
 export const ProductOverview = (props: ProductOverviewProps) => {
-	const { products, userEmail, billingTier, purchaseEnabled } = props
+	const {
+		products,
+		userEmail,
+		billingTier,
+		purchaseEnabled,
+		...containerProps
+	} = props
 
 	return (
 		<HStack
@@ -33,6 +39,7 @@ export const ProductOverview = (props: ProductOverviewProps) => {
 			alignItems="top"
 			justifyContent="center"
 			pb={1}
+			{...containerProps}
 		>
 			{products
 				.filter((p) => !p.hideOverviewCard)

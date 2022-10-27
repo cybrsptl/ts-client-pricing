@@ -217,6 +217,7 @@ export const PricingView = ({
 						tenantTierName,
 						purchaseEnabled,
 					}}
+					px={8}
 				/>
 				<ProductTierSelection
 					{...{

@@ -32,6 +32,7 @@ export const ProductTierSelection = ({
 	setBillingMode,
 	billingTier,
 	setBillingTier,
+	...containerProps
 }: ProductTierSelectionProps) => {
 	const { accountTierSliderIntervalCount, accountTierSliderIntervals } =
 		useMemo(() => {
@@ -70,11 +71,12 @@ export const ProductTierSelection = ({
 
 	return (
 		<Box
-			bg={useColorModeValue("white", "theme_accent")}
+			// bg={useColorModeValue("white", "theme_accent")}
 			// shadow="base"
 			rounded="lg"
 			p={{ base: "4", md: "8" }}
 			mb={20}
+			{...containerProps}
 		>
 			<Stack
 				direction={["row"]}
