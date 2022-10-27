@@ -1,14 +1,18 @@
 import * as React from "react"
 import { Flex, FlexProps, Text } from "@chakra-ui/react"
 
-export const CardBadge = (props: FlexProps) => {
-	const { children, ...flexProps } = props
+interface CardBadgeProps extends FlexProps {
+	colorScheme?: string
+}
+
+export const CardBadge = (props: CardBadgeProps) => {
+	const { children, colorScheme, ...flexProps } = props
 	return (
 		<Flex
-			bg={"green.500"}
+			bg={colorScheme === "green" ? "green.500" : "gray.500"}
 			position="absolute"
-			right={-20}
-			top={6}
+			right="-88px"
+			top={5}
 			width="240px"
 			transform="rotate(45deg)"
 			py={1}

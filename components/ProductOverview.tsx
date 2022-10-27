@@ -38,11 +38,9 @@ export const ProductOverview = (props: ProductOverviewProps) => {
 						}}
 					>
 						{product.isPopular && (
-							<CardBadge /*colorScheme="green"*/>Popular</CardBadge>
+							<CardBadge colorScheme="green">Popular</CardBadge>
 						)}
-						{product.isComingSoon && (
-							<CardBadge /*colorScheme="gray"*/>Invite-Only</CardBadge>
-						)}
+						{product.isComingSoon && <CardBadge>Waitlist</CardBadge>}
 						<Text
 							fontSize="md"
 							textTransform="uppercase"

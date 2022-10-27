@@ -70,7 +70,7 @@ export const ProductTierSelection = ({
 
 	return (
 		<Box
-			bg={useColorModeValue("white", "theme_accent")}
+			// bg={useColorModeValue("white", "theme_accent")}
 			// shadow="base"
 			rounded="lg"
 			p={{ base: "4", md: "8" }}
@@ -82,7 +82,7 @@ export const ProductTierSelection = ({
 				justifyContent="start"
 				// spacing={[1, 2, 4]}
 			>
-				<Box flex=".3" textAlign="right" pr="8" mt="0">
+				<Box flex=".4" textAlign="right" pr="8" mt="0">
 					<Heading size="md" mb="8">
 						Billing Plan:
 					</Heading>
