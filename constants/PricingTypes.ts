@@ -1,3 +1,5 @@
+import React from "react"
+
 export interface StripePricingData {
 	prodId: string
 	prodName: string
@@ -14,15 +16,18 @@ export interface StripePricingDataList {
 
 export type PricingAccountForTierType = {
 	name: string
+	subTitle: string
 	purchaseLink?: string
 	price?: string
 	pricePerMonth?: number
+	description?: string | (() => React.ReactNode)
+	borderColor?: string
 	dataInGB?: number
 	billingFrequency?: string
 	prodType: string
-	description?: string
 	tiersByGB: { [key: number]: string }
 	features: { [key: string]: object | string | boolean }
+	hideOverviewCard?: boolean
 	isPopular?: boolean
 	isComingSoon?: boolean
 	isDisabled?: boolean

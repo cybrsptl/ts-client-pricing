@@ -1,5 +1,4 @@
 import * as React from "react"
-import { FaDollarSign } from "react-icons/fa"
 import { FiCheck, FiDollarSign, FiMinus } from "react-icons/fi"
 import { Icon } from "@chakra-ui/react"
 import { PricingBillingMode } from "../constants/PricingConstants"
@@ -11,12 +10,7 @@ interface PricingFeatureProps {
 	billingTier?: number
 }
 
-export const PricingFeature = ({
-	key,
-	value,
-	billingMode,
-	billingTier,
-}: PricingFeatureProps) => {
+export const PricingFeature = ({ value }: PricingFeatureProps) => {
 	if (typeof value === "boolean") {
 		return (
 			<Icon
