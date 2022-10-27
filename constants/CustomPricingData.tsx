@@ -7,7 +7,7 @@ import { PricingList, PricingListItem } from "../components/PricingDescList"
 const PricingAccounts = [
 	{
 		name: "Free",
-		subTitle: "For Individuals",
+		subTitle: "For individuals",
 		prodType: "free",
 		hideOverviewCard: true,
 		description: () => (
@@ -28,6 +28,7 @@ const PricingAccounts = [
 			history: "",
 			assets: "",
 			projects: "",
+			pricePerGB: false,
 			dataByTier: {
 				0.1: "100 MB",
 			},
@@ -66,7 +67,7 @@ const PricingAccounts = [
 	},
 	{
 		name: "Starter",
-		subTitle: "For Individuals",
+		subTitle: "For individuals",
 		prodType: "starter",
 		description: () => (
 			<PricingList>
@@ -135,15 +136,20 @@ const PricingAccounts = [
 	},
 	{
 		name: "Pro",
-		subTitle: "For Professionals",
+		subTitle: "For professionals",
 		prodType: "pro",
 		isPopular: true,
 		description: () => (
-			<PricingList>
-				<PricingListItem>Pro-tier resources</PricingListItem>
-				<PricingListItem>Unlimited assets</PricingListItem>
-				<PricingListItem>Premium enrichments included</PricingListItem>
-			</PricingList>
+			<>
+				<Text textAlign="left" fontSize="sm" mb={2}>
+					Everything in Starter, plus:
+				</Text>
+				<PricingList>
+					<PricingListItem>Pro-tier resources</PricingListItem>
+					<PricingListItem>Unlimited assets</PricingListItem>
+					<PricingListItem>Premium enrichments included</PricingListItem>
+				</PricingList>
+			</>
 		),
 		borderColor: "green.800",
 		tiersByGB: {
@@ -215,10 +221,13 @@ const PricingAccounts = [
 	{
 		name: "Team 1000",
 		prodType: "team",
-		subTitle: "For Organizations",
+		subTitle: "For organizations",
 		isComingSoon: true,
 		description: () => (
 			<>
+				<Text textAlign="left" fontSize="sm" mb={2}>
+					Everything in Pro, plus:
+				</Text>
 				<PricingList>
 					<PricingListItem>Unlimited projects</PricingListItem>
 					<PricingListItem>Data streaming</PricingListItem>
@@ -342,11 +351,10 @@ export const PricingFeatures: Feature[] = [
 				key: "projects",
 				name: "Total Projects",
 			},
-			// { // @todo finish me
-			// 	key: "priceByTier",
-			// 	name: "Price per GB (annual)",
-			// 	forumula: "PRICEByTier"
-			// },
+			{
+				key: "pricePerGB",
+				name: "Price per GB",
+			},
 		],
 	},
 	{

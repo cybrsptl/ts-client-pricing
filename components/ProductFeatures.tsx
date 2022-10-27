@@ -33,7 +33,7 @@ export const ProductFeatures = (props: ProductFeaturesProps) => {
 			{PricingFeatures.map((feature, featureId) => (
 				<Table
 					key={featureId}
-					sx={{ tableLayout: "fixed" }}
+					// sx={{ tableLayout: "fixed" }}
 					variant="striped"
 					{...tableProps}
 				>
@@ -43,7 +43,8 @@ export const ProductFeatures = (props: ProductFeaturesProps) => {
 								// colSpan={products.length + 1}
 								color="accent"
 								fontSize="sm"
-								borderColor="green.500"
+								borderColor="green.800"
+								width="33%"
 							>
 								{feature.category}
 							</Th>
@@ -51,8 +52,9 @@ export const ProductFeatures = (props: ProductFeaturesProps) => {
 								<Th
 									key={id}
 									style={{ textAlign: "center" }}
-									borderColor="green.500"
+									borderColor="green.800"
 									color="muted"
+									width={`${(100 - 33) / products.length}%`}
 								>
 									{product.name}
 								</Th>
@@ -82,10 +84,6 @@ export const ProductFeatures = (props: ProductFeaturesProps) => {
 								{products.map((product, id) => (
 									<Td
 										key={id}
-										// textAlign={
-										// 	"center"
-										// 	// PricingAccountTypes.length > 1 ? "center" : "right"
-										// }
 										style={{ textAlign: "center" }}
 										height="16"
 										color="muted"
