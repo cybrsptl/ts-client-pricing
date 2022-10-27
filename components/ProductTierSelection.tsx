@@ -70,11 +70,12 @@ export const ProductTierSelection = ({
 
 	return (
 		<Box
-			// bg={useColorModeValue("white", "theme_accent")}
+			bg={useColorModeValue("white", "theme_accent")}
 			// shadow="base"
 			rounded="lg"
 			p={{ base: "4", md: "8" }}
-			height="40"
+			height="220px"
+			mb={20}
 		>
 			<Stack
 				direction={["row"]}
@@ -86,11 +87,8 @@ export const ProductTierSelection = ({
 					<Heading size="md" mb="8">
 						Billing Plan:
 					</Heading>
-					<Text size="lg">Data to analyze (GB):</Text>
+					<Text size="lg">Data Under Analysis (GB):</Text>
 				</Box>
-				{/* <Box flex=".5">
-					<UserSubscriptionInfoCard />
-				</Box> */}
 				<Box flex=".5">
 					<RadioGroup
 						value={billingMode}
@@ -143,6 +141,12 @@ export const ProductTierSelection = ({
 							{/* <Logo color="green.500" logoStyle="symbol" height={24} /> */}
 						</SliderThumb>
 					</Slider>
+					<Text fontSize="xs" mt={8}>
+						* Data Under Analysis (DUA) is the total uncompressed amount of data
+						that Teleseer has processed and stored for your account. You can
+						free up space by deleting uploaded data files. Projects do not count
+						towards your quota.
+					</Text>
 				</Box>
 			</Stack>
 		</Box>
