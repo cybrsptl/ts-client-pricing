@@ -20,7 +20,7 @@ export const ProductCallToActionTable = (
 		...tableProps
 	} = props
 
-	if (purchaseEnabled) {
+	if (!purchaseEnabled) {
 		return
 	}
 

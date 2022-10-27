@@ -22,12 +22,11 @@ import { PricingFeature } from "./PricingFeature"
 interface ProductFeaturesTableProps extends TableProps {
 	billingMode: PricingBillingMode
 	billingTier: number
-	accountTypesForChosenTier: PricingAccountForTierType[]
+	products: PricingAccountForTierType[]
 }
 
 export const ProductFeaturesTable = (props: ProductFeaturesTableProps) => {
-	const { billingMode, billingTier, accountTypesForChosenTier, ...tableProps } =
-		props
+	const { billingMode, billingTier, products, ...tableProps } = props
 
 	return (
 		<>
@@ -41,7 +40,7 @@ export const ProductFeaturesTable = (props: ProductFeaturesTableProps) => {
 					<Thead>
 						<Tr>
 							<Th
-								colSpan={accountTypesForChosenTier.length + 1}
+								colSpan={products.length + 1}
 								color="accent"
 								fontSize="sm"
 								borderColor="green.500"
@@ -70,7 +69,7 @@ export const ProductFeaturesTable = (props: ProductFeaturesTableProps) => {
 										)}
 									</HStack>
 								</Td>
-								{accountTypesForChosenTier.map((product, id) => (
+								{products.map((product, id) => (
 									<Td
 										key={id}
 										// textAlign={

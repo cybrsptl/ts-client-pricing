@@ -195,7 +195,7 @@ export const PricingView = ({
 			<Stack spacing={{ base: "5", md: "7" }} width="100%" mb={8}>
 				<ProductTierSelection
 					{...{
-						pricingTiers: pricingTiers,
+						pricingTiers,
 						billingMode,
 						setBillingMode,
 						billingTier,
@@ -206,20 +206,7 @@ export const PricingView = ({
 					{...{
 						billingMode,
 						billingTier,
-						products: products,
-					}}
-				/>
-				<ProductCallToActionTable
-					{...{
 						products,
-						purchaseEnabled,
-					}}
-				/>
-				<ProductFeaturesTable
-					{...{
-						billingMode,
-						billingTier,
-						accountTypesForChosenTier: products,
 					}}
 				/>
 				<ProductCallToActionTable
@@ -227,6 +214,21 @@ export const PricingView = ({
 						products,
 						userEmail,
 						tenantTierName,
+					}}
+				/>
+				<ProductFeaturesTable
+					{...{
+						billingMode,
+						billingTier,
+						products,
+					}}
+				/>
+				<ProductCallToActionTable
+					{...{
+						products,
+						userEmail,
+						tenantTierName,
+						purchaseEnabled,
 					}}
 				/>
 			</Stack>

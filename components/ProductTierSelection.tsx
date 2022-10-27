@@ -14,8 +14,8 @@ import {
 	Stack,
 	TableProps,
 	Text,
+	useColorModeValue,
 } from "@chakra-ui/react"
-import Card from "@common/components/Card"
 import { PricingBillingMode } from "../constants/PricingConstants"
 
 interface ProductTierSelectionProps extends TableProps {
@@ -69,7 +69,13 @@ export const ProductTierSelection = ({
 	}
 
 	return (
-		<Card height="40">
+		<Box
+			bg={useColorModeValue("white", "theme_accent")}
+			// shadow="base"
+			rounded="lg"
+			p={{ base: "4", md: "8" }}
+			height="40"
+		>
 			<Stack
 				direction={["row"]}
 				// alignItems="left"
@@ -139,6 +145,6 @@ export const ProductTierSelection = ({
 					</Slider>
 				</Box>
 			</Stack>
-		</Card>
+		</Box>
 	)
 }
