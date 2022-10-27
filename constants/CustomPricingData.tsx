@@ -1,12 +1,22 @@
+import { Text } from "@chakra-ui/react"
 import AppConfig from "@common/constants/AppConfig"
-
-// Note: Tier thresholds should match out latest values in https://docs.google.com/spreadsheets/d/1rQRlPnumgwwRB2d-18kU82fpEOwILBEXys_FgbVdjc0/edit?usp=sharing
+import { PricingList, PricingListItem } from "../components/PricingDescList"
+// Note: Tier thresholds should match out latest values here:
+// https://docs.google.com/spreadsheets/d/1rQRlPnumgwwRB2d-18kU82fpEOwILBEXys_FgbVdjc0
 
 const PricingAccounts = [
 	{
 		name: "Free",
+		subTitle: "For Individuals",
 		prodType: "free",
-		description: "",
+		hideOverviewCard: true,
+		description: () => (
+			<PricingList>
+				<PricingListItem>Introductory Teleseer experience</PricingListItem>
+				<PricingListItem>Process telemetry files</PricingListItem>
+				<PricingListItem>View a map of your network</PricingListItem>
+			</PricingList>
+		),
 		tiersByGB: {
 			0.1: null,
 		},
@@ -22,10 +32,10 @@ const PricingAccounts = [
 				0.1: "100 MB",
 			},
 			xferByTier: {
-				0.1: "10",
+				0.1: "10 GB",
 			},
 			carvingByTier: {
-				0.1: "0.01",
+				0.1: "0.01 GB",
 			},
 			historyByTier: {
 				0.1: "30 days",
@@ -38,7 +48,7 @@ const PricingAccounts = [
 			},
 			ana_std: true,
 			ana_prem: false,
-			enr_std: true,
+			enr_std: false,
 			enr_prem: false,
 			ds_prem: false,
 			mfa: true,
@@ -56,8 +66,15 @@ const PricingAccounts = [
 	},
 	{
 		name: "Starter",
+		subTitle: "For Individuals",
 		prodType: "starter",
-		description: "",
+		description: () => (
+			<PricingList>
+				<PricingListItem>Increased resource limits</PricingListItem>
+				<PricingListItem>Standard threat analytics</PricingListItem>
+				<PricingListItem>Standard enrichments included</PricingListItem>
+			</PricingList>
+		),
 		tiersByGB: {
 			5: AppConfig.stripe_test_mode
 				? "prod_MeU6p5nJCScRjT"
@@ -79,8 +96,8 @@ const PricingAccounts = [
 				20: "20 GB",
 			},
 			xferByTier: {
-				5: "25",
-				20: "20",
+				5: "25 GB",
+				20: "20 GB",
 			},
 			carvingByTier: {
 				5: "1",
@@ -118,9 +135,17 @@ const PricingAccounts = [
 	},
 	{
 		name: "Pro",
+		subTitle: "For Professionals",
 		prodType: "pro",
 		isPopular: true,
-		description: "",
+		description: () => (
+			<PricingList>
+				<PricingListItem>Pro-tier resources</PricingListItem>
+				<PricingListItem>Unlimited assets</PricingListItem>
+				<PricingListItem>Premium enrichments included</PricingListItem>
+			</PricingList>
+		),
+		borderColor: "green.800",
 		tiersByGB: {
 			100: AppConfig.stripe_test_mode
 				? "prod_MeU7K4Gq8jKxec"
@@ -190,9 +215,22 @@ const PricingAccounts = [
 	{
 		name: "Team 1000",
 		prodType: "team",
+		subTitle: "For Organizations",
 		isComingSoon: true,
-		description: "",
+		description: () => (
+			<>
+				<PricingList>
+					<PricingListItem>Unlimited projects</PricingListItem>
+					<PricingListItem>Data streaming</PricingListItem>
+					<PricingListItem>Unified admin and billing</PricingListItem>
+				</PricingList>
+				<Text fontSize="sm" fontStyle="italic" mt={6}>
+					Contact for details.
+				</Text>
+			</>
+		),
 		isDisabled: true,
+		borderColor: "gray.500",
 		tiersByGB: {
 			500: AppConfig.stripe_test_mode
 				? "prod_MeU7Sd8NfyG2y1"
@@ -284,10 +322,10 @@ export const PricingFeatures: Feature[] = [
 				name: "Data Under Analysis",
 				// tooltip: "Tiramisu caramels topping donut oat cake chocolate bar cookie jujubes.",
 			},
-			// {
-			// 	key: "xfer",
-			// 	name: "Monthly Transfer Limit (GB)",
-			// },
+			{
+				key: "xfer",
+				name: "Monthly Transfer Limit",
+			},
 			// {
 			// 	key: "carving",
 			// 	name: "Data Carving Size Limit (GB)",
@@ -322,18 +360,18 @@ export const PricingFeatures: Feature[] = [
 				key: "enr_std",
 				name: "Standard threat intel enrichments",
 			},
-			{
-				key: "ana_prem",
-				name: "Premium analytics",
-			},
+			// {
+			// 	key: "ana_prem",
+			// 	name: "Premium analytics",
+			// },
 			{
 				key: "enr_prem",
 				name: "Premium threat intel enrichments",
 			},
-			{
-				key: "ds_prem",
-				name: "Data Science Add-on Package",
-			},
+			// {
+			// 	key: "ds_prem",
+			// 	name: "Data Science add-on package",
+			// },
 		],
 	},
 	{
