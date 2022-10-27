@@ -40,13 +40,23 @@ export const ProductFeaturesTable = (props: ProductFeaturesTableProps) => {
 					<Thead>
 						<Tr>
 							<Th
-								colSpan={products.length + 1}
+								// colSpan={products.length + 1}
 								color="accent"
 								fontSize="sm"
 								borderColor="green.500"
 							>
 								{feature.category}
 							</Th>
+							{products.map((product, id) => (
+								<Th
+									key={id}
+									style={{ textAlign: "center" }}
+									borderColor="green.500"
+									color="muted"
+								>
+									{product.name}
+								</Th>
+							))}
 						</Tr>
 					</Thead>
 					<Tbody>
