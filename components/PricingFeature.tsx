@@ -3,19 +3,19 @@ import { FiCheck, FiMinus } from "react-icons/fi"
 import { Icon } from "@chakra-ui/react"
 import { PricingBillingMode } from "../constants/PricingConstants"
 
-interface FeatureProps {
+interface PricingFeatureProps {
 	key?: string
 	value: string | number | boolean | object
 	billingMode?: PricingBillingMode
 	billingTier?: number
 }
 
-export const Feature = ({
+export const PricingFeature = ({
 	key,
 	value,
 	billingMode,
 	billingTier,
-}: FeatureProps) => {
+}: PricingFeatureProps) => {
 	// if (key && key.endsWith("ByTier")) {
 	// 	return <>{value}</>
 	// }

@@ -17,7 +17,7 @@ import {
 import { PricingFeatures } from "../constants/CustomPricingData"
 import { PricingBillingMode } from "../constants/PricingConstants"
 import { PricingAccountForTierType } from "../constants/PricingTypes"
-import { Feature } from "./Feature"
+import { PricingFeature } from "./PricingFeature"
 
 interface ProductFeaturesTableProps extends TableProps {
 	billingMode: PricingBillingMode
@@ -81,7 +81,7 @@ export const ProductFeaturesTable = (props: ProductFeaturesTableProps) => {
 										height="16"
 										color="muted"
 									>
-										<Feature
+										<PricingFeature
 											key={item.key}
 											value={product.features[item.key]}
 											{...{ billingMode, billingTier }}
