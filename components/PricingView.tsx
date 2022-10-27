@@ -13,9 +13,8 @@ import {
 	StripePricingDataList,
 } from "../constants/PricingTypes"
 import { PricingDataDev, PricingDataProd } from "../constants/StripePricingData"
-import { ProductCallToActionTable } from "./ProductCallToActionTable"
-import { ProductFeaturesTable } from "./ProductFeaturesTable"
-import { ProductOverviewTable } from "./ProductOverviewTable"
+import { ProductFeatures } from "./ProductFeatures"
+import { ProductOverview } from "./ProductOverview"
 import { ProductTierSelection } from "./ProductTierSelection"
 
 type PricingViewParams = {
@@ -202,33 +201,21 @@ export const PricingView = ({
 						setBillingTier,
 					}}
 				/>
-				<ProductOverviewTable
+				<ProductOverview
 					{...{
+						products,
 						billingMode,
 						billingTier,
-						products,
-					}}
-				/>
-				<ProductCallToActionTable
-					{...{
-						products,
-						userEmail,
-						tenantTierName,
-					}}
-				/>
-				<ProductFeaturesTable
-					{...{
-						billingMode,
-						billingTier,
-						products,
-					}}
-				/>
-				<ProductCallToActionTable
-					{...{
-						products,
 						userEmail,
 						tenantTierName,
 						purchaseEnabled,
+					}}
+				/>
+				<ProductFeatures
+					{...{
+						billingMode,
+						billingTier,
+						products,
 					}}
 				/>
 			</Stack>

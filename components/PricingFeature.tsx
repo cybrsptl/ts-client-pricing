@@ -1,5 +1,6 @@
 import * as React from "react"
-import { FiCheck, FiMinus } from "react-icons/fi"
+import { FaDollarSign } from "react-icons/fa"
+import { FiCheck, FiDollarSign, FiMinus } from "react-icons/fi"
 import { Icon } from "@chakra-ui/react"
 import { PricingBillingMode } from "../constants/PricingConstants"
 
@@ -16,10 +17,6 @@ export const PricingFeature = ({
 	billingMode,
 	billingTier,
 }: PricingFeatureProps) => {
-	// if (key && key.endsWith("ByTier")) {
-	// 	return <>{value}</>
-	// }
-
 	if (typeof value === "boolean") {
 		return (
 			<Icon
@@ -30,6 +27,10 @@ export const PricingFeature = ({
 		)
 	}
 
+	if (value === "$") {
+		return <Icon as={FiDollarSign} boxSize="5" color={"subtle"} />
+	}
+
 	if (typeof value === "object") {
 		console.log("Product feature object value", value)
 		console.log("React.isValidElement", React.isValidElement(value))
@@ -38,7 +39,6 @@ export const PricingFeature = ({
 		}
 
 		return <>{value}</>
-		//	return <>{JSON.stringify(value)}</>
 	}
 
 	return <>{value}</>

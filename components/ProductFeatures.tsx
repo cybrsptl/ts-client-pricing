@@ -19,13 +19,13 @@ import { PricingBillingMode } from "../constants/PricingConstants"
 import { PricingAccountForTierType } from "../constants/PricingTypes"
 import { PricingFeature } from "./PricingFeature"
 
-interface ProductFeaturesTableProps extends TableProps {
+interface ProductFeaturesProps extends TableProps {
 	billingMode: PricingBillingMode
 	billingTier: number
 	products: PricingAccountForTierType[]
 }
 
-export const ProductFeaturesTable = (props: ProductFeaturesTableProps) => {
+export const ProductFeatures = (props: ProductFeaturesProps) => {
 	const { billingMode, billingTier, products, ...tableProps } = props
 
 	return (
