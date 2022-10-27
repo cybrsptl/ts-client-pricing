@@ -1,22 +1,19 @@
 import * as React from "react"
-import { useAuthUser } from "@auth/components/AuthUserProvider"
 import { Button, Table, TableProps, Tbody, Td, Tr } from "@chakra-ui/react"
-import { useTenants } from "@common/components/AppTenantsProvider"
-import AppConfig from "@common/constants/AppConfig"
 import { PricingAccountForTierType } from "../constants/PricingTypes"
 
 interface ProductCallToActionTableProps extends TableProps {
 	products: PricingAccountForTierType[]
+	userEmail?: string
+	tierName?: string
 }
 
 export const ProductCallToActionTable = (
 	props: ProductCallToActionTableProps
 ) => {
-	const { products, ...tableProps } = props
-	const { userInfo } = useAuthUser()
-	const { activeTenant } = useTenants()
+	const { products, userEmail, tierName, ...tableProps } = props
 
-	if (activeTenant?.tier?.name.toUpperCase() !== "FREE") {
+	if (tierName.toUpperCase() !== "FREE") {
 		return
 	}
 
@@ -41,8 +38,8 @@ export const ProductCallToActionTable = (
 									href={`${
 										product.purchaseLink
 									}?prefilled_email=${encodeURIComponent(
-										userInfo?.email
-									)}&ts_email=${encodeURIComponent(userInfo?.email)}`}
+										userEmail
+									)}&ts_email=${encodeURIComponent(userEmail)}`}
 									target="_blank"
 								>
 									<Button

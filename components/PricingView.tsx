@@ -1,7 +1,9 @@
 import _ from "lodash"
 import * as React from "react"
 import { useEffect, useMemo, useState } from "react"
+import { useAuthUser } from "@auth/components/AuthUserProvider"
 import { Box, Stack } from "@chakra-ui/react"
+import { useTenants } from "@common/components/AppTenantsProvider"
 import AppConfig from "@common/constants/AppConfig"
 import PricingAccounts from "../constants/CustomPricingData"
 import {
@@ -23,6 +25,9 @@ type PricingViewParams = {
 }
 
 export const PricingView = ({ tenantDataUnderAnalysis }: PricingViewParams) => {
+	const { userInfo } = useAuthUser()
+	const { activeTenant } = useTenants()
+
 	const [billingMode, setBillingMode] = React.useState<PricingBillingMode>(
 		PricingBillingMode.ANNUAL
 	)
@@ -212,7 +217,11 @@ export const PricingView = ({ tenantDataUnderAnalysis }: PricingViewParams) => {
 						accountTypesForChosenTier,
 					}}
 				/>
-				<ProductCallToActionTable products={accountTypesForChosenTier} />
+				<ProductCallToActionTable
+					products={accountTypesForChosenTier}
+					userEmail={userInfo?.email}
+					tierName={activeTenant?.tier?.name}
+				/>
 			</Stack>
 		</Box>
 	)
