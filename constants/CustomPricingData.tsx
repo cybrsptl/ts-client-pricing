@@ -309,47 +309,47 @@ export const PricingFeatures: Feature[] = [
 			},
 		],
 	},
-	{
-		category: "Support",
-		items: [{ key: "slo", name: "SLO" }],
-	},
-	{
-		category: "Coming Soon",
-		items: [
-			{
-				key: "proj_share",
-				name: "Project Sharing",
-			},
-			{
-				key: "ana_prem",
-				name: "Premium analytics",
-			},
-			{
-				key: "enr_prem",
-				name: "Premium threat intel enrichments",
-			},
-			{
-				key: "ver_his",
-				name: "Version History",
-			},
-			{
-				key: "audio",
-				name: "Live Collaboration",
-			},
-			{
-				key: "audio",
-				name: "Team Audio Chat",
-			},
-			{
-				key: "data_stream",
-				name: "Data streaming",
-			},
-			{
-				key: "nvme",
-				name: "NVME-backed Storage",
-			},
-		],
-	},
+	// {
+	// 	category: "Support",
+	// 	items: [{ key: "slo", name: "SLO" }],
+	// },
+	// {
+	// 	category: "Coming Soon",
+	// 	items: [
+	// 		{
+	// 			key: "proj_share",
+	// 			name: "Project Sharing",
+	// 		},
+	// 		{
+	// 			key: "ana_prem",
+	// 			name: "Premium analytics",
+	// 		},
+	// 		{
+	// 			key: "enr_prem",
+	// 			name: "Premium threat intel enrichments",
+	// 		},
+	// 		{
+	// 			key: "ver_his",
+	// 			name: "Version History",
+	// 		},
+	// 		{
+	// 			key: "audio",
+	// 			name: "Live Collaboration",
+	// 		},
+	// 		{
+	// 			key: "audio",
+	// 			name: "Team Audio Chat",
+	// 		},
+	// 		{
+	// 			key: "data_stream",
+	// 			name: "Data streaming",
+	// 		},
+	// 		{
+	// 			key: "nvme",
+	// 			name: "NVME-backed Storage",
+	// 		},
+	// ],
+	// },
 ]
 
 export type ElementType<T extends ReadonlyArray<unknown>> =
