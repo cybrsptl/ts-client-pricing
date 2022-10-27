@@ -191,7 +191,7 @@ export const PricingView = ({
 	}, [PricingAccounts, billingTier, billingMode, pricingData])
 
 	return (
-		<Box as="section" bg="bg-surface">
+		<Box as="section">
 			<Stack spacing={{ base: "5", md: "7" }} width="100%" mb={8}>
 				<ProductTierSelection
 					{...{
