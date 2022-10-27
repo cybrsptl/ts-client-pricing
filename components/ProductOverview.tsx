@@ -69,7 +69,7 @@ export const ProductOverview = (props: ProductOverviewProps) => {
 									<Text fontSize="xs" pb={4}>
 										{product.subTitle}
 									</Text>
-									{!product.isBelowDesiredLimits && product.pricePerMonth && (
+									{product.pricePerMonth && (
 										<>
 											<Heading size="lg" as="span" color="default" ml={4}>
 												${product.pricePerMonth.toLocaleString()}
@@ -86,7 +86,7 @@ export const ProductOverview = (props: ProductOverviewProps) => {
 										</>
 									)}
 									{product.annualBillingOnly && (
-										<Text fontSize="sm" fontStyle="italic" mt={6} mb={9}>
+										<Text fontSize="sm" fontStyle="italic" mt={3} mb={7}>
 											Annual billing only.
 										</Text>
 									)}

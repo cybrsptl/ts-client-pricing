@@ -74,7 +74,6 @@ export const ProductTierSelection = ({
 			// shadow="base"
 			rounded="lg"
 			p={{ base: "4", md: "8" }}
-			height="220px"
 			mb={20}
 		>
 			<Stack
