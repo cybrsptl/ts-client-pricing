@@ -6,7 +6,7 @@ const PricingAccounts = [
 	{
 		name: "Free",
 		prodType: "starter",
-		// description: "Welcome to Teleseer!",
+		description: "",
 		tiersByGB: {
 			0.1: null,
 			5: AppConfig.stripe_test_mode
@@ -89,22 +89,6 @@ const PricingAccounts = [
 				: "prod_MfpQXEGqW8HjMR",
 		},
 		features: {
-			// dev_purchase_buttons: (
-			// 	<>
-			// 		<DevPricingButton
-			// 			caption="p200 (year)"
-			// 			href="https://buy.stripe.com/test_6oE8AxbU72lQ91KbLs"
-			// 		/>
-			// 		<DevPricingButton
-			// 			caption="p300 (year)"
-			// 			href="https://buy.stripe.com/test_dR67wt3nB1hM1zi6ra"
-			// 		/>
-			// 		<DevPricingButton
-			// 			caption="p500 (month)"
-			// 			href="https://buy.stripe.com/test_5kA6sp2jxd0u0vebLn"
-			// 		/>
-			// 	</>
-			// ),
 			data: "",
 			xfer: "",
 			carving: "",
@@ -248,16 +232,6 @@ interface Feature {
 }
 
 export const PricingFeatures: Feature[] = [
-	// {
-	// 	category: "Dev Tools",
-	// 	items: [
-	// 		{
-	// 			key: "dev_purchase_buttons",
-	// 			name: "Hardcoded Purchase Links",
-	// 			// tooltip: "Tiramisu caramels topping donut oat cake chocolate bar cookie jujubes.",
-	// 		},
-	// 	],
-	// },
 	{
 		category: "Resource Limits",
 		items: [
