@@ -5,15 +5,15 @@ import { PricingAccountForTierType } from "../constants/PricingTypes"
 interface ProductCallToActionTableProps extends TableProps {
 	products: PricingAccountForTierType[]
 	userEmail?: string
-	tierName?: string
+	tenantTierName?: string
 }
 
 export const ProductCallToActionTable = (
 	props: ProductCallToActionTableProps
 ) => {
-	const { products, userEmail, tierName, ...tableProps } = props
+	const { products, userEmail, tenantTierName, ...tableProps } = props
 
-	if (tierName.toUpperCase() !== "FREE") {
+	if (tenantTierName.toUpperCase() !== "FREE") {
 		return
 	}
 

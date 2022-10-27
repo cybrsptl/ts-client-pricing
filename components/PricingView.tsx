@@ -1,9 +1,7 @@
 import _ from "lodash"
 import * as React from "react"
 import { useEffect, useMemo, useState } from "react"
-import { useAuthUser } from "@auth/components/AuthUserProvider"
 import { Box, Stack } from "@chakra-ui/react"
-import { useTenants } from "@common/components/AppTenantsProvider"
 import AppConfig from "@common/constants/AppConfig"
 import PricingAccounts from "../constants/CustomPricingData"
 import {
@@ -22,12 +20,15 @@ import { ProductTierSelection } from "./ProductTierSelection"
 
 type PricingViewParams = {
 	tenantDataUnderAnalysis?: number
+	tenantTierName?: string
+	userEmail?: string
 }
 
-export const PricingView = ({ tenantDataUnderAnalysis }: PricingViewParams) => {
-	const { userInfo } = useAuthUser()
-	const { activeTenant } = useTenants()
-
+export const PricingView = ({
+	tenantDataUnderAnalysis,
+	tenantTierName,
+	userEmail,
+}: PricingViewParams) => {
 	const [billingMode, setBillingMode] = React.useState<PricingBillingMode>(
 		PricingBillingMode.ANNUAL
 	)
@@ -90,7 +91,7 @@ export const PricingView = ({ tenantDataUnderAnalysis }: PricingViewParams) => {
 
 	// Normalize PricingAccountTypes
 	// (Flattens all XXXByTier values into a pricing-tier-aligned feature/pricing matrix to be rendered by child components).
-	const accountTypesForChosenTier = React.useMemo(() => {
+	const products = React.useMemo(() => {
 		const accountTypesForChosenTier: PricingAccountForTierType[] = JSON.parse(
 			JSON.stringify(PricingAccounts)
 		)
@@ -203,24 +204,27 @@ export const PricingView = ({ tenantDataUnderAnalysis }: PricingViewParams) => {
 					{...{
 						billingMode,
 						billingTier,
-						products: accountTypesForChosenTier,
+						products: products,
 					}}
 				/>
 				<ProductCallToActionTable
-					products={accountTypesForChosenTier}
-					marginTop="0px important"
+					{...{
+						products,
+					}}
 				/>
 				<ProductFeaturesTable
 					{...{
 						billingMode,
 						billingTier,
-						accountTypesForChosenTier,
+						accountTypesForChosenTier: products,
 					}}
 				/>
 				<ProductCallToActionTable
-					products={accountTypesForChosenTier}
-					userEmail={userInfo?.email}
-					tierName={activeTenant?.tier?.name}
+					{...{
+						products,
+						userEmail,
+						tenantTierName,
+					}}
 				/>
 			</Stack>
 		</Box>
