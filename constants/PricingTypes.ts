@@ -27,5 +27,6 @@ export type PricingAccountForTierType = {
 	isComingSoon?: boolean
 	isDisabled?: boolean
 	isCurrent?: boolean
+	annualBillingOnly?: boolean
 	isBelowDesiredLimits?: boolean
 }

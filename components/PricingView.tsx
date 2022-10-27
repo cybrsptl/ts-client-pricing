@@ -88,8 +88,8 @@ export const PricingView = () => {
 			JSON.stringify(PricingAccounts)
 		)
 
-		accountTypesForChosenTier.forEach((pricingAccount) => {
-			if (!pricingAccount.tiersByGB) {
+		accountTypesForChosenTier.forEach((product) => {
+			if (!product.tiersByGB) {
 				return
 			}
 
@@ -98,7 +98,7 @@ export const PricingView = () => {
 
 			// Find the lowest tier for this account type with enough GB to satisfy current billingTier selection
 
-			const tiersAsc: number[] = Object.keys(pricingAccount.tiersByGB)
+			const tiersAsc: number[] = Object.keys(product.tiersByGB)
 				.sort((a, b) => parseFloat(a) - parseFloat(b))
 				.map((k) => parseFloat(k))
 
@@ -110,15 +110,15 @@ export const PricingView = () => {
 
 			// Default to first tier of each product if requested resources are already over the highest tier
 			if (lowestTierIndex === undefined) {
-				pricingAccount.isBelowDesiredLimits = true
+				product.isBelowDesiredLimits = true
 				lowestTierIndex = tiersAsc[tiersAsc.length - 1]
 			}
 
-			const lowestTierProductId = pricingAccount.tiersByGB[lowestTierIndex]
+			const lowestTierProductId = product.tiersByGB[lowestTierIndex]
 			const tierProdKey = `${lowestTierProductId}|${PricingBillingModeToStripe[billingMode]}`
 
 			// Flatten ByTier values to match current tier
-			Object.entries(pricingAccount?.features || {}).forEach(
+			Object.entries(product?.features || {}).forEach(
 				([featureKey, featureVal]) => {
 					if (!featureKey.endsWith("ByTier") || !featureVal[lowestTierIndex]) {
 						return
@@ -133,31 +133,40 @@ export const PricingView = () => {
 					// 	(pricingAccount.features[featureKeyNormalized] =
 					// 		featureVal[lowestTierIndex])
 					// )
-					pricingAccount.features[featureKeyNormalized] =
-						featureVal[lowestTierIndex]
+					product.features[featureKeyNormalized] = featureVal[lowestTierIndex]
 				}
 			)
 
 			// Inject additional values by cross-referencing with (Stripe authoritative) pricingData
 
 			if (pricingData[tierProdKey]) {
-				pricingAccount.name = `${_.startCase(
-					pricingData[tierProdKey].prodType
-				)} ${pricingData[tierProdKey].prodTier}`
-				pricingAccount.price = `${pricingData[tierProdKey].cost / 100}`
+				product.name = `${_.startCase(pricingData[tierProdKey].prodType)} ${
+					pricingData[tierProdKey].prodTier
+				}`
+				product.price = `${pricingData[tierProdKey].cost / 100}`
 
-				pricingAccount.pricePerMonth = Math.floor(
+				product.pricePerMonth = Math.floor(
 					pricingData[tierProdKey].cost /
 						100 /
 						(pricingData[tierProdKey].interval === "year" ? 12 : 1)
 				)
-				pricingAccount.dataInGB = lowestTierIndex
-				pricingAccount.billingFrequency = pricingData[tierProdKey].interval
-				if (!pricingAccount.isBelowDesiredLimits) {
-					pricingAccount.purchaseLink = pricingData[tierProdKey].link
+				product.dataInGB = lowestTierIndex
+				product.billingFrequency = pricingData[tierProdKey].interval
+				if (!product.isBelowDesiredLimits) {
+					product.purchaseLink = pricingData[tierProdKey].link
 				}
 			} else {
-				pricingAccount.isDisabled = true
+				product.isDisabled = true
+			}
+
+			// Set annualBillingOnly for products with blank pricing because of monthly billing mode being selected
+			if (
+				!product.pricePerMonth &&
+				billingMode === PricingBillingMode.MONTHLY &&
+				lowestTierProductId
+				// && pricingData[tierProdKey].interval === "year"
+			) {
+				product.annualBillingOnly = true
 			}
 
 			// console.log("billingTier", billingTier)

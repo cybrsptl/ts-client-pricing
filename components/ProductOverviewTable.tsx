@@ -109,12 +109,11 @@ export const ProductOverviewTable = (props: ProductOverviewTableProps) => {
 
 							<Box color="muted" whiteSpace="normal">
 								{product.isBelowDesiredLimits ? (
-									<Text fontSize="xs" fontWeight="bold">
+									<Text fontSize="xs" fontStyle="italic">
 										(Insufficient for {billingTier} GB analysis workloads)
 									</Text>
-								) : !product.pricePerMonth &&
-								  billingMode === PricingBillingMode.MONTHLY ? (
-									<b>Annual billing only.</b>
+								) : product.annualBillingOnly ? (
+									<i>Annual billing only.</i>
 								) : (
 									<i>{product.description}</i>
 								)}
