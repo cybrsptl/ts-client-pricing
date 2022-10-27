@@ -173,7 +173,7 @@ const PricingAccounts = [
 			ana_prem: true,
 			enr_std: true,
 			enr_prem: true,
-			ds_prem: true,
+			ds_prem: "$",
 			mfa: true,
 			sso: false,
 			team_adm: false,
@@ -221,7 +221,7 @@ const PricingAccounts = [
 			ana_prem: true,
 			enr_std: true,
 			enr_prem: true,
-			ds_prem: true,
+			ds_prem: "$",
 			mfa: true,
 			sso: true,
 			team_adm: true,
@@ -277,7 +277,7 @@ interface Feature {
 
 export const PricingFeatures: Feature[] = [
 	{
-		category: "Resource Limits",
+		category: "Resources",
 		items: [
 			{
 				key: "data",
@@ -322,10 +322,18 @@ export const PricingFeatures: Feature[] = [
 				key: "enr_std",
 				name: "Standard threat intel enrichments",
 			},
-			// {
-			// 	key: "ds_prem",
-			// 	name: "Data Science Add-on Package",
-			// },
+			{
+				key: "ana_prem",
+				name: "Premium analytics",
+			},
+			{
+				key: "enr_prem",
+				name: "Premium threat intel enrichments",
+			},
+			{
+				key: "ds_prem",
+				name: "Data Science Add-on Package",
+			},
 		],
 	},
 	{
@@ -347,10 +355,10 @@ export const PricingFeatures: Feature[] = [
 				key: "team_pool",
 				name: "Team Resource Pooling",
 			},
-			{
-				key: "slf_hosted",
-				name: "Self-Hosted",
-			},
+			// {
+			// 	key: "slf_hosted",
+			// 	name: "Self-Hosted",
+			// },
 		],
 	},
 	// {
@@ -363,14 +371,6 @@ export const PricingFeatures: Feature[] = [
 	// 		{
 	// 			key: "proj_share",
 	// 			name: "Project Sharing",
-	// 		},
-	// 		{
-	// 			key: "ana_prem",
-	// 			name: "Premium analytics",
-	// 		},
-	// 		{
-	// 			key: "enr_prem",
-	// 			name: "Premium threat intel enrichments",
 	// 		},
 	// 		{
 	// 			key: "ver_his",
