@@ -2,7 +2,6 @@ import _ from "lodash"
 import * as React from "react"
 import { useEffect, useMemo, useState } from "react"
 import { Box, Stack } from "@chakra-ui/react"
-import { useTenants } from "@common/components/AppTenantsProvider"
 import AppConfig from "@common/constants/AppConfig"
 import PricingAccounts from "../constants/CustomPricingData"
 import {
@@ -19,20 +18,23 @@ import { ProductFeaturesTable } from "./ProductFeaturesTable"
 import { ProductOverviewTable } from "./ProductOverviewTable"
 import { ProductTierSelection } from "./ProductTierSelection"
 
-export const PricingView = () => {
-	const { activeTenant } = useTenants()
+type PricingViewParams = {
+	tenantDataUnderAnalysis?: number
+}
+
+export const PricingView = ({ tenantDataUnderAnalysis }: PricingViewParams) => {
 	const [billingMode, setBillingMode] = React.useState<PricingBillingMode>(
 		PricingBillingMode.ANNUAL
 	)
-	const [billingTier, setBillingTier] = useState(-1)
 
 	// Automatically set billing tier to current tenant limit when page loads
+	const [billingTier, setBillingTier] = useState(-1)
 	useEffect(() => {
-		if (billingTier !== -1 || !activeTenant?.tier?.data_under_analysis) {
+		if (billingTier !== -1 || !tenantDataUnderAnalysis) {
 			return
 		}
-		setBillingTier(activeTenant.tier.data_under_analysis / (1000 * 1000 * 1000))
-	}, [billingTier, activeTenant?.tier?.data_under_analysis])
+		setBillingTier(tenantDataUnderAnalysis / (1000 * 1000 * 1000))
+	}, [billingTier, tenantDataUnderAnalysis])
 
 	const pricingData = useMemo(() => {
 		const data = (
