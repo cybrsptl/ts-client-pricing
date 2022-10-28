@@ -95,7 +95,7 @@ export const ProductTierSelection = ({
 						value={billingMode}
 						mb={6}
 						onChange={setBillingMode}
-						colorScheme="green"
+						colorScheme="blue"
 					>
 						<Stack spacing={4} direction="row">
 							<Radio value={PricingBillingMode.MONTHLY}>Monthly</Radio>
@@ -123,7 +123,7 @@ export const ProductTierSelection = ({
 						{/* <SliderMark
 							value={billingTier}
 							textAlign="center"
-							bg="green.500"
+							bg="blue.500"
 							color="white"
 							mt="-10"
 							ml="-5"
@@ -131,15 +131,15 @@ export const ProductTierSelection = ({
 						>
 							{billingTier}%
 						</SliderMark> */}
-						<SliderTrack bg="green.100">
-							<SliderFilledTrack bg="green.500" />
+						<SliderTrack bg="blue.100">
+							<SliderFilledTrack bg="blue.500" />
 						</SliderTrack>
 						<SliderThumb
 							boxSize={6}
 							// ml="-2"
 						>
-							<Box color="green.500" as={MdGraphicEq} />
-							{/* <Logo color="green.500" logoStyle="symbol" height={24} /> */}
+							<Box color="blue.500" as={MdGraphicEq} />
+							{/* <Logo color="blue.500" logoStyle="symbol" height={24} /> */}
 						</SliderThumb>
 					</Slider>
 					<Text fontSize="xs" mt={8}>

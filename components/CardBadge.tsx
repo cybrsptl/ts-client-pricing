@@ -9,7 +9,7 @@ export const CardBadge = (props: CardBadgeProps) => {
 	const { children, colorScheme, ...flexProps } = props
 	return (
 		<Flex
-			bg={colorScheme === "green" ? "green.500" : "gray.500"}
+			bg={colorScheme === "blue" ? "blue.500" : "gray.500"}
 			position="absolute"
 			right="-88px"
 			top={5}
@@ -25,7 +25,7 @@ export const CardBadge = (props: CardBadgeProps) => {
 				textTransform="uppercase"
 				fontWeight="bold"
 				letterSpacing="wider"
-				colorScheme="green"
+				colorScheme="blue"
 				// color={"white" "gray.800")}
 			>
 				{children}

@@ -50,6 +50,11 @@ export const ProductOverview = (props: ProductOverviewProps) => {
 								textAlign: "center",
 								overflow: "hidden",
 								position: "relative",
+								opacity: product.isDisabled || product.isComingSoon ? 0.5 : 1,
+								cursor:
+									product.isDisabled || product.isComingSoon
+										? "not-allowed"
+										: "auto",
 							}}
 							p={6}
 							height="100%"
@@ -60,9 +65,9 @@ export const ProductOverview = (props: ProductOverviewProps) => {
 							<VStack width="100%" height="100%" justifyContent="space-between">
 								<Box>
 									{product.isPopular && (
-										<CardBadge colorScheme="green">Popular</CardBadge>
+										<CardBadge colorScheme="blue">Popular</CardBadge>
 									)}
-									{product.isComingSoon && <CardBadge>Waitlist</CardBadge>}
+									{/* {product.isComingSoon && <CardBadge>Waitlist</CardBadge>} */}
 									<Text
 										fontSize="md"
 										textTransform="uppercase"
@@ -132,15 +137,17 @@ export const ProductOverview = (props: ProductOverviewProps) => {
 														product.isDisabled
 															? {}
 															: {
-																	bg: "green.500",
+																	bg: "blue.500",
 																	_hover: {
-																		bg: "green.400",
+																		bg: "blue.400",
 																	},
 															  }
 													}
 													disabled={product.isDisabled}
 												>
-													{product.isDisabled ? "Coming Soon" : "Buy Now"}
+													{product.isDisabled
+														? "Coming Soon"
+														: `Chose ${product.name}`}
 												</Button>
 											</a>
 										)}

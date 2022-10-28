@@ -43,7 +43,7 @@ export const ProductFeatures = (props: ProductFeaturesProps) => {
 								// colSpan={products.length + 1}
 								color="accent"
 								fontSize="sm"
-								borderColor="green.800"
+								borderColor="blue.800"
 								width="33%"
 							>
 								{feature.category}
@@ -52,7 +52,7 @@ export const ProductFeatures = (props: ProductFeaturesProps) => {
 								<Th
 									key={id}
 									style={{ textAlign: "center" }}
-									borderColor="green.800"
+									borderColor="blue.800"
 									color="muted"
 									width={`${(100 - 33) / products.length}%`}
 								>

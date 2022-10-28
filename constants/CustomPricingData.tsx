@@ -151,7 +151,7 @@ const PricingAccounts = [
 				</PricingList>
 			</>
 		),
-		borderColor: "green.800",
+		borderColor: "blue.800",
 		tiersByGB: {
 			100: AppConfig.stripe_test_mode
 				? "prod_MeU7K4Gq8jKxec"
@@ -239,7 +239,7 @@ const PricingAccounts = [
 			</>
 		),
 		isDisabled: true,
-		borderColor: "gray.500",
+		// borderColor: "gray.500",
 		tiersByGB: {
 			500: AppConfig.stripe_test_mode
 				? "prod_MeU7Sd8NfyG2y1"

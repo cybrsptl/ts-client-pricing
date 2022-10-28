@@ -20,7 +20,7 @@ export const PricingListItem = ({ children, ...props }: ListItemProps) => (
 	<ListItem {...props}>
 		<HStack>
 			<Box>
-				<ListIcon as={FiCheck} color="green.500" />
+				<ListIcon as={FiCheck} color="blue.500" />
 			</Box>
 			<Box>{children}</Box>
 		</HStack>
