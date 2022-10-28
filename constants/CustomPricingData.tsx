@@ -1,6 +1,7 @@
 import { Text } from "@chakra-ui/react"
 import AppConfig from "@common/constants/AppConfig"
 import { PricingList, PricingListItem } from "../components/PricingDescList"
+import { PricingAccountForTierType } from "./PricingTypes"
 // Note: Tier thresholds should match out latest values here:
 // https://docs.google.com/spreadsheets/d/1rQRlPnumgwwRB2d-18kU82fpEOwILBEXys_FgbVdjc0
 
@@ -9,6 +10,7 @@ const PricingAccounts = [
 		name: "Free",
 		subTitle: "For individuals",
 		prodType: "free",
+		footer: "",
 		hideOverviewCard: true,
 		description: () => (
 			<PricingList>
@@ -33,7 +35,7 @@ const PricingAccounts = [
 				0.1: "100 MB",
 			},
 			xferByTier: {
-				0.1: "10 GB",
+				0.1: "250 MB",
 			},
 			carvingByTier: {
 				0.1: "0.01 GB",
@@ -69,13 +71,14 @@ const PricingAccounts = [
 		name: "Starter",
 		subTitle: "For individuals",
 		prodType: "starter",
-		description: () => (
+		description: (product: PricingAccountForTierType) => (
 			<PricingList>
-				<PricingListItem>Increased resource limits</PricingListItem>
+				{/* <PricingListItem>Increased resource limits</PricingListItem> */}
 				<PricingListItem>Standard threat analytics</PricingListItem>
 				<PricingListItem>Standard enrichments included</PricingListItem>
 			</PricingList>
 		),
+		footer: "Plus everything in Free",
 		tiersByGB: {
 			5: AppConfig.stripe_test_mode
 				? "prod_MeU6p5nJCScRjT"
@@ -97,8 +100,8 @@ const PricingAccounts = [
 				20: "20 GB",
 			},
 			xferByTier: {
-				5: "25 GB",
-				20: "20 GB",
+				5: "10 GB",
+				20: "50 GB",
 			},
 			carvingByTier: {
 				5: "1",
@@ -139,14 +142,10 @@ const PricingAccounts = [
 		subTitle: "For professionals",
 		prodType: "pro",
 		isPopular: true,
-		description: () => (
+		footer: "Plus everything in Starter",
+		description: (product: PricingAccountForTierType) => (
 			<>
-				<Text textAlign="left" fontSize="sm" mb={2}>
-					Everything in Starter, plus:
-				</Text>
 				<PricingList>
-					<PricingListItem>Pro-tier resources</PricingListItem>
-					<PricingListItem>Unlimited assets</PricingListItem>
 					<PricingListItem>Premium enrichments included</PricingListItem>
 				</PricingList>
 			</>
@@ -176,9 +175,9 @@ const PricingAccounts = [
 				300: "300 GB",
 			},
 			xferByTier: {
-				100: "1 TB",
-				200: "2 TB",
-				300: "3 TB",
+				100: "200 GB",
+				200: "300 GB",
+				300: "500 GB",
 			},
 			carvingByTier: {
 				100: "10 GB",
@@ -223,13 +222,12 @@ const PricingAccounts = [
 		prodType: "team",
 		subTitle: "For organizations",
 		isComingSoon: true,
-		description: () => (
+		description: (product: PricingAccountForTierType) => (
 			<>
-				<Text textAlign="left" fontSize="sm" mb={2}>
+				{/* <Text textAlign="left" fontSize="sm" mb={2}>
 					Everything in Pro, plus:
-				</Text>
+				</Text> */}
 				<PricingList>
-					<PricingListItem>Unlimited projects</PricingListItem>
 					<PricingListItem>Data streaming</PricingListItem>
 					<PricingListItem>Unified admin and billing</PricingListItem>
 				</PricingList>
@@ -238,6 +236,7 @@ const PricingAccounts = [
 				</Text> */}
 			</>
 		),
+		footer: "Plus everything in Pro",
 		isDisabled: true,
 		// borderColor: "gray.500",
 		tiersByGB: {
@@ -250,7 +249,7 @@ const PricingAccounts = [
 				500: "500 GB",
 			},
 			xferByTier: {
-				500: "5 TB",
+				500: "750 GB",
 			},
 			carvingByTier: {
 				500: "Call us",

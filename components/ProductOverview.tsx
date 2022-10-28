@@ -13,6 +13,7 @@ import Card from "@common/components/Card"
 import { PricingBillingMode } from "../constants/PricingConstants"
 import { PricingAccountForTierType } from "../constants/PricingTypes"
 import { CardBadge } from "./CardBadge"
+import { PricingList, PricingListItem } from "./PricingDescList"
 
 interface ProductOverviewProps extends TableProps {
 	products: PricingAccountForTierType[]
@@ -85,9 +86,6 @@ export const ProductOverview = (props: ProductOverviewProps) => {
 									>
 										{product.name}
 									</Text>
-									<Text fontSize="xs" pb={4}>
-										{product.subTitle}
-									</Text>
 									{product.pricePerMonth && (
 										<>
 											<Heading size="lg" as="span" color="default" ml={4}>
@@ -111,17 +109,34 @@ export const ProductOverview = (props: ProductOverviewProps) => {
 									)}
 
 									<Box color="muted" whiteSpace="normal" mt={6}>
+										<PricingList mb={2}>
+											<PricingListItem>
+												{product.features.data} data under analysis
+											</PricingListItem>
+											<PricingListItem>
+												{product.features.xfer} monthly transfer limit
+											</PricingListItem>
+											<PricingListItem>
+												{product.features.assets} total assets
+											</PricingListItem>
+											<PricingListItem>
+												{product.features.projects} total projects
+											</PricingListItem>
+										</PricingList>
+
 										{typeof product.description === "function"
-											? product.description()
+											? product.description(product)
 											: product.description}
 									</Box>
 								</Box>
 								<Box width="100%">
+									<Text fontSize="xs" mt={6} pb={4}>
+										{product.footer}
+									</Text>
 									{product.isBelowDesiredLimits ? (
 										<Text
 											fontSize="sm"
 											fontStyle="italic"
-											mt={6}
 											border="1px solid grey"
 											rounded="lg"
 											padding={2}
@@ -145,7 +160,6 @@ export const ProductOverview = (props: ProductOverviewProps) => {
 												size={"md"}
 												// height={18}
 												width="100%"
-												mt={6}
 												sx={
 													product.isDisabled
 														? {}
@@ -167,7 +181,6 @@ export const ProductOverview = (props: ProductOverviewProps) => {
 										<Text
 											fontSize="sm"
 											fontStyle="italic"
-											mt={6}
 											border="1px solid grey"
 											rounded="lg"
 											padding={2}

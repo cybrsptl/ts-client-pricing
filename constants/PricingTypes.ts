@@ -17,10 +17,13 @@ export interface StripePricingDataList {
 export type PricingAccountForTierType = {
 	name: string
 	subTitle: string
+	footer: string
 	purchaseLink?: string
 	price?: string
 	pricePerMonth?: number
-	description?: string | (() => React.ReactNode)
+	description?:
+		| string
+		| ((product: PricingAccountForTierType) => React.ReactNode)
 	borderColor?: string
 	dataInGB?: number
 	billingFrequency?: string
