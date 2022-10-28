@@ -233,9 +233,9 @@ const PricingAccounts = [
 					<PricingListItem>Data streaming</PricingListItem>
 					<PricingListItem>Unified admin and billing</PricingListItem>
 				</PricingList>
-				<Text fontSize="sm" fontStyle="italic" mt={6}>
+				{/* <Text fontSize="sm" fontStyle="italic" mt={6}>
 					Contact for details.
-				</Text>
+				</Text> */}
 			</>
 		),
 		isDisabled: true,

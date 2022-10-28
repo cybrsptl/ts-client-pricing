@@ -95,7 +95,7 @@ export const ProductTierSelection = ({
 						value={billingMode}
 						mb={6}
 						onChange={setBillingMode}
-						colorScheme="blue"
+						// colorScheme="blue"
 					>
 						<Stack spacing={4} direction="row">
 							<Radio value={PricingBillingMode.MONTHLY}>Monthly</Radio>

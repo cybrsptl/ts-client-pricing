@@ -50,9 +50,16 @@ export const ProductOverview = (props: ProductOverviewProps) => {
 								textAlign: "center",
 								overflow: "hidden",
 								position: "relative",
-								opacity: product.isDisabled || product.isComingSoon ? 0.5 : 1,
+								opacity:
+									product.isDisabled ||
+									product.isComingSoon ||
+									product.isBelowDesiredLimits
+										? 0.5
+										: 1,
 								cursor:
-									product.isDisabled || product.isComingSoon
+									product.isDisabled ||
+									product.isComingSoon ||
+									product.isBelowDesiredLimits
 										? "not-allowed"
 										: "auto",
 							}}
@@ -110,47 +117,65 @@ export const ProductOverview = (props: ProductOverviewProps) => {
 									</Box>
 								</Box>
 								<Box width="100%">
-									{product.isBelowDesiredLimits && (
-										<Text fontSize="sm" fontStyle="italic" mt={6}>
-											Too small for {billingTier} GB analysis workloads.
+									{product.isBelowDesiredLimits ? (
+										<Text
+											fontSize="sm"
+											fontStyle="italic"
+											mt={6}
+											border="1px solid grey"
+											rounded="lg"
+											padding={2}
+										>
+											Too small for {billingTier} GB analysis workloads
+										</Text>
+									) : purchaseEnabled &&
+									  product.purchaseLink &&
+									  !product.isDisabled ? (
+										/* eslint-disable-next-line react/jsx-no-target-blank */
+										<a
+											href={`${
+												product.purchaseLink
+											}?prefilled_email=${encodeURIComponent(
+												userEmail
+											)}&ts_email=${encodeURIComponent(userEmail)}`}
+											target="_blank"
+										>
+											<Button
+												variant={product.isDisabled ? "outline" : "primary"}
+												size={"md"}
+												// height={18}
+												width="100%"
+												mt={6}
+												sx={
+													product.isDisabled
+														? {}
+														: {
+																bg: "blue.500",
+																_hover: {
+																	bg: "blue.400",
+																},
+														  }
+												}
+												disabled={product.isDisabled}
+											>
+												{product.isDisabled
+													? "Coming Soon"
+													: `Chose ${product.name}`}
+											</Button>
+										</a>
+									) : (
+										<Text
+											fontSize="sm"
+											fontStyle="italic"
+											mt={6}
+											border="1px solid grey"
+											rounded="lg"
+											padding={2}
+											fontWeight="bold"
+										>
+											Coming Soon
 										</Text>
 									)}
-									{purchaseEnabled &&
-										product.purchaseLink &&
-										!product.isDisabled && (
-											/* eslint-disable-next-line react/jsx-no-target-blank */
-											<a
-												href={`${
-													product.purchaseLink
-												}?prefilled_email=${encodeURIComponent(
-													userEmail
-												)}&ts_email=${encodeURIComponent(userEmail)}`}
-												target="_blank"
-											>
-												<Button
-													variant={product.isDisabled ? "solid" : "primary"}
-													size={product.isDisabled ? "sm" : "md"}
-													// height={18}
-													width="100%"
-													mt={6}
-													sx={
-														product.isDisabled
-															? {}
-															: {
-																	bg: "blue.500",
-																	_hover: {
-																		bg: "blue.400",
-																	},
-															  }
-													}
-													disabled={product.isDisabled}
-												>
-													{product.isDisabled
-														? "Coming Soon"
-														: `Chose ${product.name}`}
-												</Button>
-											</a>
-										)}
 								</Box>
 							</VStack>
 						</Card>
