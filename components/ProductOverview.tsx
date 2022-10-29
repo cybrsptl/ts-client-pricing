@@ -99,7 +99,7 @@ export const ProductOverview = (props: ProductOverviewProps) => {
 												fontWeight="bold"
 												ml={1}
 											>
-												/mo
+												per month
 											</Text>
 										</>
 									)}

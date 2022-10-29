@@ -376,7 +376,7 @@ export const PricingFeatures: Feature[] = [
 			},
 			{
 				key: "enr_std",
-				name: "Standard threat intel enrichments",
+				name: "Standard data enrichments",
 			},
 			// {
 			// 	key: "ana_prem",
@@ -384,7 +384,7 @@ export const PricingFeatures: Feature[] = [
 			// },
 			{
 				key: "enr_prem",
-				name: "Premium threat intel enrichments",
+				name: "Premium data enrichments",
 			},
 			// {
 			// 	key: "ds_prem",
