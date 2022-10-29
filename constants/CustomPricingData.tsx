@@ -1,7 +1,9 @@
-import { Text } from "@chakra-ui/react"
+import Image from "next/image"
+import { Box } from "@chakra-ui/react"
 import AppConfig from "@common/constants/AppConfig"
 import { PricingList, PricingListItem } from "../components/PricingDescList"
 import { PricingAccountForTierType } from "./PricingTypes"
+
 // Note: Tier thresholds should match out latest values here:
 // https://docs.google.com/spreadsheets/d/1rQRlPnumgwwRB2d-18kU82fpEOwILBEXys_FgbVdjc0
 
@@ -74,8 +76,7 @@ const PricingAccounts = [
 		description: (product: PricingAccountForTierType) => (
 			<PricingList>
 				{/* <PricingListItem>Increased resource limits</PricingListItem> */}
-				<PricingListItem>Standard threat analytics</PricingListItem>
-				<PricingListItem>Standard enrichments included</PricingListItem>
+				<PricingListItem>Standard threat intel enrichments</PricingListItem>
 			</PricingList>
 		),
 		footer: "Plus everything in Free",
@@ -146,7 +147,16 @@ const PricingAccounts = [
 		description: (product: PricingAccountForTierType) => (
 			<>
 				<PricingList>
-					<PricingListItem>Premium enrichments included</PricingListItem>
+					<PricingListItem>
+						<Box mb={2}>Premium enrichments included</Box>
+						<Image
+							src={require("../public/icons/enrichment_partners.svg")}
+							alt={"Ipinfo | Greynoise"}
+							style={{
+								paddingRight: "2em",
+							}}
+						/>
+					</PricingListItem>
 				</PricingList>
 			</>
 		),
