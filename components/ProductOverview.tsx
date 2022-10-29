@@ -112,16 +112,16 @@ export const ProductOverview = (props: ProductOverviewProps) => {
 									<Box color="muted" whiteSpace="normal" mt={6}>
 										<PricingList mb={2}>
 											<PricingListItem>
-												{product.features.data} data under analysis
+												<>{product.features.data} data under analysis</>
 											</PricingListItem>
 											<PricingListItem>
-												{product.features.xfer} monthly transfer limit
+												<>{product.features.xfer} monthly transfer limit</>
 											</PricingListItem>
 											<PricingListItem>
-												{product.features.assets} total assets
+												<>{product.features.assets} total assets</>
 											</PricingListItem>
 											<PricingListItem>
-												{product.features.projects} total projects
+												<>{product.features.projects} total projects</>
 											</PricingListItem>
 										</PricingList>
 
