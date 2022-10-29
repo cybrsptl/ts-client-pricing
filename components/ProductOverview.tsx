@@ -9,7 +9,6 @@ import {
 	Text,
 	VStack,
 } from "@chakra-ui/react"
-import Card from "@common/components/Card"
 import { PricingBillingMode } from "../constants/PricingConstants"
 import { PricingAccountForTierType } from "../constants/PricingTypes"
 import { CardBadge } from "./CardBadge"
@@ -46,7 +45,9 @@ export const ProductOverview = (props: ProductOverviewProps) => {
 				.filter((p) => !p.hideOverviewCard)
 				.map((product, id) => (
 					<Box key={id} flex="1">
-						<Card
+						<Box
+							bg={"theme_accent"}
+							rounded="lg"
 							sx={{
 								textAlign: "center",
 								overflow: "hidden",
@@ -191,7 +192,7 @@ export const ProductOverview = (props: ProductOverviewProps) => {
 									)}
 								</Box>
 							</VStack>
-						</Card>
+						</Box>
 					</Box>
 				))}
 		</HStack>
