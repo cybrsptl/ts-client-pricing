@@ -239,7 +239,8 @@ const PricingAccounts = [
 				</Text> */}
 				<PricingList>
 					<PricingListItem>Data streaming</PricingListItem>
-					<PricingListItem>Unified admin and billing</PricingListItem>
+					<PricingListItem>Single sign-on (SSO)</PricingListItem>
+					<PricingListItem>Unified billing and admin</PricingListItem>
 				</PricingList>
 				{/* <Text fontSize="sm" fontStyle="italic" mt={6}>
 					Contact for details.
