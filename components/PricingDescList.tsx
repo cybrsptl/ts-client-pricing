@@ -18,9 +18,9 @@ export const PricingList = ({ children, ...props }: ListProps) => (
 
 export const PricingListItem = ({ children, ...props }: ListItemProps) => (
 	<ListItem {...props}>
-		<HStack>
+		<HStack alignItems="flex-start">
 			<Box>
-				<ListIcon as={FiCheck} color="blue.500" />
+				<ListIcon as={FiCheck} color="green.500" />
 			</Box>
 			<Box>{children}</Box>
 		</HStack>

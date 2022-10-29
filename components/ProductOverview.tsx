@@ -85,7 +85,7 @@ export const ProductOverview = (props: ProductOverviewProps) => {
 										height={8}
 										paddingTop={2}
 									>
-										{product.name}
+										{product.name.replace(/[0-9]/g, "")}
 									</Text>
 									{product.pricePerMonth && (
 										<>
@@ -131,7 +131,7 @@ export const ProductOverview = (props: ProductOverviewProps) => {
 									</Box>
 								</Box>
 								<Box width="100%">
-									<Text fontSize="xs" mt={6} pb={4}>
+									<Text fontSize="xs" mt={12} pb={4}>
 										{product.footer}
 									</Text>
 									{product.isBelowDesiredLimits ? (
@@ -157,12 +157,18 @@ export const ProductOverview = (props: ProductOverviewProps) => {
 											target="_blank"
 										>
 											<Button
-												variant={product.isDisabled ? "outline" : "primary"}
+												variant={
+													product.isDisabled
+														? "outline"
+														: product.isPopular
+														? "primary"
+														: "outline"
+												}
 												size={"md"}
 												// height={18}
 												width="100%"
 												sx={
-													product.isDisabled
+													product.isDisabled || !product.isPopular
 														? {}
 														: {
 																bg: "blue.500",
@@ -175,7 +181,7 @@ export const ProductOverview = (props: ProductOverviewProps) => {
 											>
 												{product.isDisabled
 													? "Coming Soon"
-													: `Chose ${product.name}`}
+													: `Chose ${product.name.replace(/[0-9]/g, "")}`}
 											</Button>
 										</a>
 									) : (
