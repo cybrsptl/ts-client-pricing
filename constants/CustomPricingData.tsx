@@ -149,15 +149,20 @@ const PricingAccounts = [
 				<PricingList>
 					<PricingListItem>
 						<Box mb={2}>Premium data enrichments</Box>
-						<Image
-							src={require("../public/icons/enrichment_partners.svg")}
-							alt={"Ipinfo | Greynoise"}
-							style={{
-								paddingRight: "2em",
-							}}
-						/>
 					</PricingListItem>
 				</PricingList>
+				<Box
+					sx={{
+						paddingTop: ".5em",
+						paddingLeft: "2.2em",
+						paddingRight: "2.2em",
+					}}
+				>
+					<Image
+						src={require("../public/icons/enrichment_partners.svg")}
+						alt={"Ipinfo | Greynoise"}
+					/>
+				</Box>
 			</>
 		),
 		borderColor: "blue.800",

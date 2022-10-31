@@ -77,14 +77,15 @@ export const ProductOverview = (props: ProductOverviewProps) => {
 									)}
 									{/* {product.isComingSoon && <CardBadge>Waitlist</CardBadge>} */}
 									<Text
-										fontSize="md"
-										// textTransform="uppercase"
+										fontSize="lg"
 										fontWeight="bold"
 										letterSpacing="wider"
-										height={8}
-										paddingTop={2}
+										paddingBottom={2}
 									>
 										{product.name.replace(/[0-9]/g, "")}
+									</Text>
+									<Text fontSize="sm" paddingBottom={6} color="theme_text_desc">
+										{product.subTitle}
 									</Text>
 									{product.pricePerMonth && (
 										<>
