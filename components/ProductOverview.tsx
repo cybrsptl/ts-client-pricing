@@ -78,7 +78,7 @@ export const ProductOverview = (props: ProductOverviewProps) => {
 									{/* {product.isComingSoon && <CardBadge>Waitlist</CardBadge>} */}
 									<Text
 										fontSize="md"
-										textTransform="uppercase"
+										// textTransform="uppercase"
 										fontWeight="bold"
 										letterSpacing="wider"
 										height={8}
