@@ -131,7 +131,7 @@ export const ProductOverview = (props: ProductOverviewProps) => {
 									</Box>
 								</Box>
 								<Box width="100%">
-									<Text fontSize="xs" mt={12} pb={4}>
+									<Text fontSize="sm" fontWeight="semibold" mt={12} pb={4}>
 										{product.footer}
 									</Text>
 									{product.isBelowDesiredLimits ? (
@@ -140,7 +140,7 @@ export const ProductOverview = (props: ProductOverviewProps) => {
 											fontStyle="italic"
 											border="1px solid grey"
 											rounded="lg"
-											padding={2}
+											padding={1.5}
 										>
 											Too small for {billingTier} GB analysis workloads
 										</Text>
@@ -158,22 +158,30 @@ export const ProductOverview = (props: ProductOverviewProps) => {
 										>
 											<Button
 												variant={
-													product.isDisabled
-														? "outline"
-														: product.isPopular
-														? "primary"
-														: "outline"
+													"outline"
+													// product.isDisabled
+													// 	? "outline"
+													// 	: product.isPopular
+													// 	? "primary"
+													// 	: "outline"
 												}
-												size={"md"}
+												size={"sm"}
 												// height={18}
-												width="100%"
+												// width="100%"
+												// minWidth={"8rem"}
+												fontWeight="semibold"
+												paddingLeft="2em"
+												paddingRight="2em"
 												sx={
 													product.isDisabled || !product.isPopular
-														? {}
+														? {
+																color: "white",
+														  }
 														: {
-																bg: "blue.500",
+																color: "white",
+																borderColor: "blue.500",
 																_hover: {
-																	bg: "blue.400",
+																	backgroundColor: "blue.800",
 																},
 														  }
 												}
@@ -181,20 +189,24 @@ export const ProductOverview = (props: ProductOverviewProps) => {
 											>
 												{product.isDisabled
 													? "Coming Soon"
-													: `Chose ${product.name.replace(/[0-9]/g, "")}`}
+													: `Choose ${product.name.replace(/[0-9]/g, "")}`}
 											</Button>
 										</a>
 									) : (
-										<Text
+										<Box
 											fontSize="sm"
-											fontStyle="italic"
+											width="fit-content"
 											border="1px solid grey"
-											rounded="lg"
-											padding={2}
-											fontWeight="bold"
+											rounded="md"
+											height="32px"
+											lineHeight="30px"
+											paddingLeft="2em"
+											paddingRight="2em"
+											margin="auto"
+											fontWeight="semibold"
 										>
 											Coming Soon
-										</Text>
+										</Box>
 									)}
 								</Box>
 							</VStack>
