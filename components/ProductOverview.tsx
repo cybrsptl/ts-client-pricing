@@ -2,7 +2,6 @@ import * as React from "react"
 import {
 	Box,
 	Button,
-	Flex,
 	HStack,
 	Heading,
 	TableProps,
@@ -89,18 +88,18 @@ export const ProductOverview = (props: ProductOverviewProps) => {
 									</Text>
 									{product.pricePerMonth && (
 										<>
-											<Heading size="lg" as="span" color="default" ml={4}>
-												${product.pricePerMonth.toLocaleString()}
+											<Heading size="md" as="span" color="default" ml={4}>
+												${product.pricePerMonth.toLocaleString()} per month
 											</Heading>
-											<Text
+											{/* <Text
 												fontSize="sm"
 												as="span"
 												color="muted"
 												fontWeight="bold"
 												ml={1}
 											>
-												per month
-											</Text>
+												/mo
+											</Text> */}
 										</>
 									)}
 									{product.annualBillingOnly && (

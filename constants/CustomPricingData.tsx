@@ -76,7 +76,7 @@ const PricingAccounts = [
 		description: (product: PricingAccountForTierType) => (
 			<PricingList>
 				{/* <PricingListItem>Increased resource limits</PricingListItem> */}
-				<PricingListItem>Standard threat intel enrichments</PricingListItem>
+				<PricingListItem>Standard data enrichments</PricingListItem>
 			</PricingList>
 		),
 		footer: "Plus everything in Free",
@@ -148,7 +148,7 @@ const PricingAccounts = [
 			<>
 				<PricingList>
 					<PricingListItem>
-						<Box mb={2}>Premium enrichments included</Box>
+						<Box mb={2}>Premium data enrichments</Box>
 						<Image
 							src={require("../public/icons/enrichment_partners.svg")}
 							alt={"Ipinfo | Greynoise"}
