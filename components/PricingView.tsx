@@ -156,9 +156,9 @@ export const PricingView = ({
 			// Inject additional values by cross-referencing with (Stripe authoritative) pricingData
 
 			if (pricingData[tierProdKey]) {
-				product.name = `${_.startCase(pricingData[tierProdKey].prodType)} ${
-					pricingData[tierProdKey].prodTier
-				}`
+				// product.name = `${_.startCase(pricingData[tierProdKey].prodType)} ${
+				// 	pricingData[tierProdKey].prodTier
+				// }`
 				product.price = `${pricingData[tierProdKey].cost / 100}`
 
 				product.pricePerMonth = Math.floor(

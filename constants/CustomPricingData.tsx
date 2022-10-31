@@ -233,7 +233,7 @@ const PricingAccounts = [
 		},
 	},
 	{
-		name: "Team 1000",
+		name: "Teams",
 		prodType: "team",
 		subTitle: "For organizations",
 		isComingSoon: true,
