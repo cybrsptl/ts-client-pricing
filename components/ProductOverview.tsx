@@ -181,6 +181,7 @@ export const ProductOverview = (props: ProductOverviewProps) => {
 														  }
 														: {
 																color: "white",
+																borderColor: "blue.500",
 																_hover: {
 																	backgroundColor: "blue.800",
 																},

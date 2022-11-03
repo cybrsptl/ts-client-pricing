@@ -55,6 +55,7 @@ const PricingAccounts = [
 			ana_prem: false,
 			enr_std: false,
 			enr_prem: false,
+			greynoise: false,
 			ds_prem: false,
 			mfa: true,
 			sso: false,
@@ -124,6 +125,7 @@ const PricingAccounts = [
 			ana_prem: false,
 			enr_std: true,
 			enr_prem: false,
+			greynoise: false,
 			ds_prem: false,
 			mfa: true,
 			sso: false,
@@ -166,8 +168,8 @@ const PricingAccounts = [
 			</>
 		),
 		boxProps: {
-			borderColor: "blue.800",
-			boxShadow: "0px 0px 5px 0px rgba(74,189,255,0.25)",
+			borderColor: "blue.500",
+			boxShadow: "0px 0px 7px 0px rgba(74,189,255,0.25)",
 		},
 		tiersByGB: {
 			100: AppConfig.stripe_test_mode
@@ -221,6 +223,11 @@ const PricingAccounts = [
 			ana_prem: true,
 			enr_std: true,
 			enr_prem: true,
+			greynoiseByTier: {
+				100: 100,
+				200: 200,
+				300: 250,
+			},
 			ds_prem: "$",
 			mfa: true,
 			sso: false,
@@ -286,6 +293,7 @@ const PricingAccounts = [
 			ana_prem: true,
 			enr_std: true,
 			enr_prem: true,
+			greynoise: 300,
 			ds_prem: "$",
 			mfa: true,
 			sso: true,
@@ -393,6 +401,10 @@ export const PricingFeatures: Feature[] = [
 			{
 				key: "enr_prem",
 				name: "Premium data enrichments",
+			},
+			{
+				key: "greynoise",
+				name: "Daily GreyNoise Lookups",
 			},
 			// {
 			// 	key: "ds_prem",
