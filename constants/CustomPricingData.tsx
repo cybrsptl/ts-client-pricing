@@ -165,7 +165,10 @@ const PricingAccounts = [
 				</Box>
 			</>
 		),
-		borderColor: "blue.800",
+		boxProps: {
+			borderColor: "blue.800",
+			boxShadow: "0px 0px 5px 0px rgba(74,189,255,0.25)",
+		},
 		tiersByGB: {
 			100: AppConfig.stripe_test_mode
 				? "prod_MeU7K4Gq8jKxec"

@@ -1,4 +1,5 @@
 import React from "react"
+import { BoxProps } from "@chakra-ui/react"
 
 export interface StripePricingData {
 	prodId: string
@@ -24,7 +25,6 @@ export type PricingAccountForTierType = {
 	description?:
 		| string
 		| ((product: PricingAccountForTierType) => React.ReactNode)
-	borderColor?: string
 	dataInGB?: number
 	billingFrequency?: string
 	prodType: string
@@ -37,4 +37,5 @@ export type PricingAccountForTierType = {
 	isCurrent?: boolean
 	annualBillingOnly?: boolean
 	isBelowDesiredLimits?: boolean
+	boxProps?: BoxProps
 }

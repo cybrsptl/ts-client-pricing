@@ -68,7 +68,9 @@ export const ProductOverview = (props: ProductOverviewProps) => {
 							height="100%"
 							borderRadius="lg"
 							borderWidth="1px"
-							borderColor={product.borderColor || "theme_hilight"}
+							borderColor="theme_hilight"
+							boxShadow="0px 0px 5px 0px rgba(41,41,41,0.9)"
+							{...product.boxProps}
 						>
 							<VStack width="100%" height="100%" justifyContent="space-between">
 								<Box>
@@ -179,7 +181,6 @@ export const ProductOverview = (props: ProductOverviewProps) => {
 														  }
 														: {
 																color: "white",
-																borderColor: "blue.500",
 																_hover: {
 																	backgroundColor: "blue.800",
 																},
