@@ -22,6 +22,8 @@ export type PricingAccountForTierType = {
 	purchaseLink?: string
 	price?: string
 	pricePerMonth?: number
+	pricePerMonthBilledMonthly?: number
+	pricePerMonthBilledAnnually?: number
 	description?:
 		| string
 		| ((product: PricingAccountForTierType) => React.ReactNode)

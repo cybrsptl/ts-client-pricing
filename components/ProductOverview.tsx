@@ -38,6 +38,7 @@ export const ProductOverview = (props: ProductOverviewProps) => {
 			alignItems="top"
 			justifyContent="center"
 			pb={1}
+			minHeight="520px"
 			{...containerProps}
 		>
 			{products
@@ -91,7 +92,7 @@ export const ProductOverview = (props: ProductOverviewProps) => {
 									</Text>
 									{product.pricePerMonth && (
 										<>
-											<Heading size="md" as="span" color="default" ml={4}>
+											<Heading fontSize="25px" as="span" color="default" ml={4}>
 												${product.pricePerMonth.toLocaleString()} per month
 											</Heading>
 											{/* <Text
@@ -105,13 +106,25 @@ export const ProductOverview = (props: ProductOverviewProps) => {
 											</Text> */}
 										</>
 									)}
+									{product.pricePerMonthBilledMonthly && (
+										<Text fontSize="sm" color="theme_text_desc" mt={1}>
+											Paid annually or ${product.pricePerMonthBilledMonthly}{" "}
+											paid monthly
+										</Text>
+									)}
+									{product.pricePerMonthBilledAnnually && (
+										<Text fontSize="sm" color="theme_text_desc" mt={1}>
+											Paid monthly or ${product.pricePerMonthBilledAnnually}{" "}
+											paid annually
+										</Text>
+									)}
 									{product.annualBillingOnly && (
-										<Text fontSize="sm" fontStyle="italic" mt={3} mb={7}>
-											Annual billing only.
+										<Text fontSize="sm" color="theme_text_desc" mt={1}>
+											Annual billing only
 										</Text>
 									)}
 
-									<Box color="muted" whiteSpace="normal" mt={6}>
+									<Box color="muted" whiteSpace="normal" mt={8}>
 										<PricingList mb={2}>
 											<PricingListItem>
 												<>{product.features.data} data under analysis</>
@@ -133,7 +146,7 @@ export const ProductOverview = (props: ProductOverviewProps) => {
 									</Box>
 								</Box>
 								<Box width="100%">
-									<Text fontSize="sm" fontWeight="semibold" mt={12} pb={4}>
+									<Text fontSize="sm" fontWeight="semibold" py={4}>
 										{product.footer}
 									</Text>
 									{product.isBelowDesiredLimits ? (

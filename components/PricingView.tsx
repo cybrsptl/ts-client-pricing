@@ -153,8 +153,7 @@ export const PricingView = ({
 				}
 			)
 
-			// Inject additional values by cross-referencing with (Stripe authoritative) pricingData
-
+			// Inject additional pricing values by cross-referencing with (Stripe authoritative) pricingData
 			if (pricingData[tierProdKey]) {
 				// product.name = `${_.startCase(pricingData[tierProdKey].prodType)} ${
 				// 	pricingData[tierProdKey].prodTier
@@ -175,13 +174,25 @@ export const PricingView = ({
 				product.isDisabled = true
 			}
 
-			// Set annualBillingOnly for products with blank pricing because of monthly billing mode being selected
-			if (
-				!product.pricePerMonth &&
-				billingMode === PricingBillingMode.MONTHLY &&
-				lowestTierProductId
-				// && pricingData[tierProdKey].interval === "year"
-			) {
+			// Populate pricePerMonthBilledMonthly/Annually for display purposes
+			const tierProdKeyBilledMonthly = `${lowestTierProductId}|${
+				PricingBillingModeToStripe[PricingBillingMode.MONTHLY]
+			}`
+			const tierProdKeyBilledAnnually = `${lowestTierProductId}|${
+				PricingBillingModeToStripe[PricingBillingMode.ANNUAL]
+			}`
+			if (pricingData[tierProdKeyBilledMonthly]) {
+				if (billingMode === PricingBillingMode.ANNUAL) {
+					product.pricePerMonthBilledMonthly = Math.floor(
+						pricingData[tierProdKeyBilledMonthly].cost / 100
+					)
+				} else {
+					product.pricePerMonthBilledAnnually = Math.floor(
+						pricingData[tierProdKeyBilledAnnually].cost / 100 / 12
+					)
+				}
+			} else {
+				// Set annualBillingOnly for products with blank pricing because of monthly billing mode being selected
 				product.annualBillingOnly = true
 			}
 
