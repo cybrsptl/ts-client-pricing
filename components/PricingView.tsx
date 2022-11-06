@@ -1,4 +1,5 @@
 import _ from "lodash"
+import dynamic from "next/dynamic"
 import * as React from "react"
 import { useEffect, useMemo, useState } from "react"
 import { Box, Stack } from "@chakra-ui/react"
@@ -17,6 +18,13 @@ import { ProductFeatures } from "./ProductFeatures"
 import { ProductOverview } from "./ProductOverview"
 import { ProductTierSelection } from "./ProductTierSelection"
 
+const DynamicProductPurchaseModal = dynamic(
+	() => import("./ProductPurchaseModal"),
+	{
+		ssr: false,
+	}
+)
+
 type PricingViewParams = {
 	tenantDataUnderAnalysis?: number
 	tenantTierName?: string
@@ -30,6 +38,8 @@ export const PricingView = ({
 	userEmail,
 	purchaseEnabled,
 }: PricingViewParams) => {
+	const [productToPurchase, setProductToPurchase] = useState<string>(null)
+
 	const [billingMode, setBillingMode] = React.useState<PricingBillingMode>(
 		PricingBillingMode.ANNUAL
 	)
@@ -219,6 +229,14 @@ export const PricingView = ({
 	return (
 		<Box as="section">
 			<Stack spacing={{ base: "5", md: "7" }} width="100%" mb={8}>
+				<DynamicProductPurchaseModal
+					{...{
+						products,
+						productToPurchase,
+						setProductToPurchase,
+						userEmail,
+					}}
+				/>
 				<ProductOverview
 					{...{
 						products,
@@ -227,6 +245,7 @@ export const PricingView = ({
 						userEmail,
 						tenantTierName,
 						purchaseEnabled,
+						setProductToPurchase,
 					}}
 					px={8}
 				/>

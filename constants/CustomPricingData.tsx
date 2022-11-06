@@ -407,7 +407,7 @@ export const PricingFeatures: Feature[] = [
 				name: (
 					<>
 						<Text color="theme_text_desc" as="div" mb={1}>
-							Daily GreyNoise Lookups
+							Daily GreyNoise lookups
 						</Text>
 						<Tag size="sm">Coming Soon</Tag>
 					</>

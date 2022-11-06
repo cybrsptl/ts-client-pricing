@@ -20,6 +20,7 @@ interface ProductOverviewProps extends TableProps {
 	userEmail?: string
 	tenantTierName?: string
 	purchaseEnabled?: boolean
+	setProductToPurchase: (prodType: string | null) => void
 }
 
 export const ProductOverview = (props: ProductOverviewProps) => {
@@ -28,6 +29,7 @@ export const ProductOverview = (props: ProductOverviewProps) => {
 		userEmail,
 		billingTier,
 		purchaseEnabled,
+		setProductToPurchase,
 		...containerProps
 	} = props
 
@@ -162,52 +164,44 @@ export const ProductOverview = (props: ProductOverviewProps) => {
 									) : purchaseEnabled &&
 									  product.purchaseLink &&
 									  !product.isDisabled ? (
-										/* eslint-disable-next-line react/jsx-no-target-blank */
-										<a
-											href={`${
-												product.purchaseLink
-											}?prefilled_email=${encodeURIComponent(
-												userEmail
-											)}&ts_email=${encodeURIComponent(userEmail)}`}
-											target="_blank"
-											style={{ textDecoration: "none" }}
+										<Button
+											onClick={() => {
+												setProductToPurchase(product.prodType)
+											}}
+											variant={
+												"outline"
+												// product.isDisabled
+												// 	? "outline"
+												// 	: product.isPopular
+												// 	? "primary"
+												// 	: "outline"
+											}
+											size={"sm"}
+											// height={18}
+											// width="100%"
+											// minWidth={"8rem"}
+											fontWeight="semibold"
+											paddingLeft="2em"
+											paddingRight="2em"
+											sx={
+												product.isDisabled || !product.isPopular
+													? {
+															color: "white",
+													  }
+													: {
+															color: "white",
+															borderColor: "blue.500",
+															_hover: {
+																backgroundColor: "blue.800",
+															},
+													  }
+											}
+											disabled={product.isDisabled}
 										>
-											<Button
-												variant={
-													"outline"
-													// product.isDisabled
-													// 	? "outline"
-													// 	: product.isPopular
-													// 	? "primary"
-													// 	: "outline"
-												}
-												size={"sm"}
-												// height={18}
-												// width="100%"
-												// minWidth={"8rem"}
-												fontWeight="semibold"
-												paddingLeft="2em"
-												paddingRight="2em"
-												sx={
-													product.isDisabled || !product.isPopular
-														? {
-																color: "white",
-														  }
-														: {
-																color: "white",
-																borderColor: "blue.500",
-																_hover: {
-																	backgroundColor: "blue.800",
-																},
-														  }
-												}
-												disabled={product.isDisabled}
-											>
-												{product.isDisabled
-													? "Coming Soon"
-													: `Choose ${product.name.replace(/[0-9]/g, "")}`}
-											</Button>
-										</a>
+											{product.isDisabled
+												? "Coming Soon"
+												: `Choose ${product.name.replace(/[0-9]/g, "")}`}
+										</Button>
 									) : (
 										<Box
 											fontSize="sm"
