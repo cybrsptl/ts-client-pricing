@@ -170,6 +170,7 @@ export const ProductOverview = (props: ProductOverviewProps) => {
 												userEmail
 											)}&ts_email=${encodeURIComponent(userEmail)}`}
 											target="_blank"
+											style={{ textDecoration: "none" }}
 										>
 											<Button
 												variant={
