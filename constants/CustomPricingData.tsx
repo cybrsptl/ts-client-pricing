@@ -1,5 +1,5 @@
 import Image from "next/image"
-import { Box } from "@chakra-ui/react"
+import { Box, Tag, Text } from "@chakra-ui/react"
 import AppConfig from "@common/constants/AppConfig"
 import { PricingList, PricingListItem } from "../components/PricingDescList"
 import { PricingAccountForTierType } from "./PricingTypes"
@@ -342,7 +342,7 @@ const PricingAccounts = [
 interface Feature {
 	category: string
 	items: {
-		name: string
+		name: string | React.ReactElement
 		key: keyof typeof PricingAccounts[number]["features"]
 		tooltip?: string
 	}[]
@@ -404,7 +404,14 @@ export const PricingFeatures: Feature[] = [
 			},
 			{
 				key: "greynoise",
-				name: "Daily GreyNoise Lookups",
+				name: (
+					<>
+						<Text color="theme_text_desc" as="div" mb={1}>
+							Daily GreyNoise Lookups
+						</Text>
+						<Tag size="sm">Coming Soon</Tag>
+					</>
+				),
 			},
 			// {
 			// 	key: "ds_prem",
