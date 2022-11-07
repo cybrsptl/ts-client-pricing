@@ -61,13 +61,24 @@ const ProductPurchaseModal = ({
 
 				<Box mb={16}>
 					Please ensure the following for a streamlined setup experience:
-					<OrderedList pl={4} mt={4} spacing={1}>
+					<OrderedList pl={4} mt={4} spacing={1} mb={4}>
 						<ListItem>You have a US billing address.</ListItem>
 						<ListItem>You have a Google account to use for sign-in.</ListItem>
 						<ListItem>
 							Please use your Google email as your purchase contact email.
 						</ListItem>
 					</OrderedList>
+					<Text as="div">
+						Note: Your usage of Teleseer is subject to Cyberspatial Inc.&apos;s{" "}
+						<br />
+						<a href="https://teleseer.com/terms" target="blank">
+							Terms of Service
+						</a>{" "}
+						and{" "}
+						<a href="https://teleseer.com/privacy" target="blank">
+							Privacy Policy
+						</a>
+					</Text>
 				</Box>
 
 				{/* eslint-disable-next-line react/jsx-no-target-blank */}
