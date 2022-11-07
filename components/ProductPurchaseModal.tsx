@@ -1,15 +1,17 @@
-import Image from "next/image"
 import React, { useRef } from "react"
 import {
 	Box,
 	Button,
 	FlexProps,
+	Heading,
+	ListItem,
 	Modal,
 	ModalBody,
 	ModalCloseButton,
 	ModalContent,
 	ModalOverlay,
-	Stack,
+	OrderedList,
+	Text,
 } from "@chakra-ui/react"
 import useIsMobile from "@common/hooks/useIsMobile"
 import useViewport from "@common/hooks/useViewport"
@@ -48,58 +50,46 @@ const ProductPurchaseModal = ({
 
 		return (
 			<>
-				<ul>
-					<li>Product ID: {productToPurchase}</li>
-					<li>ToS | Priv Policy</li>
-					<li>use your main email</li>
-					<li>use your main email</li>
-				</ul>
+				<Box>
+					<Heading size="lg" mt={4}>
+						Welcome to the Teleseer beta!
+					</Heading>
+					<Text mb={14} fontSize="md">
+						We&apos;re excited to share the launch journey with you.
+					</Text>
+				</Box>
+
+				<Box mb={16}>
+					Please ensure the following for a streamlined setup experience:
+					<OrderedList pl={4} mt={4} spacing={1}>
+						<ListItem>You have a US billing address.</ListItem>
+						<ListItem>You have a Google account to use for sign-in.</ListItem>
+						<ListItem>
+							Please use your Google email as your purchase contact email.
+						</ListItem>
+					</OrderedList>
+				</Box>
 
 				{/* eslint-disable-next-line react/jsx-no-target-blank */}
-				<a
-					href={`${product.purchaseLink}?prefilled_email=${encodeURIComponent(
-						userEmail || ""
-					)}&ts_email=${encodeURIComponent(userEmail || "")}`}
-					target="_blank"
-					style={{ textDecoration: "none" }}
-					onClick={onClose}
-				>
-					<Button
-						variant={
-							"outline"
-							// product.isDisabled
-							// 	? "outline"
-							// 	: product.isPopular
-							// 	? "primary"
-							// 	: "outline"
-						}
-						size={"sm"}
-						// height={18}
-						// width="100%"
-						// minWidth={"8rem"}
-						fontWeight="semibold"
-						paddingLeft="2em"
-						paddingRight="2em"
-						sx={
-							product.isDisabled || !product.isPopular
-								? {
-										color: "white",
-								  }
-								: {
-										color: "white",
-										borderColor: "blue.500",
-										_hover: {
-											backgroundColor: "blue.800",
-										},
-								  }
-						}
-						disabled={product.isDisabled}
+				<Box textAlign="center">
+					<Text as="div" mb={4}>
+						Ready to go?
+					</Text>
+
+					{/* eslint-disable-next-line react/jsx-no-target-blank */}
+					<a
+						href={`${product.purchaseLink}?prefilled_email=${encodeURIComponent(
+							userEmail || ""
+						)}&ts_email=${encodeURIComponent(userEmail || "")}`}
+						target="_blank"
+						style={{ textDecoration: "none" }}
+						onClick={onClose}
 					>
-						{product.isDisabled
-							? "Coming Soon"
-							: `Choose ${product.name.replace(/[0-9]/g, "")}`}
-					</Button>
-				</a>
+						<Button px={6} mb={6} ref={initialRef}>
+							Purchase {product.name.replace(/[0-9]/g, "")} Subscription
+						</Button>
+					</a>
+				</Box>
 			</>
 		)
 	}
@@ -108,8 +98,7 @@ const ProductPurchaseModal = ({
 		<Modal
 			isOpen={productToPurchase !== null}
 			onClose={onClose}
-			// initialFocusRef={initialRef}
-			// isCentered // note: this crops the upper-half of our mobile content when mobile users have a keyboard open. Using dynamically computed modalTop instead
+			initialFocusRef={initialRef}
 			motionPreset="slideInBottom"
 			scrollBehavior="outside"
 		>
@@ -120,8 +109,8 @@ const ProductPurchaseModal = ({
 				}}
 			/>
 			<ModalContent
-				top={`${Math.max(-20, (viewport.height - 1200) / 2)}px`}
-				maxW="60rem"
+				top={`${Math.max(-20, (viewport.height - 700) / 2)}px`}
+				maxW="40rem"
 				style={{ position: "absolute" }}
 				bg="none"
 				shadow="none"
@@ -153,6 +142,7 @@ const ProductPurchaseModal = ({
 						right: 0,
 						position: "relative",
 						borderRadius: "xl",
+						p: 4,
 					}}
 				>
 					{/* <Stack direction={"row"}>
@@ -180,7 +170,7 @@ const ProductPurchaseModal = ({
 						)}
 						<Box w="100%" pl={{ base: 4, lg: 8 }} pr={{ base: 4, lg: 8 }}> */}
 					<ModalCloseButton />
-					<ModalBody minHeight="400px">{RenderContent()}</ModalBody>
+					<ModalBody>{RenderContent()}</ModalBody>
 					{/* </Box>
 					</Stack> */}
 				</Box>
