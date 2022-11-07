@@ -69,7 +69,7 @@ const ProductPurchaseModal = ({
 						</ListItem>
 					</OrderedList>
 					<Text as="div">
-						Note: Your usage of Teleseer is subject to Cyberspatial Inc.&apos;s{" "}
+						Note: Your usage of Teleseer is subject to the Cyberspatial Inc.
 						<br />
 						<a href="https://teleseer.com/terms" target="blank">
 							Terms of Service
