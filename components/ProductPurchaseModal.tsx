@@ -50,16 +50,16 @@ const ProductPurchaseModal = ({
 
 		return (
 			<>
-				<Box>
+				<Box mb={10}>
 					<Heading size="lg" mt={4}>
 						Welcome to the Teleseer beta!
 					</Heading>
-					<Text mb={14} fontSize="md">
+					<Text fontSize="md">
 						We&apos;re excited to share the launch journey with you.
 					</Text>
 				</Box>
 
-				<Box mb={16}>
+				<Box mb={10}>
 					Please ensure the following for a streamlined setup experience:
 					<OrderedList pl={4} mt={4} spacing={1} mb={4}>
 						<ListItem>You have a US billing address.</ListItem>
@@ -68,17 +68,23 @@ const ProductPurchaseModal = ({
 							Please use your Google email as your purchase contact email.
 						</ListItem>
 					</OrderedList>
-					<Text as="div">
-						Note: Your usage of Teleseer is subject to the Cyberspatial Inc.
-						<br />
-						<a href="https://teleseer.com/terms" target="blank">
-							Terms of Service
-						</a>{" "}
-						and{" "}
-						<a href="https://teleseer.com/privacy" target="blank">
-							Privacy Policy
-						</a>
-					</Text>
+				</Box>
+
+				<Box mb={6} color="theme_text_dark">
+					Your usage of Teleseer is subject to the Cyberspatial Inc.
+					<br />
+					<a href="https://teleseer.com/terms" target="blank">
+						Terms of Service
+					</a>{" "}
+					and{" "}
+					<a href="https://teleseer.com/privacy" target="blank">
+						Privacy Policy
+					</a>
+					<br />
+					<br />
+					By sign­ing up you ag­ree to rec­eive per­io­dic pro­duct
+					lau­nch/upd­ate emails from Cyber­spatial. Your infor­ma­tion will
+					never be sold. You can un­sub­scribe at any time.
 				</Box>
 
 				{/* eslint-disable-next-line react/jsx-no-target-blank */}
