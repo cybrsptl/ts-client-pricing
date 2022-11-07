@@ -400,7 +400,14 @@ export const PricingFeatures: Feature[] = [
 			// },
 			{
 				key: "enr_prem",
-				name: "Premium data enrichments",
+				name: (
+					<>
+						<Text color="theme_text_desc" as="div" mb={1}>
+							Premium data enrichments
+						</Text>
+						<Tag size="sm">IPinfo Coming Soon</Tag>
+					</>
+				),
 			},
 			{
 				key: "greynoise",
