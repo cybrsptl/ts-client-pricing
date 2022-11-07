@@ -247,7 +247,6 @@ export const PricingView = ({
 						purchaseEnabled,
 						setProductToPurchase,
 					}}
-					px={8}
 				/>
 				<ProductTierSelection
 					{...{
