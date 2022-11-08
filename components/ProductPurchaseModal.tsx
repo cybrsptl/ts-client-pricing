@@ -102,7 +102,7 @@ const ProductPurchaseModal = ({
 						style={{ textDecoration: "none" }}
 						onClick={onClose}
 					>
-						<Button px={6} mb={6} ref={initialRef}>
+						<Button px={6} mb={6} ref={initialRef} variant="primary">
 							Purchase {product.name.replace(/[0-9]/g, "")} Subscription
 						</Button>
 					</a>
