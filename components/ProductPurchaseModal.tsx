@@ -1,3 +1,4 @@
+import Link from "next/link"
 import React, { useRef } from "react"
 import {
 	Box,
@@ -61,8 +62,17 @@ const ProductPurchaseModal = ({
 
 				<Box mb={10}>
 					Please ensure the following for a streamlined setup experience:
-					<OrderedList pl={4} mt={4} spacing={1} mb={4}>
-						<ListItem>You have a US billing address.</ListItem>
+					<OrderedList pl={4} mt={4} spacing={2} mb={4}>
+						<ListItem>
+							You have a US billing address.
+							<Box fontSize="xs" fontStyle="italic">
+								If you don&apos;t have a US billing address,{" "}
+								<Link href={"mailto:hello@cyberspatial.com"} target="_blank">
+									contact us
+								</Link>{" "}
+								before purchase.
+							</Box>
+						</ListItem>
 						<ListItem>You have a Google account to use for sign-in.</ListItem>
 						<ListItem>
 							Please use your Google email as your purchase contact email.
@@ -70,7 +80,7 @@ const ProductPurchaseModal = ({
 					</OrderedList>
 				</Box>
 
-				<Box mb={6} color="theme_text_dark">
+				<Box fontSize="xs" mb={6} color="theme_text_dark">
 					Your usage of Teleseer is subject to the Cyberspatial Inc.
 					<br />
 					<a href="https://teleseer.com/terms" target="blank">
