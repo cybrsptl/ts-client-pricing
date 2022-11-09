@@ -80,7 +80,7 @@ const ProductPurchaseModal = ({
 					</OrderedList>
 				</Box>
 
-				<Box fontSize="xs" mb={6} color="theme_text_dark">
+				<Box fontSize="xs" mb={10} color="theme_text_dark">
 					Your usage of Teleseer is subject to the Cyberspatial Inc.
 					<br />
 					<a href="https://teleseer.com/terms" target="blank">
