@@ -54,115 +54,113 @@ const ProductPurchaseModal = ({
 			return "Warning: Product not found"
 		}
 
-		return (
-			<>
-				<Box mb={10}>
-					<Heading size="lg" mt={4}>
-						Welcome to the Teleseer beta!
-					</Heading>
-					<Text fontSize="md">
-						We&apos;re excited to share the launch journey with you.
-					</Text>
-				</Box>
+		return <>
+            <Box mb={10}>
+                <Heading size="lg" mt={4}>
+                    Welcome to the Teleseer beta!
+                </Heading>
+                <Text fontSize="md">
+                    We&apos;re excited to share the launch journey with you.
+                </Text>
+            </Box>
 
-				{purchased ? (
-					<Box textAlign="center">
-						<Text as="div" mb={10} fontSize="lg">
-							Congratulations on your new account!
-						</Text>
+            {purchased ? (
+                <Box textAlign="center">
+                    <Text as="div" mb={10} fontSize="lg">
+                        Congratulations on your new account!
+                    </Text>
 
-						<Text as="div" mb={4} fontStyle="italic" color="theme_text_dark">
-							Once your subscription is purchased,
-						</Text>
+                    <Text as="div" mb={4} fontStyle="italic" color="theme_text_dark">
+                        Once your subscription is purchased,
+                    </Text>
 
-						{/* eslint-disable-next-line react/jsx-no-target-blank */}
-						<a
-							href={`https://go.teleseer.com`}
-							target="_blank"
-							style={{ textDecoration: "none" }}
-							onClick={onSubmit}
-						>
-							<Button
-								px={6}
-								minWidth="350px"
-								mb={6}
-								ref={initialRef}
-								variant="primary"
-							>
-								Enter Teleseer
-							</Button>
-						</a>
-					</Box>
-				) : (
-					<>
-						<Box mb={10}>
-							Please ensure the following for a streamlined setup experience:
-							<OrderedList pl={4} mt={4} spacing={2} mb={4}>
-								<ListItem>
-									You have a US billing address.
-									<Box fontSize="xs" fontStyle="italic">
-										If you don&apos;t have a US billing address,{" "}
-										<Link
-											href={"mailto:hello@cyberspatial.com"}
-											target="_blank"
-										>
-											contact us
-										</Link>{" "}
-										before purchase.
-									</Box>
-								</ListItem>
-								<ListItem>
-									You have a Google account to use for sign-in.
-								</ListItem>
-								<ListItem>
-									Please use your Google email as your purchase contact email.
-								</ListItem>
-							</OrderedList>
-						</Box>
+                    {/* eslint-disable-next-line react/jsx-no-target-blank */}
+                    <a
+                        href={`https://go.teleseer.com`}
+                        target="_blank"
+                        style={{ textDecoration: "none" }}
+                        onClick={onSubmit}
+                    >
+                        <Button
+                            px={6}
+                            minWidth="350px"
+                            mb={6}
+                            ref={initialRef}
+                            variant="primary"
+                        >
+                            Enter Teleseer
+                        </Button>
+                    </a>
+                </Box>
+            ) : (
+                <>
+                    <Box mb={10}>
+                        Please ensure the following for a streamlined setup experience:
+                        <OrderedList pl={4} mt={4} spacing={2} mb={4}>
+                            <ListItem>
+                                You have a US billing address.
+                                <Box fontSize="xs" fontStyle="italic">
+                                    If you don&apos;t have a US billing address,{" "}
+                                    <Link
+                                        href={"mailto:hello@cyberspatial.com"}
+                                        target="_blank"
+                                    >
+                                        contact us
+                                    </Link>{" "}
+                                    before purchase.
+                                </Box>
+                            </ListItem>
+                            <ListItem>
+                                You have a Google account to use for sign-in.
+                            </ListItem>
+                            <ListItem>
+                                Please use your Google email as your purchase contact email.
+                            </ListItem>
+                        </OrderedList>
+                    </Box>
 
-						<Box fontSize="xs" mb={10} color="theme_text_dark">
-							Your usage of Teleseer is subject to the Cyberspatial Inc.
-							<br />
-							<a href="https://teleseer.com/terms" target="blank">
-								Terms of Service
-							</a>{" "}
-							and{" "}
-							<a href="https://teleseer.com/privacy" target="blank">
-								Privacy Policy
-							</a>
-							<br />
-							<br />
-							By sign­ing up you ag­ree to rec­eive per­io­dic pro­duct
-							lau­nch/upd­ate emails from Cyber­spatial. Your infor­ma­tion will
-							never be sold. You can un­sub­scribe at any time.
-						</Box>
+                    <Box fontSize="xs" mb={10} color="theme_text_dark">
+                        Your usage of Teleseer is subject to the Cyberspatial Inc.
+                        <br />
+                        <a href="https://teleseer.com/terms" target="blank">
+                            Terms of Service
+                        </a>{" "}
+                        and{" "}
+                        <a href="https://teleseer.com/privacy" target="blank">
+                            Privacy Policy
+                        </a>
+                        <br />
+                        <br />
+                        By sign­ing up you ag­ree to rec­eive per­io­dic pro­duct
+                        lau­nch/upd­ate emails from Cyber­spatial. Your infor­ma­tion will
+                        never be sold. You can un­sub­scribe at any time.
+                    </Box>
 
-						{/* eslint-disable-next-line react/jsx-no-target-blank */}
-						<Box textAlign="center">
-							<Text as="div" mb={4}>
-								Ready to go?
-							</Text>
+                    {/* eslint-disable-next-line react/jsx-no-target-blank */}
+                    <Box textAlign="center">
+                        <Text as="div" mb={4}>
+                            Ready to go?
+                        </Text>
 
-							{/* eslint-disable-next-line react/jsx-no-target-blank */}
-							<a
-								href={`${
-									product.purchaseLink
-								}?prefilled_email=${encodeURIComponent(
-									userEmail || ""
-								)}&ts_email=${encodeURIComponent(userEmail || "")}`}
-								target="_blank"
-								style={{ textDecoration: "none" }}
-								onClick={onSubmit}
-							>
-								<Button px={6} mb={6} ref={initialRef} variant="primary">
-									Purchase {product.name.replace(/[0-9]/g, "")} Subscription
-								</Button>
-							</a>
-						</Box>
-					</>
-				)}
-			</>
-		)
+                        {/* eslint-disable-next-line react/jsx-no-target-blank */}
+                        <a
+                            href={`${
+                                product.purchaseLink
+                            }?prefilled_email=${encodeURIComponent(
+                                userEmail || ""
+                            )}&ts_email=${encodeURIComponent(userEmail || "")}`}
+                            target="_blank"
+                            style={{ textDecoration: "none" }}
+                            onClick={onSubmit}
+                        >
+                            <Button px={6} mb={6} ref={initialRef} variant="primary">
+                                Purchase {product.name.replace(/[0-9]/g, "")} Subscription
+                            </Button>
+                        </a>
+                    </Box>
+                </>
+            )}
+        </>;
 	}
 
 	return (

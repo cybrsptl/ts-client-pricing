@@ -34,7 +34,7 @@ export const ProductOverview = (props: ProductOverviewProps) => {
 	} = props
 
 	return (
-		<HStack
+        <HStack
 			spacing={8}
 			width="100%"
 			alignItems="top"
@@ -224,5 +224,5 @@ export const ProductOverview = (props: ProductOverviewProps) => {
 					</Box>
 				))}
 		</HStack>
-	)
+    );
 }
