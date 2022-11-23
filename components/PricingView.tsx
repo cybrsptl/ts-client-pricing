@@ -45,13 +45,17 @@ export const PricingView = ({
 	)
 
 	// Automatically set billing tier to current tenant limit when page loads
-	const [billingTier, setBillingTier] = useState(-1)
+	const [billingTier, setBillingTier] = useState(20) // Default to $99 pricing suggestion for new users as per latest feedback from Ricky
 	useEffect(() => {
-		if (billingTier !== -1 || !tenantDataUnderAnalysis) {
+		if (
+			!tenantDataUnderAnalysis ||
+			tenantDataUnderAnalysis / (1000 * 1000 * 1000) < 1
+		) {
 			return
 		}
 		setBillingTier(tenantDataUnderAnalysis / (1000 * 1000 * 1000))
-	}, [billingTier, tenantDataUnderAnalysis])
+	}, [tenantDataUnderAnalysis])
+	console.log("tenantDataUnderAnalysis", tenantDataUnderAnalysis)
 
 	const pricingData = useMemo(() => {
 		const data = (
@@ -215,7 +219,7 @@ export const PricingView = ({
 					.toLocaleString()}`
 			}
 
-			// console.log("billingTier", billingTier)
+			console.log("billingTier", billingTier)
 			// console.log("pricingData", pricingData)
 			// console.log("lowestTierProductId", lowestTierProductId)
 			// console.log("pricingData[tierProdKey]", pricingData[tierProdKey])
