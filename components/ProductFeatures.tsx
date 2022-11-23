@@ -1,6 +1,7 @@
 import * as React from "react"
 import { FiInfo } from "react-icons/fi"
 import {
+	Box,
 	Flex,
 	HStack,
 	Icon,
@@ -31,74 +32,75 @@ export const ProductFeatures = (props: ProductFeaturesProps) => {
 	return (
 		<>
 			{PricingFeatures.map((feature, featureId) => (
-				<Table
-					key={featureId}
-					// sx={{ tableLayout: "fixed" }}
-					variant="striped"
-					{...tableProps}
-				>
-					<Thead>
-						<Tr>
-							<Th
-								// colSpan={products.length + 1}
-								color="accent"
-								fontSize="sm"
-								borderColor="blue.800"
-								width="33%"
-							>
-								{feature.category}
-							</Th>
-							{products.map((product, id) => (
+				<Box key={featureId} w="100%" overflowX="auto">
+					<Table
+						// sx={{ tableLayout: "fixed" }}
+						variant="striped"
+						{...tableProps}
+					>
+						<Thead>
+							<Tr>
 								<Th
-									key={id}
-									style={{ textAlign: "center" }}
+									// colSpan={products.length + 1}
+									color="accent"
+									fontSize="sm"
 									borderColor="blue.800"
-									color="muted"
-									width={`${(100 - 33) / products.length}%`}
+									width="33%"
 								>
-									{product.name}
+									{feature.category}
 								</Th>
-							))}
-						</Tr>
-					</Thead>
-					<Tbody>
-						{feature.items.map((item, id) => (
-							<Tr key={id}>
-								<Td fontWeight="semibold">
-									<HStack spacing="1">
-										<Text fontWeight="semibold">{item.name}</Text>
-										{item.tooltip && (
-											<Tooltip label={item.tooltip} placement="bottom-start">
-												<Flex justify="center">
-													<Icon
-														as={FiInfo}
-														boxSize="4"
-														color="muted"
-														alignSelf="bottom"
-													/>
-												</Flex>
-											</Tooltip>
-										)}
-									</HStack>
-								</Td>
 								{products.map((product, id) => (
-									<Td
+									<Th
 										key={id}
 										style={{ textAlign: "center" }}
-										height="16"
+										borderColor="blue.800"
 										color="muted"
+										width={`${(100 - 33) / products.length}%`}
 									>
-										<PricingFeature
-											key={item.key}
-											value={product.features[item.key]}
-											{...{ billingMode, billingTier }}
-										/>
-									</Td>
+										{product.name}
+									</Th>
 								))}
 							</Tr>
-						))}
-					</Tbody>
-				</Table>
+						</Thead>
+						<Tbody>
+							{feature.items.map((item, id) => (
+								<Tr key={id}>
+									<Td fontWeight="semibold">
+										<HStack spacing="1">
+											<Text fontWeight="semibold">{item.name}</Text>
+											{item.tooltip && (
+												<Tooltip label={item.tooltip} placement="bottom-start">
+													<Flex justify="center">
+														<Icon
+															as={FiInfo}
+															boxSize="4"
+															color="muted"
+															alignSelf="bottom"
+														/>
+													</Flex>
+												</Tooltip>
+											)}
+										</HStack>
+									</Td>
+									{products.map((product, id) => (
+										<Td
+											key={id}
+											style={{ textAlign: "center" }}
+											height="16"
+											color="muted"
+										>
+											<PricingFeature
+												key={item.key}
+												value={product.features[item.key]}
+												{...{ billingMode, billingTier }}
+											/>
+										</Td>
+									))}
+								</Tr>
+							))}
+						</Tbody>
+					</Table>
+				</Box>
 			))}
 		</>
 	)

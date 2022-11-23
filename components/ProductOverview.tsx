@@ -2,8 +2,8 @@ import * as React from "react"
 import {
 	Box,
 	Button,
-	HStack,
 	Heading,
+	Stack,
 	TableProps,
 	Text,
 	VStack,
@@ -34,8 +34,9 @@ export const ProductOverview = (props: ProductOverviewProps) => {
 	} = props
 
 	return (
-        <HStack
-			spacing={8}
+		<Stack
+			direction={["column", "row"]}
+			spacing={[8, 4, 8]}
 			width="100%"
 			alignItems="top"
 			justifyContent="center"
@@ -67,7 +68,7 @@ export const ProductOverview = (props: ProductOverviewProps) => {
 										? "not-allowed"
 										: "auto",
 							}}
-							p={6}
+							p={[4, 4, 6]}
 							height="100%"
 							borderRadius="lg"
 							borderWidth="1px"
@@ -223,6 +224,6 @@ export const ProductOverview = (props: ProductOverviewProps) => {
 						</Box>
 					</Box>
 				))}
-		</HStack>
-    );
+		</Stack>
+	)
 }
