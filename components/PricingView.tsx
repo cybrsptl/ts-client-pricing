@@ -55,7 +55,6 @@ export const PricingView = ({
 		}
 		setBillingTier(tenantDataUnderAnalysis / (1000 * 1000 * 1000))
 	}, [tenantDataUnderAnalysis])
-	console.log("tenantDataUnderAnalysis", tenantDataUnderAnalysis)
 
 	const pricingData = useMemo(() => {
 		const data = (
@@ -219,7 +218,7 @@ export const PricingView = ({
 					.toLocaleString()}`
 			}
 
-			console.log("billingTier", billingTier)
+			// console.log("billingTier", billingTier)
 			// console.log("pricingData", pricingData)
 			// console.log("lowestTierProductId", lowestTierProductId)
 			// console.log("pricingData[tierProdKey]", pricingData[tierProdKey])
