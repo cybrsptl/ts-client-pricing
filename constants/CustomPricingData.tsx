@@ -8,68 +8,68 @@ import { PricingAccountForTierType } from "./PricingTypes"
 // https://docs.google.com/spreadsheets/d/1rQRlPnumgwwRB2d-18kU82fpEOwILBEXys_FgbVdjc0
 
 const PricingAccounts = [
-	{
-		name: "Free",
-		subTitle: "For individuals",
-		prodType: "free",
-		footer: "",
-		hideOverviewCard: true,
-		description: () => (
-			<PricingList>
-				<PricingListItem>Introductory Teleseer experience</PricingListItem>
-				<PricingListItem>Process telemetry files</PricingListItem>
-				<PricingListItem>View a map of your network</PricingListItem>
-			</PricingList>
-		),
-		tiersByGB: {
-			0.1: null,
-		},
-		dataInGB: 0.0,
-		features: {
-			data: "",
-			xfer: "",
-			carving: "",
-			history: "",
-			assets: "",
-			projects: "",
-			pricePerGB: false,
-			dataByTier: {
-				0.1: "100 MB",
-			},
-			xferByTier: {
-				0.1: "250 MB",
-			},
-			carvingByTier: {
-				0.1: "0.01 GB",
-			},
-			historyByTier: {
-				0.1: "30 days",
-			},
-			assetsByTier: {
-				0.1: "1,000",
-			},
-			projectsByTier: {
-				0.1: "3",
-			},
-			ana_std: true,
-			ana_prem: false,
-			enr_std: false,
-			enr_prem: false,
-			greynoise: false,
-			ds_prem: false,
-			mfa: true,
-			sso: false,
-			team_adm: false,
-			team_pool: false,
-			slf_hosted: false,
-			slo: "5-day",
-			proj_share: true,
-			ver_his: false,
-			data_stream: false,
-			nvme: false,
-			audio: false,
-		},
-	},
+	// {
+	// 	name: "Free",
+	// 	subTitle: "For individuals",
+	// 	prodType: "free",
+	// 	footer: "",
+	// 	hideOverviewCard: true,
+	// 	description: () => (
+	// 		<PricingList>
+	// 			<PricingListItem>Introductory Teleseer experience</PricingListItem>
+	// 			<PricingListItem>Process telemetry files</PricingListItem>
+	// 			<PricingListItem>View a map of your network</PricingListItem>
+	// 		</PricingList>
+	// 	),
+	// 	tiersByGB: {
+	// 		0.1: null,
+	// 	},
+	// 	dataInGB: 0.0,
+	// 	features: {
+	// 		data: "",
+	// 		xfer: "",
+	// 		carving: "",
+	// 		history: "",
+	// 		assets: "",
+	// 		projects: "",
+	// 		pricePerGB: false,
+	// 		dataByTier: {
+	// 			0.1: "100 MB",
+	// 		},
+	// 		xferByTier: {
+	// 			0.1: "250 MB",
+	// 		},
+	// 		carvingByTier: {
+	// 			0.1: "0.01 GB",
+	// 		},
+	// 		historyByTier: {
+	// 			0.1: "30 days",
+	// 		},
+	// 		assetsByTier: {
+	// 			0.1: "1,000",
+	// 		},
+	// 		projectsByTier: {
+	// 			0.1: "3",
+	// 		},
+	// 		ana_std: true,
+	// 		ana_prem: false,
+	// 		enr_std: false,
+	// 		enr_prem: false,
+	// 		greynoise: false,
+	// 		ds_prem: false,
+	// 		mfa: true,
+	// 		sso: false,
+	// 		team_adm: false,
+	// 		team_pool: false,
+	// 		slf_hosted: false,
+	// 		slo: "5-day",
+	// 		proj_share: true,
+	// 		ver_his: false,
+	// 		data_stream: false,
+	// 		nvme: false,
+	// 		audio: false,
+	// 	},
+	// },
 	{
 		name: "Starter",
 		subTitle: "For individuals",
