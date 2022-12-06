@@ -97,6 +97,7 @@ const PricingAccounts = [
 			history: "",
 			assets: "",
 			projects: "",
+			pricePerGB: false,
 			dataByTier: {
 				5: "5 GB",
 				20: "20 GB",
