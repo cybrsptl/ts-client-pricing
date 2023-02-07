@@ -163,7 +163,7 @@ const PricingAccounts = [
 				>
 					<Image
 						src={require("../public/icons/enrichment_partners.svg")}
-						alt={"IpInfo | GreyNoise"}
+						alt={"IPinfo | GreyNoise"}
 					/>
 				</Box>
 			</>
