@@ -199,7 +199,7 @@ export const ProductOverview = (props: ProductOverviewProps) => {
 															},
 													  }
 											}
-											isLoading={productToPurchase}
+											isLoading={!!productToPurchase}
 											disabled={product.isDisabled}
 										>
 											{product.isDisabled
