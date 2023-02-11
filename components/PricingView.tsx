@@ -29,6 +29,7 @@ type PricingViewParams = {
 	tenantDataUnderAnalysis?: number
 	tenantTierName?: string
 	userEmail?: string
+	userStripeId?: string
 	purchaseEnabled?: boolean
 }
 
@@ -36,6 +37,7 @@ export const PricingView = ({
 	tenantDataUnderAnalysis,
 	tenantTierName,
 	userEmail,
+	userStripeId,
 	purchaseEnabled,
 }: PricingViewParams) => {
 	const [productToPurchase, setProductToPurchase] = useState<string>(null)
