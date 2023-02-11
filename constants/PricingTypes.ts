@@ -40,4 +40,5 @@ export type PricingAccountForTierType = {
 	annualBillingOnly?: boolean
 	isBelowDesiredLimits?: boolean
 	boxProps?: BoxProps
+	freeTrialDays?: number
 }

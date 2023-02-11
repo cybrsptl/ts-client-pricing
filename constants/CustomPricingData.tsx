@@ -86,10 +86,11 @@ const PricingAccounts = [
 			// 	? "prod_MeU6p5nJCScRjT"
 			// 	: "prod_MfuUHskBj85gTF",
 			10: AppConfig.stripe_test_mode
-				? "prod_MfF4EP6muijTDC"
+				? "prod_NK6dRgnmymlqGS"
 				: "prod_MfuUDm2rcXbhbj",
 		},
 		dataInGB: 0.0,
+		freeTrialDays: 7,
 		features: {
 			data: "",
 			xfer: "",
