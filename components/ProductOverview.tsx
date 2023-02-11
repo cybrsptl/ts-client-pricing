@@ -29,6 +29,7 @@ export const ProductOverview = (props: ProductOverviewProps) => {
 		userEmail,
 		billingTier,
 		purchaseEnabled,
+		productToPurchase,
 		setProductToPurchase,
 		...containerProps
 	} = props
@@ -197,6 +198,7 @@ export const ProductOverview = (props: ProductOverviewProps) => {
 															},
 													  }
 											}
+											isLoading={productToPurchase}
 											disabled={product.isDisabled}
 										>
 											{product.isDisabled
