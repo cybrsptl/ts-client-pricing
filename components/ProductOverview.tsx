@@ -200,8 +200,10 @@ export const ProductOverview = (props: ProductOverviewProps) => {
 											disabled={product.isDisabled}
 										>
 											{product.isDisabled
-												? "Coming Soon"
-												: `Choose ${product.name.replace(/[0-9]/g, "")}`}
+												? "Contact Us"
+												: product.freeTrialDays
+												? "Start Free Trial"
+												: `Purchase ${product.name.replace(/[0-9]/g, "")}`}
 										</Button>
 									) : (
 										<Box
@@ -216,7 +218,7 @@ export const ProductOverview = (props: ProductOverviewProps) => {
 											margin="auto"
 											fontWeight="semibold"
 										>
-											Coming Soon
+											Chat w/ Sales
 										</Box>
 									)}
 								</Box>
