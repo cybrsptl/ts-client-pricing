@@ -18,8 +18,9 @@ interface ProductOverviewProps extends TableProps {
 	billingMode: PricingBillingMode
 	billingTier: number
 	userEmail?: string
-	tenantTierName?: string
+	productToPurchase?: string
 	purchaseEnabled?: boolean
+	tenantTierName?: string
 	setProductToPurchase: (prodType: string | null) => void
 }
 
