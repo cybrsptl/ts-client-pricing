@@ -45,7 +45,7 @@ export const PricingView = ({
 	)
 
 	// Automatically set billing tier to current tenant limit when page loads
-	const [billingTier, setBillingTier] = useState(20) // Default to $99 pricing suggestion for new users as per latest feedback from Ricky
+	const [billingTier, setBillingTier] = useState(10) // Default to Starter 10 (10 GB tier)
 	useEffect(() => {
 		if (
 			!tenantDataUnderAnalysis ||

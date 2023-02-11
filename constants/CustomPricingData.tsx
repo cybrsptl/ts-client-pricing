@@ -80,12 +80,12 @@ const PricingAccounts = [
 				<PricingListItem>Standard data enrichments</PricingListItem>
 			</PricingList>
 		),
-		footer: "Plus everything in Free",
+		// footer: "Plus everything in Free",
 		tiersByGB: {
-			5: AppConfig.stripe_test_mode
-				? "prod_MeU6p5nJCScRjT"
-				: "prod_MfuUHskBj85gTF",
-			20: AppConfig.stripe_test_mode
+			// 5: AppConfig.stripe_test_mode
+			// 	? "prod_MeU6p5nJCScRjT"
+			// 	: "prod_MfuUHskBj85gTF",
+			10: AppConfig.stripe_test_mode
 				? "prod_MfF4EP6muijTDC"
 				: "prod_MfuUDm2rcXbhbj",
 		},
@@ -99,28 +99,28 @@ const PricingAccounts = [
 			projects: "",
 			pricePerGB: false,
 			dataByTier: {
-				5: "5 GB",
-				20: "20 GB",
+				// 5: "5 GB",
+				10: "10 GB",
 			},
 			xferByTier: {
-				5: "10 GB",
-				20: "50 GB",
+				// 5: "10 GB",
+				10: "50 GB",
 			},
 			carvingByTier: {
-				5: "1",
-				20: "2",
+				// 5: "1",
+				10: "2",
 			},
 			historyByTier: {
-				5: "90 days",
-				20: "90 days",
+				// 5: "90 days",
+				10: "90 days",
 			},
 			assetsByTier: {
-				5: "Unlimited",
-				20: "Unlimited",
+				// 5: "Unlimited",
+				10: "Unlimited",
 			},
 			projectsByTier: {
-				5: "5",
-				20: "10",
+				// 5: "5",
+				10: "10",
 			},
 			ana_std: true,
 			ana_prem: false,
@@ -179,9 +179,9 @@ const PricingAccounts = [
 			200: AppConfig.stripe_test_mode
 				? "prod_MfF9dP3mPJBGtV"
 				: "prod_MfuUl19Z99KKuR",
-			300: AppConfig.stripe_test_mode
-				? "prod_MfFAyBr9OXVxJG"
-				: "prod_MfpQXEGqW8HjMR",
+			// 300: AppConfig.stripe_test_mode
+			// 	? "prod_MfFAyBr9OXVxJG"
+			// 	: "prod_MfpQXEGqW8HjMR",
 		},
 		features: {
 			data: "",
@@ -193,32 +193,32 @@ const PricingAccounts = [
 			dataByTier: {
 				100: "100 GB",
 				200: "200 GB",
-				300: "300 GB",
+				// 300: "300 GB",
 			},
 			xferByTier: {
 				100: "200 GB",
 				200: "300 GB",
-				300: "500 GB",
+				// 300: "500 GB",
 			},
 			carvingByTier: {
 				100: "10 GB",
 				200: "20 GB",
-				300: "30 GB",
+				// 300: "30 GB",
 			},
 			historyByTier: {
 				100: "Unlimited",
 				200: "Unlimited",
-				300: "Unlimited",
+				// 300: "Unlimited",
 			},
 			assetsByTier: {
 				100: "Unlimited",
 				200: "Unlimited",
-				300: "Unlimited",
+				// 300: "Unlimited",
 			},
 			projectsByTier: {
 				100: "25",
 				200: "50",
-				300: "100",
+				// 300: "100",
 			},
 			ana_std: true,
 			ana_prem: true,
@@ -227,7 +227,7 @@ const PricingAccounts = [
 			greynoiseByTier: {
 				100: 100,
 				200: 200,
-				300: 250,
+				// 300: 250,
 			},
 			ds_prem: "$",
 			mfa: true,
@@ -403,10 +403,11 @@ export const PricingFeatures: Feature[] = [
 				key: "enr_prem",
 				name: (
 					<>
-						<Text color="theme_text_desc" as="div" mb={1}>
+						Premium data enrichments
+						{/* <Text color="theme_text_desc" as="div" mb={1}>
 							Premium data enrichments
 						</Text>
-						<Tag size="sm">IPinfo Coming Soon</Tag>
+						<Tag size="sm">IPinfo Coming Soon</Tag> */}
 					</>
 				),
 			},
@@ -414,10 +415,11 @@ export const PricingFeatures: Feature[] = [
 				key: "greynoise",
 				name: (
 					<>
-						<Text color="theme_text_desc" as="div" mb={1}>
+						Daily GreyNoise lookups
+						{/* <Text color="theme_text_desc" as="div" mb={1}>
 							Daily GreyNoise lookups
 						</Text>
-						<Tag size="sm">Coming Soon</Tag>
+						<Tag size="sm">Coming Soon</Tag> */}
 					</>
 				),
 			},
