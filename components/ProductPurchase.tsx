@@ -1,4 +1,5 @@
 import Stripe from "stripe"
+import AppConfig from "@common/constants/AppConfig"
 import useAxios from "@common/hooks/useAxios"
 import { loadStripe } from "@stripe/stripe-js"
 import { PricingAccountForTierType } from "../constants/PricingTypes"
@@ -19,7 +20,7 @@ const ProductPurchase = ({
 	userStripeId,
 	...rest
 }: ProductPurchaseProps) => {
-	const axiosInstance = useAxios({ baseURL: "/" })
+	const axiosInstance = useAxios()
 
 	if (!productToPurchase) {
 		return null
@@ -36,9 +37,10 @@ const ProductPurchase = ({
 	const activateStripeCheckout = async () => {
 		const stripe = await loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUB_KEY_TEST)
 
-		const checkoutResponse = await axiosInstance.post("/api/stripe/checkout", {
-			customer: userStripeId,
+		const checkoutResponse = await axiosInstance.post("/billing/checkout", {
 			price: "price_1MZSPlGUyP9kXnfZlmsCzuJb",
+			success_url: AppConfig.app_domain,
+			cancel_url: AppConfig.app_domain,
 		})
 		const checkoutData: Stripe.Checkout.Session = checkoutResponse.data
 		console.log("checkoutResponse: ", checkoutResponse)
