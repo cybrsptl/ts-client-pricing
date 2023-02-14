@@ -8,6 +8,7 @@ export interface StripePricingData {
 	prodTier?: number
 	cost: number
 	interval: string
+	priceId: string
 	link: string
 }
 
@@ -21,6 +22,8 @@ export type PricingAccountForTierType = {
 	footer: string
 	purchaseLink?: string
 	price?: string
+	prodId?: string
+	priceId?: string
 	pricePerMonth?: number
 	pricePerMonthBilledMonthly?: number
 	pricePerMonthBilledAnnually?: number

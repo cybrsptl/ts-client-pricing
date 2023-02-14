@@ -22,7 +22,6 @@ type PricingViewParams = {
 	tenantDataUnderAnalysis?: number
 	tenantTierName?: string
 	userEmail?: string
-	userStripeId?: string
 	purchaseEnabled?: boolean
 }
 
@@ -30,13 +29,13 @@ export const PricingView = ({
 	tenantDataUnderAnalysis,
 	tenantTierName,
 	userEmail,
-	userStripeId,
 	purchaseEnabled,
 }: PricingViewParams) => {
-	const [productToPurchase, setProductToPurchase] = useState<string>(null)
+	const [stripePriceIdToPurchase, setStripePriceIdToPurchase] =
+		useState<string>(null)
 
 	const [billingMode, setBillingMode] = React.useState<PricingBillingMode>(
-		PricingBillingMode.ANNUAL
+		PricingBillingMode.MONTHLY
 	)
 
 	// Automatically set billing tier to current tenant limit when page loads
@@ -178,6 +177,8 @@ export const PricingView = ({
 				if (!product.isBelowDesiredLimits) {
 					product.purchaseLink = pricingData[tierProdKey].link
 				}
+				product.prodId = pricingData[tierProdKey].prodId
+				product.priceId = pricingData[tierProdKey].priceId
 			} else {
 				product.isDisabled = true
 			}
@@ -229,11 +230,7 @@ export const PricingView = ({
 			<Stack spacing={{ base: "5", md: "7" }} width="100%" mb={8}>
 				<ProductPurchase
 					{...{
-						products,
-						productToPurchase,
-						setProductToPurchase,
-						userEmail,
-						userStripeId,
+						stripePriceIdToPurchase,
 					}}
 				/>
 				<ProductOverview
@@ -244,8 +241,8 @@ export const PricingView = ({
 						userEmail,
 						tenantTierName,
 						purchaseEnabled,
-						productToPurchase,
-						setProductToPurchase,
+						stripePriceIdToPurchase,
+						setStripePriceIdToPurchase,
 					}}
 				/>
 				<ProductTierSelection
