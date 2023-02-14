@@ -18,10 +18,10 @@ interface ProductOverviewProps extends TableProps {
 	billingMode: PricingBillingMode
 	billingTier: number
 	userEmail?: string
-	productToPurchase?: string
+	stripePriceIdToPurchase?: string
 	purchaseEnabled?: boolean
 	tenantTierName?: string
-	setProductToPurchase: (prodType: string | null) => void
+	setStripePriceIdToPurchase: (prodType: string | null) => void
 }
 
 export const ProductOverview = (props: ProductOverviewProps) => {
@@ -30,8 +30,8 @@ export const ProductOverview = (props: ProductOverviewProps) => {
 		userEmail,
 		billingTier,
 		purchaseEnabled,
-		productToPurchase,
-		setProductToPurchase,
+		stripePriceIdToPurchase,
+		setStripePriceIdToPurchase,
 		...containerProps
 	} = props
 
@@ -169,7 +169,7 @@ export const ProductOverview = (props: ProductOverviewProps) => {
 									  !product.isDisabled ? (
 										<Button
 											onClick={() => {
-												setProductToPurchase(product.prodType)
+												setStripePriceIdToPurchase(product.priceId)
 											}}
 											variant={
 												"outline"
@@ -199,7 +199,7 @@ export const ProductOverview = (props: ProductOverviewProps) => {
 															},
 													  }
 											}
-											isLoading={!!productToPurchase}
+											isLoading={!!stripePriceIdToPurchase}
 											disabled={product.isDisabled}
 										>
 											{product.isDisabled
