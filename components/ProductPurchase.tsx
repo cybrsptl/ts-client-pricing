@@ -1,53 +1,39 @@
 import Stripe from "stripe"
 import AppConfig from "@common/constants/AppConfig"
+import useAppToast from "@common/hooks/useAppToast"
 import useAxios from "@common/hooks/useAxios"
 import { loadStripe } from "@stripe/stripe-js"
-import { PricingAccountForTierType } from "../constants/PricingTypes"
 
 interface ProductPurchaseProps {
-	products: PricingAccountForTierType[]
-	productToPurchase: string | null
-	setProductToPurchase: (prodType: string | null) => void
-	userEmail?: string
-	userStripeId?: string
+	stripePriceIdToPurchase: string | null
 }
 
-const ProductPurchase = ({
-	products,
-	productToPurchase,
-	setProductToPurchase,
-	userEmail,
-	userStripeId,
-	...rest
-}: ProductPurchaseProps) => {
+const ProductPurchase = ({ stripePriceIdToPurchase }: ProductPurchaseProps) => {
 	const axiosInstance = useAxios()
+	const toast = useAppToast()
 
-	if (!productToPurchase) {
+	if (!stripePriceIdToPurchase) {
 		return null
 	}
-
-	const product = products.find((p) => p.prodType === productToPurchase)
-	if (!product) {
-		console.error("Warning: Product not found")
-		return null
-	}
-
-	console.log("product", product)
 
 	const activateStripeCheckout = async () => {
 		const stripe = await loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUB_KEY_TEST)
 
 		const checkoutResponse = await axiosInstance.post("/billing/checkout", {
-			price: "price_1MZSPlGUyP9kXnfZlmsCzuJb",
-			success_url: AppConfig.app_domain,
-			cancel_url: AppConfig.app_domain,
+			price: stripePriceIdToPurchase,
+			success_url: `https://${AppConfig.app_domain}`,
+			cancel_url: `https://${AppConfig.app_domain}`,
 		})
 		const checkoutData: Stripe.Checkout.Session = checkoutResponse.data
-		console.log("checkoutResponse: ", checkoutResponse)
-		console.log("checkoutData: ", checkoutData)
 
-		if (checkoutResponse.status === 500) {
-			console.error((checkoutData as any).message)
+		if (checkoutResponse.status === 500 || !checkoutData?.url) {
+			toast({
+				status: "error",
+				title:
+					`Purchase activation failed` + (checkoutData as any)?.message
+						? `: ${(checkoutData as any)?.message}`
+						: "",
+			})
 			return null
 		}
 
@@ -59,14 +45,14 @@ const ProductPurchase = ({
 			sessionId: checkoutData.id,
 		})
 
-		// If `redirectToCheckout` fails due to a browser or network
-		// error, display the localized error message to your customer
-		// using `error.message`.
-		console.warn(error.message)
+		// `redirectToCheckout` failed due to a browser or network error
+		toast({
+			status: "error",
+			title: `Purchase redirect failed. Please try again or contact support (${error.message})})`,
+		})
 	}
 
 	activateStripeCheckout()
-
 	return null
 }
 
