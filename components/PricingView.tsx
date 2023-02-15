@@ -62,7 +62,6 @@ export const PricingView = ({
 			v.prodTier = parseInt(prodNameParsed.groups.tier)
 		})
 
-		// console.log("pricingData", data)
 		return data
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [AppConfig?.stripe_test_mode])
