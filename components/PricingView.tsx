@@ -230,6 +230,7 @@ export const PricingView = ({
 				<ProductPurchase
 					{...{
 						stripePriceIdToPurchase,
+						setStripePriceIdToPurchase,
 					}}
 				/>
 				<ProductOverview
