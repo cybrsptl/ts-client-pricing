@@ -77,7 +77,7 @@ const PricingAccounts = [
 		description: (product: PricingAccountForTierType) => (
 			<PricingList>
 				{/* <PricingListItem>Increased resource limits</PricingListItem> */}
-				<PricingListItem>Standard data enrichments</PricingListItem>
+				{/* <PricingListItem>Standard data enrichments</PricingListItem> */}
 			</PricingList>
 		),
 		// footer: "Plus everything in Free",
@@ -125,9 +125,9 @@ const PricingAccounts = [
 			},
 			ana_std: true,
 			ana_prem: false,
-			enr_std: true,
+			// enr_std: true,
 			enr_prem: false,
-			greynoise: false,
+			greynoise: 10,
 			ds_prem: false,
 			mfa: true,
 			sso: false,
@@ -223,7 +223,7 @@ const PricingAccounts = [
 			},
 			ana_std: true,
 			ana_prem: true,
-			enr_std: true,
+			// enr_std: true,
 			enr_prem: true,
 			greynoiseByTier: {
 				100: 100,
@@ -293,7 +293,7 @@ const PricingAccounts = [
 			},
 			ana_std: true,
 			ana_prem: true,
-			enr_std: true,
+			// enr_std: true,
 			enr_prem: true,
 			greynoise: 300,
 			ds_prem: "$",
@@ -392,10 +392,10 @@ export const PricingFeatures: Feature[] = [
 				key: "ana_std",
 				name: "Standard analytics",
 			},
-			{
-				key: "enr_std",
-				name: "Standard data enrichments",
-			},
+			// {
+			// 	key: "enr_std",
+			// 	name: "Standard data enrichments",
+			// },
 			// {
 			// 	key: "ana_prem",
 			// 	name: "Premium analytics",
