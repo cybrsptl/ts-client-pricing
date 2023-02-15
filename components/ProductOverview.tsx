@@ -32,6 +32,7 @@ export const ProductOverview = (props: ProductOverviewProps) => {
 		purchaseEnabled,
 		stripePriceIdToPurchase,
 		setStripePriceIdToPurchase,
+		tenantTierName,
 		...containerProps
 	} = props
 
@@ -204,7 +205,8 @@ export const ProductOverview = (props: ProductOverviewProps) => {
 										>
 											{product.isDisabled
 												? "Contact Us"
-												: product.freeTrialDays
+												: product.freeTrialDays &&
+												  tenantTierName.toUpperCase() !== "EXPIRED"
 												? "Start Free Trial"
 												: `Purchase ${product.name.replace(/[0-9]/g, "")}`}
 										</Button>
