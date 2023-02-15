@@ -121,7 +121,7 @@ const PricingAccounts = [
 			},
 			projectsByTier: {
 				// 5: "5",
-				10: "10",
+				10: "5",
 			},
 			ana_std: true,
 			ana_prem: false,
@@ -174,6 +174,9 @@ const PricingAccounts = [
 			boxShadow: "0px 0px 7px 0px rgba(74,189,255,0.25)",
 		},
 		tiersByGB: {
+			50: AppConfig.stripe_test_mode
+				? "prod_NMdZCgj8c3lABb"
+				: "prod_NMdamx0fJNKkDf",
 			100: AppConfig.stripe_test_mode
 				? "prod_MeU7K4Gq8jKxec"
 				: "prod_MfuUY9YItO6jKO",
@@ -192,31 +195,37 @@ const PricingAccounts = [
 			assets: "",
 			projects: "",
 			dataByTier: {
+				50: "50 GB",
 				100: "100 GB",
 				200: "200 GB",
 				// 300: "300 GB",
 			},
 			xferByTier: {
-				100: "200 GB",
-				200: "300 GB",
+				50: "200 GB",
+				100: "300 GB",
+				200: "500 GB",
 				// 300: "500 GB",
 			},
 			carvingByTier: {
-				100: "10 GB",
-				200: "20 GB",
+				50: "10 GB",
+				100: "20 GB",
+				200: "30 GB",
 				// 300: "30 GB",
 			},
 			historyByTier: {
+				50: "Unlimited",
 				100: "Unlimited",
 				200: "Unlimited",
 				// 300: "Unlimited",
 			},
 			assetsByTier: {
+				50: "Unlimited",
 				100: "Unlimited",
 				200: "Unlimited",
 				// 300: "Unlimited",
 			},
 			projectsByTier: {
+				50: "10",
 				100: "25",
 				200: "50",
 				// 300: "100",
