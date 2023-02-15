@@ -17,7 +17,11 @@ const ProductPurchase = ({ stripePriceIdToPurchase }: ProductPurchaseProps) => {
 	}
 
 	const activateStripeCheckout = async () => {
-		const stripe = await loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUB_KEY_TEST)
+		const stripe = await loadStripe(
+			AppConfig.stripe_test_mode
+				? process.env.NEXT_PUBLIC_STRIPE_PUB_KEY_TEST
+				: process.env.NEXT_PUBLIC_STRIPE_PUB_KEY_PROD
+		)
 
 		const checkoutResponse = await axiosInstance.post("/billing/checkout", {
 			price: stripePriceIdToPurchase,
