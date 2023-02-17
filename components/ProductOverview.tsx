@@ -206,7 +206,7 @@ export const ProductOverview = (props: ProductOverviewProps) => {
 											{product.isDisabled
 												? "Contact Us"
 												: product.freeTrialDays &&
-												  tenantTierName.toUpperCase() !== "EXPIRED"
+												  tenantTierName?.toUpperCase() !== "EXPIRED"
 												? "Start Free Trial"
 												: `Purchase ${product.name.replace(/[0-9]/g, "")}`}
 										</Button>
