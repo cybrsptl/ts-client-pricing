@@ -15,14 +15,19 @@ import {
 import { PricingDataDev, PricingDataProd } from "../constants/StripePricingData"
 import { ProductFeatures } from "./ProductFeatures"
 import { ProductOverview } from "./ProductOverview"
-import ProductPurchase from "./ProductPurchase"
 import { ProductTierSelection } from "./ProductTierSelection"
+
+export interface ProductPurchaseProps {
+	stripePriceIdToPurchase: string | null
+	setStripePriceIdToPurchase: (prodType: string | null) => void
+}
 
 type PricingViewParams = {
 	tenantDataUnderAnalysis?: number
 	tenantTierName?: string
 	userEmail?: string
 	purchaseEnabled?: boolean
+	purchaseComponent?: React.FC<ProductPurchaseProps>
 }
 
 export const PricingView = ({
@@ -30,6 +35,7 @@ export const PricingView = ({
 	tenantTierName,
 	userEmail,
 	purchaseEnabled,
+	purchaseComponent: PurchaseComponent,
 }: PricingViewParams) => {
 	const [stripePriceIdToPurchase, setStripePriceIdToPurchase] =
 		useState<string>(null)
@@ -227,12 +233,14 @@ export const PricingView = ({
 	return (
 		<Box as="section">
 			<Stack spacing={{ base: "5", md: "7" }} width="100%" mb={8}>
-				<ProductPurchase
-					{...{
-						stripePriceIdToPurchase,
-						setStripePriceIdToPurchase,
-					}}
-				/>
+				{PurchaseComponent && (
+					<PurchaseComponent
+						{...{
+							stripePriceIdToPurchase,
+							setStripePriceIdToPurchase,
+						}}
+					/>
+				)}
 				<ProductOverview
 					{...{
 						products,
