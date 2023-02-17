@@ -235,6 +235,7 @@ const PricingAccounts = [
 			// enr_std: true,
 			enr_prem: true,
 			greynoiseByTier: {
+				50: 50,
 				100: 100,
 				200: 200,
 				// 300: 250,
@@ -265,7 +266,7 @@ const PricingAccounts = [
 				</Text> */}
 				<PricingList>
 					<PricingListItem>Data streaming</PricingListItem>
-					<PricingListItem>Single sign-on (SSO)</PricingListItem>
+					{/* <PricingListItem>Single sign-on (SSO)</PricingListItem> */}
 					<PricingListItem>Unified billing and admin</PricingListItem>
 				</PricingList>
 				{/* <Text fontSize="sm" fontStyle="italic" mt={6}>
@@ -446,10 +447,10 @@ export const PricingFeatures: Feature[] = [
 				key: "mfa",
 				name: "MFA",
 			},
-			{
-				key: "sso",
-				name: "Single Sign-On (SSO)",
-			},
+			// {
+			// 	key: "sso",
+			// 	name: "Single Sign-On (SSO)",
+			// },
 			{
 				key: "team_adm",
 				name: "Unified Admin & Billing",
