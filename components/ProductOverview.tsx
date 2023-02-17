@@ -1,3 +1,4 @@
+import NextLink from "next/link"
 import * as React from "react"
 import {
 	Box,
@@ -12,7 +13,6 @@ import { PricingBillingMode } from "../constants/PricingConstants"
 import { PricingAccountForTierType } from "../constants/PricingTypes"
 import { CardBadge } from "./CardBadge"
 import { PricingList, PricingListItem } from "./PricingDescList"
-
 interface ProductOverviewProps extends TableProps {
 	products: PricingAccountForTierType[]
 	billingMode: PricingBillingMode
@@ -35,6 +35,124 @@ export const ProductOverview = (props: ProductOverviewProps) => {
 		tenantTierName,
 		...containerProps
 	} = props
+
+	const ctaButton = (product: PricingAccountForTierType) => {
+		if (product.isBelowDesiredLimits) {
+			return (
+				<Text
+					fontSize="sm"
+					fontStyle="italic"
+					border="1px solid grey"
+					rounded="lg"
+					padding={1.5}
+				>
+					Too small for {billingTier} GB analysis workloads
+				</Text>
+			)
+		}
+
+		if (!product.purchaseLink || product.isDisabled) {
+			return (
+				<Box
+					fontSize="sm"
+					width="fit-content"
+					border="1px solid grey"
+					rounded="md"
+					height="32px"
+					lineHeight="30px"
+					paddingLeft="2em"
+					paddingRight="2em"
+					margin="auto"
+					fontWeight="semibold"
+				>
+					Chat w/ Sales
+				</Box>
+			)
+		}
+
+		if (!purchaseEnabled) {
+			return (
+				<NextLink href="https://go.teleseer.com" target="_blank">
+					<Button
+						variant={
+							"outline"
+							// product.isDisabled
+							// 	? "outline"
+							// 	: product.isPopular
+							// 	? "primary"
+							// 	: "outline"
+						}
+						size={"sm"}
+						// height={18}
+						// width="100%"
+						// minWidth={"8rem"}
+						fontWeight="semibold"
+						paddingLeft="2em"
+						paddingRight="2em"
+						sx={
+							product.isDisabled || !product.isPopular
+								? {
+										color: "white",
+								  }
+								: {
+										color: "white",
+										borderColor: "blue.500",
+										_hover: {
+											backgroundColor: "blue.800",
+										},
+								  }
+						}
+						isLoading={!!stripePriceIdToPurchase}
+						disabled={product.isDisabled}
+					>
+						Create Account
+					</Button>
+				</NextLink>
+			)
+		}
+
+		return (
+			<Button
+				onClick={() => {
+					setStripePriceIdToPurchase(product.priceId)
+				}}
+				variant={
+					"outline"
+					// product.isDisabled
+					// 	? "outline"
+					// 	: product.isPopular
+					// 	? "primary"
+					// 	: "outline"
+				}
+				size={"sm"}
+				// height={18}
+				// width="100%"
+				// minWidth={"8rem"}
+				fontWeight="semibold"
+				paddingLeft="2em"
+				paddingRight="2em"
+				sx={
+					product.isDisabled || !product.isPopular
+						? {
+								color: "white",
+						  }
+						: {
+								color: "white",
+								borderColor: "blue.500",
+								_hover: {
+									backgroundColor: "blue.800",
+								},
+						  }
+				}
+				isLoading={!!stripePriceIdToPurchase}
+				disabled={product.isDisabled}
+			>
+				{product.freeTrialDays && tenantTierName?.toUpperCase() !== "EXPIRED"
+					? "Start Free Trial"
+					: `Purchase ${product.name.replace(/[0-9]/g, "")}`}
+			</Button>
+		)
+	}
 
 	return (
 		<Stack
@@ -155,77 +273,7 @@ export const ProductOverview = (props: ProductOverviewProps) => {
 									<Text fontSize="sm" fontWeight="semibold" py={4}>
 										{product.footer}
 									</Text>
-									{product.isBelowDesiredLimits ? (
-										<Text
-											fontSize="sm"
-											fontStyle="italic"
-											border="1px solid grey"
-											rounded="lg"
-											padding={1.5}
-										>
-											Too small for {billingTier} GB analysis workloads
-										</Text>
-									) : purchaseEnabled &&
-									  product.purchaseLink &&
-									  !product.isDisabled ? (
-										<Button
-											onClick={() => {
-												setStripePriceIdToPurchase(product.priceId)
-											}}
-											variant={
-												"outline"
-												// product.isDisabled
-												// 	? "outline"
-												// 	: product.isPopular
-												// 	? "primary"
-												// 	: "outline"
-											}
-											size={"sm"}
-											// height={18}
-											// width="100%"
-											// minWidth={"8rem"}
-											fontWeight="semibold"
-											paddingLeft="2em"
-											paddingRight="2em"
-											sx={
-												product.isDisabled || !product.isPopular
-													? {
-															color: "white",
-													  }
-													: {
-															color: "white",
-															borderColor: "blue.500",
-															_hover: {
-																backgroundColor: "blue.800",
-															},
-													  }
-											}
-											isLoading={!!stripePriceIdToPurchase}
-											disabled={product.isDisabled}
-										>
-											{product.isDisabled
-												? "Contact Us"
-												: product.freeTrialDays &&
-												  tenantTierName?.toUpperCase() !== "EXPIRED"
-												? "Start Free Trial"
-												: `Purchase ${product.name.replace(/[0-9]/g, "")}`}
-										</Button>
-									) : (
-										<Box
-											fontSize="sm"
-											width="fit-content"
-											border="1px solid grey"
-											rounded="md"
-											height="32px"
-											lineHeight="30px"
-											paddingLeft="2em"
-											paddingRight="2em"
-											margin="auto"
-											fontWeight="semibold"
-										>
-											Chat w/ Sales
-										</Box>
-									)}
+									{ctaButton(product)}
 								</Box>
 							</VStack>
 						</Box>
