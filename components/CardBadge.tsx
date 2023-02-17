@@ -11,8 +11,9 @@ export const CardBadge = (props: CardBadgeProps) => {
 		<Flex
 			bg={colorScheme === "blue" ? "blue.500" : "gray.500"}
 			position="absolute"
-			right="-88px"
-			top={5}
+			right="-78px"
+			top="30px"
+			// top={5}
 			width="240px"
 			transform="rotate(45deg)"
 			py={1}
