@@ -211,7 +211,11 @@ export const ProductOverview = (props: ProductOverviewProps) => {
 									>
 										{product.name.replace(/[0-9]/g, "")}
 									</Text>
-									<Text fontSize="sm" paddingBottom={6} color="theme_text_desc">
+									<Text
+										fontSize="sm"
+										paddingBottom={6}
+										color="theme_text_subtle"
+									>
 										{product.subTitle}
 									</Text>
 									{product.pricePerMonth && (
@@ -231,19 +235,19 @@ export const ProductOverview = (props: ProductOverviewProps) => {
 										</>
 									)}
 									{product.pricePerMonthBilledMonthly && (
-										<Text fontSize="sm" color="theme_text_desc" mt={1}>
+										<Text fontSize="sm" color="theme_text_subtle" mt={1}>
 											Paid annually or ${product.pricePerMonthBilledMonthly}{" "}
 											paid monthly
 										</Text>
 									)}
 									{product.pricePerMonthBilledAnnually && (
-										<Text fontSize="sm" color="theme_text_desc" mt={1}>
+										<Text fontSize="sm" color="theme_text_subtle" mt={1}>
 											Paid monthly or ${product.pricePerMonthBilledAnnually}{" "}
 											paid annually
 										</Text>
 									)}
 									{product.annualBillingOnly && (
-										<Text fontSize="sm" color="theme_text_desc" mt={1}>
+										<Text fontSize="sm" color="theme_text_subtle" mt={1}>
 											Annual billing only
 										</Text>
 									)}

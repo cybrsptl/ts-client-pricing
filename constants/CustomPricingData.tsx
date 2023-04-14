@@ -415,7 +415,7 @@ export const PricingFeatures: Feature[] = [
 				name: (
 					<>
 						Premium data enrichments
-						{/* <Text color="theme_text_desc" as="div" mb={1}>
+						{/* <Text color="theme_text_subtle" as="div" mb={1}>
 							Premium data enrichments
 						</Text>
 						<Tag size="sm">IPinfo Coming Soon</Tag> */}
@@ -427,7 +427,7 @@ export const PricingFeatures: Feature[] = [
 				name: (
 					<>
 						Daily GreyNoise lookups
-						{/* <Text color="theme_text_desc" as="div" mb={1}>
+						{/* <Text color="theme_text_subtle" as="div" mb={1}>
 							Daily GreyNoise lookups
 						</Text>
 						<Tag size="sm">Coming Soon</Tag> */}
