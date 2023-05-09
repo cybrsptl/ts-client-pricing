@@ -1,8 +1,8 @@
-import _ from "lodash"
-import * as React from "react"
-import { useEffect, useMemo, useState } from "react"
 import { Box, Stack } from "@chakra-ui/react"
 import AppConfig from "@common/constants/AppConfig"
+import * as React from "react"
+import { useEffect, useMemo, useState } from "react"
+import { ThemeColor } from "utils/theme"
 import PricingAccounts from "../constants/CustomPricingData"
 import {
 	PricingBillingMode,
@@ -22,12 +22,13 @@ export interface ProductPurchaseProps {
 	setStripePriceIdToPurchase: (prodType: string | null) => void
 }
 
-type PricingViewParams = {
+export type PricingViewParams = {
 	tenantDataUnderAnalysis?: number
 	tenantTierName?: string
 	userEmail?: string
 	purchaseEnabled?: boolean
 	purchaseComponent?: React.FC<ProductPurchaseProps>
+	theme?: ThemeColor
 }
 
 export const PricingView = ({
@@ -36,6 +37,7 @@ export const PricingView = ({
 	userEmail,
 	purchaseEnabled,
 	purchaseComponent: PurchaseComponent,
+	theme,
 }: PricingViewParams) => {
 	const [stripePriceIdToPurchase, setStripePriceIdToPurchase] =
 		useState<string>(null)
@@ -210,7 +212,6 @@ export const PricingView = ({
 				product.annualBillingOnly = true
 			}
 
-			// Calculate $/GB for each product
 			if (product.pricePerMonth && product.dataInGB) {
 				product.features.pricePerGB = `$${(
 					product.pricePerMonth / product.dataInGB
@@ -251,6 +252,7 @@ export const PricingView = ({
 						purchaseEnabled,
 						stripePriceIdToPurchase,
 						setStripePriceIdToPurchase,
+						theme,
 					}}
 				/>
 				<ProductTierSelection
@@ -260,6 +262,7 @@ export const PricingView = ({
 						setBillingMode,
 						billingTier,
 						setBillingTier,
+						theme,
 					}}
 				/>
 				<ProductFeatures
@@ -267,6 +270,7 @@ export const PricingView = ({
 						billingMode,
 						billingTier,
 						products,
+						theme,
 					}}
 				/>
 			</Stack>
