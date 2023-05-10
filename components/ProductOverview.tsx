@@ -72,7 +72,7 @@ export const ProductOverview = (props: ProductOverviewProps) => {
 
 		if (!purchaseEnabled) {
 			return (
-				<NextLink href="https://go.teleseer.com" target="_blank">
+				<NextLink href="https://go.teleseer.com" target="_blank" legacyBehavior>
 					<Button
 						variant={
 							"outline"
