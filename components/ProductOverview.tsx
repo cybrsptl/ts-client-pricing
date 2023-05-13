@@ -47,11 +47,11 @@ export const ProductOverview = (props: ProductOverviewProps) => {
 		if (product.isBelowDesiredLimits) {
 			return (
 				<Text
-					fontSize="sm"
+					fontSize="xs"
 					fontStyle="italic"
 					border="1px solid"
 					borderColor={theme.whiteButtonText}
-					color={theme.lightButtonText}
+					color={theme.darkButtonText}
 					borderRadius={16}
 					padding={1.5}
 				>
@@ -144,7 +144,7 @@ export const ProductOverview = (props: ProductOverviewProps) => {
 	return (
 		<>
 			<Center>
-				<HStack>
+				<HStack mt={2}>
 					<Text>Monthly</Text>
 					<Switch
 						size="md"
@@ -169,7 +169,7 @@ export const ProductOverview = (props: ProductOverviewProps) => {
 					alignItems: "top",
 					gap: 4,
 					flexWrap: "wrap",
-					p: 8,
+					px: 8,
 					pb: 1,
 				}}
 				{...containerProps}
@@ -178,9 +178,10 @@ export const ProductOverview = (props: ProductOverviewProps) => {
 					.filter((p) => !p.hideOverviewCard)
 					.map((product, id) => (
 						<Box
-							sx={{ flex: 1 }}
 							key={id}
-							maxWidth={{ base: 300, lg: 350 }}
+							width={{ base: 300, lg: 350 }}
+							minWidth={240}
+							maxWidth={350}
 							flex="1"
 							backgroundColor={theme.tierBg === "light" ? "#FFF" : "inherit"}
 						>
