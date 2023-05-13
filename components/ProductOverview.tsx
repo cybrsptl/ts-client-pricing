@@ -1,18 +1,18 @@
+import NextLink from "next/link"
+import { ButtonStyle, ThemeColor } from "utils/theme"
 import {
 	Box,
 	Button,
 	Center,
-	Heading,
+	Flex,
 	HStack,
-	Stack,
+	Heading,
 	Switch,
 	TableProps,
 	Text,
 	VStack,
 } from "@chakra-ui/react"
 import useIsMobile from "@common/hooks/useIsMobile"
-import NextLink from "next/link"
-import { ButtonStyle, ThemeColor } from "utils/theme"
 import { PricingBillingMode } from "../constants/PricingConstants"
 import { PricingAccountForTierType } from "../constants/PricingTypes"
 interface ProductOverviewProps extends TableProps {
@@ -61,7 +61,7 @@ export const ProductOverview = (props: ProductOverviewProps) => {
 
 		if (!purchaseEnabled) {
 			return (
-                <NextLink href="https://go.teleseer.com" target="_blank" legacyBehavior>
+				<NextLink href="https://go.teleseer.com" target="_blank" legacyBehavior>
 					<Button
 						variant={
 							"outline"
@@ -94,11 +94,11 @@ export const ProductOverview = (props: ProductOverviewProps) => {
 						{product.go}
 					</Button>
 				</NextLink>
-            );
+			)
 		}
 
 		return (
-            <Button
+			<Button
 				onClick={() => {
 					setStripePriceIdToPurchase(product.priceId)
 				}}
@@ -137,106 +137,109 @@ export const ProductOverview = (props: ProductOverviewProps) => {
 					? "Start Free Trial"
 					: `Purchase ${product.name.replace(/[0-9]/g, "")}`}
 			</Button>
-        );
+		)
 	}
 
-	return <>
-        <Center>
-            <HStack>
-                <Text>Monthly</Text>
-                <Switch size="md" />
-                <Text>
-                    Yearly
-                    <span style={{ fontSize: 12, marginLeft: "4px" }}>(save 20%)</span>
-                </Text>
-            </HStack>
-        </Center>
-        <Stack
-            direction={["column", "row"]}
-            spacing={[8, 4, 8]}
-            width="100%"
-            alignItems={isMobile ? "center" : "top"}
-            justifyContent="center"
-            pb={1}
-            minHeight="520px"
-            {...containerProps}
-        >
-            {products
-                .filter((p) => !p.hideOverviewCard)
-                .map((product, id) => (
-                    <Box
-                        key={id}
-                        width={{ base: 300, lg: 350 }}
-                        flex="1"
-                        backgroundColor={theme.tierBg === "light" ? "#FFF" : "inherit"}
-                    >
-                        <Box
-                            bg={"theme_accent"}
-                            rounded="lg"
-                            sx={{
-                                textAlign: "center",
-                                overflow: "hidden",
-                                position: "relative",
-                                opacity:
-                                    product.isDisabled ||
-                                    product.isComingSoon ||
-                                    product.isBelowDesiredLimits
-                                        ? 0.5
-                                        : 1,
-                                cursor:
-                                    product.isDisabled ||
-                                    product.isComingSoon ||
-                                    product.isBelowDesiredLimits
-                                        ? "not-allowed"
-                                        : "auto",
-                            }}
-                            p={[4, 4, 6]}
-                            height="100%"
-                            borderRadius="lg"
-                            borderWidth="1px"
-                            borderTop={"6px solid"}
-                            borderColor={
-                                product.prodType === "starter"
-                                    ? "white"
-                                    : theme.lightButtonBorder
-                            }
-                            boxShadow="0px 0px 5px 0px rgba(41,41,41,0.9)"
-                            {...product.boxProps}
-                        >
-                            <VStack
-                                width="100%"
-                                height="100%"
-                                alignItems="center"
-                                justifyContent="space-between"
-                            >
-                                <Box>
-                                    {/* {product.isComingSoon && <CardBadge>Waitlist</CardBadge>} */}
-                                    <Text
-                                        fontSize="24px"
-                                        fontWeight="bold"
-                                        letterSpacing="wider"
-                                        color={theme.tierName}
-                                    >
-                                        {product.name.replace(/[0-9]/g, "")}
-                                    </Text>
-                                    <Text
-                                        fontSize="14px"
-                                        paddingBottom={6}
-                                        color={theme.tierSubtitle}
-                                    >
-                                        {product.subTitle}
-                                    </Text>
-                                    {product.pricePerMonth && (
-                                        <>
-                                            <Heading
-                                                fontSize="28px"
-                                                as="span"
-                                                color="default"
-                                                ml={4}
-                                            >
-                                                ${product.pricePerMonth.toLocaleString()} per month
-                                            </Heading>
-                                            {/* <Text
+	return (
+		<>
+			<Center>
+				<HStack>
+					<Text>Monthly</Text>
+					<Switch size="md" />
+					<Text>
+						Yearly
+						<span style={{ fontSize: 12, marginLeft: "4px" }}>(save 20%)</span>
+					</Text>
+				</HStack>
+			</Center>
+			<Flex
+				sx={{
+					justifyContent: "center",
+					alignItems: "top",
+					gap: 4,
+					flexWrap: "wrap",
+					p: 8,
+					pb: 1,
+				}}
+				{...containerProps}
+			>
+				{products
+					.filter((p) => !p.hideOverviewCard)
+					.map((product, id) => (
+						<Box
+							sx={{ flex: 1 }}
+							key={id}
+							maxWidth={{ base: 300, lg: 350 }}
+							flex="1"
+							backgroundColor={theme.tierBg === "light" ? "#FFF" : "inherit"}
+						>
+							<Box
+								bg={"theme_accent"}
+								rounded="lg"
+								sx={{
+									textAlign: "center",
+									overflow: "hidden",
+									position: "relative",
+									opacity:
+										product.isDisabled ||
+										product.isComingSoon ||
+										product.isBelowDesiredLimits
+											? 0.5
+											: 1,
+									cursor:
+										product.isDisabled ||
+										product.isComingSoon ||
+										product.isBelowDesiredLimits
+											? "not-allowed"
+											: "auto",
+								}}
+								p={[4, 4, 6]}
+								height="100%"
+								borderRadius="lg"
+								borderWidth="1px"
+								borderTop={"6px solid"}
+								borderColor={
+									product.prodType === "starter"
+										? "white"
+										: theme.lightButtonBorder
+								}
+								boxShadow="0px 0px 5px 0px rgba(41,41,41,0.9)"
+								{...product.boxProps}
+							>
+								<VStack
+									width="100%"
+									height="100%"
+									alignItems="center"
+									justifyContent="space-between"
+								>
+									<Box>
+										{/* {product.isComingSoon && <CardBadge>Waitlist</CardBadge>} */}
+										<Text
+											fontSize="24px"
+											fontWeight="bold"
+											letterSpacing="wider"
+											color={theme.tierName}
+										>
+											{product.name.replace(/[0-9]/g, "")}
+										</Text>
+										<Text
+											fontSize="14px"
+											paddingBottom={6}
+											color={theme.tierSubtitle}
+										>
+											{product.subTitle}
+										</Text>
+										{product.pricePerMonth && (
+											<>
+												<Heading
+													fontSize="28px"
+													as="span"
+													color="default"
+													ml={4}
+												>
+													${product.pricePerMonth.toLocaleString()} per month
+												</Heading>
+												{/* <Text
                                             fontSize="sm"
                                             as="span"
                                             color="muted"
@@ -245,50 +248,51 @@ export const ProductOverview = (props: ProductOverviewProps) => {
                                         >
                                             /mo
                                         </Text> */}
-                                        </>
-                                    )}
-                                    {product.pricePerMonthBilledMonthly && (
-                                        <Text fontSize="sm" color={theme.costSubtitle} mt={1}>
-                                            Paid annually or ${product.pricePerMonthBilledMonthly}{" "}
-                                            paid monthly
-                                        </Text>
-                                    )}
-                                    {product.pricePerMonthBilledAnnually && (
-                                        <Text fontSize="sm" color={theme.costSubtitle} mt={1}>
-                                            Paid monthly or ${product.pricePerMonthBilledAnnually}{" "}
-                                            paid annually
-                                        </Text>
-                                    )}
-                                    {product.annualBillingOnly && (
-                                        <Text fontSize="sm" color={theme.cost} mt={1}>
-                                            Annual billing only
-                                        </Text>
-                                    )}
-                                    <Text
-                                        fontSize={16}
-                                        pt={6}
-                                    >{`$${product.perGb}/mo per extra GB`}</Text>
+											</>
+										)}
+										{product.pricePerMonthBilledMonthly && (
+											<Text fontSize="sm" color={theme.costSubtitle} mt={1}>
+												Paid annually or ${product.pricePerMonthBilledMonthly}{" "}
+												paid monthly
+											</Text>
+										)}
+										{product.pricePerMonthBilledAnnually && (
+											<Text fontSize="sm" color={theme.costSubtitle} mt={1}>
+												Paid monthly or ${product.pricePerMonthBilledAnnually}{" "}
+												paid annually
+											</Text>
+										)}
+										{product.annualBillingOnly && (
+											<Text fontSize="sm" color={theme.cost} mt={1}>
+												Annual billing only
+											</Text>
+										)}
+										<Text
+											fontSize={16}
+											pt={6}
+										>{`$${product.perGb}/mo per extra GB`}</Text>
 
-                                    <VStack
-                                        whiteSpace="normal"
-                                        mt={8}
-                                        color={theme.tierBullets}
-                                    >
-                                        {typeof product.description === "function"
-                                            ? product.description(product)
-                                            : product.description}
-                                    </VStack>
-                                </Box>
-                                <Box width="100%" color={theme.tierSubtitle}>
-                                    <Text fontSize="sm" fontWeight="500" py={4}>
-                                        {product.footer}
-                                    </Text>
-                                    {ctaButton(product, theme)}
-                                </Box>
-                            </VStack>
-                        </Box>
-                    </Box>
-                ))}
-        </Stack>
-    </>;
+										<VStack
+											whiteSpace="normal"
+											mt={8}
+											color={theme.tierBullets}
+										>
+											{typeof product.description === "function"
+												? product.description(product)
+												: product.description}
+										</VStack>
+									</Box>
+									<Box width="100%" color={theme.tierSubtitle}>
+										<Text fontSize="sm" fontWeight="500" py={4}>
+											{product.footer}
+										</Text>
+										{ctaButton(product, theme)}
+									</Box>
+								</VStack>
+							</Box>
+						</Box>
+					))}
+			</Flex>
+		</>
+	)
 }
