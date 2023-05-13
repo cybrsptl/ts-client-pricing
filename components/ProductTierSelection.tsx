@@ -129,12 +129,12 @@ export const ProductTierSelection = ({
 					</Slider>
 				</Box>
 			</Stack>
-			<Divider
-				width="100%"
-				color={"red"}
-				height="10px"
-				orientation="horizontal"
-			/>
+			{/* <Divider
+				// width="100%"
+				backgroundColor="gray.500"
+				// height="10px"
+				// orientation="horizontal"
+			/> */}
 		</Box>
 	)
 }

@@ -18,6 +18,7 @@ import { PricingAccountForTierType } from "../constants/PricingTypes"
 interface ProductOverviewProps extends TableProps {
 	products: PricingAccountForTierType[]
 	billingMode: PricingBillingMode
+	setBillingMode: (PricingBillingMode) => void
 	billingTier: number
 	userEmail?: string
 	stripePriceIdToPurchase?: string
@@ -28,12 +29,12 @@ interface ProductOverviewProps extends TableProps {
 }
 
 export const ProductOverview = (props: ProductOverviewProps) => {
-	const isMobile = useIsMobile()
-
 	const {
 		products,
 		userEmail,
 		billingTier,
+		billingMode,
+		setBillingMode,
 		purchaseEnabled,
 		stripePriceIdToPurchase,
 		setStripePriceIdToPurchase,
@@ -145,7 +146,17 @@ export const ProductOverview = (props: ProductOverviewProps) => {
 			<Center>
 				<HStack>
 					<Text>Monthly</Text>
-					<Switch size="md" />
+					<Switch
+						size="md"
+						isChecked={billingMode === PricingBillingMode.ANNUAL}
+						onChange={() => {
+							setBillingMode(
+								billingMode === PricingBillingMode.ANNUAL
+									? PricingBillingMode.MONTHLY
+									: PricingBillingMode.ANNUAL
+							)
+						}}
+					/>
 					<Text>
 						Yearly
 						<span style={{ fontSize: 12, marginLeft: "4px" }}>(save 20%)</span>

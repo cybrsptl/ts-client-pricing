@@ -1,12 +1,12 @@
-/* eslint-disable react/jsx-no-target-blank */
 import * as React from "react"
 import { FiInfo } from "react-icons/fi"
+import { ButtonStyle, ThemeColor } from "utils/theme"
 import {
 	Box,
 	Button,
 	Flex,
-	Heading,
 	HStack,
+	Heading,
 	Icon,
 	Table,
 	TableProps,
@@ -23,8 +23,6 @@ import { PricingFeatures } from "../constants/CustomPricingData"
 import { PricingBillingMode } from "../constants/PricingConstants"
 import { PricingAccountForTierType } from "../constants/PricingTypes"
 import { PricingFeature } from "./PricingFeature"
-import { ButtonStyle, ThemeColor } from "utils/theme"
-import useIsMobile from "@common/hooks/useIsMobile"
 
 interface ProductFeaturesProps extends TableProps {
 	billingMode: PricingBillingMode
@@ -34,7 +32,6 @@ interface ProductFeaturesProps extends TableProps {
 }
 
 export const ProductFeatures = (props: ProductFeaturesProps) => {
-	const isMobile = useIsMobile()
 	const { billingMode, billingTier, products, theme, ...tableProps } = props
 
 	const cellColor = {
@@ -45,7 +42,7 @@ export const ProductFeatures = (props: ProductFeaturesProps) => {
 
 	return (
 		<>
-			<Heading fontSize={36} textAlign="center" mb={12}>
+			<Heading fontSize={36} fontWeight={500} textAlign="center" mb={12}>
 				Compare features
 			</Heading>
 			<Box w="100%" overflowX="auto">
