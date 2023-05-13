@@ -1,3 +1,6 @@
+import { useMemo } from "react"
+import { MdGraphicEq } from "react-icons/md"
+import { ThemeColor } from "utils/theme"
 import {
 	Box,
 	Divider,
@@ -12,9 +15,6 @@ import {
 	Text,
 } from "@chakra-ui/react"
 import useIsMobile from "@common/hooks/useIsMobile"
-import { useMemo } from "react"
-import { MdGraphicEq } from "react-icons/md"
-import { ThemeColor } from "utils/theme"
 import { PricingBillingMode } from "../constants/PricingConstants"
 
 interface ProductTierSelectionProps extends TableProps {
@@ -129,14 +129,12 @@ export const ProductTierSelection = ({
 					</Slider>
 				</Box>
 			</Stack>
-			werwe
 			<Divider
 				width="100%"
 				color={"red"}
 				height="10px"
 				orientation="horizontal"
 			/>
-			werwe
 		</Box>
 	)
 }
