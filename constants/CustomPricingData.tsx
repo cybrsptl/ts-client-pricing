@@ -1,4 +1,4 @@
-import Image from "next/image"
+import Image from "next/legacy/image"
 import { Box } from "@chakra-ui/react"
 import AppConfig from "@common/constants/AppConfig"
 import { PricingList, PricingListItem } from "../components/PricingDescList"
