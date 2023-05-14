@@ -98,7 +98,7 @@ export const ProductFeatures = (props: ProductFeaturesProps) => {
 													)}
 												</Text>
 												<a
-													href={"http://"}
+													href={"http://go.teleseer.com"}
 													target="_blank"
 													style={{
 														textDecoration: "none",
