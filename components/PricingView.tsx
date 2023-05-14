@@ -233,7 +233,7 @@ export const PricingView = ({
 
 	return (
 		<Box as="section">
-			<Stack spacing={{ base: "5", md: "7" }} width="100%" mb={8}>
+			<Stack spacing={{ base: "5", md: "7" }} mb={8}>
 				{PurchaseComponent && (
 					<PurchaseComponent
 						{...{

@@ -579,7 +579,7 @@ export const PricingFeatures: Feature[] = [
 		],
 	},
 	{
-		category: "Integrated Intel Feeds",
+		category: "Intel Feeds",
 		sectionKey: "feeds",
 		items: [
 			{

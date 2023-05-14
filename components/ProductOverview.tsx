@@ -179,10 +179,9 @@ export const ProductOverview = (props: ProductOverviewProps) => {
 					.map((product, id) => (
 						<Box
 							key={id}
-							width={{ base: 300, lg: 350 }}
-							minWidth={240}
-							maxWidth={350}
-							flex="1"
+							flexBasis={"240px"}
+							flexGrow={0.25}
+							flexShrink={0.25}
 							backgroundColor={theme.tierBg === "light" ? "#FFF" : "inherit"}
 						>
 							<Box
