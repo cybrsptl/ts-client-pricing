@@ -48,8 +48,8 @@ const PricingAccounts = [
 		},
 		features: {
 			resources: {
-				dua: "2 GB",
-				monthly_transfer: "10 GB",
+				dua: "10 GB",
+				monthly_transfer: "50 GB",
 				num_projects: "5",
 				num_assets: "Unlimited",
 				perGb: "$8/mo",
