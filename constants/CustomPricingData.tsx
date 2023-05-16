@@ -8,76 +8,26 @@ import { PricingAccountForTierType } from "./PricingTypes"
 // https://docs.google.com/spreadsheets/d/1rQRlPnumgwwRB2d-18kU82fpEOwILBEXys_FgbVdjc0
 
 const PricingAccounts = [
-	// {
-	// 	name: "Free",
-	// 	subTitle: "For individuals",
-	// 	prodType: "free",
-	// 	footer: "",
-	// 	hideOverviewCard: true,
-	// 	description: () => (
-	// 		<PricingList>
-	// 			<PricingListItem>Introductory Teleseer experience</PricingListItem>
-	// 			<PricingListItem>Process telemetry files</PricingListItem>
-	// 			<PricingListItem>View a map of your network</PricingListItem>
-	// 		</PricingList>
-	// 	),
-	// 	tiersByGB: {
-	// 		0.1: null,
-	// 	},
-	// 	dataInGB: 0.0,
-	// 	features: {
-	// 		data: "",
-	// 		xfer: "",
-	// 		carving: "",
-	// 		history: "",
-	// 		assets: "",
-	// 		projects: "",
-	// 		pricePerGB: false,
-	// 		dataByTier: {
-	// 			0.1: "100 MB",
-	// 		},
-	// 		xferByTier: {
-	// 			0.1: "250 MB",
-	// 		},
-	// 		carvingByTier: {
-	// 			0.1: "0.01 GB",
-	// 		},
-	// 		historyByTier: {
-	// 			0.1: "30 days",
-	// 		},
-	// 		assetsByTier: {
-	// 			0.1: "1,000",
-	// 		},
-	// 		projectsByTier: {
-	// 			0.1: "3",
-	// 		},
-	// 		ana_std: true,
-	// 		ana_prem: false,
-	// 		enr_std: false,
-	// 		enr_prem: false,
-	// 		greynoise: false,
-	// 		ds_prem: false,
-	// 		mfa: true,
-	// 		sso: false,
-	// 		team_adm: false,
-	// 		team_pool: false,
-	// 		slf_hosted: false,
-	// 		slo: "5-day",
-	// 		proj_share: true,
-	// 		ver_his: false,
-	// 		data_stream: false,
-	// 		nvme: false,
-	// 		audio: false,
-	// 	},
-	// },
 	{
 		name: "Starter",
-		subTitle: "For individuals",
+		subTitle: "On-demand analysis for individuals",
 		prodType: "starter",
+		go: "Go Starter",
+		perGb: "8",
 		description: (product: PricingAccountForTierType) => (
-			<PricingList>
-				{/* <PricingListItem>Increased resource limits</PricingListItem> */}
-				{/* <PricingListItem>Standard data enrichments</PricingListItem> */}
+			<PricingList mb={2}>
+				<PricingListItem>
+					<>{product.features.resources["dua"]} data under analysis</>
+				</PricingListItem>
+				<PricingListItem>
+					<>{product.features.resources["num_projects"]} projects</>
+				</PricingListItem>
+				<PricingListItem>
+					<>{product.features.resources["num_assets"]} assets</>
+				</PricingListItem>
+				<PricingListItem>
+					<>PCAP Carving</>
+				</PricingListItem>
 			</PricingList>
 		),
 		// footer: "Plus everything in Free",
@@ -91,68 +41,92 @@ const PricingAccounts = [
 		},
 		dataInGB: 0.0,
 		freeTrialDays: 7,
+		tierShort: {
+			title: "Starter",
+			subtitle: "On-demand analysis",
+			go: "Go Starter",
+		},
 		features: {
-			data: "",
-			xfer: "",
-			carving: "",
-			history: "",
-			assets: "",
-			projects: "",
-			pricePerGB: false,
-			dataByTier: {
-				// 5: "5 GB",
-				10: "10 GB",
+			resources: {
+				dua: "10 GB",
+				monthly_transfer: "50 GB",
+				num_projects: "5",
+				num_assets: "Unlimited",
+				perGb: "$8/mo",
+				perUser: false,
+				seats: false,
 			},
-			xferByTier: {
-				// 5: "10 GB",
-				10: "50 GB",
+			telemetry: {
+				pcap: true,
+				zeek: true,
+				api_uploads: false,
 			},
-			carvingByTier: {
-				// 5: "1",
-				10: "2",
+			network_analysis: {
+				asset_identification: true,
+				event_detection: true,
+				log_carving: true,
+				pcap_carving: true,
+				vulnerability_info: true,
+				vulnerability_prioritization: false,
+				threat_detection: false,
 			},
-			historyByTier: {
-				// 5: "90 days",
-				10: "90 days",
+			data_export: {
+				asset_summary: true,
+				internet_hosts: true,
+				screenshots: true,
+				credentials: false,
+				file_transfers: false,
+				file_extraction: false,
+				reports: false,
+				downloads: false,
+				timeline: false,
+				data_carving: "100 MB",
 			},
-			assetsByTier: {
-				// 5: "Unlimited",
-				10: "Unlimited",
+			admin: {
+				google: true,
+				two_factor: true,
+				sso: false,
+				unified_billing: false,
+				resource_pooling: false,
+				team_perms: false,
 			},
-			projectsByTier: {
-				// 5: "5",
-				10: "5",
+			service: {
+				help_center: true,
+				community: true,
+				one_on_one: false,
+				response_time: false,
 			},
-			ana_std: true,
-			ana_prem: false,
-			// enr_std: true,
-			enr_prem: false,
-			greynoise: 10,
-			ds_prem: false,
-			mfa: true,
-			sso: false,
-			team_adm: false,
-			team_pool: false,
-			slf_hosted: false,
-			slo: "5-day",
-			proj_share: true,
-			ver_his: false,
-			data_stream: false,
-			nvme: false,
-			audio: false,
+			feeds: {
+				ipinfo: "25 / day",
+				greynoise: false,
+			},
 		},
 	},
 	{
-		name: "Pro",
-		subTitle: "For professionals",
+		name: "Teleseer Pro",
+		subTitle: "Advanced analysis for practitioners",
 		prodType: "pro",
+		go: "Go Professional",
+		perGb: "4",
 		isPopular: true,
-		footer: "Plus everything in Starter",
+		footer: "Plus everything in Starter!",
 		description: (product: PricingAccountForTierType) => (
 			<>
 				<PricingList>
 					<PricingListItem>
-						<Box mb={2}>Premium data enrichments</Box>
+						<>{product.features.resources["dua"]} data under analysis</>
+					</PricingListItem>
+					<PricingListItem>
+						<>{product.features.resources["num_projects"]} projects</>
+					</PricingListItem>
+					<PricingListItem>
+						<>Advanced data exports</>
+					</PricingListItem>
+					<PricingListItem>
+						<>Automated report generation</>
+					</PricingListItem>
+					<PricingListItem>
+						<>Integrated threat feeds</>
 					</PricingListItem>
 				</PricingList>
 				<Box
@@ -164,7 +138,7 @@ const PricingAccounts = [
 				>
 					<Image
 						src={require("../public/icons/enrichment_partners.svg")}
-						alt={"IPinfo | GreyNoise"}
+						alt={"GreyNoise"}
 					/>
 				</Box>
 			</>
@@ -187,13 +161,12 @@ const PricingAccounts = [
 			// 	? "prod_MfFAyBr9OXVxJG"
 			// 	: "prod_MfpQXEGqW8HjMR",
 		},
+		tierShort: {
+			title: "Pro",
+			subtitle: "Advanced analysis",
+			go: "Go Pro",
+		},
 		features: {
-			data: "",
-			xfer: "",
-			carving: "",
-			history: "",
-			assets: "",
-			projects: "",
 			dataByTier: {
 				50: "50 GB",
 				100: "100 GB",
@@ -230,57 +203,108 @@ const PricingAccounts = [
 				200: "50",
 				// 300: "100",
 			},
-			ana_std: true,
-			ana_prem: true,
-			// enr_std: true,
-			enr_prem: true,
 			greynoiseByTier: {
 				50: 50,
 				100: 100,
 				200: 200,
 				// 300: 250,
 			},
-			ds_prem: "$",
-			mfa: true,
-			sso: false,
-			team_adm: false,
-			team_pool: false,
-			slf_hosted: false,
-			slo: "3-day",
-			proj_share: true,
-			ver_his: true,
-			data_stream: false,
-			nvme: false,
-			audio: true,
+			resources: {
+				dua: "50 GB",
+				monthly_transfer: "200 GB",
+				num_projects: "Unlimited",
+				num_assets: "Unlimited",
+				perGb: "$4/mo",
+				perUser: false,
+				seats: false,
+			},
+			telemetry: {
+				pcap: true,
+				zeek: true,
+				api_uploads: false,
+			},
+			network_analysis: {
+				asset_identification: true,
+				event_detection: true,
+				log_carving: true,
+				pcap_carving: true,
+				vulnerability_info: true,
+				vulnerability_prioritization: true,
+				threat_detection: true,
+			},
+			data_export: {
+				asset_summary: true,
+				internet_hosts: true,
+				screenshots: true,
+				credentials: true,
+				file_transfers: true,
+				file_extraction: true,
+				reports: true,
+				downloads: true,
+				timeline: "30 days",
+				data_carving: "100 MB",
+			},
+			admin: {
+				google: true,
+				two_factor: true,
+				sso: false,
+				unified_billing: false,
+				resource_pooling: false,
+				team_perms: false,
+			},
+			service: {
+				help_center: true,
+				community: true,
+				one_on_one: true,
+				response_time: false,
+			},
+			feeds: {
+				ipinfo: "Unlimited",
+				greynoise: "100 / day",
+			},
 		},
 	},
 	{
-		name: "Teams",
+		name: "Teleseer Teams",
 		prodType: "team",
-		subTitle: "For organizations",
-		isComingSoon: true,
+		go: "Go Teams",
+		perGb: "3",
+		subTitle: "Collaborative analysis for elite teams",
 		description: (product: PricingAccountForTierType) => (
 			<>
-				{/* <Text textAlign="left" fontSize="sm" mb={2}>
-					Everything in Pro, plus:
-				</Text> */}
 				<PricingList>
-					<PricingListItem>Data streaming</PricingListItem>
-					{/* <PricingListItem>Single sign-on (SSO)</PricingListItem> */}
-					<PricingListItem>Unified billing and admin</PricingListItem>
+					<PricingListItem>
+						<>{product.features.resources["dua"]} data under analysis</>
+					</PricingListItem>
+					<PricingListItem>
+						<>{product.features.resources["seats"]} seats include</>
+					</PricingListItem>
+					<PricingListItem>
+						<>API-based uploads</>
+					</PricingListItem>
+					<PricingListItem>
+						<>Single sign-on (SSO)</>
+					</PricingListItem>
+					<PricingListItem>
+						<>Unified billing and admin</>
+					</PricingListItem>
+					<PricingListItem>
+						<>Team resource pooling</>
+					</PricingListItem>
 				</PricingList>
-				{/* <Text fontSize="sm" fontStyle="italic" mt={6}>
-					Contact for details.
-				</Text> */}
 			</>
 		),
-		footer: "Plus everything in Pro",
-		isDisabled: true,
+		footer: "Plus everything in Pro!",
 		// borderColor: "gray.500",
 		tiersByGB: {
 			500: AppConfig.stripe_test_mode
 				? "prod_MeU7Sd8NfyG2y1"
 				: "prod_Mfuxsa5JWXtFO6",
+		},
+		tierShort: {
+			title: "Teams",
+			subtitle: "Collaborative analysis",
+			go: "Go Teams",
 		},
 		features: {
 			dataByTier: {
@@ -301,61 +325,69 @@ const PricingAccounts = [
 			projectsByTier: {
 				500: "100",
 			},
-			ana_std: true,
-			ana_prem: true,
-			// enr_std: true,
-			enr_prem: true,
-			greynoise: 300,
-			ds_prem: "$",
-			mfa: true,
-			sso: true,
-			team_adm: true,
-			team_pool: true,
-			slf_hosted: false,
-			slo: "2-day",
-			proj_share: true,
-			ver_his: true,
-			data_stream: true,
-			nvme: false,
-			audio: true,
+			resources: {
+				dua: "300 GB",
+				monthly_transfer: "900 GB",
+				num_projects: "Unlimited",
+				num_assets: "Unlimited",
+				perGb: "$3/mo",
+				perUser: "$49/mo",
+				seats: "2",
+			},
+			telemetry: {
+				pcap: true,
+				zeek: true,
+				api_uploads: true,
+			},
+			network_analysis: {
+				asset_identification: true,
+				event_detection: true,
+				log_carving: true,
+				pcap_carving: true,
+				vulnerability_info: true,
+				vulnerability_prioritization: true,
+				threat_detection: true,
+			},
+			data_export: {
+				asset_summary: true,
+				internet_hosts: true,
+				screenshots: true,
+				credentials: true,
+				file_transfers: true,
+				file_extraction: true,
+				reports: true,
+				downloads: true,
+				timeline: "90 days",
+				data_carving: "10 GB",
+			},
+			admin: {
+				google: true,
+				two_factor: true,
+				sso: true,
+				unified_billing: true,
+				resource_pooling: true,
+				team_perms: true,
+			},
+			service: {
+				help_center: true,
+				community: true,
+				one_on_one: true,
+				response_time: "24 hours",
+			},
+			feeds: {
+				ipinfo: "Unlimited",
+				greynoise: "300 / day",
+			},
 		},
 	},
-	// {
-	// 	name: "Enterprise",
-	// 	description: "Contact for details.",
-	// 	prodType: "enterprise",
-	// 	isDisabled: true,
-	// 	features: {
-	// 		data: "Unlimited",
-	// 		xfer: "Unlimited",
-	// 		carving: "Unlimited",
-	// 		assets: "Unlimited",
-	// 		projects: "Unlimited",
-	// 		ana_std: true,
-	// 		ana_prem: true,
-	// 		enr_std: true,
-	// 		enr_prem: true,
-	// 		ds_prem: true,
-	// 		mfa: true,
-	// 		sso: true,
-	// 		team_adm: true,
-	// 		team_pool: true,
-	// 		slf_hosted: true,
-	// 		slo: "Call us",
-	// 		proj_share: true,
-	// 		ver_his: true,
-	// 		data_stream: true,
-	// 		nvme: true,
-	// 		audio: true,
-	// 	},
-	// },
 ]
 
 interface Feature {
-	category: string
+	category: string // text to display for section
+	sectionKey: string // section within "features" object to pull from
 	items: {
 		name: string | React.ReactElement
-		key: keyof typeof PricingAccounts[number]["features"]
+		key: string //keyof typeof PricingAccounts[number]["features"]
 		tooltip?: string
 	}[]
 }
@@ -363,141 +395,203 @@ interface Feature {
 export const PricingFeatures: Feature[] = [
 	{
 		category: "Resources",
+		sectionKey: "resources",
 		items: [
 			{
-				key: "data",
+				key: "dua",
 				name: "Data Under Analysis",
-				// tooltip: "Tiramisu caramels topping donut oat cake chocolate bar cookie jujubes.",
+				tooltip: "testing",
 			},
 			{
-				key: "xfer",
-				name: "Monthly Transfer Limit",
-			},
-			// {
-			// 	key: "carving",
-			// 	name: "Data Carving Size Limit (GB)",
-			// },
-			// {
-			// 	key: "history",
-			// 	name: "Analysis Time Range",
-			// },
-			{
-				key: "assets",
-				name: "Total Assets",
+				key: "monthly_transfer",
+				name: "Monthly Data Transfer",
 			},
 			{
-				key: "projects",
+				key: "num_projects",
 				name: "Total Projects",
 			},
 			{
-				key: "pricePerGB",
-				name: "Price per GB",
+				key: "num_assets",
+				name: "Total Assets",
+			},
+			{
+				key: "perGb",
+				name: "$ per extra GB",
+			},
+			{
+				key: "perUser",
+				name: "$ per extra user",
+			},
+			{
+				key: "seats",
+				name: "User seats",
 			},
 		],
 	},
 	{
-		category: "Features",
+		category: "Telemetry Ingest",
+		sectionKey: "telemetry",
 		items: [
 			{
-				key: "ana_std",
-				name: "Standard analytics",
-			},
-			// {
-			// 	key: "enr_std",
-			// 	name: "Standard data enrichments",
-			// },
-			// {
-			// 	key: "ana_prem",
-			// 	name: "Premium analytics",
-			// },
-			{
-				key: "enr_prem",
-				name: (
-					<>
-						Premium data enrichments
-						{/* <Text color="theme_text_subtle" as="div" mb={1}>
-							Premium data enrichments
-						</Text>
-						<Tag size="sm">IPinfo Coming Soon</Tag> */}
-					</>
-				),
+				key: "pcap",
+				name: "PCAP Ingest",
 			},
 			{
-				key: "greynoise",
-				name: (
-					<>
-						Daily GreyNoise lookups
-						{/* <Text color="theme_text_subtle" as="div" mb={1}>
-							Daily GreyNoise lookups
-						</Text>
-						<Tag size="sm">Coming Soon</Tag> */}
-					</>
-				),
+				key: "zeek",
+				name: "Zeek Log Ingest",
 			},
 			// {
-			// 	key: "ds_prem",
-			// 	name: "Data Science add-on package",
+			// 	key: "api_uploads",
+			// 	name: "API Uploads",
 			// },
 		],
 	},
 	{
-		category: "Teams & Security",
+		category: "Network Analysis",
+		sectionKey: "network_analysis",
 		items: [
 			{
-				key: "mfa",
-				name: "MFA",
+				key: "asset_identification",
+				name: "Asset Identification",
 			},
+			{
+				key: "event_detection",
+				name: "Event Detection",
+			},
+			// {
+			// 	key: "log_carving",
+			// 	name: "Log Carving",
+			// },
+			// {
+			// 	key: "pcap_carving",
+			// 	name: "PCAP Carving",
+			// },
+			{
+				key: "vulnerability_info",
+				name: "Vulnerability Info",
+			},
+			// {
+			// 	key: "vulnerability_prioritization",
+			// 	name: "Vulnerability Prioritization",
+			// },
+			// {
+			// 	key: "threat_detection",
+			// 	name: "Threat Detection",
+			// },
+		],
+	},
+	{
+		category: "Data Exports",
+		sectionKey: "data_export",
+		items: [
+			{
+				key: "asset_summary",
+				name: "Asset Inventory",
+			},
+			{
+				key: "internet_hosts",
+				name: "Internet Hosts",
+			},
+			{
+				key: "screenshots",
+				name: "Screenshots",
+			},
+			// {
+			// 	key: "credentials",
+			// 	name: "Credentials",
+			// },
+			// {
+			// 	key: "file_transfers",
+			// 	name: "File Transfers",
+			// },
+			// {
+			// 	key: "file_extraction",
+			// 	name: "Auto File Extraction",
+			// },
+			// {
+			// 	key: "reports",
+			// 	name: "Automated Reports",
+			// },
+			// {
+			// 	key: "downloads",
+			// 	name: "Project Downloads",
+			// },
+			// {
+			// 	key: "timeline",
+			// 	name: "Timeline Data",
+			// },
+			// {
+			// 	key: "data_carving",
+			// 	name: "Data Carving Size",
+			// },
+		],
+	},
+	{
+		category: "Admin Controls",
+		sectionKey: "admin",
+		items: [
+			{
+				key: "google",
+				name: "Sign-in with Google",
+			},
+			// {
+			// 	key: "two_factor",
+			// 	name: "2-Factor Authentication",
+			// },
 			// {
 			// 	key: "sso",
 			// 	name: "Single Sign-On (SSO)",
 			// },
-			{
-				key: "team_adm",
-				name: "Unified Admin & Billing",
-			},
-			{
-				key: "team_pool",
-				name: "Team Resource Pooling",
-			},
 			// {
-			// 	key: "slf_hosted",
-			// 	name: "Self-Hosted",
+			// 	key: "unified_billing",
+			// 	name: "Unified Billing & Admin",
+			// },
+			// {
+			// 	key: "resource_pooling",
+			// 	name: "Team Resource Pooling",
+			// },
+			// {
+			// 	key: "team_perms",
+			// 	name: "Team Permissions",
 			// },
 		],
 	},
-	// {
-	// 	category: "Support",
-	// 	items: [{ key: "slo", name: "SLO" }],
-	// },
-	// {
-	// 	category: "Coming Soon",
-	// 	items: [
-	// 		{
-	// 			key: "proj_share",
-	// 			name: "Project Sharing",
-	// 		},
-	// 		{
-	// 			key: "ver_his",
-	// 			name: "Version History",
-	// 		},
-	// 		{
-	// 			key: "audio",
-	// 			name: "Live Collaboration",
-	// 		},
-	// 		{
-	// 			key: "audio",
-	// 			name: "Team Audio Chat",
-	// 		},
-	// 		{
-	// 			key: "data_stream",
-	// 			name: "Data streaming",
-	// 		},
-	// 		{
-	// 			key: "nvme",
-	// 			name: "NVME-backed Storage",
-	// 		},
-	// ],
-	// },
+	{
+		category: "Service Support",
+		sectionKey: "service",
+		items: [
+			{
+				key: "help_center",
+				name: "Help Center Docs",
+			},
+			{
+				key: "community",
+				name: "Community Support",
+			},
+			{
+				key: "one_on_one",
+				name: "1-on-1 Support",
+			},
+			{
+				key: "response_time",
+				name: "Service Response Time",
+			},
+		],
+	},
+	{
+		category: "Intel Feeds",
+		sectionKey: "feeds",
+		items: [
+			{
+				key: "ipinfo",
+				name: "IPinfo",
+			},
+			{
+				key: "greynoise",
+				name: "GreyNoise",
+			},
+		],
+	},
 ]
 
 export type ElementType<T extends ReadonlyArray<unknown>> =

@@ -21,6 +21,8 @@ export type PricingAccountForTierType = {
 	subTitle: string
 	footer: string
 	purchaseLink?: string
+	go?: string
+	perGb: number
 	price?: string
 	prodId?: string
 	priceId?: string
@@ -34,6 +36,7 @@ export type PricingAccountForTierType = {
 	billingFrequency?: string
 	prodType: string
 	tiersByGB: { [key: number]: string }
+	tierShort: { [key: number]: string }
 	features: { [key: string]: object | string | boolean }
 	hideOverviewCard?: boolean
 	isPopular?: boolean

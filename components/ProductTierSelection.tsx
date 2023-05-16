@@ -1,11 +1,10 @@
-import * as React from "react"
 import { useMemo } from "react"
 import { MdGraphicEq } from "react-icons/md"
+import { ThemeColor } from "utils/theme"
 import {
 	Box,
+	Divider,
 	Heading,
-	Radio,
-	RadioGroup,
 	Slider,
 	SliderFilledTrack,
 	SliderMark,
@@ -14,8 +13,8 @@ import {
 	Stack,
 	TableProps,
 	Text,
-	useColorModeValue,
 } from "@chakra-ui/react"
+import useIsMobile from "@common/hooks/useIsMobile"
 import { PricingBillingMode } from "../constants/PricingConstants"
 
 interface ProductTierSelectionProps extends TableProps {
@@ -24,6 +23,7 @@ interface ProductTierSelectionProps extends TableProps {
 	setBillingMode: (PricingBillingMode) => void
 	billingTier: number
 	setBillingTier: (int) => void
+	theme: ThemeColor
 }
 
 export const ProductTierSelection = ({
@@ -32,8 +32,11 @@ export const ProductTierSelection = ({
 	setBillingMode,
 	billingTier,
 	setBillingTier,
+	theme,
 	...containerProps
 }: ProductTierSelectionProps) => {
+	const isMobile = useIsMobile()
+
 	const { accountTierSliderIntervalCount, accountTierSliderIntervals } =
 		useMemo(() => {
 			const accountTierSliderIntervals = Object.keys(pricingTiers)
@@ -70,38 +73,21 @@ export const ProductTierSelection = ({
 	}
 
 	return (
-		<Box
-			// bg={useColorModeValue("white", "theme_accent")}
-			// shadow="base"
-			rounded="lg"
-			p={{ base: "4", md: "8" }}
-			mb={20}
-			{...containerProps}
-		>
+		<Box rounded="lg" p={{ base: "4", md: "4" }} mb={20} {...containerProps}>
 			<Stack
-				direction={["row"]}
-				// alignItems="left"
-				justifyContent="start"
-				// spacing={[1, 2, 4]}
+				direction={isMobile ? "column" : "row"}
+				alignItems="center"
+				justifyContent="center"
 			>
-				<Box flex=".4" textAlign="right" pr="8" mt="0">
-					<Heading size="md" mb="8">
-						Billing Plan:
+				<Box flex=".75" width={{ base: 300, lg: 350 }}>
+					<Heading fontSize={20} textAlign="center" mb={2}>
+						Data under analysis (DUA)
 					</Heading>
-					<Text size="lg">Data Under Analysis (GB):</Text>
-				</Box>
-				<Box flex=".5">
-					<RadioGroup
-						value={billingMode}
-						mb={6}
-						onChange={setBillingMode}
-						// colorScheme="blue"
-					>
-						<Stack spacing={4} direction="row">
-							<Radio value={PricingBillingMode.MONTHLY}>Monthly</Radio>
-							<Radio value={PricingBillingMode.ANNUAL}>Annual</Radio>
-						</Stack>
-					</RadioGroup>
+					<Text textAlign={"center"} mb={6}>
+						DUA is the total uncompressed amount of data we’ve analyzed and
+						stored. <br />
+						You can free up space by deleting uploaded projects and data.
+					</Text>
 					<Slider
 						min={0}
 						max={accountTierSliderIntervalCount - 1}
@@ -112,8 +98,7 @@ export const ProductTierSelection = ({
 						)}
 						step={1}
 						ml={2}
-						// pb="4"
-						// height="8"
+						mb={12}
 					>
 						{accountTierSliderIntervals.map((tier, index) => (
 							<SliderMark value={index} {...labelStyles} key={index}>
@@ -142,14 +127,14 @@ export const ProductTierSelection = ({
 							{/* <Logo color="blue.500" logoStyle="symbol" height={24} /> */}
 						</SliderThumb>
 					</Slider>
-					<Text fontSize="xs" mt={8}>
-						* Data Under Analysis (DUA) is the total uncompressed amount of data
-						that Teleseer has processed and stored for your account. You can
-						free up space by deleting uploaded data files. Projects do not count
-						towards your quota.
-					</Text>
 				</Box>
 			</Stack>
+			{/* <Divider
+				// width="100%"
+				backgroundColor="gray.500"
+				// height="10px"
+				// orientation="horizontal"
+			/> */}
 		</Box>
 	)
 }
