@@ -440,10 +440,10 @@ export const PricingFeatures: Feature[] = [
 				key: "zeek",
 				name: "Zeek Log Ingest",
 			},
-			{
-				key: "api_uploads",
-				name: "API Uploads",
-			},
+			// {
+			// 	key: "api_uploads",
+			// 	name: "API Uploads",
+			// },
 		],
 	},
 	{
@@ -458,26 +458,26 @@ export const PricingFeatures: Feature[] = [
 				key: "event_detection",
 				name: "Event Detection",
 			},
-			{
-				key: "log_carving",
-				name: "Log Carving",
-			},
-			{
-				key: "pcap_carving",
-				name: "PCAP Carving",
-			},
+			// {
+			// 	key: "log_carving",
+			// 	name: "Log Carving",
+			// },
+			// {
+			// 	key: "pcap_carving",
+			// 	name: "PCAP Carving",
+			// },
 			{
 				key: "vulnerability_info",
 				name: "Vulnerability Info",
 			},
-			{
-				key: "vulnerability_prioritization",
-				name: "Vulnerability Prioritization",
-			},
-			{
-				key: "threat_detection",
-				name: "Threat Detection",
-			},
+			// {
+			// 	key: "vulnerability_prioritization",
+			// 	name: "Vulnerability Prioritization",
+			// },
+			// {
+			// 	key: "threat_detection",
+			// 	name: "Threat Detection",
+			// },
 		],
 	},
 	{
@@ -496,34 +496,34 @@ export const PricingFeatures: Feature[] = [
 				key: "screenshots",
 				name: "Screenshots",
 			},
-			{
-				key: "credentials",
-				name: "Credentials",
-			},
-			{
-				key: "file_transfers",
-				name: "File Transfers",
-			},
-			{
-				key: "file_extraction",
-				name: "Auto File Extraction",
-			},
-			{
-				key: "reports",
-				name: "Automated Reports",
-			},
-			{
-				key: "downloads",
-				name: "Project Downloads",
-			},
-			{
-				key: "timeline",
-				name: "Timeline Data",
-			},
-			{
-				key: "data_carving",
-				name: "Data Carving Size",
-			},
+			// {
+			// 	key: "credentials",
+			// 	name: "Credentials",
+			// },
+			// {
+			// 	key: "file_transfers",
+			// 	name: "File Transfers",
+			// },
+			// {
+			// 	key: "file_extraction",
+			// 	name: "Auto File Extraction",
+			// },
+			// {
+			// 	key: "reports",
+			// 	name: "Automated Reports",
+			// },
+			// {
+			// 	key: "downloads",
+			// 	name: "Project Downloads",
+			// },
+			// {
+			// 	key: "timeline",
+			// 	name: "Timeline Data",
+			// },
+			// {
+			// 	key: "data_carving",
+			// 	name: "Data Carving Size",
+			// },
 		],
 	},
 	{
@@ -534,26 +534,26 @@ export const PricingFeatures: Feature[] = [
 				key: "google",
 				name: "Sign-in with Google",
 			},
-			{
-				key: "two_factor",
-				name: "2-Factor Authentication",
-			},
-			{
-				key: "sso",
-				name: "Single Sign-On (SSO)",
-			},
-			{
-				key: "unified_billing",
-				name: "Unified Billing & Admin",
-			},
-			{
-				key: "resource_pooling",
-				name: "Team Resource Pooling",
-			},
-			{
-				key: "team_perms",
-				name: "Team Permissions",
-			},
+			// {
+			// 	key: "two_factor",
+			// 	name: "2-Factor Authentication",
+			// },
+			// {
+			// 	key: "sso",
+			// 	name: "Single Sign-On (SSO)",
+			// },
+			// {
+			// 	key: "unified_billing",
+			// 	name: "Unified Billing & Admin",
+			// },
+			// {
+			// 	key: "resource_pooling",
+			// 	name: "Team Resource Pooling",
+			// },
+			// {
+			// 	key: "team_perms",
+			// 	name: "Team Permissions",
+			// },
 		],
 	},
 	{
