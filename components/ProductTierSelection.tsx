@@ -1,6 +1,5 @@
 import { useMemo } from "react"
 import { MdGraphicEq } from "react-icons/md"
-import { ThemeColor } from "utils/theme"
 import {
 	Box,
 	Divider,
@@ -15,6 +14,7 @@ import {
 	Text,
 } from "@chakra-ui/react"
 import useIsMobile from "@common/hooks/useIsMobile"
+import { ThemeColor } from "@common/utils/theme"
 import { PricingBillingMode } from "../constants/PricingConstants"
 
 interface ProductTierSelectionProps extends TableProps {

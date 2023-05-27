@@ -1,6 +1,5 @@
 import * as React from "react"
 import { FiInfo } from "react-icons/fi"
-import { ButtonStyle, ThemeColor, colors } from "utils/theme"
 import {
 	Box,
 	Button,
@@ -20,6 +19,7 @@ import {
 	Tr,
 	VStack,
 } from "@chakra-ui/react"
+import { ButtonStyle, ThemeColor, colors } from "@common/utils/theme"
 import { PricingFeatures } from "../constants/CustomPricingData"
 import { PricingBillingMode } from "../constants/PricingConstants"
 import { PricingAccountForTierType } from "../constants/PricingTypes"

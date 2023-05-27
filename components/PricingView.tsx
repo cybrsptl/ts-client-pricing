@@ -1,8 +1,8 @@
 import * as React from "react"
 import { useEffect, useMemo, useState } from "react"
-import { ThemeColor } from "utils/theme"
 import { Box, Stack } from "@chakra-ui/react"
 import AppConfig from "@common/constants/AppConfig"
+import { ThemeColor } from "@common/utils/theme"
 import PricingAccounts from "../constants/CustomPricingData"
 import {
 	PricingBillingMode,

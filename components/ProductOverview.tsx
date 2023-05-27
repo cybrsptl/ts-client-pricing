@@ -1,5 +1,4 @@
 import NextLink from "next/link"
-import { ButtonStyle, ThemeColor } from "utils/theme"
 import {
 	Box,
 	Button,
@@ -13,6 +12,7 @@ import {
 	VStack,
 } from "@chakra-ui/react"
 import useIsMobile from "@common/hooks/useIsMobile"
+import { ButtonStyle, ThemeColor } from "@common/utils/theme"
 import { PricingBillingMode } from "../constants/PricingConstants"
 import { PricingAccountForTierType } from "../constants/PricingTypes"
 interface ProductOverviewProps extends TableProps {
