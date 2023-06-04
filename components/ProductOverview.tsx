@@ -278,10 +278,10 @@ export const ProductOverview = (props: ProductOverviewProps) => {
 												Annual billing only
 											</Text>
 										)}
-										<Text
+										{/* <Text
 											fontSize={16}
 											pt={6}
-										>{`$${product.perGb}/mo per extra GB`}</Text>
+										>{`$${product.perGb}/mo per extra GB`}</Text> */}
 
 										<VStack
 											whiteSpace="normal"
