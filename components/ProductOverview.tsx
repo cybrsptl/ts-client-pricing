@@ -50,8 +50,8 @@ export const ProductOverview = (props: ProductOverviewProps) => {
 					fontSize="xs"
 					fontStyle="italic"
 					border="1px solid"
-					borderColor={theme.whiteButtonText}
-					color={theme.darkButtonText}
+					borderColor={theme?.whiteButtonText}
+					color={theme?.darkButtonText}
 					borderRadius={16}
 					padding={1.5}
 				>
@@ -81,7 +81,7 @@ export const ProductOverview = (props: ProductOverviewProps) => {
 						paddingRight="2em"
 						borderWidth={2}
 						borderRadius={16}
-						color={theme.lightButtonText}
+						color={theme?.lightButtonText}
 						sx={
 							product.isDisabled || product.prodType === "starter"
 								? ButtonStyle.white
@@ -182,7 +182,7 @@ export const ProductOverview = (props: ProductOverviewProps) => {
 							flexBasis={"240px"}
 							flexGrow={0.25}
 							flexShrink={0.25}
-							backgroundColor={theme.tierBg === "light" ? "#FFF" : "inherit"}
+							backgroundColor={theme?.tierBg === "light" ? "#FFF" : "inherit"}
 						>
 							<Box
 								bg={"theme_accent"}
@@ -212,7 +212,7 @@ export const ProductOverview = (props: ProductOverviewProps) => {
 								borderColor={
 									product.prodType === "starter"
 										? "white"
-										: theme.lightButtonBorder
+										: theme?.lightButtonBorder
 								}
 								boxShadow="0px 0px 5px 0px rgba(41,41,41,0.9)"
 								{...product.boxProps}
@@ -229,14 +229,14 @@ export const ProductOverview = (props: ProductOverviewProps) => {
 											fontSize="24px"
 											fontWeight="bold"
 											letterSpacing="wider"
-											color={theme.tierName}
+											color={theme?.tierName}
 										>
 											{product.name.replace(/[0-9]/g, "")}
 										</Text>
 										<Text
 											fontSize="14px"
 											paddingBottom={6}
-											color={theme.tierSubtitle}
+											color={theme?.tierSubtitle}
 										>
 											{product.subTitle}
 										</Text>
@@ -262,19 +262,19 @@ export const ProductOverview = (props: ProductOverviewProps) => {
 											</>
 										)}
 										{product.pricePerMonthBilledMonthly && (
-											<Text fontSize="sm" color={theme.costSubtitle} mt={1}>
+											<Text fontSize="sm" color={theme?.costSubtitle} mt={1}>
 												Paid annually or ${product.pricePerMonthBilledMonthly}{" "}
 												paid monthly
 											</Text>
 										)}
 										{product.pricePerMonthBilledAnnually && (
-											<Text fontSize="sm" color={theme.costSubtitle} mt={1}>
+											<Text fontSize="sm" color={theme?.costSubtitle} mt={1}>
 												Paid monthly or ${product.pricePerMonthBilledAnnually}{" "}
 												paid annually
 											</Text>
 										)}
 										{product.annualBillingOnly && (
-											<Text fontSize="sm" color={theme.cost} mt={1}>
+											<Text fontSize="sm" color={theme?.cost} mt={1}>
 												Annual billing only
 											</Text>
 										)}
@@ -286,14 +286,14 @@ export const ProductOverview = (props: ProductOverviewProps) => {
 										<VStack
 											whiteSpace="normal"
 											mt={8}
-											color={theme.tierBullets}
+											color={theme?.tierBullets}
 										>
 											{typeof product.description === "function"
 												? product.description(product)
 												: product.description}
 										</VStack>
 									</Box>
-									<Box width="100%" color={theme.tierSubtitle}>
+									<Box width="100%" color={theme?.tierSubtitle}>
 										<Text fontSize="sm" fontWeight="500" py={4}>
 											{product.footer}
 										</Text>

@@ -134,7 +134,7 @@ export const ProductFeatures = (props: ProductFeaturesProps) => {
 										<Tr>
 											<Th
 												// colSpan={products.length + 1}
-												color={theme.text}
+												color={theme?.text}
 												fontSize="sm"
 												borderColor="blue.800"
 												border="none"
@@ -155,7 +155,7 @@ export const ProductFeatures = (props: ProductFeaturesProps) => {
 													<Box
 														px="10px"
 														borderBottom="1px solid"
-														borderBottomColor={theme.lightButtonBorder}
+														borderBottomColor={theme?.lightButtonBorder}
 														opacity=".2"
 														lineHeight={"1px"}
 													>
