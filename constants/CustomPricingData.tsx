@@ -368,16 +368,19 @@ const PricingAccounts = [
 		},
 		features: {
 			dataByTier: {
+				300: "300 GB",
 				500: "500 GB",
+				1000: "1 TB",
+				2000: "2 TB",
 			},
 			xferByTier: {
-				500: "750 GB",
+				300: "900 GB",
+				500: "1.5 TB",
+				1000: "3 TB",
+				2000: "6 TB",
 			},
 			carvingByTier: {
 				500: "Call us",
-			},
-			assetsByTier: {
-				500: "Unlimited",
 			},
 			projects: "Unlimited",
 			assets: "Unlimited",

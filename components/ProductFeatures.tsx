@@ -209,7 +209,7 @@ export const ProductFeatures = (props: ProductFeaturesProps) => {
 																	product.features[feature.sectionKey]
 																		? product.features[feature.sectionKey][
 																				item.key
-																		  ]
+																		  ] ?? product.features[item.key]
 																		: false
 																}
 																{...{ billingMode, billingTier }}

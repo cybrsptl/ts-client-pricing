@@ -155,8 +155,7 @@ export const PricingView = ({
 					}
 
 					const featureKeyNormalized = featureKey.replace("ByTier", "")
-					product.features[featureKeyNormalized] =
-						featureVal[lowestTierIndex ?? 0]
+					product.features[featureKeyNormalized] = featureVal[lowestTierIndex]
 				}
 			)
 
