@@ -150,20 +150,13 @@ export const PricingView = ({
 			// Flatten ByTier values to match current tier
 			Object.entries(product?.features || {}).forEach(
 				([featureKey, featureVal]) => {
-					if (!featureKey.endsWith("ByTier") || !featureVal[lowestTierIndex]) {
+					if (!featureKey.endsWith("ByTier")) {
 						return
 					}
+
 					const featureKeyNormalized = featureKey.replace("ByTier", "")
-					// console.log(
-					// 	"featureKeyNormalized",
-					// 	featureKeyNormalized,
-					// 	"featureVal",
-					// 	featureVal,
-					// 	"pricingAccount.features[featureKeyNormalized]",
-					// 	(pricingAccount.features[featureKeyNormalized] =
-					// 		featureVal[lowestTierIndex])
-					// )
-					product.features[featureKeyNormalized] = featureVal[lowestTierIndex]
+					product.features[featureKeyNormalized] =
+						featureVal[lowestTierIndex ?? 0]
 				}
 			)
 
