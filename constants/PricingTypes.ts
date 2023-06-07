@@ -1,5 +1,5 @@
 import React from "react"
-import { BoxProps } from "@chakra-ui/react"
+import { BoxProps, SystemStyleObject } from "@chakra-ui/react"
 
 export interface StripePricingData {
 	prodId: string
@@ -18,11 +18,13 @@ export interface StripePricingDataList {
 
 export type PricingAccountForTierType = {
 	name: string
-	subTitle: string
-	footer: string
+	subTitle?: string
+	footer?: string
 	purchaseLink?: string
 	go?: string
-	perGb: number
+	goButtonStyle?: SystemStyleObject
+	cardStyle?: SystemStyleObject
+	perGb?: number
 	price?: string
 	prodId?: string
 	priceId?: string
@@ -36,10 +38,9 @@ export type PricingAccountForTierType = {
 	billingFrequency?: string
 	prodType: string
 	tiersByGB: { [key: number]: string }
-	tierShort: { [key: number]: string }
-	features: { [key: string]: object | string | boolean }
+	tierShort: { [key: string]: string }
+	features: { [key: string]: object | string | boolean | number }
 	hideOverviewCard?: boolean
-	isPopular?: boolean
 	isComingSoon?: boolean
 	isDisabled?: boolean
 	isCurrent?: boolean
