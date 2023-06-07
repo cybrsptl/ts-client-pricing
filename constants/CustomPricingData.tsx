@@ -59,7 +59,6 @@ const PricingAccounts: PricingAccountForTierType[] = [
 				file_extraction: false,
 				reports: false,
 				downloads: false,
-				// timeline: false,
 				data_carving: "100 MB",
 			},
 			admin: {
@@ -104,7 +103,6 @@ const PricingAccounts: PricingAccountForTierType[] = [
 				</PricingListItem>
 			</PricingList>
 		),
-		// footer: "Plus everything in Free",
 		tiersByGbToStripeIDs: {
 			2: AppConfig.stripe_test_mode ? "prod_NzaoJMCcrvfdBl" : "",
 			5: AppConfig.stripe_test_mode ? "prod_Nzarmn4e78EXz2" : "",
@@ -161,7 +159,6 @@ const PricingAccounts: PricingAccountForTierType[] = [
 				file_extraction: false,
 				reports: false,
 				downloads: false,
-				// timeline: false,
 				data_carving: "100 MB",
 			},
 			admin: {
@@ -269,7 +266,6 @@ const PricingAccounts: PricingAccountForTierType[] = [
 				50: "Unlimited",
 				100: "Unlimited",
 				200: "Unlimited",
-				// 300: "Unlimited",
 			},
 			projects: "Unlimited",
 			assets: "Unlimited",
@@ -277,7 +273,6 @@ const PricingAccounts: PricingAccountForTierType[] = [
 				50: 50,
 				100: 100,
 				200: 200,
-				// 300: 250,
 			},
 			resources: {
 				num_assets: "Unlimited",
@@ -308,7 +303,6 @@ const PricingAccounts: PricingAccountForTierType[] = [
 				file_extraction: true,
 				reports: true,
 				downloads: true,
-				// timeline: "30 days",
 				data_carving: "100 MB",
 			},
 			admin: {
@@ -362,12 +356,11 @@ const PricingAccounts: PricingAccountForTierType[] = [
 			</>
 		),
 		footer: "Plus everything in Pro!",
-		// borderColor: "gray.500",
 		tiersByGbToStripeIDs: {
 			300: AppConfig.stripe_test_mode ? "prod_MeU7Sd8NfyG2y1" : "",
-			500: AppConfig.stripe_test_mode ? "prod_MeU7Sd8NfyG2y1" : "",
-			1000: AppConfig.stripe_test_mode ? "prod_MeU7Sd8NfyG2y1" : "",
-			2000: AppConfig.stripe_test_mode ? "prod_MeU7Sd8NfyG2y1" : "",
+			500: AppConfig.stripe_test_mode ? "prod_Nzu55ZREPKt702" : "",
+			1000: AppConfig.stripe_test_mode ? "prod_Nzu6QIbyqEspSP" : "",
+			2000: AppConfig.stripe_test_mode ? "prod_Nzu7DOI4NFo7oJ" : "",
 		},
 		tierShort: {
 			title: "Teams",
@@ -420,7 +413,6 @@ const PricingAccounts: PricingAccountForTierType[] = [
 				file_extraction: true,
 				reports: true,
 				downloads: true,
-				// timeline: "90 days",
 				data_carving: "10 GB",
 			},
 			admin: {
