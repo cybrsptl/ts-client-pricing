@@ -79,8 +79,6 @@ export const ProductOverview = (props: ProductOverviewProps) => {
 						isLoading={!!stripePriceIdToPurchase}
 						isDisabled={
 							product.isDisabled ||
-							product.isComingSoon ||
-							product.isBelowDesiredLimits
 						}
 					>
 						{product.go}
@@ -106,8 +104,6 @@ export const ProductOverview = (props: ProductOverviewProps) => {
 				isLoading={!!stripePriceIdToPurchase}
 				isDisabled={
 					product.isDisabled ||
-					product.isComingSoon ||
-					product.isBelowDesiredLimits
 				}
 			>
 				{product.freeTrialDays && tenantTierName?.toUpperCase() !== "EXPIRED"
@@ -163,13 +159,11 @@ export const ProductOverview = (props: ProductOverviewProps) => {
 									position: "relative",
 									opacity:
 										product.isDisabled ||
-										product.isComingSoon ||
 										product.isBelowDesiredLimits
 											? 0.5
 											: 1,
 									cursor:
 										product.isDisabled ||
-										product.isComingSoon ||
 										product.isBelowDesiredLimits
 											? "not-allowed"
 											: "auto",
@@ -195,7 +189,6 @@ export const ProductOverview = (props: ProductOverviewProps) => {
 									justifyContent="space-between"
 								>
 									<Box>
-										{/* {product.isComingSoon && <CardBadge>Waitlist</CardBadge>} */}
 										<Text
 											fontSize="24px"
 											fontWeight="bold"

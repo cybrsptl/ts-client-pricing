@@ -41,7 +41,6 @@ export type PricingAccountForTierType = {
 	tierShort: { [key: string]: string }
 	features: { [key: string]: object | string | boolean | number }
 	hideOverviewCard?: boolean
-	isComingSoon?: boolean
 	isDisabled?: boolean
 	isCurrent?: boolean
 	annualBillingOnly?: boolean
