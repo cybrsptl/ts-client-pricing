@@ -1,17 +1,19 @@
 import Image from "next/legacy/image"
 import { Box } from "@chakra-ui/react"
 import AppConfig from "@common/constants/AppConfig"
+import { ButtonStyle } from "@common/utils/theme"
 import { PricingList, PricingListItem } from "../components/PricingDescList"
 import { PricingAccountForTierType } from "./PricingTypes"
 
 // Note: Tier thresholds should match out latest values here:
 // https://docs.google.com/spreadsheets/d/1rQRlPnumgwwRB2d-18kU82fpEOwILBEXys_FgbVdjc0
 
-const PricingAccounts = [
+const PricingAccounts: PricingAccountForTierType[] = [
 	{
 		name: "Free Trial",
 		hideOverviewCard: true,
 		prodType: "trial",
+		goButtonStyle: ButtonStyle.light,
 		tiersByGB: {
 			1: "",
 		},
@@ -19,8 +21,8 @@ const PricingAccounts = [
 		freeTrialDays: 7,
 		tierShort: {
 			title: "Free Trial",
-			subtitle: "On-demand analysis",
-			go: "Go Starter",
+			subtitle: "7-day Teleseer trial",
+			go: "Try for Free",
 		},
 		features: {
 			dataByTier: {
@@ -88,6 +90,7 @@ const PricingAccounts = [
 		subTitle: "On-demand analysis for individuals",
 		prodType: "starter",
 		go: "Go Starter",
+		goButtonStyle: ButtonStyle.white,
 		description: (product: PricingAccountForTierType) => (
 			<PricingList mb={2}>
 				<PricingListItem>
@@ -188,8 +191,15 @@ const PricingAccounts = [
 		name: "Teleseer Pro",
 		subTitle: "Advanced analysis for practitioners",
 		prodType: "pro",
-		go: "Go Professional",
-		isPopular: true,
+		go: "Go Pro",
+		goButtonStyle: ButtonStyle.blue,
+		cardStyle: {
+			color: "white",
+			borderColor: "blue.500",
+			_hover: {
+				backgroundColor: "blue.800",
+			},
+		},
 		footer: "Plus everything in Starter!",
 		description: (product: PricingAccountForTierType) => (
 			<>
@@ -328,6 +338,7 @@ const PricingAccounts = [
 		name: "Teleseer Teams",
 		prodType: "team",
 		go: "Go Teams",
+		goButtonStyle: ButtonStyle.dark,
 		subTitle: "Collaborative analysis for elite teams",
 		description: (product: PricingAccountForTierType) => (
 			<>

@@ -111,13 +111,7 @@ export const ProductFeatures = (props: ProductFeaturesProps) => {
 														borderRadius={16}
 														height={8}
 														px={6}
-														sx={
-															product.prodType === "starter"
-																? ButtonStyle.white
-																: product.prodType === "pro"
-																? ButtonStyle.blue
-																: ButtonStyle.dark
-														}
+														sx={product.goButtonStyle ?? ButtonStyle.white}
 													>
 														{product.tierShort["go"]}
 													</Button>
