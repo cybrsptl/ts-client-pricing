@@ -9,57 +9,29 @@ import { PricingAccountForTierType } from "./PricingTypes"
 
 const PricingAccounts = [
 	{
-		name: "Starter",
-		subTitle: "On-demand analysis for individuals",
-		prodType: "starter",
-		go: "Go Starter",
-		description: (product: PricingAccountForTierType) => (
-			<PricingList mb={2}>
-				<PricingListItem>
-					<>{product.features.resources["dua"]} data under analysis</>
-				</PricingListItem>
-				<PricingListItem>
-					<>{product.features.resources["num_projects"]} projects</>
-				</PricingListItem>
-				<PricingListItem>
-					<>{product.features.resources["num_assets"]} assets</>
-				</PricingListItem>
-				<PricingListItem>
-					<>PCAP Carving</>
-				</PricingListItem>
-			</PricingList>
-		),
-		// footer: "Plus everything in Free",
+		name: "Free Trial",
+		hideOverviewCard: true,
+		prodType: "trial",
 		tiersByGB: {
-			2: AppConfig.stripe_test_mode ? "prod_NzaoJMCcrvfdBl" : "",
-			5: AppConfig.stripe_test_mode ? "prod_Nzarmn4e78EXz2" : "",
-			10: AppConfig.stripe_test_mode ? "prod_NK6dRgnmymlqGS" : "",
-			20: AppConfig.stripe_test_mode ? "prod_Nzat4nsV0oAz24" : "",
+			1: "",
 		},
 		dataInGB: 0.0,
 		freeTrialDays: 7,
 		tierShort: {
-			title: "Starter",
+			title: "Free Trial",
 			subtitle: "On-demand analysis",
 			go: "Go Starter",
 		},
 		features: {
 			dataByTier: {
-				2: "2 GB",
-				5: "5 GB",
-				10: "10 GB",
-				20: "20 GB",
+				1: "1 GB",
 			},
 			xferByTier: {
-				2: "10 GB",
-				5: "25 GB",
-				10: "50 GB",
-				20: "100 GB",
+				1: "3 GB",
 			},
+			projects: "3",
+			assets: 1000,
 			resources: {
-				dua: "10 GB",
-				monthly_transfer: "50 GB",
-				num_projects: "5",
 				num_assets: "Unlimited",
 				perGb: "$8/mo",
 				perUser: false,
@@ -119,13 +91,13 @@ const PricingAccounts = [
 		description: (product: PricingAccountForTierType) => (
 			<PricingList mb={2}>
 				<PricingListItem>
-					<>{product.features.resources["dua"]} data under analysis</>
+					<>{product.features["data"]} data under analysis</>
 				</PricingListItem>
 				<PricingListItem>
-					<>{product.features.resources["num_projects"]} projects</>
+					<>{product.features["projects"]} projects</>
 				</PricingListItem>
 				<PricingListItem>
-					<>{product.features.resources["num_assets"]} assets</>
+					<>{product.features["assets"]} assets</>
 				</PricingListItem>
 				<PricingListItem>
 					<>PCAP Carving</>
@@ -159,11 +131,9 @@ const PricingAccounts = [
 				10: "50 GB",
 				20: "100 GB",
 			},
+			projects: "5",
+			assets: "Unlimited",
 			resources: {
-				dua: "10 GB",
-				monthly_transfer: "50 GB",
-				num_projects: "5",
-				num_assets: "Unlimited",
 				perGb: "$8/mo",
 				perUser: false,
 				seats: false,
@@ -225,10 +195,10 @@ const PricingAccounts = [
 			<>
 				<PricingList>
 					<PricingListItem>
-						<>{product.features.resources["dua"]} data under analysis</>
+						<>{product.features["data"]} data under analysis</>
 					</PricingListItem>
 					<PricingListItem>
-						<>{product.features.resources["num_projects"]} projects</>
+						<>{product.features["projects"]} projects</>
 					</PricingListItem>
 					<PricingListItem>
 						<>Advanced data exports</>
@@ -294,12 +264,8 @@ const PricingAccounts = [
 				200: "Unlimited",
 				// 300: "Unlimited",
 			},
-			projectsByTier: {
-				50: "10",
-				100: "25",
-				200: "50",
-				// 300: "100",
-			},
+			projects: "Unlimited",
+			assets: "Unlimited",
 			greynoiseByTier: {
 				50: 50,
 				100: 100,
@@ -307,9 +273,6 @@ const PricingAccounts = [
 				// 300: 250,
 			},
 			resources: {
-				dua: "50 GB",
-				monthly_transfer: "200 GB",
-				num_projects: "Unlimited",
 				num_assets: "Unlimited",
 				perGb: "$4/mo",
 				perUser: false,
@@ -370,10 +333,10 @@ const PricingAccounts = [
 			<>
 				<PricingList>
 					<PricingListItem>
-						<>{product.features.resources["dua"]} data under analysis</>
+						<>{product.features["data"]} data under analysis</>
 					</PricingListItem>
 					<PricingListItem>
-						<>{product.features.resources["seats"]} seats include</>
+						<>{product.features.resources["seats"]} seats included</>
 					</PricingListItem>
 					<PricingListItem>
 						<>API-based uploads</>
@@ -416,14 +379,9 @@ const PricingAccounts = [
 			assetsByTier: {
 				500: "Unlimited",
 			},
-			projectsByTier: {
-				500: "100",
-			},
+			projects: "Unlimited",
+			assets: "Unlimited",
 			resources: {
-				dua: "300 GB",
-				monthly_transfer: "900 GB",
-				num_projects: "Unlimited",
-				num_assets: "Unlimited",
 				perGb: "$3/mo",
 				perUser: "$49/mo",
 				seats: "2",
@@ -492,20 +450,21 @@ export const PricingFeatures: Feature[] = [
 		sectionKey: "resources",
 		items: [
 			{
-				key: "dua",
+				key: "data",
 				name: "Data Under Analysis",
-				tooltip: "testing",
+				tooltip:
+					"Total uncompressed amount of data analyzed and stored for all your projects.",
 			},
 			{
-				key: "monthly_transfer",
+				key: "xfer",
 				name: "Monthly Data Transfer",
 			},
 			{
-				key: "num_projects",
+				key: "projects",
 				name: "Total Projects",
 			},
 			{
-				key: "num_assets",
+				key: "assets",
 				name: "Total Assets",
 			},
 			{
@@ -514,11 +473,11 @@ export const PricingFeatures: Feature[] = [
 			},
 			{
 				key: "perUser",
-				name: "$ per extra user",
+				name: "$ per Extra User",
 			},
 			{
 				key: "seats",
-				name: "Team seats",
+				name: "User Seats",
 			},
 		],
 	},
