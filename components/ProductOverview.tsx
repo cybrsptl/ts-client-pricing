@@ -64,14 +64,7 @@ export const ProductOverview = (props: ProductOverviewProps) => {
 			return (
 				<NextLink href="https://go.teleseer.com" target="_blank" legacyBehavior>
 					<Button
-						variant={
-							"outline"
-							// product.isDisabled
-							// 	? "outline"
-							// 	: product.isPopular
-							// 	? "primary"
-							// 	: "outline"
-						}
+						variant={"outline"}
 						size={"sm"}
 						// height={18}
 						width="80%"
@@ -82,13 +75,7 @@ export const ProductOverview = (props: ProductOverviewProps) => {
 						borderWidth={2}
 						borderRadius={16}
 						color={theme.lightButtonText}
-						sx={
-							product.isDisabled || product.prodType === "starter"
-								? ButtonStyle.white
-								: product.prodType === "pro"
-								? ButtonStyle.blue
-								: ButtonStyle.dark
-						}
+						sx={product.goButtonStyle ?? ButtonStyle.white}
 						isLoading={!!stripePriceIdToPurchase}
 						disabled={product.isDisabled}
 					>
@@ -103,36 +90,21 @@ export const ProductOverview = (props: ProductOverviewProps) => {
 				onClick={() => {
 					setStripePriceIdToPurchase(product.priceId)
 				}}
-				variant={
-					"outline"
-					// product.isDisabled
-					// 	? "outline"
-					// 	: product.isPopular
-					// 	? "primary"
-					// 	: "outline"
-				}
+				variant={"outline"}
 				size={"sm"}
-				// height={18}
-				// width="100%"
-				// minWidth={"8rem"}
 				fontWeight="semibold"
 				paddingLeft="2em"
 				paddingRight="2em"
-				sx={
-					product.isDisabled || !product.isPopular
-						? {
-								color: "white",
-						  }
-						: {
-								color: "white",
-								borderColor: "blue.500",
-								_hover: {
-									backgroundColor: "blue.800",
-								},
-						  }
-				}
+				sx={{
+					color: "white",
+					...product.cardStyle,
+				}}
 				isLoading={!!stripePriceIdToPurchase}
-				disabled={product.isDisabled}
+				isDisabled={
+					product.isDisabled ||
+					product.isComingSoon ||
+					product.isBelowDesiredLimits
+				}
 			>
 				{product.freeTrialDays && tenantTierName?.toUpperCase() !== "EXPIRED"
 					? "Start Free Trial"
@@ -177,13 +149,7 @@ export const ProductOverview = (props: ProductOverviewProps) => {
 				{products
 					.filter((p) => !p.hideOverviewCard)
 					.map((product, id) => (
-						<Box
-							key={id}
-							flexBasis={"240px"}
-							flexGrow={0.25}
-							flexShrink={0.25}
-							backgroundColor={theme.tierBg === "light" ? "#FFF" : "inherit"}
-						>
+						<Box key={id} flexBasis={"240px"} flexGrow={0.25} flexShrink={0.25}>
 							<Box
 								bg={"theme_accent"}
 								rounded="lg"
@@ -206,6 +172,7 @@ export const ProductOverview = (props: ProductOverviewProps) => {
 								}}
 								p={[4, 4, 6]}
 								height="100%"
+								backgroundColor={theme.tierBg === "light" ? "#FFF" : "inherit"}
 								borderRadius="lg"
 								borderWidth="1px"
 								borderTop={"6px solid"}
