@@ -77,7 +77,11 @@ export const ProductOverview = (props: ProductOverviewProps) => {
 						color={theme.lightButtonText}
 						sx={product.goButtonStyle ?? ButtonStyle.white}
 						isLoading={!!stripePriceIdToPurchase}
-						disabled={product.isDisabled}
+						isDisabled={
+							product.isDisabled ||
+							product.isComingSoon ||
+							product.isBelowDesiredLimits
+						}
 					>
 						{product.go}
 					</Button>
