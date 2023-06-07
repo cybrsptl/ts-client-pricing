@@ -3,6 +3,7 @@ import { Box } from "@chakra-ui/react"
 import AppConfig from "@common/constants/AppConfig"
 import { ButtonStyle } from "@common/utils/theme"
 import { PricingList, PricingListItem } from "../components/PricingDescList"
+import { PricingBillingMode } from "./PricingConstants"
 import { PricingAccountType } from "./PricingTypes"
 
 // Note: Tier thresholds should match out latest values here:
@@ -10,7 +11,9 @@ import { PricingAccountType } from "./PricingTypes"
 
 export const defaultPricingTier = 2 // Default to Starter 2 tier
 
-const PricingAccounts: PricingAccountType[] = [
+const PricingAccounts: (
+	pricingBillingMode?: PricingBillingMode
+) => PricingAccountType[] = (pricingBillingMode) => [
 	{
 		name: "Free Trial",
 		hideOverviewCard: true,

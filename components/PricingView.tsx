@@ -80,7 +80,7 @@ export const PricingView = ({
 	// (Used to determine where to place the discrete stops for the ProductTierSelection slider).
 	const pricingTiers = useMemo(() => {
 		const pricingTiers = {}
-		PricingAccounts.forEach((type) => {
+		PricingAccounts().forEach((type) => {
 			if (!type.tiersByGbToStripeIDs) {
 				return
 			}
@@ -110,10 +110,7 @@ export const PricingView = ({
 	// Normalize PricingAccountTypes
 	// (Flattens all XXXByTier values into a pricing-tier-aligned feature/pricing matrix to be rendered by child components).
 	const products = React.useMemo(() => {
-		const accountTypesForChosenTier: PricingAccountType[] = JSON.parse(
-			JSON.stringify(PricingAccounts)
-		)
-
+		const accountTypesForChosenTier = PricingAccounts(billingMode)
 		accountTypesForChosenTier.forEach((product) => {
 			if (!product.tiersByGbToStripeIDs) {
 				return
@@ -121,14 +118,6 @@ export const PricingView = ({
 
 			// console.log("------")
 			// console.log("pricingAccount.name", pricingAccount.name)
-
-			// Copy product descriptions from source PricingAccounts data, as React nodes can't survive JSON serialization.
-			const sourcePricingAccount = PricingAccounts.find(
-				(p) => p.prodType === product.prodType
-			)
-			if (sourcePricingAccount) {
-				product.description = sourcePricingAccount.description
-			}
 
 			// Find the lowest tier for this account type with enough GB to satisfy current billingTier selection
 			const tiersAsc: number[] = Object.keys(product.tiersByGbToStripeIDs)
@@ -224,7 +213,7 @@ export const PricingView = ({
 		// console.log("accountTypesForChosenTier", accountTypesForChosenTier)
 		return accountTypesForChosenTier
 		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [PricingAccounts, billingTier, billingMode, pricingData])
+	}, [billingTier, billingMode, pricingData])
 
 	return (
 		<Box as="section">
