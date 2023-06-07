@@ -32,7 +32,6 @@ const PricingAccounts: (
 			xferByTier: {
 				1: "3 GB",
 			},
-			perGbMonth: "$8/mo",
 			projects: "3",
 			assets: 1000,
 			resources: {
@@ -135,7 +134,8 @@ const PricingAccounts: (
 			projects: "5",
 			assets: "Unlimited",
 			resources: {
-				perGb: "$8/mo",
+				perGb:
+					pricingBillingMode === PricingBillingMode.ANNUAL ? "$8/mo" : "$10/mo",
 				perUser: false,
 				seats: false,
 			},
@@ -278,8 +278,9 @@ const PricingAccounts: (
 				200: 200,
 			},
 			resources: {
+				perGb:
+					pricingBillingMode === PricingBillingMode.ANNUAL ? "$4/mo" : "$5/mo",
 				num_assets: "Unlimited",
-				perGb: "$4/mo",
 				perUser: false,
 				seats: false,
 			},
@@ -389,7 +390,8 @@ const PricingAccounts: (
 			projects: "Unlimited",
 			assets: "Unlimited",
 			resources: {
-				perGb: "$3/mo",
+				perGb:
+					pricingBillingMode === PricingBillingMode.ANNUAL ? "$3/mo" : "$4/mo",
 				perUser: "$49/mo",
 				seats: "2",
 			},

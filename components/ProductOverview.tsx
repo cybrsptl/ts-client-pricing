@@ -192,7 +192,7 @@ export const ProductOverview = (props: ProductOverviewProps) => {
 											{product.name.replace(/[0-9]/g, "")}
 										</Text>
 										<Text
-											fontSize="14px"
+											fontSize="xs"
 											paddingBottom={8}
 											color={theme.tierSubtitle}
 										>
@@ -220,14 +220,16 @@ export const ProductOverview = (props: ProductOverviewProps) => {
 											</>
 										)}
 										{product.pricePerMonthBilledMonthly && (
-											<Text fontSize="sm" color={theme.costSubtitle} mt={1}>
-												Paid annually or ${product.pricePerMonthBilledMonthly}{" "}
+											<Text fontSize="xs" color={theme.costSubtitle} mt={1}>
+												Paid annually or $
+												{product.pricePerMonthBilledMonthly.toLocaleString()}{" "}
 												paid monthly
 											</Text>
 										)}
 										{product.pricePerMonthBilledAnnually && (
-											<Text fontSize="sm" color={theme.costSubtitle} mt={1}>
-												Paid monthly or ${product.pricePerMonthBilledAnnually}{" "}
+											<Text fontSize="xs" color={theme.costSubtitle} mt={1}>
+												Paid monthly or $
+												{product.pricePerMonthBilledAnnually.toLocaleString()}{" "}
 												paid annually
 											</Text>
 										)}
@@ -240,8 +242,8 @@ export const ProductOverview = (props: ProductOverviewProps) => {
 											<Text
 												fontSize={16}
 												fontWeight="bold"
-												pt={8}
-											>{`${product.features.resources["perGb"]} per extra GB`}</Text>
+												pt={4}
+											>{`${product.features.resources["perGb"]} per GB`}</Text>
 										)}
 
 										<VStack
