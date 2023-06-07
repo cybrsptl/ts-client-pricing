@@ -77,9 +77,7 @@ export const ProductOverview = (props: ProductOverviewProps) => {
 						color={theme.lightButtonText}
 						sx={product.goButtonStyle ?? ButtonStyle.white}
 						isLoading={!!stripePriceIdToPurchase}
-						isDisabled={
-							product.isDisabled ||
-						}
+						isDisabled={product.isDisabled}
 					>
 						{product.go}
 					</Button>
@@ -102,9 +100,7 @@ export const ProductOverview = (props: ProductOverviewProps) => {
 					...product.cardStyle,
 				}}
 				isLoading={!!stripePriceIdToPurchase}
-				isDisabled={
-					product.isDisabled ||
-				}
+				isDisabled={product.isDisabled}
 			>
 				{product.freeTrialDays && tenantTierName?.toUpperCase() !== "EXPIRED"
 					? "Start Free Trial"
@@ -158,13 +154,11 @@ export const ProductOverview = (props: ProductOverviewProps) => {
 									overflow: "hidden",
 									position: "relative",
 									opacity:
-										product.isDisabled ||
-										product.isBelowDesiredLimits
+										product.isDisabled || product.isBelowDesiredLimits
 											? 0.5
 											: 1,
 									cursor:
-										product.isDisabled ||
-										product.isBelowDesiredLimits
+										product.isDisabled || product.isBelowDesiredLimits
 											? "not-allowed"
 											: "auto",
 								}}

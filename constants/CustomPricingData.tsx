@@ -14,9 +14,6 @@ const PricingAccounts: PricingAccountForTierType[] = [
 		hideOverviewCard: true,
 		prodType: "trial",
 		goButtonStyle: ButtonStyle.light,
-		tiersByGB: {
-			1: "",
-		},
 		dataInGB: 0.0,
 		freeTrialDays: 7,
 		tierShort: {
@@ -108,7 +105,7 @@ const PricingAccounts: PricingAccountForTierType[] = [
 			</PricingList>
 		),
 		// footer: "Plus everything in Free",
-		tiersByGB: {
+		tiersByGbToStripeIDs: {
 			2: AppConfig.stripe_test_mode ? "prod_NzaoJMCcrvfdBl" : "",
 			5: AppConfig.stripe_test_mode ? "prod_Nzarmn4e78EXz2" : "",
 			10: AppConfig.stripe_test_mode ? "prod_NK6dRgnmymlqGS" : "",
@@ -238,7 +235,7 @@ const PricingAccounts: PricingAccountForTierType[] = [
 			borderColor: "blue.500",
 			boxShadow: "0px 0px 7px 0px rgba(74,189,255,0.25)",
 		},
-		tiersByGB: {
+		tiersByGbToStripeIDs: {
 			50: AppConfig.stripe_test_mode ? "prod_NMdZCgj8c3lABb" : "",
 			75: AppConfig.stripe_test_mode ? "prod_NzcOkvKcfwEJDA" : "",
 			100: AppConfig.stripe_test_mode ? "prod_MeU7K4Gq8jKxec" : "",
@@ -366,7 +363,7 @@ const PricingAccounts: PricingAccountForTierType[] = [
 		),
 		footer: "Plus everything in Pro!",
 		// borderColor: "gray.500",
-		tiersByGB: {
+		tiersByGbToStripeIDs: {
 			300: AppConfig.stripe_test_mode ? "prod_MeU7Sd8NfyG2y1" : "",
 			500: AppConfig.stripe_test_mode ? "prod_MeU7Sd8NfyG2y1" : "",
 			1000: AppConfig.stripe_test_mode ? "prod_MeU7Sd8NfyG2y1" : "",

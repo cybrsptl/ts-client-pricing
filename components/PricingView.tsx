@@ -79,13 +79,14 @@ export const PricingView = ({
 	const pricingTiers = useMemo(() => {
 		const pricingTiers = {}
 		PricingAccounts.forEach((type) => {
-			if (!type.tiersByGB) {
+			if (!type.tiersByGbToStripeIDs) {
 				return
 			}
-			Object.entries(type.tiersByGB).forEach(([k, v]) => {
+
+			Object.entries(type.tiersByGbToStripeIDs).forEach(([k, v]) => {
 				const prodKey = `${v}|${PricingBillingModeToStripe[billingMode]}`
 
-				// Blank tiersByGB values indicate free tiers
+				// Blank tiersByGbToStripeIDs values indicate free tiers
 				if (!v) {
 					pricingTiers[k] = null
 					return
@@ -112,7 +113,7 @@ export const PricingView = ({
 		)
 
 		accountTypesForChosenTier.forEach((product) => {
-			if (!product.tiersByGB) {
+			if (!product.tiersByGbToStripeIDs) {
 				return
 			}
 
@@ -128,7 +129,7 @@ export const PricingView = ({
 			}
 
 			// Find the lowest tier for this account type with enough GB to satisfy current billingTier selection
-			const tiersAsc: number[] = Object.keys(product.tiersByGB)
+			const tiersAsc: number[] = Object.keys(product.tiersByGbToStripeIDs)
 				.sort((a, b) => parseFloat(a) - parseFloat(b))
 				.map((k) => parseFloat(k))
 
@@ -144,7 +145,7 @@ export const PricingView = ({
 				lowestTierIndex = tiersAsc[tiersAsc.length - 1]
 			}
 
-			const lowestTierProductId = product.tiersByGB[lowestTierIndex]
+			const lowestTierProductId = product.tiersByGbToStripeIDs[lowestTierIndex]
 			const tierProdKey = `${lowestTierProductId}|${PricingBillingModeToStripe[billingMode]}`
 
 			// Flatten ByTier values to match current tier

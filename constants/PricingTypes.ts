@@ -37,7 +37,7 @@ export type PricingAccountForTierType = {
 	dataInGB?: number
 	billingFrequency?: string
 	prodType: string
-	tiersByGB: { [key: number]: string }
+	tiersByGbToStripeIDs?: { [key: number]: string }
 	tierShort: { [key: string]: string }
 	features: { [key: string]: object | string | boolean | number }
 	hideOverviewCard?: boolean
