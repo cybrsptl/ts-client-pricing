@@ -14,9 +14,9 @@ import {
 import useIsMobile from "@common/hooks/useIsMobile"
 import { ButtonStyle, ThemeColor } from "@common/utils/theme"
 import { PricingBillingMode } from "../constants/PricingConstants"
-import { PricingAccountForTierType } from "../constants/PricingTypes"
+import { PricingAccountType } from "../constants/PricingTypes"
 interface ProductOverviewProps extends TableProps {
-	products: PricingAccountForTierType[]
+	products: PricingAccountType[]
 	billingMode: PricingBillingMode
 	setBillingMode: (PricingBillingMode) => void
 	billingTier: number
@@ -43,7 +43,7 @@ export const ProductOverview = (props: ProductOverviewProps) => {
 		...containerProps
 	} = props
 
-	const ctaButton = (product: PricingAccountForTierType, theme: ThemeColor) => {
+	const ctaButton = (product: PricingAccountType, theme: ThemeColor) => {
 		if (product.isBelowDesiredLimits) {
 			return (
 				<Text
@@ -193,7 +193,7 @@ export const ProductOverview = (props: ProductOverviewProps) => {
 										</Text>
 										<Text
 											fontSize="14px"
-											paddingBottom={6}
+											paddingBottom={8}
 											color={theme.tierSubtitle}
 										>
 											{product.subTitle}
@@ -236,10 +236,13 @@ export const ProductOverview = (props: ProductOverviewProps) => {
 												Annual billing only
 											</Text>
 										)}
-										{/* <Text
-											fontSize={16}
-											pt={6}
-										>{`$${product.perGb}/mo per extra GB`}</Text> */}
+										{product.features.resources["perGb"] && (
+											<Text
+												fontSize={16}
+												fontWeight="bold"
+												pt={8}
+											>{`${product.features.resources["perGb"]} per extra GB`}</Text>
+										)}
 
 										<VStack
 											whiteSpace="normal"

@@ -3,13 +3,15 @@ import { useEffect, useMemo, useState } from "react"
 import { Box, Stack } from "@chakra-ui/react"
 import AppConfig from "@common/constants/AppConfig"
 import { ThemeColor } from "@common/utils/theme"
-import PricingAccounts from "../constants/CustomPricingData"
+import PricingAccounts, {
+	defaultPricingTier,
+} from "../constants/CustomPricingData"
 import {
 	PricingBillingMode,
 	PricingBillingModeToStripe,
 } from "../constants/PricingConstants"
 import {
-	PricingAccountForTierType,
+	PricingAccountType,
 	StripePricingDataList,
 } from "../constants/PricingTypes"
 import { PricingDataDev, PricingDataProd } from "../constants/StripePricingData"
@@ -47,7 +49,7 @@ export const PricingView = ({
 	)
 
 	// Automatically set billing tier to current tenant limit when page loads
-	const [billingTier, setBillingTier] = useState(10) // Default to Starter 10 (10 GB tier)
+	const [billingTier, setBillingTier] = useState(defaultPricingTier)
 	useEffect(() => {
 		if (
 			!tenantDataUnderAnalysis ||
@@ -108,7 +110,7 @@ export const PricingView = ({
 	// Normalize PricingAccountTypes
 	// (Flattens all XXXByTier values into a pricing-tier-aligned feature/pricing matrix to be rendered by child components).
 	const products = React.useMemo(() => {
-		const accountTypesForChosenTier: PricingAccountForTierType[] = JSON.parse(
+		const accountTypesForChosenTier: PricingAccountType[] = JSON.parse(
 			JSON.stringify(PricingAccounts)
 		)
 

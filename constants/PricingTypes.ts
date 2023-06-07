@@ -16,7 +16,7 @@ export interface StripePricingDataList {
 	[key: string]: StripePricingData
 }
 
-export type PricingAccountForTierType = {
+export type PricingAccountType = {
 	name: string
 	subTitle?: string
 	footer?: string
@@ -31,9 +31,7 @@ export type PricingAccountForTierType = {
 	pricePerMonth?: number
 	pricePerMonthBilledMonthly?: number
 	pricePerMonthBilledAnnually?: number
-	description?:
-		| string
-		| ((product: PricingAccountForTierType) => React.ReactNode)
+	description?: string | ((product: PricingAccountType) => React.ReactNode)
 	dataInGB?: number
 	billingFrequency?: string
 	prodType: string

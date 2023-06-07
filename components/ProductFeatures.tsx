@@ -22,13 +22,13 @@ import {
 import { ButtonStyle, ThemeColor, colors } from "@common/utils/theme"
 import { PricingFeatures } from "../constants/CustomPricingData"
 import { PricingBillingMode } from "../constants/PricingConstants"
-import { PricingAccountForTierType } from "../constants/PricingTypes"
+import { PricingAccountType } from "../constants/PricingTypes"
 import { PricingFeature } from "./PricingFeature"
 
 interface ProductFeaturesProps extends TableProps {
 	billingMode: PricingBillingMode
 	billingTier: number
-	products: PricingAccountForTierType[]
+	products: PricingAccountType[]
 	theme: ThemeColor
 }
 

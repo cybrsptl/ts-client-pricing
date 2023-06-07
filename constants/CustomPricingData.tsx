@@ -3,18 +3,19 @@ import { Box } from "@chakra-ui/react"
 import AppConfig from "@common/constants/AppConfig"
 import { ButtonStyle } from "@common/utils/theme"
 import { PricingList, PricingListItem } from "../components/PricingDescList"
-import { PricingAccountForTierType } from "./PricingTypes"
+import { PricingAccountType } from "./PricingTypes"
 
 // Note: Tier thresholds should match out latest values here:
 // https://docs.google.com/spreadsheets/d/1rQRlPnumgwwRB2d-18kU82fpEOwILBEXys_FgbVdjc0
 
-const PricingAccounts: PricingAccountForTierType[] = [
+export const defaultPricingTier = 2 // Default to Starter 2 tier
+
+const PricingAccounts: PricingAccountType[] = [
 	{
 		name: "Free Trial",
 		hideOverviewCard: true,
 		prodType: "trial",
 		goButtonStyle: ButtonStyle.light,
-		dataInGB: 0.0,
 		freeTrialDays: 7,
 		tierShort: {
 			title: "Free Trial",
@@ -28,11 +29,11 @@ const PricingAccounts: PricingAccountForTierType[] = [
 			xferByTier: {
 				1: "3 GB",
 			},
+			perGbMonth: "$8/mo",
 			projects: "3",
 			assets: 1000,
 			resources: {
 				num_assets: "Unlimited",
-				perGb: "$8/mo",
 				perUser: false,
 				seats: false,
 			},
@@ -87,7 +88,7 @@ const PricingAccounts: PricingAccountForTierType[] = [
 		prodType: "starter",
 		go: "Go Starter",
 		goButtonStyle: ButtonStyle.white,
-		description: (product: PricingAccountForTierType) => (
+		description: (product: PricingAccountType) => (
 			<PricingList mb={2}>
 				<PricingListItem>
 					<>{product.features["data"]} data under analysis</>
@@ -109,7 +110,6 @@ const PricingAccounts: PricingAccountForTierType[] = [
 			10: AppConfig.stripe_test_mode ? "prod_NK6dRgnmymlqGS" : "",
 			20: AppConfig.stripe_test_mode ? "prod_Nzat4nsV0oAz24" : "",
 		},
-		dataInGB: 0.0,
 		freeTrialDays: 7,
 		tierShort: {
 			title: "Starter",
@@ -195,7 +195,7 @@ const PricingAccounts: PricingAccountForTierType[] = [
 			},
 		},
 		footer: "Plus everything in Starter!",
-		description: (product: PricingAccountForTierType) => (
+		description: (product: PricingAccountType) => (
 			<>
 				<PricingList>
 					<PricingListItem>
@@ -331,7 +331,7 @@ const PricingAccounts: PricingAccountForTierType[] = [
 		go: "Go Teams",
 		goButtonStyle: ButtonStyle.dark,
 		subTitle: "Collaborative analysis for elite teams",
-		description: (product: PricingAccountForTierType) => (
+		description: (product: PricingAccountType) => (
 			<>
 				<PricingList>
 					<PricingListItem>
@@ -442,7 +442,7 @@ interface Feature {
 	sectionKey: string // section within "features" object to pull from
 	items: {
 		name: string | React.ReactElement
-		key: string //keyof typeof PricingAccounts[number]["features"]
+		key: string
 		tooltip?: string
 	}[]
 }
@@ -649,10 +649,5 @@ export const PricingFeatures: Feature[] = [
 		],
 	},
 ]
-
-export type ElementType<T extends ReadonlyArray<unknown>> =
-	T extends ReadonlyArray<infer ElementType> ? ElementType : never
-
-export type PricingAccountsType = ElementType<typeof PricingAccounts>
 
 export default PricingAccounts
