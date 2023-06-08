@@ -458,7 +458,7 @@ export const PricingFeatures: Feature[] = [
 				key: "data",
 				name: "Data Under Analysis",
 				tooltip:
-					"Total uncompressed amount of data analyzed and stored for all your projects.",
+					"Total amount of uncompressed data we've analyzed and stored for your account",
 			},
 			{
 				key: "xfer",
@@ -520,10 +520,10 @@ export const PricingFeatures: Feature[] = [
 			// 	key: "log_carving",
 			// 	name: "Log Carving",
 			// },
-			// {
-			// 	key: "pcap_carving",
-			// 	name: "PCAP Carving",
-			// },
+			{
+				key: "pcap_carving",
+				name: "PCAP Carving",
+			},
 			{
 				key: "vulnerability_info",
 				name: "Vulnerability Info",
