@@ -26,12 +26,8 @@ const PricingAccounts: (
 			go: "Try for Free",
 		},
 		features: {
-			dataByTier: {
-				1: "1 GB",
-			},
-			xferByTier: {
-				1: "3 GB",
-			},
+			data: "1 GB",
+			xfer: "3 GB",
 			projects: "3",
 			assets: 1000,
 			resources: {
