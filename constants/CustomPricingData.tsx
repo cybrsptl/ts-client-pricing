@@ -221,8 +221,10 @@ const PricingAccounts: (
 					}}
 				>
 					<Image
-						src={require("../public/icons/enrichment_partners.svg")}
-						alt={"GreyNoise"}
+						src="https://cdn.teleseer.com/purchase_icons/enrichment_partners.svg"
+						alt={"GreyNoise & IpInfo"}
+						width={222}
+						height={19}
 					/>
 				</Box>
 			</>
