@@ -206,9 +206,9 @@ const PricingAccounts: (
 					<PricingListItem>
 						<>Advanced data exports</>
 					</PricingListItem>
-					<PricingListItem>
+					{/* <PricingListItem>
 						<>Automated report generation</>
-					</PricingListItem>
+					</PricingListItem> */}
 					<PricingListItem>
 						<>Integrated threat feeds</>
 					</PricingListItem>
@@ -344,9 +344,9 @@ const PricingAccounts: (
 					<PricingListItem>
 						<>API-based uploads</>
 					</PricingListItem>
-					<PricingListItem>
+					{/* <PricingListItem>
 						<>Single sign-on (SSO)</>
-					</PricingListItem>
+					</PricingListItem> */}
 					<PricingListItem>
 						<>Unified billing and admin</>
 					</PricingListItem>
