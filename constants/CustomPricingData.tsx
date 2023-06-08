@@ -458,26 +458,32 @@ export const PricingFeatures: Feature[] = [
 			{
 				key: "xfer",
 				name: "Monthly Data Transfer",
+				tooltip: "Amount of data uploaded and analyzed for your account",
 			},
 			{
 				key: "projects",
 				name: "Total Projects",
+				tooltip: "Number of dataset collections for analysis",
 			},
 			{
 				key: "assets",
 				name: "Total Assets",
+				tooltip: "All the devices and hosts we've discovered from your data",
 			},
 			{
 				key: "perGb",
 				name: "$ per GB (avg)",
+				tooltip: "Average price/GB of data under analysis",
 			},
 			{
 				key: "perUser",
 				name: "$ per Extra User",
+				tooltip: "Price per additional user seat",
 			},
 			{
 				key: "seats",
 				name: "User Seats",
+				tooltip: "Number of pre-included seats for your account",
 			},
 		],
 	},
@@ -488,10 +494,12 @@ export const PricingFeatures: Feature[] = [
 			{
 				key: "pcap",
 				name: "PCAP Ingest",
+				tooltip: "We support analyzing PCAP and PCAP-ng files",
 			},
 			{
 				key: "zeek",
 				name: "Zeek Log Ingest",
+				tooltip: "We support ingesting most Zeek log types",
 			},
 			// {
 			// 	key: "api_uploads",
@@ -506,22 +514,28 @@ export const PricingFeatures: Feature[] = [
 			{
 				key: "asset_identification",
 				name: "Asset Identification",
+				tooltip: "Unique assets identified by by our analysis engine",
 			},
 			{
 				key: "event_detection",
 				name: "Event Detection",
+				tooltip:
+					"Network events we detect, such as logins, file transfers, and vulnerability scans",
+			},
+			{
+				key: "pcap_carving",
+				name: "PCAP Carving",
+				tooltip:
+					"Select and download traffic for specific assets, protocols, and time ranges",
 			},
 			// {
 			// 	key: "log_carving",
 			// 	name: "Log Carving",
 			// },
 			{
-				key: "pcap_carving",
-				name: "PCAP Carving",
-			},
-			{
 				key: "vulnerability_info",
 				name: "Vulnerability Info",
+				tooltip: "See all CVEs associated with your assets and apps",
 			},
 			// {
 			// 	key: "vulnerability_prioritization",
@@ -540,14 +554,20 @@ export const PricingFeatures: Feature[] = [
 			{
 				key: "asset_summary",
 				name: "Asset Inventory",
+				tooltip:
+					"Passively discover assets on your network and export as a CSV file",
 			},
 			{
 				key: "internet_hosts",
 				name: "Internet Hosts",
+				tooltip:
+					"Track all IPs and domains your network has interacted with and export as a CSV file",
 			},
 			{
 				key: "screenshots",
 				name: "Screenshots",
+				tooltip:
+					"Export full-resolution screenshots of your network map and timeline as PNG images",
 			},
 			// {
 			// 	key: "credentials",
@@ -586,6 +606,7 @@ export const PricingFeatures: Feature[] = [
 			{
 				key: "google",
 				name: "Sign-in with Google",
+				tooltip: "Register and login using your Google account",
 			},
 			// {
 			// 	key: "two_factor",
@@ -616,18 +637,23 @@ export const PricingFeatures: Feature[] = [
 			{
 				key: "help_center",
 				name: "Help Center Docs",
+				tooltip: "Educational content published on our website",
 			},
 			{
 				key: "community",
 				name: "Community Support",
+				tooltip:
+					"Support from other Teleseer users on our Slack and Discourse channels",
 			},
 			{
 				key: "one_on_one",
 				name: "1-on-1 Support",
+				tooltip: "Individualized email and chat with our support team",
 			},
 			{
 				key: "response_time",
 				name: "Service Response Time",
+				tooltip: "We respond to inquiries within guaranteed time periods",
 			},
 		],
 	},
@@ -638,10 +664,14 @@ export const PricingFeatures: Feature[] = [
 			{
 				key: "ipinfo",
 				name: "IPinfo",
+				tooltip:
+					"Enrich IP addresses with Geo, Company, ASN, Domain and other data",
 			},
 			{
 				key: "greynoise",
 				name: "GreyNoise",
+				tooltip:
+					"Identify benign and malicious IP addresses with Internet-wide scan and attack data",
 			},
 		],
 	},
