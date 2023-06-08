@@ -53,9 +53,9 @@ export const ProductOverview = (props: ProductOverviewProps) => {
 					borderColor={theme?.whiteButtonText}
 					color={theme?.darkButtonText}
 					borderRadius={16}
-					padding={1.5}
+					padding={1}
 				>
-					Too small for {billingTier} GB analysis workloads
+					Too small for {billingTier} GB DUA
 				</Text>
 			)
 		}
@@ -128,84 +128,86 @@ export const ProductOverview = (props: ProductOverviewProps) => {
 					</Text>
 				</HStack>
 			</Center>
-			<Flex
-				sx={{
-					justifyContent: "center",
-					alignItems: "top",
-					gap: 4,
-					flexWrap: "wrap",
-					px: 8,
-					pb: 1,
-				}}
-				{...containerProps}
-			>
-				{products
-					.filter((p) => !p.hideOverviewCard)
-					.map((product, id) => (
-						<Box
-							key={id}
-							flexBasis={"240px"}
-							flexGrow={0.25}
-							flexShrink={0.25}
-							rounded="lg"
-							overflow="hidden"
-						>
+			<Center>
+				<Flex
+					{...containerProps}
+					sx={{
+						justifyContent: "center",
+						alignItems: "top",
+						flexWrap: "wrap",
+						width: "100%",
+						maxWidth: "1000px",
+						gap: 4,
+						pb: 1,
+					}}
+				>
+					{products
+						.filter((p) => !p.hideOverviewCard)
+						.map((product, id) => (
 							<Box
-								bg={"theme_accent"}
-								sx={{
-									textAlign: "center",
-									overflow: "hidden",
-									position: "relative",
-									opacity:
-										product.isDisabled || product.isBelowDesiredLimits
-											? 0.5
-											: 1,
-									cursor:
-										product.isDisabled || product.isBelowDesiredLimits
-											? "not-allowed"
-											: "auto",
-									borderColor: "bg_white",
-									borderTopWidth: "6px",
-									height: "100%",
-									backgroundColor: "bg_white",
-									p: [4, 4, 6],
-									boxShadow: "lg",
-									...(product.cardStyle ?? {}),
-								}}
+								key={id}
+								flex={1}
+								minWidth={"240px"}
+								maxWidth={"340px"}
+								rounded="lg"
+								overflow="hidden"
 							>
-								<VStack
-									width="100%"
-									height="100%"
-									alignItems="center"
-									justifyContent="space-between"
+								<Box
+									bg={"theme_accent"}
+									sx={{
+										textAlign: "center",
+										overflow: "hidden",
+										position: "relative",
+										opacity:
+											product.isDisabled || product.isBelowDesiredLimits
+												? 0.5
+												: 1,
+										cursor:
+											product.isDisabled || product.isBelowDesiredLimits
+												? "not-allowed"
+												: "auto",
+										borderColor: "bg_white",
+										borderTopWidth: "6px",
+										height: "100%",
+										backgroundColor: "bg_white",
+										p: [4, 4, 6],
+										boxShadow: "lg",
+										...(product.cardStyle ?? {}),
+									}}
 								>
-									<Box>
-										<Text
-											fontSize="24px"
-											fontWeight="bold"
-											letterSpacing="wider"
-											color={theme?.tierName}
-										>
-											{product.name.replace(/[0-9]/g, "")}
-										</Text>
-										<Text
-											fontSize="xs"
-											paddingBottom={8}
-											color={theme.tierSubtitle}
-										>
-											{product.subTitle}
-										</Text>
-										{product.pricePerMonth && (
-											<>
-												<Heading
-													fontSize="28px"
-													as="span"
-													color="default"
-													ml={4}
-												>
-													${product.pricePerMonth.toLocaleString()} per month
-												</Heading>
-												{/* <Text
+									<VStack
+										width="100%"
+										height="100%"
+										alignItems="center"
+										justifyContent="space-between"
+									>
+										<Box>
+											<Text
+												fontSize="24px"
+												fontWeight="bold"
+												letterSpacing="wider"
+												color={theme?.tierName}
+											>
+												{product.name.replace(/[0-9]/g, "")}
+											</Text>
+											<Text
+												fontSize="xs"
+												paddingBottom={8}
+												color={theme.tierSubtitle}
+											>
+												{product.subTitle}
+											</Text>
+											{product.pricePerMonth && (
+												<>
+													<Heading
+														fontSize="28px"
+														as="span"
+														color="default"
+														ml={4}
+													>
+														${product.pricePerMonth.toLocaleString()} per month
+													</Heading>
+													{/* <Text
                                             fontSize="sm"
                                             as="span"
                                             color="muted"
@@ -214,56 +216,57 @@ export const ProductOverview = (props: ProductOverviewProps) => {
                                         >
                                             /mo
                                         </Text> */}
-											</>
-										)}
-										{product.pricePerMonthBilledMonthly && (
-											<Text fontSize="xs" color={theme.costSubtitle} mt={1}>
-												Paid annually or $
-												{product.pricePerMonthBilledMonthly.toLocaleString()}{" "}
-												paid monthly
-											</Text>
-										)}
-										{product.pricePerMonthBilledAnnually && (
-											<Text fontSize="xs" color={theme.costSubtitle} mt={1}>
-												Paid monthly or $
-												{product.pricePerMonthBilledAnnually.toLocaleString()}{" "}
-												paid annually
-											</Text>
-										)}
-										{product.annualBillingOnly && (
-											<Text fontSize="sm" color={theme?.cost} mt={1}>
-												Annual billing only
-											</Text>
-										)}
-										{product.features.resources["perGb"] && (
-											<Text
-												fontSize={16}
-												fontWeight="bold"
-												pt={4}
-											>{`${product.features.resources["perGb"]} per GB`}</Text>
-										)}
+												</>
+											)}
+											{product.pricePerMonthBilledMonthly && (
+												<Text fontSize="xs" color={theme.costSubtitle} mt={1}>
+													Paid annually or $
+													{product.pricePerMonthBilledMonthly.toLocaleString()}{" "}
+													paid monthly
+												</Text>
+											)}
+											{product.pricePerMonthBilledAnnually && (
+												<Text fontSize="xs" color={theme.costSubtitle} mt={1}>
+													Paid monthly or $
+													{product.pricePerMonthBilledAnnually.toLocaleString()}{" "}
+													paid annually
+												</Text>
+											)}
+											{product.annualBillingOnly && (
+												<Text fontSize="sm" color={theme?.cost} mt={1}>
+													Annual billing only
+												</Text>
+											)}
+											{product.features.resources["perGb"] && (
+												<Text
+													fontSize={16}
+													fontWeight="bold"
+													pt={4}
+												>{`${product.features.resources["perGb"]} per GB`}</Text>
+											)}
 
-										<VStack
-											whiteSpace="normal"
-											mt={8}
-											color={theme?.tierBullets}
-										>
-											{typeof product.description === "function"
-												? product.description(product)
-												: product.description}
-										</VStack>
-									</Box>
-									<Box width="100%" color={theme?.tierSubtitle}>
-										<Text fontSize="sm" fontWeight="500" py={4}>
-											{product.footer}
-										</Text>
-										{ctaButton(product, theme)}
-									</Box>
-								</VStack>
+											<VStack
+												whiteSpace="normal"
+												mt={8}
+												color={theme?.tierBullets}
+											>
+												{typeof product.description === "function"
+													? product.description(product)
+													: product.description}
+											</VStack>
+										</Box>
+										<Box width="100%" color={theme?.tierSubtitle}>
+											<Text fontSize="sm" fontWeight="500" py={4}>
+												{product.footer}
+											</Text>
+											{ctaButton(product, theme)}
+										</Box>
+									</VStack>
+								</Box>
 							</Box>
-						</Box>
-					))}
-			</Flex>
+						))}
+				</Flex>
+			</Center>
 		</>
 	)
 }

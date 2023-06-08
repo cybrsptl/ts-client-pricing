@@ -10,9 +10,7 @@ import {
 	PricingBillingMode,
 	PricingBillingModeToStripe,
 } from "../constants/PricingConstants"
-import {
-	StripePricingDataList,
-} from "../constants/PricingTypes"
+import { StripePricingDataList } from "../constants/PricingTypes"
 import { PricingDataDev, PricingDataProd } from "../constants/StripePricingData"
 import { ProductFeatures } from "./ProductFeatures"
 import { ProductOverview } from "./ProductOverview"
@@ -215,7 +213,7 @@ export const PricingView = ({
 	}, [billingTier, billingMode, pricingData])
 
 	return (
-		<Box as="section">
+		<Box as="section" w="100%">
 			<Stack spacing={{ base: "5", md: "7" }} mb={8}>
 				{PurchaseComponent && (
 					<PurchaseComponent
