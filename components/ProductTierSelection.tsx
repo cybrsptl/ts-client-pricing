@@ -68,7 +68,7 @@ export const ProductTierSelection = ({
 	const labelStyles = {
 		mt: "4",
 		ml: "-2.5",
-		fontSize: "sm",
+		fontSize: "xs",
 		minWidth: "4em",
 	}
 
@@ -102,7 +102,7 @@ export const ProductTierSelection = ({
 					>
 						{accountTierSliderIntervals.map((tier, index) => (
 							<SliderMark value={index} {...labelStyles} key={index}>
-								{tier}
+								{Number(tier).toLocaleString()}
 							</SliderMark>
 						))}
 						{/* <SliderMark
@@ -116,14 +116,23 @@ export const ProductTierSelection = ({
 						>
 							{billingTier}%
 						</SliderMark> */}
-						<SliderTrack bg="blue.100">
-							<SliderFilledTrack bg="blue.500" />
+						<SliderTrack bg="section_color_light">
+							<SliderFilledTrack bg="section_color_dark" />
 						</SliderTrack>
 						<SliderThumb
 							boxSize={6}
-							// ml="-2"
+							bg="section_color_dark"
+							color="section_color"
+							px={4}
+							whiteSpace="pre"
+							width={16}
+							fontSize="xs"
+							fontWeight="bold"
 						>
-							<Box color="blue.500" as={MdGraphicEq} />
+							{billingTier >= 1000
+								? billingTier / 1000 + " TB"
+								: billingTier + " GB"}
+							{/* <Box color="blue.500" as={MdGraphicEq} /> */}
 							{/* <Logo color="blue.500" logoStyle="symbol" height={24} /> */}
 						</SliderThumb>
 					</Slider>

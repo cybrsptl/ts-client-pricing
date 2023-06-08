@@ -3,13 +3,14 @@ import { useEffect, useMemo, useState } from "react"
 import { Box, Stack } from "@chakra-ui/react"
 import AppConfig from "@common/constants/AppConfig"
 import { ThemeColor } from "@common/utils/theme"
-import PricingAccounts from "../constants/CustomPricingData"
+import PricingAccounts, {
+	defaultPricingTier,
+} from "../constants/CustomPricingData"
 import {
 	PricingBillingMode,
 	PricingBillingModeToStripe,
 } from "../constants/PricingConstants"
 import {
-	PricingAccountForTierType,
 	StripePricingDataList,
 } from "../constants/PricingTypes"
 import { PricingDataDev, PricingDataProd } from "../constants/StripePricingData"
@@ -47,7 +48,7 @@ export const PricingView = ({
 	)
 
 	// Automatically set billing tier to current tenant limit when page loads
-	const [billingTier, setBillingTier] = useState(10) // Default to Starter 10 (10 GB tier)
+	const [billingTier, setBillingTier] = useState(defaultPricingTier)
 	useEffect(() => {
 		if (
 			!tenantDataUnderAnalysis ||
@@ -78,14 +79,15 @@ export const PricingView = ({
 	// (Used to determine where to place the discrete stops for the ProductTierSelection slider).
 	const pricingTiers = useMemo(() => {
 		const pricingTiers = {}
-		PricingAccounts.forEach((type) => {
-			if (!type.tiersByGB) {
+		PricingAccounts().forEach((type) => {
+			if (!type.tiersByGbToStripeIDs) {
 				return
 			}
-			Object.entries(type.tiersByGB).forEach(([k, v]) => {
+
+			Object.entries(type.tiersByGbToStripeIDs).forEach(([k, v]) => {
 				const prodKey = `${v}|${PricingBillingModeToStripe[billingMode]}`
 
-				// Blank tiersByGB values indicate free tiers
+				// Blank tiersByGbToStripeIDs values indicate free tiers
 				if (!v) {
 					pricingTiers[k] = null
 					return
@@ -107,28 +109,17 @@ export const PricingView = ({
 	// Normalize PricingAccountTypes
 	// (Flattens all XXXByTier values into a pricing-tier-aligned feature/pricing matrix to be rendered by child components).
 	const products = React.useMemo(() => {
-		const accountTypesForChosenTier: PricingAccountForTierType[] = JSON.parse(
-			JSON.stringify(PricingAccounts)
-		)
-
+		const accountTypesForChosenTier = PricingAccounts(billingMode)
 		accountTypesForChosenTier.forEach((product) => {
-			if (!product.tiersByGB) {
+			if (!product.tiersByGbToStripeIDs) {
 				return
 			}
 
 			// console.log("------")
 			// console.log("pricingAccount.name", pricingAccount.name)
 
-			// Copy product descriptions from source PricingAccounts data, as React nodes can't survive JSON serialization.
-			const sourcePricingAccount = PricingAccounts.find(
-				(p) => p.prodType === product.prodType
-			)
-			if (sourcePricingAccount) {
-				product.description = sourcePricingAccount.description
-			}
-
 			// Find the lowest tier for this account type with enough GB to satisfy current billingTier selection
-			const tiersAsc: number[] = Object.keys(product.tiersByGB)
+			const tiersAsc: number[] = Object.keys(product.tiersByGbToStripeIDs)
 				.sort((a, b) => parseFloat(a) - parseFloat(b))
 				.map((k) => parseFloat(k))
 
@@ -144,25 +135,17 @@ export const PricingView = ({
 				lowestTierIndex = tiersAsc[tiersAsc.length - 1]
 			}
 
-			const lowestTierProductId = product.tiersByGB[lowestTierIndex]
+			const lowestTierProductId = product.tiersByGbToStripeIDs[lowestTierIndex]
 			const tierProdKey = `${lowestTierProductId}|${PricingBillingModeToStripe[billingMode]}`
 
 			// Flatten ByTier values to match current tier
 			Object.entries(product?.features || {}).forEach(
 				([featureKey, featureVal]) => {
-					if (!featureKey.endsWith("ByTier") || !featureVal[lowestTierIndex]) {
+					if (!featureKey.endsWith("ByTier")) {
 						return
 					}
+
 					const featureKeyNormalized = featureKey.replace("ByTier", "")
-					// console.log(
-					// 	"featureKeyNormalized",
-					// 	featureKeyNormalized,
-					// 	"featureVal",
-					// 	featureVal,
-					// 	"pricingAccount.features[featureKeyNormalized]",
-					// 	(pricingAccount.features[featureKeyNormalized] =
-					// 		featureVal[lowestTierIndex])
-					// )
 					product.features[featureKeyNormalized] = featureVal[lowestTierIndex]
 				}
 			)
@@ -229,7 +212,7 @@ export const PricingView = ({
 		// console.log("accountTypesForChosenTier", accountTypesForChosenTier)
 		return accountTypesForChosenTier
 		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [PricingAccounts, billingTier, billingMode, pricingData])
+	}, [billingTier, billingMode, pricingData])
 
 	return (
 		<Box as="section">

@@ -1,58 +1,41 @@
 import Image from "next/legacy/image"
 import { Box } from "@chakra-ui/react"
 import AppConfig from "@common/constants/AppConfig"
+import { ButtonStyle } from "@common/utils/theme"
 import { PricingList, PricingListItem } from "../components/PricingDescList"
-import { PricingAccountForTierType } from "./PricingTypes"
+import { PricingBillingMode } from "./PricingConstants"
+import { PricingAccountType } from "./PricingTypes"
 
 // Note: Tier thresholds should match out latest values here:
 // https://docs.google.com/spreadsheets/d/1rQRlPnumgwwRB2d-18kU82fpEOwILBEXys_FgbVdjc0
 
-const PricingAccounts = [
+export const defaultPricingTier = 2 // Default to Starter 2 tier
+
+const PricingAccounts: (
+	pricingBillingMode?: PricingBillingMode
+) => PricingAccountType[] = (pricingBillingMode) => [
 	{
-		name: "Starter",
-		subTitle: "On-demand analysis for individuals",
-		prodType: "starter",
-		go: "Go Starter",
-		perGb: "8",
-		description: (product: PricingAccountForTierType) => (
-			<PricingList mb={2}>
-				<PricingListItem>
-					<>{product.features.resources["dua"]} data under analysis</>
-				</PricingListItem>
-				<PricingListItem>
-					<>{product.features.resources["num_projects"]} projects</>
-				</PricingListItem>
-				<PricingListItem>
-					<>{product.features.resources["num_assets"]} assets</>
-				</PricingListItem>
-				<PricingListItem>
-					<>PCAP Carving</>
-				</PricingListItem>
-			</PricingList>
-		),
-		// footer: "Plus everything in Free",
-		tiersByGB: {
-			// 5: AppConfig.stripe_test_mode
-			// 	? "prod_MeU6p5nJCScRjT"
-			// 	: "prod_MfuUHskBj85gTF",
-			10: AppConfig.stripe_test_mode
-				? "prod_NK6dRgnmymlqGS"
-				: "prod_NMXm7zGLj81wvL",
-		},
-		dataInGB: 0.0,
+		name: "Free Trial",
+		hideOverviewCard: true,
+		prodType: "trial",
+		goButtonStyle: ButtonStyle.light,
 		freeTrialDays: 7,
 		tierShort: {
-			title: "Starter",
-			subtitle: "On-demand analysis",
-			go: "Go Starter",
+			title: "Free Trial",
+			subtitle: "7-day Teleseer trial",
+			go: "Try for Free",
 		},
 		features: {
+			dataByTier: {
+				1: "1 GB",
+			},
+			xferByTier: {
+				1: "3 GB",
+			},
+			projects: "3",
+			assets: 1000,
 			resources: {
-				dua: "10 GB",
-				monthly_transfer: "50 GB",
-				num_projects: "5",
 				num_assets: "Unlimited",
-				perGb: "$8/mo",
 				perUser: false,
 				seats: false,
 			},
@@ -79,7 +62,106 @@ const PricingAccounts = [
 				file_extraction: false,
 				reports: false,
 				downloads: false,
-				timeline: false,
+				data_carving: "100 MB",
+			},
+			admin: {
+				google: true,
+				two_factor: true,
+				sso: false,
+				unified_billing: false,
+				resource_pooling: false,
+				team_perms: false,
+			},
+			service: {
+				help_center: true,
+				community: true,
+				one_on_one: false,
+				response_time: false,
+			},
+			feeds: {
+				ipinfo: "25 / day",
+				greynoise: false,
+			},
+		},
+	},
+	{
+		name: "Starter",
+		subTitle: "On-demand analysis for individuals",
+		prodType: "starter",
+		go: "Go Starter",
+		goButtonStyle: ButtonStyle.white,
+		description: (product: PricingAccountType) => (
+			<PricingList mb={2}>
+				<PricingListItem>
+					<>{product.features["data"]} data under analysis</>
+				</PricingListItem>
+				<PricingListItem>
+					<>{product.features["projects"]} projects</>
+				</PricingListItem>
+				<PricingListItem>
+					<>{product.features["assets"]} assets</>
+				</PricingListItem>
+				<PricingListItem>
+					<>PCAP Carving</>
+				</PricingListItem>
+			</PricingList>
+		),
+		tiersByGbToStripeIDs: {
+			2: AppConfig.stripe_test_mode ? "prod_NzaoJMCcrvfdBl" : "",
+			5: AppConfig.stripe_test_mode ? "prod_Nzarmn4e78EXz2" : "",
+			10: AppConfig.stripe_test_mode ? "prod_NK6dRgnmymlqGS" : "",
+			20: AppConfig.stripe_test_mode ? "prod_Nzat4nsV0oAz24" : "",
+		},
+		freeTrialDays: 7,
+		tierShort: {
+			title: "Starter",
+			subtitle: "On-demand analysis",
+			go: "Go Starter",
+		},
+		features: {
+			dataByTier: {
+				2: "2 GB",
+				5: "5 GB",
+				10: "10 GB",
+				20: "20 GB",
+			},
+			xferByTier: {
+				2: "10 GB",
+				5: "25 GB",
+				10: "50 GB",
+				20: "100 GB",
+			},
+			projects: "5",
+			assets: "Unlimited",
+			resources: {
+				perGb:
+					pricingBillingMode === PricingBillingMode.ANNUAL ? "$8/mo" : "$10/mo",
+				perUser: false,
+				seats: false,
+			},
+			telemetry: {
+				pcap: true,
+				zeek: true,
+				api_uploads: false,
+			},
+			network_analysis: {
+				asset_identification: true,
+				event_detection: true,
+				log_carving: true,
+				pcap_carving: true,
+				vulnerability_info: true,
+				vulnerability_prioritization: false,
+				threat_detection: false,
+			},
+			data_export: {
+				asset_summary: true,
+				internet_hosts: true,
+				screenshots: true,
+				credentials: false,
+				file_transfers: false,
+				file_extraction: false,
+				reports: false,
+				downloads: false,
 				data_carving: "100 MB",
 			},
 			admin: {
@@ -106,18 +188,20 @@ const PricingAccounts = [
 		name: "Teleseer Pro",
 		subTitle: "Advanced analysis for practitioners",
 		prodType: "pro",
-		go: "Go Professional",
-		perGb: "4",
-		isPopular: true,
+		go: "Go Pro",
+		goButtonStyle: ButtonStyle.blue,
+		cardStyle: {
+			borderColor: "blue.500",
+		},
 		footer: "Plus everything in Starter!",
-		description: (product: PricingAccountForTierType) => (
+		description: (product: PricingAccountType) => (
 			<>
 				<PricingList>
 					<PricingListItem>
-						<>{product.features.resources["dua"]} data under analysis</>
+						<>{product.features["data"]} data under analysis</>
 					</PricingListItem>
 					<PricingListItem>
-						<>{product.features.resources["num_projects"]} projects</>
+						<>{product.features["projects"]} projects</>
 					</PricingListItem>
 					<PricingListItem>
 						<>Advanced data exports</>
@@ -143,23 +227,11 @@ const PricingAccounts = [
 				</Box>
 			</>
 		),
-		boxProps: {
-			borderColor: "blue.500",
-			boxShadow: "0px 0px 7px 0px rgba(74,189,255,0.25)",
-		},
-		tiersByGB: {
-			50: AppConfig.stripe_test_mode
-				? "prod_NMdZCgj8c3lABb"
-				: "prod_NMdamx0fJNKkDf",
-			100: AppConfig.stripe_test_mode
-				? "prod_MeU7K4Gq8jKxec"
-				: "prod_MfuUY9YItO6jKO",
-			200: AppConfig.stripe_test_mode
-				? "prod_MfF9dP3mPJBGtV"
-				: "prod_MfuUl19Z99KKuR",
-			// 300: AppConfig.stripe_test_mode
-			// 	? "prod_MfFAyBr9OXVxJG"
-			// 	: "prod_MfpQXEGqW8HjMR",
+		tiersByGbToStripeIDs: {
+			50: AppConfig.stripe_test_mode ? "prod_NMdZCgj8c3lABb" : "",
+			75: AppConfig.stripe_test_mode ? "prod_NzcOkvKcfwEJDA" : "",
+			100: AppConfig.stripe_test_mode ? "prod_MeU7K4Gq8jKxec" : "",
+			150: AppConfig.stripe_test_mode ? "prod_NzcRQX2e3RYkuw" : "",
 		},
 		tierShort: {
 			title: "Pro",
@@ -169,52 +241,38 @@ const PricingAccounts = [
 		features: {
 			dataByTier: {
 				50: "50 GB",
+				75: "75 GB",
 				100: "100 GB",
-				200: "200 GB",
-				// 300: "300 GB",
+				150: "150 GB",
 			},
 			xferByTier: {
-				50: "200 GB",
-				100: "300 GB",
-				200: "500 GB",
-				// 300: "500 GB",
+				50: "50 GB",
+				75: "75 GB",
+				100: "100 GB",
+				150: "150 GB",
 			},
 			carvingByTier: {
-				50: "10 GB",
-				100: "20 GB",
-				200: "30 GB",
-				// 300: "30 GB",
-			},
-			historyByTier: {
-				50: "Unlimited",
-				100: "Unlimited",
-				200: "Unlimited",
-				// 300: "Unlimited",
+				50: "50 GB",
+				75: "75 GB",
+				100: "100 GB",
+				150: "150 GB",
 			},
 			assetsByTier: {
 				50: "Unlimited",
 				100: "Unlimited",
 				200: "Unlimited",
-				// 300: "Unlimited",
 			},
-			projectsByTier: {
-				50: "10",
-				100: "25",
-				200: "50",
-				// 300: "100",
-			},
+			projects: "Unlimited",
+			assets: "Unlimited",
 			greynoiseByTier: {
 				50: 50,
 				100: 100,
 				200: 200,
-				// 300: 250,
 			},
 			resources: {
-				dua: "50 GB",
-				monthly_transfer: "200 GB",
-				num_projects: "Unlimited",
+				perGb:
+					pricingBillingMode === PricingBillingMode.ANNUAL ? "$4/mo" : "$5/mo",
 				num_assets: "Unlimited",
-				perGb: "$4/mo",
 				perUser: false,
 				seats: false,
 			},
@@ -241,7 +299,6 @@ const PricingAccounts = [
 				file_extraction: true,
 				reports: true,
 				downloads: true,
-				timeline: "30 days",
 				data_carving: "100 MB",
 			},
 			admin: {
@@ -268,16 +325,19 @@ const PricingAccounts = [
 		name: "Teleseer Teams",
 		prodType: "team",
 		go: "Go Teams",
-		perGb: "3",
+		goButtonStyle: ButtonStyle.dark,
+		cardStyle: {
+			borderTopColor: "section_color_dark",
+		},
 		subTitle: "Collaborative analysis for elite teams",
-		description: (product: PricingAccountForTierType) => (
+		description: (product: PricingAccountType) => (
 			<>
 				<PricingList>
 					<PricingListItem>
-						<>{product.features.resources["dua"]} data under analysis</>
+						<>{product.features["data"]} data under analysis</>
 					</PricingListItem>
 					<PricingListItem>
-						<>{product.features.resources["seats"]} seats include</>
+						<>{product.features.resources["seats"]} seats included</>
 					</PricingListItem>
 					<PricingListItem>
 						<>API-based uploads</>
@@ -295,11 +355,11 @@ const PricingAccounts = [
 			</>
 		),
 		footer: "Plus everything in Pro!",
-		// borderColor: "gray.500",
-		tiersByGB: {
-			500: AppConfig.stripe_test_mode
-				? "prod_MeU7Sd8NfyG2y1"
-				: "prod_Mfuxsa5JWXtFO6",
+		tiersByGbToStripeIDs: {
+			300: AppConfig.stripe_test_mode ? "prod_MeU7Sd8NfyG2y1" : "",
+			500: AppConfig.stripe_test_mode ? "prod_Nzu55ZREPKt702" : "",
+			1000: AppConfig.stripe_test_mode ? "prod_Nzu6QIbyqEspSP" : "",
+			2000: AppConfig.stripe_test_mode ? "prod_Nzu7DOI4NFo7oJ" : "",
 		},
 		tierShort: {
 			title: "Teams",
@@ -308,29 +368,25 @@ const PricingAccounts = [
 		},
 		features: {
 			dataByTier: {
+				300: "300 GB",
 				500: "500 GB",
+				1000: "1 TB",
+				2000: "2 TB",
 			},
 			xferByTier: {
-				500: "750 GB",
+				300: "900 GB",
+				500: "1.5 TB",
+				1000: "3 TB",
+				2000: "6 TB",
 			},
 			carvingByTier: {
 				500: "Call us",
 			},
-			historyByTier: {
-				500: "Unlimited",
-			},
-			assetsByTier: {
-				500: "Unlimited",
-			},
-			projectsByTier: {
-				500: "100",
-			},
+			projects: "Unlimited",
+			assets: "Unlimited",
 			resources: {
-				dua: "300 GB",
-				monthly_transfer: "900 GB",
-				num_projects: "Unlimited",
-				num_assets: "Unlimited",
-				perGb: "$3/mo",
+				perGb:
+					pricingBillingMode === PricingBillingMode.ANNUAL ? "$3/mo" : "$4/mo",
 				perUser: "$49/mo",
 				seats: "2",
 			},
@@ -357,7 +413,6 @@ const PricingAccounts = [
 				file_extraction: true,
 				reports: true,
 				downloads: true,
-				timeline: "90 days",
 				data_carving: "10 GB",
 			},
 			admin: {
@@ -387,7 +442,7 @@ interface Feature {
 	sectionKey: string // section within "features" object to pull from
 	items: {
 		name: string | React.ReactElement
-		key: string //keyof typeof PricingAccounts[number]["features"]
+		key: string
 		tooltip?: string
 	}[]
 }
@@ -398,33 +453,34 @@ export const PricingFeatures: Feature[] = [
 		sectionKey: "resources",
 		items: [
 			{
-				key: "dua",
+				key: "data",
 				name: "Data Under Analysis",
-				tooltip: "testing",
+				tooltip:
+					"Total uncompressed amount of data analyzed and stored for all your projects.",
 			},
 			{
-				key: "monthly_transfer",
+				key: "xfer",
 				name: "Monthly Data Transfer",
 			},
 			{
-				key: "num_projects",
+				key: "projects",
 				name: "Total Projects",
 			},
 			{
-				key: "num_assets",
+				key: "assets",
 				name: "Total Assets",
 			},
 			{
 				key: "perGb",
-				name: "$ per extra GB",
+				name: "$ per GB (avg)",
 			},
 			{
 				key: "perUser",
-				name: "$ per extra user",
+				name: "$ per Extra User",
 			},
 			{
 				key: "seats",
-				name: "User seats",
+				name: "User Seats",
 			},
 		],
 	},
@@ -593,10 +649,5 @@ export const PricingFeatures: Feature[] = [
 		],
 	},
 ]
-
-export type ElementType<T extends ReadonlyArray<unknown>> =
-	T extends ReadonlyArray<infer ElementType> ? ElementType : never
-
-export type PricingAccountsType = ElementType<typeof PricingAccounts>
 
 export default PricingAccounts

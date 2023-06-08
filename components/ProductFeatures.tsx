@@ -22,13 +22,13 @@ import {
 import { ButtonStyle, ThemeColor, colors } from "@common/utils/theme"
 import { PricingFeatures } from "../constants/CustomPricingData"
 import { PricingBillingMode } from "../constants/PricingConstants"
-import { PricingAccountForTierType } from "../constants/PricingTypes"
+import { PricingAccountType } from "../constants/PricingTypes"
 import { PricingFeature } from "./PricingFeature"
 
 interface ProductFeaturesProps extends TableProps {
 	billingMode: PricingBillingMode
 	billingTier: number
-	products: PricingAccountForTierType[]
+	products: PricingAccountType[]
 	theme: ThemeColor
 }
 
@@ -82,12 +82,13 @@ export const ProductFeatures = (props: ProductFeaturesProps) => {
 									{products.map((product, id) => (
 										<Td key={id} style={{ textAlign: "center" }} color="muted">
 											<VStack pt={4}>
-												<Text fontSize={24} fontWeight={500}>
+												<Box fontSize={24} fontWeight={500}>
 													{product.tierShort["title"]}
-												</Text>
-												<Text>{product.tierShort["subtitle"]}</Text>
+												</Box>
 
-												<Text>
+												<Box>{product.tierShort["subtitle"]}</Box>
+
+												<Box pt={2} pb={4}>
 													{product.pricePerMonth ? (
 														<>
 															${product.pricePerMonth.toLocaleString()} per
@@ -96,7 +97,8 @@ export const ProductFeatures = (props: ProductFeaturesProps) => {
 													) : (
 														<>&nbsp;</>
 													)}
-												</Text>
+												</Box>
+
 												<a
 													href={"http://go.teleseer.com"}
 													target="_blank"
@@ -111,13 +113,7 @@ export const ProductFeatures = (props: ProductFeaturesProps) => {
 														borderRadius={16}
 														height={8}
 														px={6}
-														sx={
-															product.prodType === "starter"
-																? ButtonStyle.white
-																: product.prodType === "pro"
-																? ButtonStyle.blue
-																: ButtonStyle.dark
-														}
+														sx={product.goButtonStyle ?? ButtonStyle.white}
 													>
 														{product.tierShort["go"]}
 													</Button>
@@ -155,7 +151,7 @@ export const ProductFeatures = (props: ProductFeaturesProps) => {
 													<Box
 														px="10px"
 														borderBottom="1px solid"
-														borderBottomColor={theme?.lightButtonBorder}
+														borderBottomColor="section_color_dark"
 														opacity=".2"
 														lineHeight={"1px"}
 													>
@@ -209,7 +205,7 @@ export const ProductFeatures = (props: ProductFeaturesProps) => {
 																	product.features[feature.sectionKey]
 																		? product.features[feature.sectionKey][
 																				item.key
-																		  ]
+																		  ] ?? product.features[item.key]
 																		: false
 																}
 																{...{ billingMode, billingTier }}
