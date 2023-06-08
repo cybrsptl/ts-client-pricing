@@ -68,7 +68,7 @@ export const ProductTierSelection = ({
 	const labelStyles = {
 		mt: "4",
 		ml: "-2.5",
-		fontSize: "sm",
+		fontSize: "xs",
 		minWidth: "4em",
 	}
 
