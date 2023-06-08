@@ -429,7 +429,7 @@ const PricingAccounts: (
 				help_center: true,
 				community: true,
 				one_on_one: true,
-				response_time: "24 hours",
+				response_time: "1 business day",
 			},
 			feeds: {
 				ipinfo: "Unlimited",
