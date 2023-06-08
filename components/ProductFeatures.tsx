@@ -82,12 +82,13 @@ export const ProductFeatures = (props: ProductFeaturesProps) => {
 									{products.map((product, id) => (
 										<Td key={id} style={{ textAlign: "center" }} color="muted">
 											<VStack pt={4}>
-												<Text fontSize={24} fontWeight={500}>
+												<Box fontSize={24} fontWeight={500}>
 													{product.tierShort["title"]}
-												</Text>
-												<Text>{product.tierShort["subtitle"]}</Text>
+												</Box>
 
-												<Text>
+												<Box>{product.tierShort["subtitle"]}</Box>
+
+												<Box pt={2} pb={4}>
 													{product.pricePerMonth ? (
 														<>
 															${product.pricePerMonth.toLocaleString()} per
@@ -96,7 +97,8 @@ export const ProductFeatures = (props: ProductFeaturesProps) => {
 													) : (
 														<>&nbsp;</>
 													)}
-												</Text>
+												</Box>
+
 												<a
 													href={"http://go.teleseer.com"}
 													target="_blank"
