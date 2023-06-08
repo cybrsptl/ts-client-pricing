@@ -191,11 +191,8 @@ const PricingAccounts: (
 		go: "Go Pro",
 		goButtonStyle: ButtonStyle.blue,
 		cardStyle: {
-			color: "white",
 			borderColor: "blue.500",
-			_hover: {
-				backgroundColor: "blue.800",
-			},
+			// boxShadow: "0px 0px 7px 0px rgba(74,189,255,0.25)",
 		},
 		footer: "Plus everything in Starter!",
 		description: (product: PricingAccountType) => (
@@ -231,10 +228,6 @@ const PricingAccounts: (
 				</Box>
 			</>
 		),
-		boxProps: {
-			borderColor: "blue.500",
-			boxShadow: "0px 0px 7px 0px rgba(74,189,255,0.25)",
-		},
 		tiersByGbToStripeIDs: {
 			50: AppConfig.stripe_test_mode ? "prod_NMdZCgj8c3lABb" : "",
 			75: AppConfig.stripe_test_mode ? "prod_NzcOkvKcfwEJDA" : "",
@@ -334,6 +327,9 @@ const PricingAccounts: (
 		prodType: "team",
 		go: "Go Teams",
 		goButtonStyle: ButtonStyle.dark,
+		cardStyle: {
+			borderTopColor: "section_color_dark",
+		},
 		subTitle: "Collaborative analysis for elite teams",
 		description: (product: PricingAccountType) => (
 			<>

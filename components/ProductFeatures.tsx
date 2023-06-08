@@ -149,7 +149,7 @@ export const ProductFeatures = (props: ProductFeaturesProps) => {
 													<Box
 														px="10px"
 														borderBottom="1px solid"
-														borderBottomColor={theme.lightButtonBorder}
+														borderBottomColor="section_color_dark"
 														opacity=".2"
 														lineHeight={"1px"}
 													>

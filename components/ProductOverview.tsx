@@ -95,10 +95,7 @@ export const ProductOverview = (props: ProductOverviewProps) => {
 				fontWeight="semibold"
 				paddingLeft="2em"
 				paddingRight="2em"
-				sx={{
-					color: "white",
-					...product.cardStyle,
-				}}
+				sx={{ color: "white" }}
 				isLoading={!!stripePriceIdToPurchase}
 				isDisabled={product.isDisabled}
 			>
@@ -145,10 +142,16 @@ export const ProductOverview = (props: ProductOverviewProps) => {
 				{products
 					.filter((p) => !p.hideOverviewCard)
 					.map((product, id) => (
-						<Box key={id} flexBasis={"240px"} flexGrow={0.25} flexShrink={0.25}>
+						<Box
+							key={id}
+							flexBasis={"240px"}
+							flexGrow={0.25}
+							flexShrink={0.25}
+							rounded="lg"
+							overflow="hidden"
+						>
 							<Box
 								bg={"theme_accent"}
-								rounded="lg"
 								sx={{
 									textAlign: "center",
 									overflow: "hidden",
@@ -161,20 +164,14 @@ export const ProductOverview = (props: ProductOverviewProps) => {
 										product.isDisabled || product.isBelowDesiredLimits
 											? "not-allowed"
 											: "auto",
+									borderColor: "bg_white",
+									borderTopWidth: "6px",
+									height: "100%",
+									backgroundColor: "bg_white",
+									p: [4, 4, 6],
+									boxShadow: "lg",
+									...(product.cardStyle ?? {}),
 								}}
-								p={[4, 4, 6]}
-								height="100%"
-								backgroundColor={theme.tierBg === "light" ? "#FFF" : "inherit"}
-								borderRadius="lg"
-								borderWidth="1px"
-								borderTop={"6px solid"}
-								borderColor={
-									product.prodType === "starter"
-										? "white"
-										: theme.lightButtonBorder
-								}
-								boxShadow="0px 0px 5px 0px rgba(41,41,41,0.9)"
-								{...product.boxProps}
 							>
 								<VStack
 									width="100%"

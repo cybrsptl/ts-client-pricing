@@ -11,7 +11,6 @@ import {
 	PricingBillingModeToStripe,
 } from "../constants/PricingConstants"
 import {
-	PricingAccountType,
 	StripePricingDataList,
 } from "../constants/PricingTypes"
 import { PricingDataDev, PricingDataProd } from "../constants/StripePricingData"
