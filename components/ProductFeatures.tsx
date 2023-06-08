@@ -36,9 +36,7 @@ export const ProductFeatures = (props: ProductFeaturesProps) => {
 	const { billingMode, billingTier, products, theme, ...tableProps } = props
 
 	const cellColor = {
-		starter: "cell_light",
 		pro: "cell_blue",
-		team: "cell_dark",
 	}
 
 	const tableWrapperOuter = {
