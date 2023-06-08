@@ -259,11 +259,6 @@ const PricingAccounts: (
 				100: "100 GB",
 				150: "150 GB",
 			},
-			assetsByTier: {
-				50: "Unlimited",
-				100: "Unlimited",
-				200: "Unlimited",
-			},
 			projects: "Unlimited",
 			assets: "Unlimited",
 			greynoiseByTier: {
