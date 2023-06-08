@@ -192,7 +192,6 @@ const PricingAccounts: (
 		goButtonStyle: ButtonStyle.blue,
 		cardStyle: {
 			borderColor: "blue.500",
-			// boxShadow: "0px 0px 7px 0px rgba(74,189,255,0.25)",
 		},
 		footer: "Plus everything in Starter!",
 		description: (product: PricingAccountType) => (
