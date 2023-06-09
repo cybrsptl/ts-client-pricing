@@ -74,7 +74,7 @@ export const ProductOverview = (props: ProductOverviewProps) => {
 						paddingRight="2em"
 						borderWidth={2}
 						borderRadius={16}
-						color={theme.lightButtonText}
+						color={theme?.lightButtonText}
 						sx={product.goButtonStyle ?? ButtonStyle.white}
 						isLoading={!!stripePriceIdToPurchase}
 						isDisabled={product.isDisabled}
@@ -193,7 +193,7 @@ export const ProductOverview = (props: ProductOverviewProps) => {
 											<Text
 												fontSize="xs"
 												paddingBottom={8}
-												color={theme.tierSubtitle}
+												color={theme?.tierSubtitle}
 											>
 												{product.subTitle}
 											</Text>
@@ -219,14 +219,14 @@ export const ProductOverview = (props: ProductOverviewProps) => {
 												</>
 											)}
 											{product.pricePerMonthBilledMonthly && (
-												<Text fontSize="xs" color={theme.costSubtitle} mt={1}>
+												<Text fontSize="xs" color={theme?.costSubtitle} mt={1}>
 													Paid annually or $
 													{product.pricePerMonthBilledMonthly.toLocaleString()}{" "}
 													paid monthly
 												</Text>
 											)}
 											{product.pricePerMonthBilledAnnually && (
-												<Text fontSize="xs" color={theme.costSubtitle} mt={1}>
+												<Text fontSize="xs" color={theme?.costSubtitle} mt={1}>
 													Paid monthly or $
 													{product.pricePerMonthBilledAnnually.toLocaleString()}{" "}
 													paid annually
