@@ -1,3 +1,4 @@
+import NextLink from "next/link"
 import * as React from "react"
 import { FiInfo } from "react-icons/fi"
 import {
@@ -97,13 +98,9 @@ export const ProductFeatures = (props: ProductFeaturesProps) => {
 													)}
 												</Box>
 
-												<a
-													href={"http://go.teleseer.com"}
+												<NextLink
+													href="https://go.teleseer.com"
 													target="_blank"
-													style={{
-														textDecoration: "none",
-														marginTop: "1rem",
-													}}
 												>
 													<Button
 														variant="outline"
@@ -111,11 +108,22 @@ export const ProductFeatures = (props: ProductFeaturesProps) => {
 														borderRadius={16}
 														height={8}
 														px={6}
-														sx={product.goButtonStyle ?? ButtonStyle.white}
+														sx={{
+															...{
+																textDecoration: "none",
+																marginTop: "1rem",
+															},
+															...(product.goButtonStyle ?? ButtonStyle.white),
+														}}
+														isDisabled={
+															product.isDisabled || product.isComingSoon
+														}
 													>
-														{product.tierShort["go"]}
+														{product.isComingSoon
+															? "Coming Soon"
+															: product.tierShort["go"]}
 													</Button>
-												</a>
+												</NextLink>
 											</VStack>
 										</Td>
 									))}

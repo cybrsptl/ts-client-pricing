@@ -18,7 +18,7 @@ const PricingAccounts: (
 		name: "Free Trial",
 		hideOverviewCard: true,
 		prodType: "trial",
-		goButtonStyle: ButtonStyle.light,
+		goButtonStyle: ButtonStyle.white,
 		freeTrialDays: 7,
 		tierShort: {
 			title: "Free Trial",
@@ -317,6 +317,7 @@ const PricingAccounts: (
 	{
 		name: "Teleseer Teams",
 		prodType: "team",
+		isComingSoon: true,
 		go: "Go Teams",
 		goButtonStyle: ButtonStyle.dark,
 		cardStyle: {

@@ -11,7 +11,6 @@ import {
 	Text,
 	VStack,
 } from "@chakra-ui/react"
-import useIsMobile from "@common/hooks/useIsMobile"
 import { ButtonStyle, ThemeColor } from "@common/utils/theme"
 import { PricingBillingMode } from "../constants/PricingConstants"
 import { PricingAccountType } from "../constants/PricingTypes"
@@ -62,7 +61,7 @@ export const ProductOverview = (props: ProductOverviewProps) => {
 
 		if (!purchaseEnabled) {
 			return (
-				<NextLink href="https://go.teleseer.com" target="_blank" legacyBehavior>
+				<NextLink href="https://go.teleseer.com" target="_blank">
 					<Button
 						variant={"outline"}
 						size={"sm"}
@@ -77,9 +76,9 @@ export const ProductOverview = (props: ProductOverviewProps) => {
 						color={theme?.lightButtonText}
 						sx={product.goButtonStyle ?? ButtonStyle.white}
 						isLoading={!!stripePriceIdToPurchase}
-						isDisabled={product.isDisabled}
+						isDisabled={product.isDisabled || product.isComingSoon}
 					>
-						{product.go}
+						{product.isComingSoon ? "Coming Soon" : product.go}
 					</Button>
 				</NextLink>
 			)
@@ -97,7 +96,7 @@ export const ProductOverview = (props: ProductOverviewProps) => {
 				paddingRight="2em"
 				sx={{ color: "white" }}
 				isLoading={!!stripePriceIdToPurchase}
-				isDisabled={product.isDisabled}
+				isDisabled={product.isDisabled || product.isComingSoon}
 			>
 				{product.freeTrialDays && tenantTierName?.toUpperCase() !== "EXPIRED"
 					? "Start Free Trial"
@@ -169,11 +168,15 @@ export const ProductOverview = (props: ProductOverviewProps) => {
 										overflow: "hidden",
 										position: "relative",
 										opacity:
-											product.isDisabled || product.isBelowDesiredLimits
+											product.isDisabled ||
+											product.isBelowDesiredLimits ||
+											product.isComingSoon
 												? 0.5
 												: 1,
 										cursor:
-											product.isDisabled || product.isBelowDesiredLimits
+											product.isDisabled ||
+											product.isBelowDesiredLimits ||
+											product.isComingSoon
 												? "not-allowed"
 												: "auto",
 										borderColor: "bg_white",

@@ -41,6 +41,7 @@ export type PricingAccountType = {
 	hideOverviewCard?: boolean
 	isDisabled?: boolean
 	isCurrent?: boolean
+	isComingSoon?: boolean
 	annualBillingOnly?: boolean
 	isBelowDesiredLimits?: boolean
 	freeTrialDays?: number
