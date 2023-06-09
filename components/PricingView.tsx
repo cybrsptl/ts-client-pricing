@@ -42,7 +42,7 @@ export const PricingView = ({
 		useState<string>(null)
 
 	const [billingMode, setBillingMode] = React.useState<PricingBillingMode>(
-		PricingBillingMode.MONTHLY
+		PricingBillingMode.ANNUAL
 	)
 
 	// Automatically set billing tier to current tenant limit when page loads
