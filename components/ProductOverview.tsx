@@ -110,7 +110,13 @@ export const ProductOverview = (props: ProductOverviewProps) => {
 		<>
 			<Center>
 				<HStack mt={2}>
-					<Text>Monthly</Text>
+					<Text
+						color={
+							billingMode === PricingBillingMode.MONTHLY ? "cell_blue" : "auto"
+						}
+					>
+						Monthly
+					</Text>
 					<Switch
 						size="md"
 						isChecked={billingMode === PricingBillingMode.ANNUAL}
@@ -122,7 +128,11 @@ export const ProductOverview = (props: ProductOverviewProps) => {
 							)
 						}}
 					/>
-					<Text>
+					<Text
+						color={
+							billingMode === PricingBillingMode.ANNUAL ? "cell_blue" : "auto"
+						}
+					>
 						Yearly
 						<span style={{ fontSize: 12, marginLeft: "4px" }}>(save 20%)</span>
 					</Text>
