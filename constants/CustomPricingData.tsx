@@ -103,10 +103,18 @@ const PricingAccounts: (
 			</PricingList>
 		),
 		tiersByGbToStripeIDs: {
-			2: AppConfig.stripe_test_mode ? "prod_NzaoJMCcrvfdBl" : "",
-			5: AppConfig.stripe_test_mode ? "prod_Nzarmn4e78EXz2" : "",
-			10: AppConfig.stripe_test_mode ? "prod_NK6dRgnmymlqGS" : "",
-			20: AppConfig.stripe_test_mode ? "prod_Nzat4nsV0oAz24" : "",
+			2: AppConfig.stripe_test_mode
+				? "prod_NzaoJMCcrvfdBl"
+				: "prod_O4TFgRNOwpMWxY",
+			5: AppConfig.stripe_test_mode
+				? "prod_Nzarmn4e78EXz2"
+				: "prod_MfuUHskBj85gTF",
+			10: AppConfig.stripe_test_mode
+				? "prod_NK6dRgnmymlqGS"
+				: "prod_NMXm7zGLj81wvL",
+			20: AppConfig.stripe_test_mode
+				? "prod_Nzat4nsV0oAz24"
+				: "prod_O4TEozv5boTBQp",
 		},
 		freeTrialDays: 7,
 		tierShort: {
@@ -226,10 +234,18 @@ const PricingAccounts: (
 			</>
 		),
 		tiersByGbToStripeIDs: {
-			50: AppConfig.stripe_test_mode ? "prod_NMdZCgj8c3lABb" : "",
-			75: AppConfig.stripe_test_mode ? "prod_NzcOkvKcfwEJDA" : "",
-			100: AppConfig.stripe_test_mode ? "prod_MeU7K4Gq8jKxec" : "",
-			150: AppConfig.stripe_test_mode ? "prod_NzcRQX2e3RYkuw" : "",
+			50: AppConfig.stripe_test_mode
+				? "prod_NMdZCgj8c3lABb"
+				: "prod_NMdamx0fJNKkDf",
+			75: AppConfig.stripe_test_mode
+				? "prod_NzcOkvKcfwEJDA"
+				: "prod_O4TCHwyVu8TJrW",
+			100: AppConfig.stripe_test_mode
+				? "prod_MeU7K4Gq8jKxec"
+				: "prod_MfuUY9YItO6jKO",
+			150: AppConfig.stripe_test_mode
+				? "prod_NzcRQX2e3RYkuw"
+				: "prod_MfuUl19Z99KKuR",
 		},
 		tierShort: {
 			title: "Pro",
@@ -350,10 +366,18 @@ const PricingAccounts: (
 		),
 		footer: "Plus everything in Pro!",
 		tiersByGbToStripeIDs: {
-			300: AppConfig.stripe_test_mode ? "prod_MeU7Sd8NfyG2y1" : "",
-			500: AppConfig.stripe_test_mode ? "prod_Nzu55ZREPKt702" : "",
-			1000: AppConfig.stripe_test_mode ? "prod_Nzu6QIbyqEspSP" : "",
-			2000: AppConfig.stripe_test_mode ? "prod_Nzu7DOI4NFo7oJ" : "",
+			300: AppConfig.stripe_test_mode
+				? "prod_MeU7Sd8NfyG2y1"
+				: "prod_O4TG5h6YIeaNKu",
+			500: AppConfig.stripe_test_mode
+				? "prod_Nzu55ZREPKt702"
+				: "prod_Mfuxsa5JWXtFO6",
+			1000: AppConfig.stripe_test_mode
+				? "prod_Nzu6QIbyqEspSP"
+				: "prod_O4T7RPIvyp2VMG",
+			2000: AppConfig.stripe_test_mode
+				? "prod_Nzu7DOI4NFo7oJ"
+				: "prod_O4T7AMUTvpYakc",
 		},
 		tierShort: {
 			title: "Teams",
