@@ -110,13 +110,13 @@ export const ProductTierSelection = ({
 						>
 							{billingTier}%
 						</SliderMark> */}
-						<SliderTrack bg="section_color_light">
-							<SliderFilledTrack bg="section_color_dark" />
+						<SliderTrack bg="theme_hilight">
+							<SliderFilledTrack bg="theme_hilight_dark" />
 						</SliderTrack>
 						<SliderThumb
 							boxSize={6}
-							bg="section_color_dark"
-							color="section_color"
+							bg="theme_primary"
+							color="theme_text_bright"
 							px={4}
 							whiteSpace="pre"
 							width={16}
