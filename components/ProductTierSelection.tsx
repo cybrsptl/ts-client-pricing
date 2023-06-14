@@ -1,8 +1,6 @@
 import { useMemo } from "react"
-import { MdGraphicEq } from "react-icons/md"
 import {
 	Box,
-	Divider,
 	Heading,
 	Slider,
 	SliderFilledTrack,
@@ -14,7 +12,6 @@ import {
 	Text,
 } from "@chakra-ui/react"
 import useIsMobile from "@common/hooks/useIsMobile"
-import { ThemeColor } from "@common/utils/theme"
 import { PricingBillingMode } from "../constants/PricingConstants"
 
 interface ProductTierSelectionProps extends TableProps {
@@ -23,7 +20,6 @@ interface ProductTierSelectionProps extends TableProps {
 	setBillingMode: (PricingBillingMode) => void
 	billingTier: number
 	setBillingTier: (int) => void
-	theme: ThemeColor
 }
 
 export const ProductTierSelection = ({
@@ -32,7 +28,6 @@ export const ProductTierSelection = ({
 	setBillingMode,
 	billingTier,
 	setBillingTier,
-	theme,
 	...containerProps
 }: ProductTierSelectionProps) => {
 	const isMobile = useIsMobile()
@@ -91,7 +86,6 @@ export const ProductTierSelection = ({
 					<Slider
 						min={0}
 						max={accountTierSliderIntervalCount - 1}
-						aria-label="slider-ex-6"
 						onChange={(val) => setBillingTier(accountTierSliderIntervals[val])}
 						value={accountTierSliderIntervals.findIndex(
 							(v) => v == billingTier

@@ -4,13 +4,11 @@ import { FiInfo } from "react-icons/fi"
 import {
 	Box,
 	Button,
-	Center,
 	Flex,
 	HStack,
 	Heading,
 	Icon,
 	Table,
-	TableProps,
 	Tbody,
 	Td,
 	Text,
@@ -20,21 +18,20 @@ import {
 	Tr,
 	VStack,
 } from "@chakra-ui/react"
-import { ButtonStyle, ThemeColor, colors } from "@common/utils/theme"
 import { PricingFeatures } from "../constants/CustomPricingData"
+import { CustomButtonStyles } from "../constants/CustomStyles"
 import { PricingBillingMode } from "../constants/PricingConstants"
 import { PricingAccountType } from "../constants/PricingTypes"
 import { PricingFeature } from "./PricingFeature"
 
-interface ProductFeaturesProps extends TableProps {
+interface ProductFeaturesProps {
 	billingMode: PricingBillingMode
 	billingTier: number
 	products: PricingAccountType[]
-	theme: ThemeColor
 }
 
 export const ProductFeatures = (props: ProductFeaturesProps) => {
-	const { billingMode, billingTier, products, theme, ...tableProps } = props
+	const { billingMode, billingTier, products } = props
 
 	const cellColor = {
 		pro: "cell_blue",
@@ -54,7 +51,7 @@ export const ProductFeatures = (props: ProductFeaturesProps) => {
 	const stickyColumn = {
 		...stickyColumnWidth,
 		position: "sticky",
-		backgroundColor: `${colors.bg_lighter} !important`,
+		backgroundColor: `theme_bg !important`,
 		left: "0px",
 		zIndex: 1,
 	}
@@ -66,7 +63,7 @@ export const ProductFeatures = (props: ProductFeaturesProps) => {
 			</Heading>
 
 			<Box sx={tableWrapper}>
-				<Table variant="striped" {...tableProps}>
+				<Table sx={{ th: { fontSize: "lg" }, tr: { td: { border: "none" } } }}>
 					<Thead>
 						{/* Tier columns - Starter / Pro / Etc */}
 						<Tr>
@@ -100,7 +97,8 @@ export const ProductFeatures = (props: ProductFeaturesProps) => {
 														textDecoration: "none",
 														marginTop: "1rem",
 													},
-													...(product.goButtonStyle ?? ButtonStyle.white),
+													...(product.goButtonStyle ??
+														CustomButtonStyles.white),
 												}}
 												isDisabled={product.isDisabled || product.isComingSoon}
 											>
@@ -121,7 +119,7 @@ export const ProductFeatures = (props: ProductFeaturesProps) => {
 								<Tr>
 									<Th
 										// colSpan={products.length + 1}
-										color={theme?.text}
+										color="section_color_dark"
 										fontSize="sm"
 										borderColor="blue.800"
 										border="none"

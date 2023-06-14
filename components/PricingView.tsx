@@ -2,7 +2,6 @@ import * as React from "react"
 import { useEffect, useMemo, useState } from "react"
 import { Box, Stack } from "@chakra-ui/react"
 import AppConfig from "@common/constants/AppConfig"
-import { ThemeColor } from "@common/utils/theme"
 import PricingAccounts, {
 	defaultPricingTier,
 } from "../constants/CustomPricingData"
@@ -27,7 +26,6 @@ export type PricingViewParams = {
 	userEmail?: string
 	purchaseEnabled?: boolean
 	purchaseComponent?: React.FC<ProductPurchaseProps>
-	theme?: ThemeColor
 }
 
 export const PricingView = ({
@@ -36,7 +34,6 @@ export const PricingView = ({
 	userEmail,
 	purchaseEnabled,
 	purchaseComponent: PurchaseComponent,
-	theme,
 }: PricingViewParams) => {
 	const [stripePriceIdToPurchase, setStripePriceIdToPurchase] =
 		useState<string>(null)
@@ -234,7 +231,6 @@ export const PricingView = ({
 						purchaseEnabled,
 						stripePriceIdToPurchase,
 						setStripePriceIdToPurchase,
-						theme,
 					}}
 				/>
 				<ProductTierSelection
@@ -244,7 +240,6 @@ export const PricingView = ({
 						setBillingMode,
 						billingTier,
 						setBillingTier,
-						theme,
 					}}
 				/>
 				<ProductFeatures
@@ -252,7 +247,6 @@ export const PricingView = ({
 						billingMode,
 						billingTier,
 						products,
-						theme,
 					}}
 				/>
 			</Stack>

@@ -1,9 +1,9 @@
 import Image from "next/legacy/image"
 import { Box } from "@chakra-ui/react"
 import AppConfig from "@common/constants/AppConfig"
-import { ButtonStyle } from "@common/utils/theme"
 import { PricingList, PricingListItem } from "../components/PricingDescList"
 import EnrichmentPartnerLogosIcon from "../icons/EnrichmentPartnerLogosIcon"
+import { CustomButtonStyles } from "./CustomStyles"
 import { PricingBillingMode } from "./PricingConstants"
 import { PricingAccountType } from "./PricingTypes"
 
@@ -19,7 +19,7 @@ const PricingAccounts: (
 		name: "Free Trial",
 		hideOverviewCard: true,
 		prodType: "trial",
-		goButtonStyle: ButtonStyle.white,
+		goButtonStyle: CustomButtonStyles.white,
 		freeTrialDays: 7,
 		tierShort: {
 			title: "Free Trial",
@@ -86,7 +86,7 @@ const PricingAccounts: (
 		subTitle: "On-demand analysis for individuals",
 		prodType: "starter",
 		go: "Go Starter",
-		goButtonStyle: ButtonStyle.white,
+		goButtonStyle: CustomButtonStyles.white,
 		description: (product: PricingAccountType) => (
 			<PricingList mb={2}>
 				<PricingListItem>
@@ -194,9 +194,9 @@ const PricingAccounts: (
 		subTitle: "Advanced analysis for practitioners",
 		prodType: "pro",
 		go: "Go Pro",
-		goButtonStyle: ButtonStyle.blue,
+		goButtonStyle: CustomButtonStyles.blue,
 		cardStyle: {
-			borderColor: "blue.500",
+			borderColor: "theme_primary_active",
 		},
 		footer: "Plus everything in Starter!",
 		description: (product: PricingAccountType) => (
@@ -329,7 +329,7 @@ const PricingAccounts: (
 		prodType: "team",
 		isComingSoon: true,
 		go: "Go Teams",
-		goButtonStyle: ButtonStyle.dark,
+		goButtonStyle: CustomButtonStyles.dark,
 		cardStyle: {
 			borderTopColor: "section_color_dark",
 		},

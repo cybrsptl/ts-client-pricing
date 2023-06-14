@@ -6,12 +6,13 @@ import {
 	Flex,
 	HStack,
 	Heading,
+	Link,
 	Switch,
 	TableProps,
 	Text,
 	VStack,
 } from "@chakra-ui/react"
-import { ButtonStyle, ThemeColor } from "@common/utils/theme"
+import { CustomButtonStyles } from "../constants/CustomStyles"
 import { PricingBillingMode } from "../constants/PricingConstants"
 import { PricingAccountType } from "../constants/PricingTypes"
 interface ProductOverviewProps extends TableProps {
@@ -23,7 +24,6 @@ interface ProductOverviewProps extends TableProps {
 	stripePriceIdToPurchase?: string
 	purchaseEnabled?: boolean
 	tenantTierName?: string
-	theme: ThemeColor
 	setStripePriceIdToPurchase: (prodType: string | null) => void
 }
 
@@ -38,19 +38,18 @@ export const ProductOverview = (props: ProductOverviewProps) => {
 		stripePriceIdToPurchase,
 		setStripePriceIdToPurchase,
 		tenantTierName,
-		theme,
 		...containerProps
 	} = props
 
-	const ctaButton = (product: PricingAccountType, theme: ThemeColor) => {
+	const ctaButton = (product: PricingAccountType) => {
 		if (product.isBelowDesiredLimits) {
 			return (
 				<Text
 					fontSize="xs"
 					fontStyle="italic"
 					border="1px solid"
-					borderColor={theme?.whiteButtonText}
-					color={theme?.darkButtonText}
+					borderColor="theme_border_color"
+					color="button_dark"
 					borderRadius={16}
 					padding={1}
 				>
@@ -73,8 +72,8 @@ export const ProductOverview = (props: ProductOverviewProps) => {
 						paddingRight="2em"
 						borderWidth={2}
 						borderRadius={16}
-						color={theme?.lightButtonText}
-						sx={product.goButtonStyle ?? ButtonStyle.white}
+						// color={theme?.lightButtonText}
+						sx={product.goButtonStyle ?? CustomButtonStyles.white}
 						isLoading={!!stripePriceIdToPurchase}
 						isDisabled={product.isDisabled || product.isComingSoon}
 					>
@@ -108,24 +107,23 @@ export const ProductOverview = (props: ProductOverviewProps) => {
 	return (
 		<>
 			<Center>
-				<HStack mt={2} spacing={1}>
-					<Button
-						variant="ghost"
-						size="md"
+				<HStack mt={2}>
+					<Link
 						onClick={() => {
 							setBillingMode(PricingBillingMode.MONTHLY)
 						}}
 						sx={{
-							h: 8,
-							px: 2,
+							_hover: {
+								textDecoration: "none",
+							},
 							color:
 								billingMode === PricingBillingMode.MONTHLY
-									? "cell_blue"
+									? "theme_primary_active"
 									: "auto",
 						}}
 					>
 						Monthly
-					</Button>
+					</Link>
 					<Switch
 						size="md"
 						isChecked={billingMode === PricingBillingMode.ANNUAL}
@@ -137,24 +135,23 @@ export const ProductOverview = (props: ProductOverviewProps) => {
 							)
 						}}
 					/>
-					<Button
-						variant="ghost"
-						size="md"
+					<Link
 						onClick={() => {
 							setBillingMode(PricingBillingMode.ANNUAL)
 						}}
 						sx={{
-							h: 8,
-							px: 2,
+							_hover: {
+								textDecoration: "none",
+							},
 							color:
 								billingMode === PricingBillingMode.ANNUAL
-									? "cell_blue"
+									? "theme_primary_active"
 									: "auto",
 						}}
 					>
 						Yearly
 						<span style={{ fontSize: 12, marginLeft: "4px" }}>(save 20%)</span>
-					</Button>
+					</Link>
 				</HStack>
 			</Center>
 			<Center>
@@ -219,14 +216,14 @@ export const ProductOverview = (props: ProductOverviewProps) => {
 												fontSize="24px"
 												fontWeight="bold"
 												letterSpacing="wider"
-												color={theme?.tierName}
+												color="theme_text_bright"
 											>
 												{product.name.replace(/[0-9]/g, "")}
 											</Text>
 											<Text
 												fontSize="xs"
 												paddingBottom={8}
-												color={theme?.tierSubtitle}
+												color="theme_text_bright"
 											>
 												{product.subTitle}
 											</Text>
@@ -252,21 +249,21 @@ export const ProductOverview = (props: ProductOverviewProps) => {
 												</>
 											)}
 											{product.pricePerMonthBilledMonthly && (
-												<Text fontSize="xs" color={theme?.costSubtitle} mt={1}>
+												<Text fontSize="xs" color="theme_text_bright" mt={1}>
 													Paid annually or $
 													{product.pricePerMonthBilledMonthly.toLocaleString()}{" "}
 													paid monthly
 												</Text>
 											)}
 											{product.pricePerMonthBilledAnnually && (
-												<Text fontSize="xs" color={theme?.costSubtitle} mt={1}>
+												<Text fontSize="xs" color="theme_text_bright" mt={1}>
 													Paid monthly or $
 													{product.pricePerMonthBilledAnnually.toLocaleString()}{" "}
 													paid annually
 												</Text>
 											)}
 											{product.annualBillingOnly && (
-												<Text fontSize="sm" color={theme?.cost} mt={1}>
+												<Text fontSize="sm" color="theme_text_bright" mt={1}>
 													Annual billing only
 												</Text>
 											)}
@@ -281,18 +278,18 @@ export const ProductOverview = (props: ProductOverviewProps) => {
 											<VStack
 												whiteSpace="normal"
 												mt={8}
-												color={theme?.tierBullets}
+												color="theme_text_bright"
 											>
 												{typeof product.description === "function"
 													? product.description(product)
 													: product.description}
 											</VStack>
 										</Box>
-										<Box width="100%" color={theme?.tierSubtitle}>
+										<Box width="100%" color="theme_text_bright">
 											<Text fontSize="sm" fontWeight="500" py={4}>
 												{product.footer}
 											</Text>
-											{ctaButton(product, theme)}
+											{ctaButton(product)}
 										</Box>
 									</VStack>
 								</Box>
