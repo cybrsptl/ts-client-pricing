@@ -44,17 +44,15 @@ export const ProductOverview = (props: ProductOverviewProps) => {
 	const ctaButton = (product: PricingAccountType) => {
 		if (product.isBelowDesiredLimits) {
 			return (
-				<Text
-					fontSize="xs"
-					fontStyle="italic"
-					border="1px solid"
+				<Button
+					variant="outline"
+					size="sm"
 					borderColor="theme_border_color"
 					color="button_dark"
-					borderRadius={16}
-					padding={1}
+					isDisabled={true}
 				>
 					Too small for {billingTier} GB DUA
-				</Text>
+				</Button>
 			)
 		}
 
