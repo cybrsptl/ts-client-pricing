@@ -3,6 +3,7 @@ import { Box } from "@chakra-ui/react"
 import AppConfig from "@common/constants/AppConfig"
 import { ButtonStyle } from "@common/utils/theme"
 import { PricingList, PricingListItem } from "../components/PricingDescList"
+import EnrichmentPartnerLogosIcon from "../icons/EnrichmentPartnerLogosIcon"
 import { PricingBillingMode } from "./PricingConstants"
 import { PricingAccountType } from "./PricingTypes"
 
@@ -222,14 +223,18 @@ const PricingAccounts: (
 						paddingTop: ".5em",
 						paddingLeft: "2.2em",
 						paddingRight: "2.2em",
+						color: "theme_text_bright",
 					}}
 				>
-					<Image
+					<EnrichmentPartnerLogosIcon width="200" />
+					{/* #dragonhere: an <Image/> ref to an SVG on our CDN fails to support fill="currentColor" matching, and it is not clear why
+					 <Image
 						src="https://cdn.teleseer.com/purchase_icons/enrichment_partners.svg"
 						alt={"GreyNoise & IpInfo"}
 						width={222}
 						height={19}
-					/>
+						style={{ fill: "currentcolor" }}
+					/> */}
 				</Box>
 			</>
 		),
