@@ -40,12 +40,7 @@ export const ProductFeatures = (props: ProductFeaturesProps) => {
 		pro: "cell_blue",
 	}
 
-	const tableWrapperOuter = {
-		width: "1000px",
-		maxWidth: "100vw",
-	}
-
-	const tableWrapperInner = {
+	const tableWrapper = {
 		position: "relative",
 		overflowX: "auto",
 		whiteSpace: "nowrap",
@@ -70,164 +65,152 @@ export const ProductFeatures = (props: ProductFeaturesProps) => {
 				Compare features
 			</Heading>
 
-			<Center>
-				<Box sx={tableWrapperOuter}>
-					<Box sx={tableWrapperInner}>
-						<Table variant="striped" {...tableProps}>
-							<Thead>
-								{/* Tier columns - Starter / Pro / Etc */}
+			<Box sx={tableWrapper}>
+				<Table variant="striped" {...tableProps}>
+					<Thead>
+						{/* Tier columns - Starter / Pro / Etc */}
+						<Tr>
+							<Td sx={stickyColumnWidth}>&nbsp;</Td>
+							{products.map((product, id) => (
+								<Td key={id} style={{ textAlign: "center" }} color="muted">
+									<VStack pt={4}>
+										<Box fontSize={24} fontWeight={500}>
+											{product.tierShort["title"]}
+										</Box>
+
+										<Box>{product.tierShort["subtitle"]}</Box>
+
+										<Box pt={2} pb={4}>
+											{product.pricePerMonth ? (
+												<>${product.pricePerMonth.toLocaleString()} per month</>
+											) : (
+												<>&nbsp;</>
+											)}
+										</Box>
+
+										<NextLink href="https://go.teleseer.com" target="_blank">
+											<Button
+												variant="outline"
+												size="xs"
+												borderRadius={16}
+												height={8}
+												px={6}
+												sx={{
+													...{
+														textDecoration: "none",
+														marginTop: "1rem",
+													},
+													...(product.goButtonStyle ?? ButtonStyle.white),
+												}}
+												isDisabled={product.isDisabled || product.isComingSoon}
+											>
+												{product.isComingSoon
+													? "Coming Soon"
+													: product.tierShort["go"]}
+											</Button>
+										</NextLink>
+									</VStack>
+								</Td>
+							))}
+						</Tr>
+					</Thead>
+					<Tbody>
+						{/* Feature sections - Resources/Telemetry Ingest/etc */}
+						{PricingFeatures.map((feature, featureId) => (
+							<>
 								<Tr>
-									<Td sx={stickyColumnWidth}>&nbsp;</Td>
-									{products.map((product, id) => (
-										<Td key={id} style={{ textAlign: "center" }} color="muted">
-											<VStack pt={4}>
-												<Box fontSize={24} fontWeight={500}>
-													{product.tierShort["title"]}
-												</Box>
-
-												<Box>{product.tierShort["subtitle"]}</Box>
-
-												<Box pt={2} pb={4}>
-													{product.pricePerMonth ? (
-														<>
-															${product.pricePerMonth.toLocaleString()} per
-															month
-														</>
-													) : (
-														<>&nbsp;</>
-													)}
-												</Box>
-
-												<NextLink
-													href="https://go.teleseer.com"
-													target="_blank"
-												>
-													<Button
-														variant="outline"
-														size="xs"
-														borderRadius={16}
-														height={8}
-														px={6}
-														sx={{
-															...{
-																textDecoration: "none",
-																marginTop: "1rem",
-															},
-															...(product.goButtonStyle ?? ButtonStyle.white),
-														}}
-														isDisabled={
-															product.isDisabled || product.isComingSoon
-														}
-													>
-														{product.isComingSoon
-															? "Coming Soon"
-															: product.tierShort["go"]}
-													</Button>
-												</NextLink>
-											</VStack>
-										</Td>
+									<Th
+										// colSpan={products.length + 1}
+										color={theme?.text}
+										fontSize="sm"
+										borderColor="blue.800"
+										border="none"
+										pt={[4, 8]}
+										sx={stickyColumn}
+									>
+										{feature.category}
+									</Th>
+									{products.map((product, index) => (
+										<Th
+											key={index}
+											style={{ textAlign: "center" }}
+											color="muted"
+											// width={`${(100 - 33) / products.length}%`}
+											border="none"
+											pt={[4, 8]}
+										>
+											<Box
+												px="10px"
+												borderBottom="1px solid"
+												borderBottomColor="section_color_dark"
+												opacity=".2"
+												lineHeight={"1px"}
+											>
+												&nbsp;
+											</Box>
+										</Th>
 									))}
 								</Tr>
-							</Thead>
-							<Tbody>
-								{/* Feature sections - Resources/Telemetry Ingest/etc */}
-								{PricingFeatures.map((feature, featureId) => (
-									<>
-										<Tr>
-											<Th
-												// colSpan={products.length + 1}
-												color={theme?.text}
-												fontSize="sm"
-												borderColor="blue.800"
-												border="none"
-												pt={[4, 8]}
-												sx={stickyColumn}
-											>
-												{feature.category}
-											</Th>
-											{products.map((product, index) => (
-												<Th
-													key={index}
-													style={{ textAlign: "center" }}
-													color="muted"
-													// width={`${(100 - 33) / products.length}%`}
-													border="none"
-													pt={[4, 8]}
-												>
-													<Box
-														px="10px"
-														borderBottom="1px solid"
-														borderBottomColor="section_color_dark"
-														opacity=".2"
-														lineHeight={"1px"}
-													>
-														&nbsp;
-													</Box>
-												</Th>
-											))}
-										</Tr>
 
-										{/* Feature row heading cells - Project Downloads/SSO/etc */}
-										{feature.items.map((item, index) => (
-											<Tr key={index}>
-												<Td sx={stickyColumn}>
-													<HStack spacing="1" alignItems={"center"} pt={4}>
-														<Text noOfLines={1}>{item.name}</Text>
-														{item.tooltip && (
-															<Tooltip
-																label={item.tooltip}
-																placement="bottom-start"
-															>
-																<Flex justify="center">
-																	<Icon
-																		as={FiInfo}
-																		boxSize="4"
-																		color="muted"
-																		alignSelf="bottom"
-																	/>
-																</Flex>
-															</Tooltip>
-														)}
-													</HStack>
-												</Td>
-
-												{/* Feature cell values - 2GB/Unlimited/✔/etc */}
-												{products.map((product, id) => (
-													<Td
-														key={id}
-														style={{ textAlign: "center" }}
-														color="muted"
+								{/* Feature row heading cells - Project Downloads/SSO/etc */}
+								{feature.items.map((item, index) => (
+									<Tr key={index}>
+										<Td sx={stickyColumn}>
+											<HStack spacing="1" alignItems={"center"} pt={4}>
+												<Text noOfLines={1}>{item.name}</Text>
+												{item.tooltip && (
+													<Tooltip
+														label={item.tooltip}
+														placement="bottom-start"
 													>
-														<Box
-															pt={4}
-															color={
-																feature.category !== "Resources" &&
-																cellColor[product.prodType]
-															}
-														>
-															<PricingFeature
-																key={item.key}
-																value={
-																	product.features[feature.sectionKey]
-																		? product.features[feature.sectionKey][
-																				item.key
-																		  ] ?? product.features[item.key]
-																		: false
-																}
-																{...{ billingMode, billingTier }}
+														<Flex justify="center">
+															<Icon
+																as={FiInfo}
+																boxSize="4"
+																color="muted"
+																alignSelf="bottom"
 															/>
-														</Box>
-													</Td>
-												))}
-											</Tr>
+														</Flex>
+													</Tooltip>
+												)}
+											</HStack>
+										</Td>
+
+										{/* Feature cell values - 2GB/Unlimited/✔/etc */}
+										{products.map((product, id) => (
+											<Td
+												key={id}
+												style={{ textAlign: "center" }}
+												color="muted"
+											>
+												<Box
+													pt={4}
+													color={
+														feature.category !== "Resources" &&
+														cellColor[product.prodType]
+													}
+												>
+													<PricingFeature
+														key={item.key}
+														value={
+															product.features[feature.sectionKey]
+																? product.features[feature.sectionKey][
+																		item.key
+																  ] ?? product.features[item.key]
+																: false
+														}
+														{...{ billingMode, billingTier }}
+													/>
+												</Box>
+											</Td>
 										))}
-									</>
+									</Tr>
 								))}
-							</Tbody>
-						</Table>
-					</Box>
-				</Box>
-			</Center>
+							</>
+						))}
+					</Tbody>
+				</Table>
+			</Box>
 		</>
 	)
 }
