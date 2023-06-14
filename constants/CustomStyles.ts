@@ -1,10 +1,10 @@
 export const CustomButtonStyles = {
 	blue: {
 		color: "white",
-		backgroundColor: "cell_blue",
+		backgroundColor: "theme_primary",
 		borderColor: "none",
 		_hover: {
-			filter: "brightness(110%)",
+			backgroundColor: "theme_primary_active",
 		},
 	},
 	light: {
@@ -16,7 +16,7 @@ export const CustomButtonStyles = {
 		},
 	},
 	white: {
-		color: "section_color_dark",
+		color: "cell_dark",
 		backgroundColor: "white",
 		borderColor: "section_color_dark",
 		_hover: {
