@@ -108,14 +108,24 @@ export const ProductOverview = (props: ProductOverviewProps) => {
 	return (
 		<>
 			<Center>
-				<HStack mt={2}>
-					<Text
-						color={
-							billingMode === PricingBillingMode.MONTHLY ? "cell_blue" : "auto"
-						}
+				<HStack mt={2} spacing={1}>
+					<Button
+						variant="ghost"
+						size="md"
+						onClick={() => {
+							setBillingMode(PricingBillingMode.MONTHLY)
+						}}
+						sx={{
+							h: 8,
+							px: 2,
+							color:
+								billingMode === PricingBillingMode.MONTHLY
+									? "cell_blue"
+									: "auto",
+						}}
 					>
 						Monthly
-					</Text>
+					</Button>
 					<Switch
 						size="md"
 						isChecked={billingMode === PricingBillingMode.ANNUAL}
@@ -127,14 +137,24 @@ export const ProductOverview = (props: ProductOverviewProps) => {
 							)
 						}}
 					/>
-					<Text
-						color={
-							billingMode === PricingBillingMode.ANNUAL ? "cell_blue" : "auto"
-						}
+					<Button
+						variant="ghost"
+						size="md"
+						onClick={() => {
+							setBillingMode(PricingBillingMode.ANNUAL)
+						}}
+						sx={{
+							h: 8,
+							px: 2,
+							color:
+								billingMode === PricingBillingMode.ANNUAL
+									? "cell_blue"
+									: "auto",
+						}}
 					>
 						Yearly
 						<span style={{ fontSize: 12, marginLeft: "4px" }}>(save 20%)</span>
-					</Text>
+					</Button>
 				</HStack>
 			</Center>
 			<Center>
