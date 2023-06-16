@@ -56,7 +56,7 @@ export const ProductOverview = (props: ProductOverviewProps) => {
 			)
 		}
 
-		if (!purchaseEnabled) {
+		if (!purchaseEnabled || product.isComingSoon) {
 			return (
 				<NextLink href="https://go.teleseer.com" target="_blank">
 					<Button
