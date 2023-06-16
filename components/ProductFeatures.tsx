@@ -63,7 +63,18 @@ export const ProductFeatures = (props: ProductFeaturesProps) => {
 			</Heading>
 
 			<Box sx={tableWrapper}>
-				<Table sx={{ th: { fontSize: "lg" }, tr: { td: { border: "none" } } }}>
+				<Table
+					sx={{
+						th: { fontSize: "lg" },
+						tr: {
+							td: {
+								border: "none",
+								paddingTop: "0px",
+								paddingBottom: "0px",
+							},
+						},
+					}}
+				>
 					<Thead>
 						{/* Tier columns - Starter / Pro / Etc */}
 						<Tr>
