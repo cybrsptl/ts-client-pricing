@@ -115,7 +115,7 @@ export const ProductTierSelection = ({
 						</SliderTrack>
 						<SliderThumb
 							boxSize={6}
-							bg="theme_primary"
+							bg="theme_hilight_dark"
 							color="theme_text_bright"
 							px={4}
 							whiteSpace="pre"

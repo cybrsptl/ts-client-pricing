@@ -214,15 +214,10 @@ export const ProductOverview = (props: ProductOverviewProps) => {
 												fontSize="24px"
 												fontWeight="bold"
 												letterSpacing="wider"
-												color="theme_text_bright"
 											>
 												{product.name.replace(/[0-9]/g, "")}
 											</Text>
-											<Text
-												fontSize="xs"
-												paddingBottom={8}
-												color="theme_text_bright"
-											>
+											<Text fontSize="xs" paddingBottom={8}>
 												{product.subTitle}
 											</Text>
 											{product.pricePerMonth && (
@@ -247,21 +242,21 @@ export const ProductOverview = (props: ProductOverviewProps) => {
 												</>
 											)}
 											{product.pricePerMonthBilledMonthly && (
-												<Text fontSize="xs" color="theme_text_bright" mt={1}>
+												<Text fontSize="xs" mt={1}>
 													Paid annually or $
 													{product.pricePerMonthBilledMonthly.toLocaleString()}{" "}
 													paid monthly
 												</Text>
 											)}
 											{product.pricePerMonthBilledAnnually && (
-												<Text fontSize="xs" color="theme_text_bright" mt={1}>
+												<Text fontSize="xs" mt={1}>
 													Paid monthly or $
 													{product.pricePerMonthBilledAnnually.toLocaleString()}{" "}
 													paid annually
 												</Text>
 											)}
 											{product.annualBillingOnly && (
-												<Text fontSize="sm" color="theme_text_bright" mt={1}>
+												<Text fontSize="sm" mt={1}>
 													Annual billing only
 												</Text>
 											)}
@@ -273,17 +268,13 @@ export const ProductOverview = (props: ProductOverviewProps) => {
 												>{`${product.features.resources["perGb"]} per GB`}</Text>
 											)}
 
-											<VStack
-												whiteSpace="normal"
-												mt={8}
-												color="theme_text_bright"
-											>
+											<VStack whiteSpace="normal" mt={8}>
 												{typeof product.description === "function"
 													? product.description(product)
 													: product.description}
 											</VStack>
 										</Box>
-										<Box width="100%" color="theme_text_bright">
+										<Box width="100%">
 											<Text fontSize="sm" fontWeight="500" py={4}>
 												{product.footer}
 											</Text>
