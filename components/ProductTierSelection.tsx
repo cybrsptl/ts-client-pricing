@@ -51,7 +51,7 @@ export const ProductTierSelection = ({
 	}
 
 	return (
-		<Box w="100%" maxWidth="800px" py={4} px={10} {...containerProps}>
+		<Box w="100%" maxWidth="800px" py={4} px={4} {...containerProps}>
 			<Heading fontSize={20} textAlign="center" mb={2}>
 				Data under analysis (DUA)
 			</Heading>
@@ -60,21 +60,22 @@ export const ProductTierSelection = ({
 				<br />
 				You can free up space by deleting uploaded projects and data.
 			</Text>
-			<Slider
-				min={0}
-				max={accountTierSliderIntervalCount - 1}
-				onChange={(val) => setBillingTier(accountTierSliderIntervals[val])}
-				value={accountTierSliderIntervals.findIndex((v) => v == billingTier)}
-				step={1}
-				ml={2}
-				mb={12}
-			>
-				{accountTierSliderIntervals.map((tier, index) => (
-					<SliderMark value={index} {...labelStyles} key={index}>
-						{Number(tier).toLocaleString()}
-					</SliderMark>
-				))}
-				{/* <SliderMark
+			<Box mx={8}>
+				<Slider
+					min={0}
+					max={accountTierSliderIntervalCount - 1}
+					onChange={(val) => setBillingTier(accountTierSliderIntervals[val])}
+					value={accountTierSliderIntervals.findIndex((v) => v == billingTier)}
+					step={1}
+					ml={2}
+					mb={12}
+				>
+					{accountTierSliderIntervals.map((tier, index) => (
+						<SliderMark value={index} {...labelStyles} key={index}>
+							{Number(tier).toLocaleString()}
+						</SliderMark>
+					))}
+					{/* <SliderMark
 							value={billingTier}
 							textAlign="center"
 							bg="blue.500"
@@ -85,26 +86,27 @@ export const ProductTierSelection = ({
 						>
 							{billingTier}%
 						</SliderMark> */}
-				<SliderTrack bg="theme_hilight">
-					<SliderFilledTrack bg="theme_hilight_dark" />
-				</SliderTrack>
-				<SliderThumb
-					boxSize={6}
-					bg="theme_hilight_dark"
-					color="theme_text_bright"
-					px={4}
-					whiteSpace="pre"
-					width={16}
-					fontSize="xs"
-					fontWeight="bold"
-				>
-					{billingTier >= 1000
-						? billingTier / 1000 + " TB"
-						: billingTier + " GB"}
-					{/* <Box color="blue.500" as={MdGraphicEq} /> */}
-					{/* <Logo color="blue.500" logoStyle="symbol" height={24} /> */}
-				</SliderThumb>
-			</Slider>
+					<SliderTrack bg="theme_hilight">
+						<SliderFilledTrack bg="theme_hilight_dark" />
+					</SliderTrack>
+					<SliderThumb
+						boxSize={6}
+						bg="theme_hilight_dark"
+						color="theme_text_bright"
+						px={4}
+						whiteSpace="pre"
+						width={16}
+						fontSize="xs"
+						fontWeight="bold"
+					>
+						{billingTier >= 1000
+							? billingTier / 1000 + " TB"
+							: billingTier + " GB"}
+						{/* <Box color="blue.500" as={MdGraphicEq} /> */}
+						{/* <Logo color="blue.500" logoStyle="symbol" height={24} /> */}
+					</SliderThumb>
+				</Slider>
+			</Box>
 		</Box>
 	)
 }

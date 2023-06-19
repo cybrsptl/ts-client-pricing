@@ -23,10 +23,15 @@ const PricingAccounts: (
 ) => [
 	{
 		name: "Free Trial",
-		subTitle: "On-demand analysis for individuals",
+		subTitle: "7-day Teleseer trial",
 		prodType: "trial",
+		go:
+			tenantTierName.toUpperCase() === "NEW"
+				? "Start Free Trial"
+				: `Trial Not Available`,
 		hideOverviewCard:
 			tenantTierName.toUpperCase() !== "NEW" || pricingBillingTier > 1,
+		isDisabled: tenantTierName.toUpperCase() !== "NEW",
 		freeTrialCode: "trial",
 		goButtonStyle: CustomButtonStyles.white,
 		description: (product: PricingAccountType) => (
@@ -48,8 +53,7 @@ const PricingAccounts: (
 		},
 		tierShort: {
 			title: "Free Trial",
-			subtitle: "7-day Teleseer trial",
-			go: "Try for Free",
+			subtitle: "No credit card required",
 		},
 		features: {
 			data: "1 GB",
@@ -148,7 +152,6 @@ const PricingAccounts: (
 		tierShort: {
 			title: "Starter",
 			subtitle: "On-demand analysis",
-			go: "Go Starter",
 		},
 		features: {
 			dataByTier: {
@@ -271,7 +274,6 @@ const PricingAccounts: (
 		tierShort: {
 			title: "Pro",
 			subtitle: "Advanced analysis",
-			go: "Go Pro",
 		},
 		features: {
 			dataByTier: {
@@ -354,8 +356,8 @@ const PricingAccounts: (
 	{
 		name: "Teleseer Teams",
 		prodType: "team",
-		isComingSoon: true,
-		go: "Go Teams",
+		go: "Coming Soon", //"Go Teams",
+		isDisabled: true,
 		goButtonStyle: CustomButtonStyles.dark,
 		cardStyle: {
 			borderTopColor: "section_color_dark",
@@ -403,7 +405,6 @@ const PricingAccounts: (
 		tierShort: {
 			title: "Teams",
 			subtitle: "Collaborative analysis",
-			go: "Go Teams",
 		},
 		features: {
 			dataByTier: {

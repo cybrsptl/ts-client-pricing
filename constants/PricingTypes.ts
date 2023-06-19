@@ -20,7 +20,6 @@ export type PricingAccountType = {
 	name: string
 	subTitle?: string
 	footer?: string
-	purchaseLink?: string
 	go?: string
 	goButtonStyle?: SystemStyleObject
 	cardStyle?: SystemStyleObject
@@ -40,7 +39,6 @@ export type PricingAccountType = {
 	features: { [key: string]: object | string | boolean | number }
 	isDisabled?: boolean
 	isCurrent?: boolean
-	isComingSoon?: boolean
 	annualBillingOnly?: boolean
 	isBelowDesiredLimits?: boolean
 	hideOverviewCard?: boolean
