@@ -30,8 +30,6 @@ export const ProductTierSelection = ({
 	setBillingTier,
 	...containerProps
 }: ProductTierSelectionProps) => {
-	const isMobile = useIsMobile()
-
 	const { accountTierSliderIntervalCount, accountTierSliderIntervals } =
 		useMemo(() => {
 			const accountTierSliderIntervals = Object.keys(pricingTiers)
@@ -45,21 +43,6 @@ export const ProductTierSelection = ({
 			}
 		}, [pricingTiers])
 
-	// console.log("billingTier", billingTier)
-	// console.log("accountTierSliderIntervals", accountTierSliderIntervals)
-
-	// const tierLevels = useMemo(() => {
-	// 	const levels = []
-	// 	products.forEach((product) => {
-	// 		if (!product.price_per_gb) {
-	// 			return
-	// 		}
-	// 		object.keysproduct.price_per_gb.forEach()
-	// 		levels[]
-	// 	}
-	// 		return levels
-	// }, [products])
-
 	const labelStyles = {
 		mt: "4",
 		ml: "-2.5",
@@ -68,38 +51,30 @@ export const ProductTierSelection = ({
 	}
 
 	return (
-		<Box rounded="lg" p={{ base: "4", md: "4" }} mb={20} {...containerProps}>
-			<Stack
-				direction={isMobile ? "column" : "row"}
-				alignItems="center"
-				justifyContent="center"
+		<Box w="100%" maxWidth="800px" py={4} px={10} {...containerProps}>
+			<Heading fontSize={20} textAlign="center" mb={2}>
+				Data under analysis (DUA)
+			</Heading>
+			<Text textAlign={"center"} mb={6}>
+				DUA is the total uncompressed amount of data we’ve analyzed and stored.
+				<br />
+				You can free up space by deleting uploaded projects and data.
+			</Text>
+			<Slider
+				min={0}
+				max={accountTierSliderIntervalCount - 1}
+				onChange={(val) => setBillingTier(accountTierSliderIntervals[val])}
+				value={accountTierSliderIntervals.findIndex((v) => v == billingTier)}
+				step={1}
+				ml={2}
+				mb={12}
 			>
-				<Box flex=".75" width={{ base: 300, lg: 350 }}>
-					<Heading fontSize={20} textAlign="center" mb={2}>
-						Data under analysis (DUA)
-					</Heading>
-					<Text textAlign={"center"} mb={6}>
-						DUA is the total uncompressed amount of data we’ve analyzed and
-						stored. <br />
-						You can free up space by deleting uploaded projects and data.
-					</Text>
-					<Slider
-						min={0}
-						max={accountTierSliderIntervalCount - 1}
-						onChange={(val) => setBillingTier(accountTierSliderIntervals[val])}
-						value={accountTierSliderIntervals.findIndex(
-							(v) => v == billingTier
-						)}
-						step={1}
-						ml={2}
-						mb={12}
-					>
-						{accountTierSliderIntervals.map((tier, index) => (
-							<SliderMark value={index} {...labelStyles} key={index}>
-								{Number(tier).toLocaleString()}
-							</SliderMark>
-						))}
-						{/* <SliderMark
+				{accountTierSliderIntervals.map((tier, index) => (
+					<SliderMark value={index} {...labelStyles} key={index}>
+						{Number(tier).toLocaleString()}
+					</SliderMark>
+				))}
+				{/* <SliderMark
 							value={billingTier}
 							textAlign="center"
 							bg="blue.500"
@@ -110,34 +85,26 @@ export const ProductTierSelection = ({
 						>
 							{billingTier}%
 						</SliderMark> */}
-						<SliderTrack bg="theme_hilight">
-							<SliderFilledTrack bg="theme_hilight_dark" />
-						</SliderTrack>
-						<SliderThumb
-							boxSize={6}
-							bg="theme_hilight_dark"
-							color="theme_text_bright"
-							px={4}
-							whiteSpace="pre"
-							width={16}
-							fontSize="xs"
-							fontWeight="bold"
-						>
-							{billingTier >= 1000
-								? billingTier / 1000 + " TB"
-								: billingTier + " GB"}
-							{/* <Box color="blue.500" as={MdGraphicEq} /> */}
-							{/* <Logo color="blue.500" logoStyle="symbol" height={24} /> */}
-						</SliderThumb>
-					</Slider>
-				</Box>
-			</Stack>
-			{/* <Divider
-				// width="100%"
-				backgroundColor="gray.500"
-				// height="10px"
-				// orientation="horizontal"
-			/> */}
+				<SliderTrack bg="theme_hilight">
+					<SliderFilledTrack bg="theme_hilight_dark" />
+				</SliderTrack>
+				<SliderThumb
+					boxSize={6}
+					bg="theme_hilight_dark"
+					color="theme_text_bright"
+					px={4}
+					whiteSpace="pre"
+					width={16}
+					fontSize="xs"
+					fontWeight="bold"
+				>
+					{billingTier >= 1000
+						? billingTier / 1000 + " TB"
+						: billingTier + " GB"}
+					{/* <Box color="blue.500" as={MdGraphicEq} /> */}
+					{/* <Logo color="blue.500" logoStyle="symbol" height={24} /> */}
+				</SliderThumb>
+			</Slider>
 		</Box>
 	)
 }
