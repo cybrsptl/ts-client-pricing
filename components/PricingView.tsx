@@ -165,9 +165,6 @@ export const PricingView = ({
 				)
 				product.dataInGB = lowestTierIndex
 				product.billingFrequency = pricingData[tierProdKey].interval
-				// if (!product.isBelowDesiredLimits) {
-				// 	product.purchaseLink = pricingData[tierProdKey].link
-				// }
 				product.prodId = pricingData[tierProdKey].prodId
 				product.priceId = pricingData[tierProdKey].priceId
 			} else {

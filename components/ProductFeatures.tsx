@@ -114,13 +114,9 @@ export const ProductFeatures = (props: ProductFeaturesProps) => {
 														...(product.goButtonStyle ??
 															CustomButtonStyles.white),
 													}}
-													isDisabled={
-														product.isDisabled || product.isComingSoon
-													}
+													isDisabled={product.isDisabled}
 												>
-													{product.isComingSoon
-														? "Coming Soon"
-														: product.tierShort["go"]}
+													{product.tierShort["go"] ?? product.go}
 												</Button>
 											</NextLink>
 										</VStack>
