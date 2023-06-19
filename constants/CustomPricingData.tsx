@@ -13,14 +13,37 @@ import { PricingAccountType } from "./PricingTypes"
 export const defaultPricingTier = 2 // Default to Starter 2 tier
 
 const PricingAccounts: (
-	pricingBillingMode?: PricingBillingMode
-) => PricingAccountType[] = (pricingBillingMode) => [
+	pricingBillingMode: PricingBillingMode,
+	pricingBillingTier: number,
+	tenantTierName: string
+) => PricingAccountType[] = (
+	pricingBillingMode,
+	pricingBillingTier,
+	tenantTierName
+) => [
 	{
 		name: "Free Trial",
-		hideOverviewCard: true,
 		prodType: "trial",
+		hideOverviewCard:
+			tenantTierName.toUpperCase() !== "NEW" || pricingBillingTier > 1,
+		freeTrialCode: "trial",
 		goButtonStyle: CustomButtonStyles.white,
-		freeTrialDays: 7,
+		description: (product: PricingAccountType) => (
+			<PricingList mb={2}>
+				<PricingListItem>
+					<>{product.features["data"]} data under analysis</>
+				</PricingListItem>
+				<PricingListItem>
+					<>{product.features["projects"]} projects</>
+				</PricingListItem>
+				<PricingListItem>
+					<>Activate your free trial now!</>
+				</PricingListItem>
+			</PricingList>
+		),
+		tiersByGbToStripeIDs: {
+			1: "",
+		},
 		tierShort: {
 			title: "Free Trial",
 			subtitle: "7-day Teleseer trial",
@@ -85,6 +108,8 @@ const PricingAccounts: (
 		name: "Starter",
 		subTitle: "On-demand analysis for individuals",
 		prodType: "starter",
+		hideOverviewCard:
+			tenantTierName.toUpperCase() === "NEW" && pricingBillingTier === 1,
 		go: "Go Starter",
 		goButtonStyle: CustomButtonStyles.white,
 		description: (product: PricingAccountType) => (

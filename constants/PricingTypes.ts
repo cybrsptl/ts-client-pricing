@@ -38,11 +38,11 @@ export type PricingAccountType = {
 	tiersByGbToStripeIDs?: { [key: number]: string }
 	tierShort: { [key: string]: string }
 	features: { [key: string]: object | string | boolean | number }
-	hideOverviewCard?: boolean
 	isDisabled?: boolean
 	isCurrent?: boolean
 	isComingSoon?: boolean
 	annualBillingOnly?: boolean
 	isBelowDesiredLimits?: boolean
-	freeTrialDays?: number
+	hideOverviewCard?: boolean
+	freeTrialCode?: string
 }
