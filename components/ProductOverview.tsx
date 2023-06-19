@@ -69,7 +69,6 @@ export const ProductOverview = (props: ProductOverviewProps) => {
 						paddingLeft="2em"
 						paddingRight="2em"
 						borderWidth={2}
-						borderRadius={16}
 						// color={theme?.lightButtonText}
 						sx={product.goButtonStyle ?? CustomButtonStyles.white}
 						isLoading={!!stripePriceIdToPurchase}
@@ -95,7 +94,7 @@ export const ProductOverview = (props: ProductOverviewProps) => {
 				isLoading={!!stripePriceIdToPurchase}
 				isDisabled={product.isDisabled || product.isComingSoon}
 			>
-				{product.freeTrialDays && tenantTierName?.toUpperCase() !== "EXPIRED"
+				{product.freeTrialCode && tenantTierName?.toUpperCase() !== "EXPIRED"
 					? "Start Free Trial"
 					: `Purchase ${product.name.replace(/[0-9]/g, "")}`}
 			</Button>
@@ -170,9 +169,10 @@ export const ProductOverview = (props: ProductOverviewProps) => {
 						.map((product, id) => (
 							<Box
 								key={id}
-								flex={1}
-								minWidth={"240px"}
-								maxWidth={"340px"}
+								// flex="1 0 30%"
+								width="300px"
+								// minWidth={"240px"}
+								// maxWidth={"340px"}
 								rounded="lg"
 								overflow="hidden"
 							>
