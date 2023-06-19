@@ -216,46 +216,50 @@ export const PricingView = ({
 	}, [billingTier, billingMode, pricingData])
 
 	return (
-		<Box as="section" w="100%">
-			<Stack spacing={{ base: "5", md: "7" }} mb={8}>
-				{PurchaseComponent && (
-					<PurchaseComponent
-						{...{
-							stripePriceIdToPurchase,
-							setStripePriceIdToPurchase,
-						}}
-					/>
-				)}
-				<ProductOverview
+		<Stack
+			as="section"
+			w="100%"
+			spacing={{ base: "5", md: "7" }}
+			alignItems="center"
+			mb={8}
+		>
+			{PurchaseComponent && (
+				<PurchaseComponent
 					{...{
-						products,
-						billingMode,
-						setBillingMode,
-						billingTier,
-						userEmail,
-						tenantTierName,
-						purchaseEnabled,
 						stripePriceIdToPurchase,
 						setStripePriceIdToPurchase,
 					}}
 				/>
-				<ProductTierSelection
-					{...{
-						pricingTiers,
-						billingMode,
-						setBillingMode,
-						billingTier,
-						setBillingTier,
-					}}
-				/>
-				<ProductFeatures
-					{...{
-						billingMode,
-						billingTier,
-						products,
-					}}
-				/>
-			</Stack>
-		</Box>
+			)}
+			<ProductOverview
+				{...{
+					products,
+					billingMode,
+					setBillingMode,
+					billingTier,
+					userEmail,
+					tenantTierName,
+					purchaseEnabled,
+					stripePriceIdToPurchase,
+					setStripePriceIdToPurchase,
+				}}
+			/>
+			<ProductTierSelection
+				{...{
+					pricingTiers,
+					billingMode,
+					setBillingMode,
+					billingTier,
+					setBillingTier,
+				}}
+			/>
+			<ProductFeatures
+				{...{
+					billingMode,
+					billingTier,
+					products,
+				}}
+			/>
+		</Stack>
 	)
 }
