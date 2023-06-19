@@ -10,7 +10,7 @@ import { PricingAccountType } from "./PricingTypes"
 // Note: Tier thresholds should match out latest values here:
 // https://docs.google.com/spreadsheets/d/1rQRlPnumgwwRB2d-18kU82fpEOwILBEXys_FgbVdjc0
 
-export const defaultPricingTier = 2 // Default to Starter 2 tier
+export const defaultPricingTier = 1 // Default to Free Trial tier
 
 const PricingAccounts: (
 	pricingBillingMode: PricingBillingMode,
@@ -23,6 +23,7 @@ const PricingAccounts: (
 ) => [
 	{
 		name: "Free Trial",
+		subTitle: "On-demand analysis for individuals",
 		prodType: "trial",
 		hideOverviewCard:
 			tenantTierName.toUpperCase() !== "NEW" || pricingBillingTier > 1,
@@ -31,18 +32,19 @@ const PricingAccounts: (
 		description: (product: PricingAccountType) => (
 			<PricingList mb={2}>
 				<PricingListItem>
-					<>{product.features["data"]} data under analysis</>
-				</PricingListItem>
-				<PricingListItem>
 					<>{product.features["projects"]} projects</>
 				</PricingListItem>
 				<PricingListItem>
-					<>Activate your free trial now!</>
+					<>{product.features["data"]} data under analysis</>
 				</PricingListItem>
+				<PricingListItem>No credit card required</PricingListItem>
+				<PricingListItem>Activate now!</PricingListItem>
 			</PricingList>
 		),
 		tiersByGbToStripeIDs: {
-			1: "",
+			1: AppConfig.stripe_test_mode
+				? "prod_NzaoJMCcrvfdBl"
+				: "prod_O4TFgRNOwpMWxY",
 		},
 		tierShort: {
 			title: "Free Trial",
@@ -55,7 +57,8 @@ const PricingAccounts: (
 			projects: "3",
 			assets: 1000,
 			resources: {
-				num_assets: "Unlimited",
+				perGb:
+					pricingBillingMode === PricingBillingMode.ANNUAL ? "$8/mo" : "$10/mo",
 				perUser: false,
 				seats: false,
 			},
@@ -115,10 +118,10 @@ const PricingAccounts: (
 		description: (product: PricingAccountType) => (
 			<PricingList mb={2}>
 				<PricingListItem>
-					<>{product.features["data"]} data under analysis</>
+					<>{product.features["projects"]} projects</>
 				</PricingListItem>
 				<PricingListItem>
-					<>{product.features["projects"]} projects</>
+					<>{product.features["data"]} data under analysis</>
 				</PricingListItem>
 				<PricingListItem>
 					<>{product.features["assets"]} assets</>
@@ -142,7 +145,6 @@ const PricingAccounts: (
 				? "prod_Nzat4nsV0oAz24"
 				: "prod_O4TEozv5boTBQp",
 		},
-		freeTrialDays: 7,
 		tierShort: {
 			title: "Starter",
 			subtitle: "On-demand analysis",
@@ -228,10 +230,10 @@ const PricingAccounts: (
 			<>
 				<PricingList>
 					<PricingListItem>
-						<>{product.features["data"]} data under analysis</>
+						<>{product.features["projects"]} projects</>
 					</PricingListItem>
 					<PricingListItem>
-						<>{product.features["projects"]} projects</>
+						<>{product.features["data"]} data under analysis</>
 					</PricingListItem>
 					<PricingListItem>
 						<>Advanced data exports</>
@@ -363,10 +365,10 @@ const PricingAccounts: (
 			<>
 				<PricingList>
 					<PricingListItem>
-						<>{product.features["data"]} data under analysis</>
+						<>{product.features.resources["seats"]} seats included</>
 					</PricingListItem>
 					<PricingListItem>
-						<>{product.features.resources["seats"]} seats included</>
+						<>{product.features["data"]} data under analysis</>
 					</PricingListItem>
 					<PricingListItem>
 						<>API-based uploads</>
