@@ -56,35 +56,9 @@ export const ProductOverview = (props: ProductOverviewProps) => {
 			)
 		}
 
-		if (!purchaseEnabled) {
-			return (
-				<NextLink href="https://go.teleseer.com" target="_blank">
-					<Button
-						variant={"outline"}
-						size={"sm"}
-						// height={18}
-						width="80%"
-						// minWidth={"8rem"}
-						fontWeight="semibold"
-						paddingLeft="2em"
-						paddingRight="2em"
-						borderWidth={2}
-						// color={theme?.lightButtonText}
-						sx={product.goButtonStyle ?? CustomButtonStyles.white}
-						isLoading={!!stripePriceIdToPurchase}
-						isDisabled={product.isDisabled}
-					>
-						{product.go}
-					</Button>
-				</NextLink>
-			)
-		}
-
 		return (
 			<Button
-				onClick={() => {
-					setStripePriceIdToPurchase(product.priceId)
-				}}
+				onClick={product.goActionMethod}
 				variant={"outline"}
 				size={"sm"}
 				fontWeight="semibold"

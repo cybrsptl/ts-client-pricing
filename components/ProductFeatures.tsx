@@ -99,26 +99,24 @@ export const ProductFeatures = (props: ProductFeaturesProps) => {
 												)}
 											</Box>
 
-											<NextLink href="https://go.teleseer.com" target="_blank">
-												<Button
-													variant="outline"
-													size="xs"
-													// borderRadius={16}
-													height={8}
-													px={6}
-													sx={{
-														...{
-															textDecoration: "none",
-															marginTop: "1rem",
-														},
-														...(product.goButtonStyle ??
-															CustomButtonStyles.white),
-													}}
-													isDisabled={product.isDisabled}
-												>
-													{product.tierShort["go"] ?? product.go}
-												</Button>
-											</NextLink>
+											<Button
+												onClick={product.goActionMethod}
+												isDisabled={product.isDisabled}
+												variant="outline"
+												size="xs"
+												sx={{
+													height: 8,
+													px: 6,
+													...{
+														textDecoration: "none",
+														marginTop: "1rem",
+													},
+													...(product.goButtonStyle ??
+														CustomButtonStyles.white),
+												}}
+											>
+												{product.tierShort["go"] ?? product.go}
+											</Button>
 										</VStack>
 									</Td>
 								))}

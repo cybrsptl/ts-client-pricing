@@ -1,4 +1,4 @@
-import React from "react"
+import React, { MouseEventHandler } from "react"
 import { SystemStyleObject } from "@chakra-ui/react"
 
 export interface StripePricingData {
@@ -43,4 +43,5 @@ export type PricingAccountType = {
 	isBelowDesiredLimits?: boolean
 	hideOverviewCard?: boolean
 	freeTrialCode?: string
+	goActionMethod?: MouseEventHandler<HTMLButtonElement>
 }

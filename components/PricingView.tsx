@@ -201,6 +201,19 @@ export const PricingView = ({
 					.toLocaleString()}`
 			}
 
+			// Populate product.goActionMethod
+			product.goActionMethod = () => {
+				if (purchaseEnabled) {
+					if (product.freeTrialCode) {
+						// @todo "activate free trial" logic here
+					} else {
+						setStripePriceIdToPurchase(product.priceId)
+					}
+				} else {
+					return window.open("https://go.teleseer.com", "_blank")
+				}
+			}
+
 			// console.log("billingTier", billingTier)
 			// console.log("pricingData", pricingData)
 			// console.log("lowestTierProductId", lowestTierProductId)
@@ -209,7 +222,7 @@ export const PricingView = ({
 
 		// console.log("accountTypesForChosenTier", accountTypesForChosenTier)
 		return accountTypesForChosenTier
-	}, [billingTier, billingMode, pricingData, tenantTierName])
+	}, [billingMode, billingTier, tenantTierName, pricingData, purchaseEnabled])
 
 	return (
 		<Stack
