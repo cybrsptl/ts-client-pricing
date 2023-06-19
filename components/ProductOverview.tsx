@@ -56,7 +56,7 @@ export const ProductOverview = (props: ProductOverviewProps) => {
 			)
 		}
 
-		if (!purchaseEnabled || product.isComingSoon) {
+		if (!purchaseEnabled) {
 			return (
 				<NextLink href="https://go.teleseer.com" target="_blank">
 					<Button
@@ -72,9 +72,9 @@ export const ProductOverview = (props: ProductOverviewProps) => {
 						// color={theme?.lightButtonText}
 						sx={product.goButtonStyle ?? CustomButtonStyles.white}
 						isLoading={!!stripePriceIdToPurchase}
-						isDisabled={product.isDisabled || product.isComingSoon}
+						isDisabled={product.isDisabled}
 					>
-						{product.isComingSoon ? "Coming Soon" : product.go}
+						{product.go}
 					</Button>
 				</NextLink>
 			)
@@ -92,11 +92,9 @@ export const ProductOverview = (props: ProductOverviewProps) => {
 				paddingRight="2em"
 				sx={{ color: "white" }}
 				isLoading={!!stripePriceIdToPurchase}
-				isDisabled={product.isDisabled || product.isComingSoon}
+				isDisabled={product.isDisabled}
 			>
-				{product.freeTrialCode && tenantTierName?.toUpperCase() !== "EXPIRED"
-					? "Start Free Trial"
-					: `Purchase ${product.name.replace(/[0-9]/g, "")}`}
+				{product.go}
 			</Button>
 		)
 	}
@@ -183,15 +181,11 @@ export const ProductOverview = (props: ProductOverviewProps) => {
 										overflow: "hidden",
 										position: "relative",
 										opacity:
-											product.isDisabled ||
-											product.isBelowDesiredLimits ||
-											product.isComingSoon
+											product.isDisabled || product.isBelowDesiredLimits
 												? 0.5
 												: 1,
 										cursor:
-											product.isDisabled ||
-											product.isBelowDesiredLimits ||
-											product.isComingSoon
+											product.isDisabled || product.isBelowDesiredLimits
 												? "not-allowed"
 												: "auto",
 										borderColor: "bg_white",
