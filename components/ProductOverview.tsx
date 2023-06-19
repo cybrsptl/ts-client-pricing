@@ -24,7 +24,6 @@ interface ProductOverviewProps extends TableProps {
 	stripePriceIdToPurchase?: string
 	purchaseEnabled?: boolean
 	tenantTierName?: string
-	setStripePriceIdToPurchase: (prodType: string | null) => void
 }
 
 export const ProductOverview = (props: ProductOverviewProps) => {
@@ -36,7 +35,6 @@ export const ProductOverview = (props: ProductOverviewProps) => {
 		setBillingMode,
 		purchaseEnabled,
 		stripePriceIdToPurchase,
-		setStripePriceIdToPurchase,
 		tenantTierName,
 		...containerProps
 	} = props

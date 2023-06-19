@@ -250,7 +250,6 @@ export const PricingView = ({
 					tenantTierName,
 					purchaseEnabled,
 					stripePriceIdToPurchase,
-					setStripePriceIdToPurchase,
 				}}
 			/>
 			<ProductTierSelection
