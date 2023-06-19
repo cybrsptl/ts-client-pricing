@@ -212,8 +212,7 @@ export const PricingView = ({
 
 		// console.log("accountTypesForChosenTier", accountTypesForChosenTier)
 		return accountTypesForChosenTier
-		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [billingTier, billingMode, pricingData])
+	}, [billingTier, billingMode, pricingData, tenantTierName])
 
 	return (
 		<Stack
