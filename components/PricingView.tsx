@@ -74,37 +74,43 @@ export const PricingView = ({
 	// (Used to determine where to place the discrete stops for the ProductTierSelection slider).
 	const pricingTiers = useMemo(() => {
 		const pricingTiers = {}
-		PricingAccounts().forEach((type) => {
-			if (!type.tiersByGbToStripeIDs) {
-				return
+		PricingAccounts(billingMode, billingTier, tenantTierName).forEach(
+			(type) => {
+				if (!type.tiersByGbToStripeIDs) {
+					return
+				}
+
+				Object.entries(type.tiersByGbToStripeIDs).forEach(([k, v]) => {
+					const prodKey = `${v}|${PricingBillingModeToStripe[billingMode]}`
+
+					// Blank tiersByGbToStripeIDs values indicate free tiers
+					if (!v) {
+						pricingTiers[k] = null
+						return
+					}
+
+					if (!pricingData[prodKey]) {
+						// console.warn(
+						// 	"ProductTierSelection :: No pricing data found for ",
+						// 	prodKey
+						// )
+						return
+					}
+					pricingTiers[k] = pricingData[prodKey]
+				})
 			}
-
-			Object.entries(type.tiersByGbToStripeIDs).forEach(([k, v]) => {
-				const prodKey = `${v}|${PricingBillingModeToStripe[billingMode]}`
-
-				// Blank tiersByGbToStripeIDs values indicate free tiers
-				if (!v) {
-					pricingTiers[k] = null
-					return
-				}
-
-				if (!pricingData[prodKey]) {
-					// console.warn(
-					// 	"ProductTierSelection :: No pricing data found for ",
-					// 	prodKey
-					// )
-					return
-				}
-				pricingTiers[k] = pricingData[prodKey]
-			})
-		})
+		)
 		return pricingTiers
-	}, [pricingData, billingMode])
+	}, [pricingData, billingMode, billingTier, tenantTierName])
 
 	// Normalize PricingAccountTypes
 	// (Flattens all XXXByTier values into a pricing-tier-aligned feature/pricing matrix to be rendered by child components).
 	const products = React.useMemo(() => {
-		const accountTypesForChosenTier = PricingAccounts(billingMode)
+		const accountTypesForChosenTier = PricingAccounts(
+			billingMode,
+			billingTier,
+			tenantTierName
+		)
 		accountTypesForChosenTier.forEach((product) => {
 			if (!product.tiersByGbToStripeIDs) {
 				return
