@@ -210,6 +210,11 @@ export const PricingView = ({
 			product.goActionMethod = () => {
 				if (purchaseEnabled) {
 					if (product.freeTrialCode) {
+						if (!axiosInstance) {
+							console.error("No axiosInstance available for trial activation")
+							return
+						}
+
 						axiosInstance
 							.post("/user/activate_trial", {
 								tier: product.freeTrialCode,
