@@ -15,7 +15,7 @@ export const defaultPricingTier = 1 // Default to Free Trial tier
 const PricingAccounts: (
 	pricingBillingMode: PricingBillingMode,
 	pricingBillingTier: number,
-	tenantTierName: string
+	tenantTierName?: string
 ) => PricingAccountType[] = (
 	pricingBillingMode,
 	pricingBillingTier,
@@ -26,12 +26,13 @@ const PricingAccounts: (
 		subTitle: "7-day Teleseer trial",
 		prodType: "trial",
 		go:
-			tenantTierName.toUpperCase() === "NEW"
+			!tenantTierName || tenantTierName?.toUpperCase() === "NEW"
 				? "Start Free Trial"
 				: `Trial Not Available`,
 		hideOverviewCard:
-			tenantTierName.toUpperCase() !== "NEW" || pricingBillingTier > 1,
-		isDisabled: tenantTierName.toUpperCase() !== "NEW",
+			(tenantTierName && tenantTierName?.toUpperCase() !== "NEW") ||
+			pricingBillingTier > 1,
+		isDisabled: tenantTierName && tenantTierName?.toUpperCase() !== "NEW",
 		freeTrialCode: "trial",
 		goButtonStyle: CustomButtonStyles.white,
 		description: (product: PricingAccountType) => (
@@ -116,7 +117,8 @@ const PricingAccounts: (
 		subTitle: "On-demand analysis for individuals",
 		prodType: "starter",
 		hideOverviewCard:
-			tenantTierName.toUpperCase() === "NEW" && pricingBillingTier === 1,
+			(!tenantTierName || tenantTierName?.toUpperCase() === "NEW") &&
+			pricingBillingTier === 1,
 		go: "Go Starter",
 		goButtonStyle: CustomButtonStyles.white,
 		description: (product: PricingAccountType) => (
