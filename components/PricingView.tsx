@@ -215,9 +215,19 @@ export const PricingView = ({
 							return
 						}
 
+						setStripePriceIdToPurchase(`trial:${product.freeTrialCode}`)
 						axiosInstance
 							.post("/user/activate_trial", {
 								tier: product.freeTrialCode,
+							})
+							.then(() => {
+								toast({
+									status: "success",
+									title: `Welcome to Teleseer!`,
+									description: `Your trial account has been activated`,
+								})
+
+								// Note - the active page will now automatically transition from our pricing dialog to home view thanks to our tenants websocket subscription
 							})
 							.catch((e) => {
 								console.error(`Account trial activation failed: `, e)
@@ -226,6 +236,9 @@ export const PricingView = ({
 									title: `Account trial activation failure`,
 									description: `Please contact support if this issue persists.`,
 								})
+							})
+							.finally(() => {
+								setStripePriceIdToPurchase(null)
 							})
 					} else {
 						setStripePriceIdToPurchase(product.priceId)
