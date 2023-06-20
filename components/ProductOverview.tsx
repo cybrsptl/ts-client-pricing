@@ -62,7 +62,15 @@ export const ProductOverview = (props: ProductOverviewProps) => {
 				fontWeight="semibold"
 				paddingLeft="2em"
 				paddingRight="2em"
-				sx={{ color: "white" }}
+				sx={{
+					height: 8,
+					px: 6,
+					...{
+						textDecoration: "none",
+						marginTop: "1rem",
+					},
+					...(product.goButtonStyle ?? CustomButtonStyles.white),
+				}}
 				isLoading={!!stripePriceIdToPurchase}
 				isDisabled={product.isDisabled}
 			>
