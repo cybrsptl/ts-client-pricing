@@ -58,7 +58,7 @@ const PricingAccounts: (
 		features: {
 			data: "1 GB",
 			xfer: "3 GB",
-			projects: "3",
+			projects: "2",
 			assets: 1000,
 			resources: {
 				perGb:
