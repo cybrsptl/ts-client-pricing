@@ -1,7 +1,9 @@
 import * as React from "react"
 import { useEffect, useMemo, useState } from "react"
-import { Box, Stack } from "@chakra-ui/react"
+import { Stack } from "@chakra-ui/react"
 import AppConfig from "@common/constants/AppConfig"
+import useAppToast from "@common/hooks/useAppToast"
+import useAxios from "@common/hooks/useAxios"
 import PricingAccounts, {
 	defaultPricingTier,
 } from "../constants/CustomPricingData"
@@ -35,6 +37,9 @@ export const PricingView = ({
 	purchaseEnabled,
 	purchaseComponent: PurchaseComponent,
 }: PricingViewParams) => {
+	const toast = useAppToast()
+	const axiosInstance = useAxios()
+
 	const [stripePriceIdToPurchase, setStripePriceIdToPurchase] =
 		useState<string>(null)
 
@@ -201,17 +206,29 @@ export const PricingView = ({
 					.toLocaleString()}`
 			}
 
-			// Populate product.goActionMethod
+			// Populate the "go" action taken for each product when its CTA button is clicked
 			product.goActionMethod = () => {
 				if (purchaseEnabled) {
 					if (product.freeTrialCode) {
-						// @todo "activate free trial" logic here
+						axiosInstance
+							.post("/user/activate_trial", {
+								tier: product.freeTrialCode,
+							})
+							.catch((e) => {
+								console.error(`Account trial activation failed: `, e)
+								toast({
+									status: "error",
+									title: `Account trial activation failure`,
+									description: `Please contact support if this issue persists.`,
+								})
+							})
 					} else {
 						setStripePriceIdToPurchase(product.priceId)
 					}
-				} else {
-					return window.open("https://go.teleseer.com", "_blank")
+					return
 				}
+
+				return window.open("https://go.teleseer.com", "_blank")
 			}
 
 			// console.log("billingTier", billingTier)
@@ -222,7 +239,15 @@ export const PricingView = ({
 
 		// console.log("accountTypesForChosenTier", accountTypesForChosenTier)
 		return accountTypesForChosenTier
-	}, [billingMode, billingTier, tenantTierName, pricingData, purchaseEnabled])
+	}, [
+		billingMode,
+		billingTier,
+		tenantTierName,
+		pricingData,
+		purchaseEnabled,
+		axiosInstance,
+		toast,
+	])
 
 	return (
 		<Stack
