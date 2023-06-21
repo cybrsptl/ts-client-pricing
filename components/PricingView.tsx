@@ -246,7 +246,7 @@ export const PricingView = ({
 					return
 				}
 
-				return window.open("https://go.teleseer.com", "_blank")
+				return window.open("https://go.teleseer.com/auth/register", "_blank")
 			}
 
 			// console.log("billingTier", billingTier)
