@@ -246,7 +246,14 @@ export const PricingView = ({
 					return
 				}
 
-				return window.open("https://go.teleseer.com/auth/register", "_blank")
+				if (product.freeTrialCode) {
+					return window.open(
+						"https://go.teleseer.com/auth/register/trial",
+						"_blank"
+					)
+				} else {
+					return window.open("https://go.teleseer.com/auth/register", "_blank")
+				}
 			}
 
 			// console.log("billingTier", billingTier)
