@@ -22,8 +22,8 @@ const PricingAccounts: (
 	tenantTierName
 ) => [
 	{
-		name: "Free Trial",
-		subTitle: "7-day Teleseer trial",
+		name: "Starter",
+		subTitle: "7-day 1 GB Teleseer trial",
 		prodType: "trial",
 		go:
 			!tenantTierName || tenantTierName?.toUpperCase() === "NEW"
