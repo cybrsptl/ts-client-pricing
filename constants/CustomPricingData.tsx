@@ -20,220 +20,110 @@ const PricingAccounts: (
 	pricingBillingMode,
 	pricingBillingTier,
 	tenantTierName
-) => [
-	{
-		name: "Starter",
-		subTitle: "7-day 1 GB Teleseer trial",
-		prodType: "trial",
-		go:
-			!tenantTierName || tenantTierName?.toUpperCase() === "NEW"
-				? "Start Free Trial"
-				: `Trial Not Available`,
-		hideOverviewCard:
-			(tenantTierName && tenantTierName?.toUpperCase() !== "NEW") ||
-			pricingBillingTier > 1,
-		isDisabled: tenantTierName && tenantTierName?.toUpperCase() !== "NEW",
-		freeTrialCode: "trial",
-		goButtonStyle: CustomButtonStyles.white,
-		description: (product: PricingAccountType) => (
-			<PricingList mb={2}>
-				<PricingListItem>
-					<>{product.features["projects"]} projects</>
-				</PricingListItem>
-				<PricingListItem>
-					<>{product.features["data"]} data under analysis</>
-				</PricingListItem>
-				<PricingListItem>No credit card required</PricingListItem>
-				<PricingListItem>Activate now!</PricingListItem>
-			</PricingList>
-		),
-		tiersByGbToStripeIDs: {
-			1: AppConfig.stripe_test_mode
-				? "prod_NzaoJMCcrvfdBl"
-				: "prod_O4TFgRNOwpMWxY",
-		},
-		tierShort: {
-			title: "Free Trial",
-			subtitle: "No credit card required",
-		},
-		features: {
-			data: "1 GB",
-			xfer: "3 GB",
-			projects: "2",
-			assets: 1000,
-			resources: {
-				perGb:
-					pricingBillingMode === PricingBillingMode.ANNUAL ? "$8/mo" : "$10/mo",
-				perUser: false,
-				seats: false,
+) => {
+	const freeTrialAvailable =
+		!tenantTierName ||
+		tenantTierName?.toUpperCase() === "NEW" ||
+		tenantTierName?.toUpperCase() === "FREE"
+
+	return [
+		{
+			name: "Starter",
+			subTitle: "7-day 1 GB Teleseer trial",
+			prodType: "trial",
+			go: freeTrialAvailable ? "Start Free Trial" : `Trial Not Available`,
+			hideOverviewCard: !freeTrialAvailable || pricingBillingTier > 1,
+			isDisabled: !freeTrialAvailable,
+			freeTrialCode: "trial",
+			goButtonStyle: CustomButtonStyles.white,
+			description: (product: PricingAccountType) => (
+				<PricingList mb={2}>
+					<PricingListItem>
+						<>{product.features["projects"]} projects</>
+					</PricingListItem>
+					<PricingListItem>
+						<>{product.features["data"]} data under analysis</>
+					</PricingListItem>
+					<PricingListItem>No credit card required</PricingListItem>
+					<PricingListItem>Activate now!</PricingListItem>
+				</PricingList>
+			),
+			tiersByGbToStripeIDs: {
+				1: AppConfig.stripe_test_mode
+					? "prod_NzaoJMCcrvfdBl"
+					: "prod_O4TFgRNOwpMWxY",
 			},
-			telemetry: {
-				pcap: true,
-				zeek: true,
-				api_uploads: false,
+			tierShort: {
+				title: "Free Trial",
+				subtitle: "No credit card required",
 			},
-			network_analysis: {
-				asset_identification: true,
-				event_detection: true,
-				log_carving: true,
-				pcap_carving: true,
-				vulnerability_info: true,
-				vulnerability_prioritization: false,
-				threat_detection: false,
-			},
-			data_export: {
-				asset_summary: true,
-				internet_hosts: true,
-				screenshots: true,
-				credentials: false,
-				file_transfers: false,
-				file_extraction: false,
-				reports: false,
-				downloads: false,
-				data_carving: "100 MB",
-			},
-			admin: {
-				google: true,
-				two_factor: true,
-				sso: false,
-				unified_billing: false,
-				resource_pooling: false,
-				team_perms: false,
-			},
-			service: {
-				help_center: true,
-				community: true,
-				one_on_one: false,
-				response_time: false,
-			},
-			feeds: {
-				ipinfo: "25 / day",
-				greynoise: false,
-			},
-		},
-	},
-	{
-		name: "Starter",
-		subTitle: "On-demand analysis for individuals",
-		prodType: "starter",
-		hideOverviewCard:
-			(!tenantTierName || tenantTierName?.toUpperCase() === "NEW") &&
-			pricingBillingTier === 1,
-		go: "Go Starter",
-		goButtonStyle: CustomButtonStyles.white,
-		description: (product: PricingAccountType) => (
-			<PricingList mb={2}>
-				<PricingListItem>
-					<>{product.features["projects"]} projects</>
-				</PricingListItem>
-				<PricingListItem>
-					<>{product.features["data"]} data under analysis</>
-				</PricingListItem>
-				<PricingListItem>
-					<>{product.features["assets"]} assets</>
-				</PricingListItem>
-				<PricingListItem>
-					<>PCAP Carving</>
-				</PricingListItem>
-			</PricingList>
-		),
-		tiersByGbToStripeIDs: {
-			2: AppConfig.stripe_test_mode
-				? "prod_NzaoJMCcrvfdBl"
-				: "prod_O4TFgRNOwpMWxY",
-			5: AppConfig.stripe_test_mode
-				? "prod_Nzarmn4e78EXz2"
-				: "prod_MfuUHskBj85gTF",
-			10: AppConfig.stripe_test_mode
-				? "prod_NK6dRgnmymlqGS"
-				: "prod_NMXm7zGLj81wvL",
-			20: AppConfig.stripe_test_mode
-				? "prod_Nzat4nsV0oAz24"
-				: "prod_O4TEozv5boTBQp",
-		},
-		tierShort: {
-			title: "Starter",
-			subtitle: "On-demand analysis",
-		},
-		features: {
-			dataByTier: {
-				2: "2 GB",
-				5: "5 GB",
-				10: "10 GB",
-				20: "20 GB",
-			},
-			xferByTier: {
-				2: "10 GB",
-				5: "25 GB",
-				10: "50 GB",
-				20: "100 GB",
-			},
-			projects: "5",
-			assets: "Unlimited",
-			resources: {
-				perGb:
-					pricingBillingMode === PricingBillingMode.ANNUAL ? "$8/mo" : "$10/mo",
-				perUser: false,
-				seats: false,
-			},
-			telemetry: {
-				pcap: true,
-				zeek: true,
-				api_uploads: false,
-			},
-			network_analysis: {
-				asset_identification: true,
-				event_detection: true,
-				log_carving: true,
-				pcap_carving: true,
-				vulnerability_info: true,
-				vulnerability_prioritization: false,
-				threat_detection: false,
-			},
-			data_export: {
-				asset_summary: true,
-				internet_hosts: true,
-				screenshots: true,
-				credentials: false,
-				file_transfers: false,
-				file_extraction: false,
-				reports: false,
-				downloads: false,
-				data_carving: "100 MB",
-			},
-			admin: {
-				google: true,
-				two_factor: true,
-				sso: false,
-				unified_billing: false,
-				resource_pooling: false,
-				team_perms: false,
-			},
-			service: {
-				help_center: true,
-				community: true,
-				one_on_one: false,
-				response_time: false,
-			},
-			feeds: {
-				ipinfo: "25 / day",
-				greynoise: false,
+			features: {
+				data: "1 GB",
+				xfer: "3 GB",
+				projects: "2",
+				assets: 1000,
+				resources: {
+					perGb:
+						pricingBillingMode === PricingBillingMode.ANNUAL
+							? "$8/mo"
+							: "$10/mo",
+					perUser: false,
+					seats: false,
+				},
+				telemetry: {
+					pcap: true,
+					zeek: true,
+					api_uploads: false,
+				},
+				network_analysis: {
+					asset_identification: true,
+					event_detection: true,
+					log_carving: true,
+					pcap_carving: true,
+					vulnerability_info: true,
+					vulnerability_prioritization: false,
+					threat_detection: false,
+				},
+				data_export: {
+					asset_summary: true,
+					internet_hosts: true,
+					screenshots: true,
+					credentials: false,
+					file_transfers: false,
+					file_extraction: false,
+					reports: false,
+					downloads: false,
+					data_carving: "100 MB",
+				},
+				admin: {
+					google: true,
+					two_factor: true,
+					sso: false,
+					unified_billing: false,
+					resource_pooling: false,
+					team_perms: false,
+				},
+				service: {
+					help_center: true,
+					community: true,
+					one_on_one: false,
+					response_time: false,
+				},
+				feeds: {
+					ipinfo: "25 / day",
+					greynoise: false,
+				},
 			},
 		},
-	},
-	{
-		name: "Teleseer Pro",
-		subTitle: "Advanced analysis for practitioners",
-		prodType: "pro",
-		go: "Go Pro",
-		goButtonStyle: CustomButtonStyles.blue,
-		cardStyle: {
-			borderColor: "theme_primary_active",
-		},
-		footer: "Plus everything in Starter!",
-		description: (product: PricingAccountType) => (
-			<>
-				<PricingList>
+		{
+			name: "Starter",
+			subTitle: "On-demand analysis for individuals",
+			prodType: "starter",
+			hideOverviewCard: freeTrialAvailable && pricingBillingTier === 1,
+			go: "Go Starter",
+			goButtonStyle: CustomButtonStyles.white,
+			description: (product: PricingAccountType) => (
+				<PricingList mb={2}>
 					<PricingListItem>
 						<>{product.features["projects"]} projects</>
 					</PricingListItem>
@@ -241,243 +131,361 @@ const PricingAccounts: (
 						<>{product.features["data"]} data under analysis</>
 					</PricingListItem>
 					<PricingListItem>
-						<>Advanced data exports</>
+						<>{product.features["assets"]} assets</>
 					</PricingListItem>
-					{/* <PricingListItem>
+					<PricingListItem>
+						<>PCAP Carving</>
+					</PricingListItem>
+				</PricingList>
+			),
+			tiersByGbToStripeIDs: {
+				2: AppConfig.stripe_test_mode
+					? "prod_NzaoJMCcrvfdBl"
+					: "prod_O4TFgRNOwpMWxY",
+				5: AppConfig.stripe_test_mode
+					? "prod_Nzarmn4e78EXz2"
+					: "prod_MfuUHskBj85gTF",
+				10: AppConfig.stripe_test_mode
+					? "prod_NK6dRgnmymlqGS"
+					: "prod_NMXm7zGLj81wvL",
+				20: AppConfig.stripe_test_mode
+					? "prod_Nzat4nsV0oAz24"
+					: "prod_O4TEozv5boTBQp",
+			},
+			tierShort: {
+				title: "Starter",
+				subtitle: "On-demand analysis",
+			},
+			features: {
+				dataByTier: {
+					2: "2 GB",
+					5: "5 GB",
+					10: "10 GB",
+					20: "20 GB",
+				},
+				xferByTier: {
+					2: "10 GB",
+					5: "25 GB",
+					10: "50 GB",
+					20: "100 GB",
+				},
+				projects: "5",
+				assets: "Unlimited",
+				resources: {
+					perGb:
+						pricingBillingMode === PricingBillingMode.ANNUAL
+							? "$8/mo"
+							: "$10/mo",
+					perUser: false,
+					seats: false,
+				},
+				telemetry: {
+					pcap: true,
+					zeek: true,
+					api_uploads: false,
+				},
+				network_analysis: {
+					asset_identification: true,
+					event_detection: true,
+					log_carving: true,
+					pcap_carving: true,
+					vulnerability_info: true,
+					vulnerability_prioritization: false,
+					threat_detection: false,
+				},
+				data_export: {
+					asset_summary: true,
+					internet_hosts: true,
+					screenshots: true,
+					credentials: false,
+					file_transfers: false,
+					file_extraction: false,
+					reports: false,
+					downloads: false,
+					data_carving: "100 MB",
+				},
+				admin: {
+					google: true,
+					two_factor: true,
+					sso: false,
+					unified_billing: false,
+					resource_pooling: false,
+					team_perms: false,
+				},
+				service: {
+					help_center: true,
+					community: true,
+					one_on_one: false,
+					response_time: false,
+				},
+				feeds: {
+					ipinfo: "25 / day",
+					greynoise: false,
+				},
+			},
+		},
+		{
+			name: "Teleseer Pro",
+			subTitle: "Advanced analysis for practitioners",
+			prodType: "pro",
+			go: "Go Pro",
+			goButtonStyle: CustomButtonStyles.blue,
+			cardStyle: {
+				borderColor: "theme_primary_active",
+			},
+			footer: "Plus everything in Starter!",
+			description: (product: PricingAccountType) => (
+				<>
+					<PricingList>
+						<PricingListItem>
+							<>{product.features["projects"]} projects</>
+						</PricingListItem>
+						<PricingListItem>
+							<>{product.features["data"]} data under analysis</>
+						</PricingListItem>
+						<PricingListItem>
+							<>Advanced data exports</>
+						</PricingListItem>
+						{/* <PricingListItem>
 						<>Automated report generation</>
 					</PricingListItem> */}
-					<PricingListItem>
-						<>Integrated threat feeds</>
-					</PricingListItem>
-				</PricingList>
-				<Box
-					sx={{
-						pt: ".5em",
-					}}
-				>
-					<EnrichmentPartnerLogosIcon width="200" />
-				</Box>
-			</>
-		),
-		tiersByGbToStripeIDs: {
-			50: AppConfig.stripe_test_mode
-				? "prod_NMdZCgj8c3lABb"
-				: "prod_NMdamx0fJNKkDf",
-			75: AppConfig.stripe_test_mode
-				? "prod_NzcOkvKcfwEJDA"
-				: "prod_O4TCHwyVu8TJrW",
-			100: AppConfig.stripe_test_mode
-				? "prod_MeU7K4Gq8jKxec"
-				: "prod_MfuUY9YItO6jKO",
-			150: AppConfig.stripe_test_mode
-				? "prod_NzcRQX2e3RYkuw"
-				: "prod_MfuUl19Z99KKuR",
+						<PricingListItem>
+							<>Integrated threat feeds</>
+						</PricingListItem>
+					</PricingList>
+					<Box
+						sx={{
+							pt: ".5em",
+						}}
+					>
+						<EnrichmentPartnerLogosIcon width="200" />
+					</Box>
+				</>
+			),
+			tiersByGbToStripeIDs: {
+				50: AppConfig.stripe_test_mode
+					? "prod_NMdZCgj8c3lABb"
+					: "prod_NMdamx0fJNKkDf",
+				75: AppConfig.stripe_test_mode
+					? "prod_NzcOkvKcfwEJDA"
+					: "prod_O4TCHwyVu8TJrW",
+				100: AppConfig.stripe_test_mode
+					? "prod_MeU7K4Gq8jKxec"
+					: "prod_MfuUY9YItO6jKO",
+				150: AppConfig.stripe_test_mode
+					? "prod_NzcRQX2e3RYkuw"
+					: "prod_MfuUl19Z99KKuR",
+			},
+			tierShort: {
+				title: "Pro",
+				subtitle: "Advanced analysis",
+			},
+			features: {
+				dataByTier: {
+					50: "50 GB",
+					75: "75 GB",
+					100: "100 GB",
+					150: "150 GB",
+				},
+				xferByTier: {
+					50: "50 GB",
+					75: "75 GB",
+					100: "100 GB",
+					150: "150 GB",
+				},
+				carvingByTier: {
+					50: "50 GB",
+					75: "75 GB",
+					100: "100 GB",
+					150: "150 GB",
+				},
+				projects: "Unlimited",
+				assets: "Unlimited",
+				greynoiseByTier: {
+					50: 50,
+					100: 100,
+					200: 200,
+				},
+				resources: {
+					perGb:
+						pricingBillingMode === PricingBillingMode.ANNUAL
+							? "$4/mo"
+							: "$5/mo",
+					num_assets: "Unlimited",
+					perUser: false,
+					seats: false,
+				},
+				telemetry: {
+					pcap: true,
+					zeek: true,
+					api_uploads: false,
+				},
+				network_analysis: {
+					asset_identification: true,
+					event_detection: true,
+					log_carving: true,
+					pcap_carving: true,
+					vulnerability_info: true,
+					vulnerability_prioritization: true,
+					threat_detection: true,
+				},
+				data_export: {
+					asset_summary: true,
+					internet_hosts: true,
+					screenshots: true,
+					credentials: true,
+					file_transfers: true,
+					file_extraction: true,
+					reports: true,
+					downloads: true,
+					data_carving: "100 MB",
+				},
+				admin: {
+					google: true,
+					two_factor: true,
+					sso: false,
+					unified_billing: false,
+					resource_pooling: false,
+					team_perms: false,
+				},
+				service: {
+					help_center: true,
+					community: true,
+					one_on_one: true,
+					response_time: false,
+				},
+				feeds: {
+					ipinfo: "Unlimited",
+					greynoise: "100 / day",
+				},
+			},
 		},
-		tierShort: {
-			title: "Pro",
-			subtitle: "Advanced analysis",
-		},
-		features: {
-			dataByTier: {
-				50: "50 GB",
-				75: "75 GB",
-				100: "100 GB",
-				150: "150 GB",
+		{
+			name: "Teleseer Teams",
+			prodType: "team",
+			go: "Coming Soon", //"Go Teams",
+			isDisabled: true,
+			goButtonStyle: CustomButtonStyles.dark,
+			cardStyle: {
+				borderTopColor: "section_color_dark",
 			},
-			xferByTier: {
-				50: "50 GB",
-				75: "75 GB",
-				100: "100 GB",
-				150: "150 GB",
-			},
-			carvingByTier: {
-				50: "50 GB",
-				75: "75 GB",
-				100: "100 GB",
-				150: "150 GB",
-			},
-			projects: "Unlimited",
-			assets: "Unlimited",
-			greynoiseByTier: {
-				50: 50,
-				100: 100,
-				200: 200,
-			},
-			resources: {
-				perGb:
-					pricingBillingMode === PricingBillingMode.ANNUAL ? "$4/mo" : "$5/mo",
-				num_assets: "Unlimited",
-				perUser: false,
-				seats: false,
-			},
-			telemetry: {
-				pcap: true,
-				zeek: true,
-				api_uploads: false,
-			},
-			network_analysis: {
-				asset_identification: true,
-				event_detection: true,
-				log_carving: true,
-				pcap_carving: true,
-				vulnerability_info: true,
-				vulnerability_prioritization: true,
-				threat_detection: true,
-			},
-			data_export: {
-				asset_summary: true,
-				internet_hosts: true,
-				screenshots: true,
-				credentials: true,
-				file_transfers: true,
-				file_extraction: true,
-				reports: true,
-				downloads: true,
-				data_carving: "100 MB",
-			},
-			admin: {
-				google: true,
-				two_factor: true,
-				sso: false,
-				unified_billing: false,
-				resource_pooling: false,
-				team_perms: false,
-			},
-			service: {
-				help_center: true,
-				community: true,
-				one_on_one: true,
-				response_time: false,
-			},
-			feeds: {
-				ipinfo: "Unlimited",
-				greynoise: "100 / day",
-			},
-		},
-	},
-	{
-		name: "Teleseer Teams",
-		prodType: "team",
-		go: "Coming Soon", //"Go Teams",
-		isDisabled: true,
-		goButtonStyle: CustomButtonStyles.dark,
-		cardStyle: {
-			borderTopColor: "section_color_dark",
-		},
-		subTitle: "Collaborative analysis for elite teams",
-		description: (product: PricingAccountType) => (
-			<>
-				<PricingList>
-					<PricingListItem>
-						<>{product.features.resources["seats"]} seats included</>
-					</PricingListItem>
-					<PricingListItem>
-						<>{product.features["data"]} data under analysis</>
-					</PricingListItem>
-					<PricingListItem>
-						<>API-based uploads</>
-					</PricingListItem>
-					{/* <PricingListItem>
+			subTitle: "Collaborative analysis for elite teams",
+			description: (product: PricingAccountType) => (
+				<>
+					<PricingList>
+						<PricingListItem>
+							<>{product.features.resources["seats"]} seats included</>
+						</PricingListItem>
+						<PricingListItem>
+							<>{product.features["data"]} data under analysis</>
+						</PricingListItem>
+						<PricingListItem>
+							<>API-based uploads</>
+						</PricingListItem>
+						{/* <PricingListItem>
 						<>Single sign-on (SSO)</>
 					</PricingListItem> */}
-					<PricingListItem>
-						<>Unified billing and admin</>
-					</PricingListItem>
-					<PricingListItem>
-						<>Team resource pooling</>
-					</PricingListItem>
-				</PricingList>
-			</>
-		),
-		footer: "Plus everything in Pro!",
-		tiersByGbToStripeIDs: {
-			300: AppConfig.stripe_test_mode
-				? "prod_MeU7Sd8NfyG2y1"
-				: "prod_O4TG5h6YIeaNKu",
-			500: AppConfig.stripe_test_mode
-				? "prod_Nzu55ZREPKt702"
-				: "prod_Mfuxsa5JWXtFO6",
-			1000: AppConfig.stripe_test_mode
-				? "prod_Nzu6QIbyqEspSP"
-				: "prod_O4T7RPIvyp2VMG",
-			2000: AppConfig.stripe_test_mode
-				? "prod_Nzu7DOI4NFo7oJ"
-				: "prod_O4T7AMUTvpYakc",
+						<PricingListItem>
+							<>Unified billing and admin</>
+						</PricingListItem>
+						<PricingListItem>
+							<>Team resource pooling</>
+						</PricingListItem>
+					</PricingList>
+				</>
+			),
+			footer: "Plus everything in Pro!",
+			tiersByGbToStripeIDs: {
+				300: AppConfig.stripe_test_mode
+					? "prod_MeU7Sd8NfyG2y1"
+					: "prod_O4TG5h6YIeaNKu",
+				500: AppConfig.stripe_test_mode
+					? "prod_Nzu55ZREPKt702"
+					: "prod_Mfuxsa5JWXtFO6",
+				1000: AppConfig.stripe_test_mode
+					? "prod_Nzu6QIbyqEspSP"
+					: "prod_O4T7RPIvyp2VMG",
+				2000: AppConfig.stripe_test_mode
+					? "prod_Nzu7DOI4NFo7oJ"
+					: "prod_O4T7AMUTvpYakc",
+			},
+			tierShort: {
+				title: "Teams",
+				subtitle: "Collaborative analysis",
+			},
+			features: {
+				dataByTier: {
+					300: "300 GB",
+					500: "500 GB",
+					1000: "1 TB",
+					2000: "2 TB",
+				},
+				xferByTier: {
+					300: "900 GB",
+					500: "1.5 TB",
+					1000: "3 TB",
+					2000: "6 TB",
+				},
+				carvingByTier: {
+					500: "Call us",
+				},
+				projects: "Unlimited",
+				assets: "Unlimited",
+				resources: {
+					perGb:
+						pricingBillingMode === PricingBillingMode.ANNUAL
+							? "$3/mo"
+							: "$4/mo",
+					perUser: "$49/mo",
+					seats: "2",
+				},
+				telemetry: {
+					pcap: true,
+					zeek: true,
+					api_uploads: true,
+				},
+				network_analysis: {
+					asset_identification: true,
+					event_detection: true,
+					log_carving: true,
+					pcap_carving: true,
+					vulnerability_info: true,
+					vulnerability_prioritization: true,
+					threat_detection: true,
+				},
+				data_export: {
+					asset_summary: true,
+					internet_hosts: true,
+					screenshots: true,
+					credentials: true,
+					file_transfers: true,
+					file_extraction: true,
+					reports: true,
+					downloads: true,
+					data_carving: "10 GB",
+				},
+				admin: {
+					google: true,
+					two_factor: true,
+					sso: true,
+					unified_billing: true,
+					resource_pooling: true,
+					team_perms: true,
+				},
+				service: {
+					help_center: true,
+					community: true,
+					one_on_one: true,
+					response_time: "1 business day",
+				},
+				feeds: {
+					ipinfo: "Unlimited",
+					greynoise: "300 / day",
+				},
+			},
 		},
-		tierShort: {
-			title: "Teams",
-			subtitle: "Collaborative analysis",
-		},
-		features: {
-			dataByTier: {
-				300: "300 GB",
-				500: "500 GB",
-				1000: "1 TB",
-				2000: "2 TB",
-			},
-			xferByTier: {
-				300: "900 GB",
-				500: "1.5 TB",
-				1000: "3 TB",
-				2000: "6 TB",
-			},
-			carvingByTier: {
-				500: "Call us",
-			},
-			projects: "Unlimited",
-			assets: "Unlimited",
-			resources: {
-				perGb:
-					pricingBillingMode === PricingBillingMode.ANNUAL ? "$3/mo" : "$4/mo",
-				perUser: "$49/mo",
-				seats: "2",
-			},
-			telemetry: {
-				pcap: true,
-				zeek: true,
-				api_uploads: true,
-			},
-			network_analysis: {
-				asset_identification: true,
-				event_detection: true,
-				log_carving: true,
-				pcap_carving: true,
-				vulnerability_info: true,
-				vulnerability_prioritization: true,
-				threat_detection: true,
-			},
-			data_export: {
-				asset_summary: true,
-				internet_hosts: true,
-				screenshots: true,
-				credentials: true,
-				file_transfers: true,
-				file_extraction: true,
-				reports: true,
-				downloads: true,
-				data_carving: "10 GB",
-			},
-			admin: {
-				google: true,
-				two_factor: true,
-				sso: true,
-				unified_billing: true,
-				resource_pooling: true,
-				team_perms: true,
-			},
-			service: {
-				help_center: true,
-				community: true,
-				one_on_one: true,
-				response_time: "1 business day",
-			},
-			feeds: {
-				ipinfo: "Unlimited",
-				greynoise: "300 / day",
-			},
-		},
-	},
-]
+	]
+}
 
 interface Feature {
 	category: string // text to display for section
