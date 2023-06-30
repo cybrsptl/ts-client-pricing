@@ -47,18 +47,7 @@ export const PricingView = ({
 		PricingBillingMode.ANNUAL
 	)
 
-	// Automatically set billing tier to current tenant limit when page loads
-	const [billingTier, setBillingTier] = useState(defaultPricingTier)
-	useEffect(() => {
-		if (
-			!tenantDataUnderAnalysis ||
-			tenantDataUnderAnalysis / (1000 * 1000 * 1000) < 1
-		) {
-			return
-		}
-		setBillingTier(tenantDataUnderAnalysis / (1000 * 1000 * 1000))
-	}, [tenantDataUnderAnalysis])
-
+	// Load Stripe pricing data
 	const pricingData = useMemo(() => {
 		const data = (
 			AppConfig.stripe_test_mode ? PricingDataDev : PricingDataProd
@@ -74,6 +63,39 @@ export const PricingView = ({
 		return data
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [AppConfig?.stripe_test_mode])
+
+	// Automatically set billing tier to highest available match value based on current tenant limit when page loads
+	const [billingTier, setBillingTier] = useState(defaultPricingTier)
+	useEffect(() => {
+		// If tenant data is not available, leave at defaultPricingTier
+		if (
+			!tenantDataUnderAnalysis ||
+			tenantDataUnderAnalysis / (1000 * 1000 * 1000) < 1
+		) {
+			return
+		}
+
+		const currentDUA = tenantDataUnderAnalysis / (1000 * 1000 * 1000)
+		let highestTierMatch = defaultPricingTier
+		PricingAccounts(
+			PricingBillingMode.ANNUAL,
+			defaultPricingTier,
+			tenantTierName
+		).forEach((type) => {
+			if (!type.tiersByGbToStripeIDs) {
+				return
+			}
+
+			Object.entries(type.tiersByGbToStripeIDs).forEach(([k, v]) => {
+				const tierDUA = parseInt(k)
+				if (currentDUA >= tierDUA) {
+					highestTierMatch = tierDUA
+				}
+			})
+		})
+
+		setBillingTier(highestTierMatch)
+	}, [tenantDataUnderAnalysis, tenantTierName])
 
 	// Enumerate all account tiers
 	// (Used to determine where to place the discrete stops for the ProductTierSelection slider).

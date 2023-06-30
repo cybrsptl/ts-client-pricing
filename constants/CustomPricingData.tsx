@@ -48,11 +48,13 @@ const PricingAccounts: (
 					<PricingListItem>Activate now!</PricingListItem>
 				</PricingList>
 			),
-			tiersByGbToStripeIDs: {
-				1: AppConfig.stripe_test_mode
-					? "prod_NzaoJMCcrvfdBl"
-					: "prod_O4TFgRNOwpMWxY",
-			},
+			tiersByGbToStripeIDs: freeTrialAvailable
+				? {
+						1: AppConfig.stripe_test_mode
+							? "prod_NzaoJMCcrvfdBl"
+							: "prod_O4TFgRNOwpMWxY",
+				  }
+				: {},
 			tierShort: {
 				title: "Free Trial",
 				subtitle: "No credit card required",
