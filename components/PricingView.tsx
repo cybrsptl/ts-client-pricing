@@ -338,6 +338,7 @@ export const PricingView = ({
 					billingMode,
 					billingTier,
 					products,
+					stripePriceIdToPurchase,
 				}}
 			/>
 		</Stack>

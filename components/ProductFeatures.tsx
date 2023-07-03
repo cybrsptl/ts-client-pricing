@@ -28,10 +28,11 @@ interface ProductFeaturesProps {
 	billingMode: PricingBillingMode
 	billingTier: number
 	products: PricingAccountType[]
+	stripePriceIdToPurchase?: string
 }
 
 export const ProductFeatures = (props: ProductFeaturesProps) => {
-	const { billingMode, billingTier, products } = props
+	const { billingMode, billingTier, products, stripePriceIdToPurchase } = props
 
 	const cellColor = {
 		pro: "cell_blue",
@@ -101,7 +102,6 @@ export const ProductFeatures = (props: ProductFeaturesProps) => {
 
 											<Button
 												onClick={product.goActionMethod}
-												isDisabled={product.isDisabled}
 												variant="outline"
 												size="xs"
 												sx={{
@@ -114,6 +114,8 @@ export const ProductFeatures = (props: ProductFeaturesProps) => {
 													...(product.goButtonStyle ??
 														CustomButtonStyles.white),
 												}}
+												isDisabled={product.isDisabled}
+												isLoading={!!stripePriceIdToPurchase}
 											>
 												{product.tierShort["go"] ?? product.go}
 											</Button>
