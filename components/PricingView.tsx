@@ -230,8 +230,17 @@ export const PricingView = ({
 
 			// Populate the "go" action taken for each product when its CTA button is clicked
 			product.goActionMethod = () => {
+				console.log(
+					"PricingView :: goActionMethod :: purchaseEnabled:",
+					purchaseEnabled
+				)
+
 				if (purchaseEnabled) {
 					if (product.freeTrialCode) {
+						console.log(
+							"PricingView :: goActionMethod :: product.freeTrialCode:",
+							product.freeTrialCode
+						)
 						if (!axiosInstance) {
 							console.error("No axiosInstance available for trial activation")
 							return
@@ -263,8 +272,15 @@ export const PricingView = ({
 								setStripePriceIdToPurchase(null)
 							})
 					} else {
+						console.log(
+							"PricingView :: goActionMethod :: product.priceId:",
+							product.priceId
+						)
 						setStripePriceIdToPurchase(product.priceId)
 					}
+
+					console.log("PricingView :: goActionMethod :: product:", product)
+
 					return
 				}
 
