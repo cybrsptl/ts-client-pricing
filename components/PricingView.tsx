@@ -1,3 +1,4 @@
+import { useRouter } from "next/router"
 import * as React from "react"
 import { useEffect, useMemo, useState } from "react"
 import { Stack } from "@chakra-ui/react"
@@ -39,6 +40,7 @@ export const PricingView = ({
 }: PricingViewParams) => {
 	const toast = useAppToast()
 	const axiosInstance = useAxios()
+	const router = useRouter()
 
 	const [stripePriceIdToPurchase, setStripePriceIdToPurchase] =
 		useState<string>(null)
@@ -248,8 +250,7 @@ export const PricingView = ({
 									title: `Welcome to Teleseer!`,
 									description: `Your trial account has been activated`,
 								})
-
-								// Note - the active page will now automatically transition from our pricing dialog to home view thanks to our "tenants"-model websocket subscription
+								router.push("/")
 							})
 							.catch((e) => {
 								console.error(`Account trial activation failed: `, e)
