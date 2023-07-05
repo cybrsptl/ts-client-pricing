@@ -296,23 +296,24 @@ export const PricingView = ({
 		purchaseEnabled,
 		axiosInstance,
 		toast,
+		router,
 	])
 
 	// Automatically activate free trial for accounts in a "NEW" state
-	useEffect(() => {
-		if (!purchaseEnabled || tenantTierName !== "NEW") {
-			return
-		}
-		const freeTrialProduct = products.find((p) => p.freeTrialCode)
-		if (!freeTrialProduct) {
-			console.error(
-				"Attempted to activate free trial for new account, but no free trial code available"
-			)
-			return
-		}
-		freeTrialProduct.goActionMethod(null)
-		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [tenantTierName])
+	// useEffect(() => {
+	// 	if (!purchaseEnabled || tenantTierName !== "NEW") {
+	// 		return
+	// 	}
+	// 	const freeTrialProduct = products.find((p) => p.freeTrialCode)
+	// 	if (!freeTrialProduct) {
+	// 		console.error(
+	// 			"Attempted to activate free trial for new account, but no free trial code available"
+	// 		)
+	// 		return
+	// 	}
+	// 	freeTrialProduct.goActionMethod(null)
+	// 	// eslint-disable-next-line react-hooks/exhaustive-deps
+	// }, [tenantTierName])
 
 	return (
 		<Stack
