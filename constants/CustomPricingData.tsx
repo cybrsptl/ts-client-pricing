@@ -290,10 +290,10 @@ const PricingAccounts: (
 					150: "150 GB",
 				},
 				xferByTier: {
-					50: "50 GB",
-					75: "75 GB",
-					100: "100 GB",
-					150: "150 GB",
+					50: "200 GB",
+					75: "300 GB",
+					100: "400 GB",
+					150: "600 GB",
 				},
 				carvingByTier: {
 					50: "50 GB",
