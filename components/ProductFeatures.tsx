@@ -1,5 +1,3 @@
-import NextLink from "next/link"
-import * as React from "react"
 import { FiInfo } from "react-icons/fi"
 import {
 	Box,
