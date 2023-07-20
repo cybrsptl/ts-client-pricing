@@ -28,7 +28,7 @@ const PricingAccounts: (
 
 	return [
 		{
-			name: "Starter",
+			name: "Free Trial",
 			subTitle: "7-day 1 GB Teleseer trial",
 			prodType: "trial",
 			go: freeTrialAvailable ? "Start Free Trial" : `Trial Not Available`,

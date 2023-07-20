@@ -194,7 +194,8 @@ export const ProductOverview = (props: ProductOverviewProps) => {
 											<Text fontSize="xs" paddingBottom={8}>
 												{product.subTitle}
 											</Text>
-											{product.pricePerMonth && (
+
+											{product.freeTrialCode ? (
 												<>
 													<Heading
 														fontSize="28px"
@@ -202,38 +203,50 @@ export const ProductOverview = (props: ProductOverviewProps) => {
 														color="default"
 														ml={4}
 													>
-														${product.pricePerMonth.toLocaleString()} per month
+														$0 due now
 													</Heading>
-													{/* <Text
-                                            fontSize="sm"
-                                            as="span"
-                                            color="muted"
-                                            fontWeight="bold"
-                                            ml={1}
-                                        >
-                                            /mo
-                                        </Text> */}
+													{product.pricePerMonth && (
+														<Text fontSize="xs" mt={1}>
+															Renews at $
+															{product.pricePerMonth.toLocaleString()} month
+														</Text>
+													)}
+												</>
+											) : (
+												<>
+													{product.pricePerMonth && (
+														<Heading
+															fontSize="28px"
+															as="span"
+															color="default"
+															ml={4}
+														>
+															${product.pricePerMonth.toLocaleString()} per
+															month
+														</Heading>
+													)}
+													{product.pricePerMonthBilledMonthly && (
+														<Text fontSize="xs" mt={1}>
+															Paid annually or $
+															{product.pricePerMonthBilledMonthly.toLocaleString()}{" "}
+															paid monthly
+														</Text>
+													)}
+													{product.pricePerMonthBilledAnnually && (
+														<Text fontSize="xs" mt={1}>
+															Paid monthly or $
+															{product.pricePerMonthBilledAnnually.toLocaleString()}{" "}
+															paid annually
+														</Text>
+													)}
+													{product.annualBillingOnly && (
+														<Text fontSize="sm" mt={1}>
+															Annual billing only
+														</Text>
+													)}
 												</>
 											)}
-											{product.pricePerMonthBilledMonthly && (
-												<Text fontSize="xs" mt={1}>
-													Paid annually or $
-													{product.pricePerMonthBilledMonthly.toLocaleString()}{" "}
-													paid monthly
-												</Text>
-											)}
-											{product.pricePerMonthBilledAnnually && (
-												<Text fontSize="xs" mt={1}>
-													Paid monthly or $
-													{product.pricePerMonthBilledAnnually.toLocaleString()}{" "}
-													paid annually
-												</Text>
-											)}
-											{product.annualBillingOnly && (
-												<Text fontSize="sm" mt={1}>
-													Annual billing only
-												</Text>
-											)}
+
 											{product.features.resources["perGb"] && (
 												<Text
 													fontSize={16}
