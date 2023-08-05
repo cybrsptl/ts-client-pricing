@@ -203,14 +203,17 @@ export const ProductOverview = (props: ProductOverviewProps) => {
 														color="default"
 														ml={4}
 													>
-														$0 due now
+														$0
 													</Heading>
-													{product.pricePerMonth && (
+													<Text fontSize="xs" mt={1}>
+														Free for 7 days
+													</Text>
+													{/* {product.pricePerMonth && (
 														<Text fontSize="xs" mt={1}>
 															Renews at $
 															{product.pricePerMonth.toLocaleString()} month
 														</Text>
-													)}
+													)} */}
 												</>
 											) : (
 												<>

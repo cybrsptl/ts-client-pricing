@@ -29,23 +29,24 @@ const PricingAccounts: (
 	return [
 		{
 			name: "Free Trial",
-			subTitle: "7-day 1 GB Teleseer trial",
+			subTitle: "No credit card required",
 			prodType: "trial",
-			go: freeTrialAvailable ? "Start Free Trial" : `Trial Not Available`,
-			hideOverviewCard: !freeTrialAvailable || pricingBillingTier > 1,
+			go: freeTrialAvailable ? "Try for Free" : `Trial Not Available`,
+			hideOverviewCard: false, // !freeTrialAvailable || pricingBillingTier > 1
 			isDisabled: !freeTrialAvailable,
 			freeTrialCode: "trial",
 			goButtonStyle: CustomButtonStyles.white,
 			description: (product: PricingAccountType) => (
 				<PricingList mb={2}>
 					<PricingListItem>
-						<>{product.features["projects"]} projects</>
-					</PricingListItem>
-					<PricingListItem>
 						<>{product.features["data"]} data under analysis</>
 					</PricingListItem>
-					<PricingListItem>No credit card required</PricingListItem>
-					<PricingListItem>Activate now!</PricingListItem>
+					<PricingListItem>
+						<>{product.features["xfer"]} monthly transfer</>
+					</PricingListItem>
+					<PricingListItem>
+						<>{product.features["projects"]} projects</>
+					</PricingListItem>
 				</PricingList>
 			),
 			tiersByGbToStripeIDs: freeTrialAvailable
@@ -121,16 +122,22 @@ const PricingAccounts: (
 			name: "Starter",
 			subTitle: "On-demand analysis for individuals",
 			prodType: "starter",
-			hideOverviewCard: freeTrialAvailable && pricingBillingTier === 1,
+			hideOverviewCard: false, // freeTrialAvailable && pricingBillingTier === 1,
+			cardStyle: {
+				borderColor: "theme_primary_active",
+			},
 			go: "Go Starter",
-			goButtonStyle: CustomButtonStyles.white,
+			goButtonStyle: CustomButtonStyles.blue,
 			description: (product: PricingAccountType) => (
 				<PricingList mb={2}>
 					<PricingListItem>
-						<>{product.features["projects"]} projects</>
+						<>{product.features["data"]} data under analysis</>
 					</PricingListItem>
 					<PricingListItem>
-						<>{product.features["data"]} data under analysis</>
+						<>{product.features["xfer"]} monthly transfer</>
+					</PricingListItem>
+					<PricingListItem>
+						<>{product.features["projects"]} projects</>
 					</PricingListItem>
 					<PricingListItem>
 						<>{product.features["assets"]} assets</>
@@ -231,19 +238,22 @@ const PricingAccounts: (
 			subTitle: "Advanced analysis for practitioners",
 			prodType: "pro",
 			go: "Go Pro",
-			goButtonStyle: CustomButtonStyles.blue,
+			goButtonStyle: CustomButtonStyles.dark,
 			cardStyle: {
-				borderColor: "theme_primary_active",
+				borderColor: "button_dark",
 			},
 			footer: "Plus everything in Starter!",
 			description: (product: PricingAccountType) => (
 				<>
 					<PricingList>
 						<PricingListItem>
-							<>{product.features["projects"]} projects</>
+							<>{product.features["data"]} data under analysis</>
 						</PricingListItem>
 						<PricingListItem>
-							<>{product.features["data"]} data under analysis</>
+							<>{product.features["xfer"]} monthly transfer</>
+						</PricingListItem>
+						<PricingListItem>
+							<>{product.features["projects"]} projects</>
 						</PricingListItem>
 						<PricingListItem>
 							<>Advanced data exports</>
@@ -367,6 +377,7 @@ const PricingAccounts: (
 			prodType: "team",
 			go: "Coming Soon", //"Go Teams",
 			isDisabled: true,
+			hideOverviewCard: true,
 			goButtonStyle: CustomButtonStyles.dark,
 			cardStyle: {
 				borderTopColor: "section_color_dark",
@@ -376,10 +387,13 @@ const PricingAccounts: (
 				<>
 					<PricingList>
 						<PricingListItem>
-							<>{product.features.resources["seats"]} seats included</>
+							<>{product.features["data"]} data under analysis</>
 						</PricingListItem>
 						<PricingListItem>
-							<>{product.features["data"]} data under analysis</>
+							<>{product.features["xfer"]} monthly transfer</>
+						</PricingListItem>
+						<PricingListItem>
+							<>{product.features.resources["seats"]} seats included</>
 						</PricingListItem>
 						<PricingListItem>
 							<>API-based uploads</>
