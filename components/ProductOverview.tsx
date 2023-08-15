@@ -206,7 +206,7 @@ export const ProductOverview = (props: ProductOverviewProps) => {
 														$0
 													</Heading>
 													<Text fontSize="xs" mt={1}>
-														Free for 7 days
+														Free for 30 days
 													</Text>
 													{/* {product.pricePerMonth && (
 														<Text fontSize="xs" mt={1}>
