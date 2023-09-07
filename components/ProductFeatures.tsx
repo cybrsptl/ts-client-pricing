@@ -64,6 +64,7 @@ export const ProductFeatures = (props: ProductFeaturesProps) => {
 			<Box sx={{ w: "100%" }}>
 				<Box sx={tableWrapper}>
 					<Table
+						variant="unstyled"
 						sx={{
 							th: { fontSize: "lg" },
 							tr: {
