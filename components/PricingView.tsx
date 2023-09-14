@@ -21,6 +21,9 @@ import { ProductTierSelection } from "./ProductTierSelection"
 export interface ProductPurchaseProps {
 	stripePriceIdToPurchase: string | null
 	setStripePriceIdToPurchase: (prodType: string | null) => void
+	billingTier: number
+	billingMode: PricingBillingMode
+	pricingData: StripePricingDataList
 }
 
 export type PricingViewParams = {
@@ -328,6 +331,9 @@ export const PricingView = ({
 					{...{
 						stripePriceIdToPurchase,
 						setStripePriceIdToPurchase,
+						billingMode,
+						billingTier,
+						pricingData,
 					}}
 				/>
 			)}
