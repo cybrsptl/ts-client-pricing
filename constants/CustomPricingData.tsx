@@ -1,11 +1,13 @@
-import Image from "next/legacy/image"
 import { Box } from "@chakra-ui/react"
+import Image from "next/legacy/image"
+
 import AppConfig from "@common/constants/AppConfig"
-import { PricingList, PricingListItem } from "../components/PricingDescList"
-import EnrichmentPartnerLogosIcon from "../icons/EnrichmentPartnerLogosIcon"
+
 import { CustomButtonStyles } from "./CustomStyles"
 import { PricingBillingMode } from "./PricingConstants"
 import { PricingAccountType } from "./PricingTypes"
+import { PricingList, PricingListItem } from "../components/PricingDescList"
+import EnrichmentPartnerLogosIcon from "../icons/EnrichmentPartnerLogosIcon"
 
 // Note: Tier thresholds should match out latest values here:
 // https://docs.google.com/spreadsheets/d/1rQRlPnumgwwRB2d-18kU82fpEOwILBEXys_FgbVdjc0
@@ -536,8 +538,8 @@ export const PricingFeatures: Feature[] = [
 			},
 			{
 				key: "assets",
-				name: "Total Assets",
-				tooltip: "All the devices and hosts we've discovered from your data",
+				name: "Total Hosts",
+				tooltip: "All the internal devices and external hosts we've identified in your data",
 			},
 			{
 				key: "perGb",
