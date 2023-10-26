@@ -1,5 +1,4 @@
 import { Box } from "@chakra-ui/react"
-import Image from "next/legacy/image"
 
 import AppConfig from "@common/constants/AppConfig"
 
