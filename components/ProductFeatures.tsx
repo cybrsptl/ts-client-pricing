@@ -1,4 +1,5 @@
 import { FiInfo } from "react-icons/fi"
+import { Fragment } from 'react'
 import {
 	Box,
 	Button,
@@ -126,7 +127,7 @@ export const ProductFeatures = (props: ProductFeaturesProps) => {
 						<Tbody>
 							{/* Feature sections - Resources/Telemetry Ingest/etc */}
 							{PricingFeatures.map((feature, featureId) => (
-								<>
+								<Fragment key={featureId}>
 									<Tr>
 										<Th
 											// colSpan={products.length + 1}
@@ -215,7 +216,7 @@ export const ProductFeatures = (props: ProductFeaturesProps) => {
 											))}
 										</Tr>
 									))}
-								</>
+								</Fragment>
 							))}
 						</Tbody>
 					</Table>
