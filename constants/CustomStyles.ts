@@ -9,23 +9,23 @@ export const CustomButtonStyles = {
 	},
 	light: {
 		color: "white",
-		backgroundColor: "button_light",
+		backgroundColor: "theme-button-light",
 		borderColor: "none",
 		_hover: {
 			filter: "brightness(110%)",
 		},
 	},
 	white: {
-		color: "cell_dark",
+		color: "theme-cell-dark",
 		backgroundColor: "white",
-		borderColor: "section_color_dark",
+		borderColor: "theme-section-color-dark",
 		_hover: {
 			filter: "brightness(110%)",
 		},
 	},
 	dark: {
 		color: "white",
-		backgroundColor: "button_dark",
+		backgroundColor: "theme-button-dark",
 		borderColor: "none",
 		_hover: {
 			filter: "brightness(110%)",

@@ -241,7 +241,7 @@ const PricingAccounts: (
 			go: "Go Pro",
 			goButtonStyle: CustomButtonStyles.dark,
 			cardStyle: {
-				borderColor: "button_dark",
+				borderColor: "theme-button-dark",
 			},
 			footer: "Plus everything in Starter!",
 			description: (product: PricingAccountType) => (
@@ -381,7 +381,7 @@ const PricingAccounts: (
 			hideOverviewCard: true,
 			goButtonStyle: CustomButtonStyles.dark,
 			cardStyle: {
-				borderTopColor: "section_color_dark",
+				borderTopColor: "theme-section-color-dark",
 			},
 			subTitle: "Collaborative analysis for elite teams",
 			description: (product: PricingAccountType) => (
