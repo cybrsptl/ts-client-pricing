@@ -33,7 +33,7 @@ export const ProductFeatures = (props: ProductFeaturesProps) => {
 	const { billingMode, billingTier, products, stripePriceIdToPurchase } = props
 
 	const cellColor = {
-		pro: "cell_blue",
+		pro: "theme-cell-blue",
 	}
 
 	const tableWrapper = {
@@ -50,7 +50,7 @@ export const ProductFeatures = (props: ProductFeaturesProps) => {
 	const stickyColumn = {
 		...stickyColumnWidth,
 		position: "sticky",
-		backgroundColor: `theme_bg !important`,
+		backgroundColor: `theme-bg !important`,
 		left: "0px",
 		zIndex: 1,
 	}
@@ -130,7 +130,7 @@ export const ProductFeatures = (props: ProductFeaturesProps) => {
 									<Tr>
 										<Th
 											// colSpan={products.length + 1}
-											color="section_color_dark"
+											color="theme-section-color-dark"
 											fontSize="sm"
 											borderColor="blue.800"
 											border="none"
@@ -151,7 +151,7 @@ export const ProductFeatures = (props: ProductFeaturesProps) => {
 												<Box
 													px="10px"
 													borderBottom="1px solid"
-													borderBottomColor="section_color_dark"
+													borderBottomColor="theme-section-color-dark"
 													opacity=".2"
 													lineHeight={"1px"}
 												>

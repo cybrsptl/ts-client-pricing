@@ -46,7 +46,7 @@ export const ProductOverview = (props: ProductOverviewProps) => {
 					variant="outline"
 					size="sm"
 					borderColor="theme_border_color"
-					color="button_dark"
+					color="theme-button-dark"
 					isDisabled={true}
 				>
 					Too small for {billingTier} GB DUA
@@ -168,10 +168,10 @@ export const ProductOverview = (props: ProductOverviewProps) => {
 											product.isDisabled || product.isBelowDesiredLimits
 												? "not-allowed"
 												: "auto",
-										borderColor: "bg_white",
+										borderColor: "theme-bg-white",
 										borderTopWidth: "6px",
 										height: "100%",
-										backgroundColor: "bg_white",
+										backgroundColor: "theme-bg-white",
 										p: [4, 4, 6],
 										boxShadow: "lg",
 										...(product.cardStyle ?? {}),
