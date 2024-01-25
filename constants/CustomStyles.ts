@@ -1,10 +1,10 @@
 export const CustomButtonStyles = {
 	blue: {
 		color: "white",
-		backgroundColor: "theme_primary",
+		backgroundColor: "theme-primary",
 		borderColor: "none",
 		_hover: {
-			backgroundColor: "theme_primary_active",
+			backgroundColor: "theme-primary-active",
 		},
 	},
 	light: {

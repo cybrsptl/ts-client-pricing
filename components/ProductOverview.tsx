@@ -1,4 +1,3 @@
-import NextLink from "next/link"
 import {
 	Box,
 	Button,
@@ -12,6 +11,7 @@ import {
 	Text,
 	VStack,
 } from "@chakra-ui/react"
+
 import { CustomButtonStyles } from "../constants/CustomStyles"
 import { PricingBillingMode } from "../constants/PricingConstants"
 import { PricingAccountType } from "../constants/PricingTypes"
@@ -45,7 +45,7 @@ export const ProductOverview = (props: ProductOverviewProps) => {
 				<Button
 					variant="outline"
 					size="sm"
-					borderColor="theme_border_color"
+					borderColor="theme-border-color"
 					color="button_dark"
 					isDisabled={true}
 				>
@@ -93,7 +93,7 @@ export const ProductOverview = (props: ProductOverviewProps) => {
 							},
 							color:
 								billingMode === PricingBillingMode.MONTHLY
-									? "theme_primary_active"
+									? "theme-primary-active"
 									: "auto",
 						}}
 					>
@@ -120,7 +120,7 @@ export const ProductOverview = (props: ProductOverviewProps) => {
 							},
 							color:
 								billingMode === PricingBillingMode.ANNUAL
-									? "theme_primary_active"
+									? "theme-primary-active"
 									: "auto",
 						}}
 					>
@@ -155,7 +155,7 @@ export const ProductOverview = (props: ProductOverviewProps) => {
 								overflow="hidden"
 							>
 								<Box
-									bg={"theme_accent"}
+									bg={"theme-accent"}
 									sx={{
 										textAlign: "center",
 										overflow: "hidden",

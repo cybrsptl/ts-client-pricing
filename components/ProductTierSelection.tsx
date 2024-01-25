@@ -7,11 +7,10 @@ import {
 	SliderMark,
 	SliderThumb,
 	SliderTrack,
-	Stack,
 	TableProps,
 	Text,
 } from "@chakra-ui/react"
-import useIsMobile from "@common/hooks/useIsMobile"
+
 import { PricingBillingMode } from "../constants/PricingConstants"
 
 interface ProductTierSelectionProps extends TableProps {
@@ -86,13 +85,13 @@ export const ProductTierSelection = ({
 						>
 							{billingTier}%
 						</SliderMark> */}
-					<SliderTrack bg="theme_hilight">
-						<SliderFilledTrack bg="theme_hilight_dark" />
+					<SliderTrack bg="theme-hilight">
+						<SliderFilledTrack bg="theme-hilight_dark" />
 					</SliderTrack>
 					<SliderThumb
 						boxSize={6}
-						bg="theme_hilight_dark"
-						color="theme_text_bright"
+						bg="theme-hilight_dark"
+						color="theme-text-bright"
 						px={4}
 						whiteSpace="pre"
 						width={16}

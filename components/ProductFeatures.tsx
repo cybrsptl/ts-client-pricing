@@ -1,4 +1,3 @@
-import { FiInfo } from "react-icons/fi"
 import {
 	Box,
 	Button,
@@ -16,11 +15,13 @@ import {
 	Tr,
 	VStack,
 } from "@chakra-ui/react"
+import { FiInfo } from "react-icons/fi"
+
+import { PricingFeature } from "./PricingFeature"
 import { PricingFeatures } from "../constants/CustomPricingData"
 import { CustomButtonStyles } from "../constants/CustomStyles"
 import { PricingBillingMode } from "../constants/PricingConstants"
 import { PricingAccountType } from "../constants/PricingTypes"
-import { PricingFeature } from "./PricingFeature"
 
 interface ProductFeaturesProps {
 	billingMode: PricingBillingMode
@@ -50,7 +51,7 @@ export const ProductFeatures = (props: ProductFeaturesProps) => {
 	const stickyColumn = {
 		...stickyColumnWidth,
 		position: "sticky",
-		backgroundColor: `theme_bg !important`,
+		backgroundColor: `theme-bg !important`,
 		left: "0px",
 		zIndex: 1,
 	}

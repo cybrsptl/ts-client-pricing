@@ -125,7 +125,7 @@ const PricingAccounts: (
 			prodType: "starter",
 			hideOverviewCard: false, // freeTrialAvailable && pricingBillingTier === 1,
 			cardStyle: {
-				borderColor: "theme_primary_active",
+				borderColor: "theme-primary-active",
 			},
 			go: "Go Starter",
 			goButtonStyle: CustomButtonStyles.blue,
@@ -538,7 +538,8 @@ export const PricingFeatures: Feature[] = [
 			{
 				key: "assets",
 				name: "Total Hosts",
-				tooltip: "All the internal devices and external hosts we've identified in your data",
+				tooltip:
+					"All the internal devices and external hosts we've identified in your data",
 			},
 			{
 				key: "perGb",
