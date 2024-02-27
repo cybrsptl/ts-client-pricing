@@ -155,7 +155,7 @@ export const ProductOverview = (props: ProductOverviewProps) => {
 								overflow="hidden"
 							>
 								<Box
-									bg={"theme-accent"}
+									bg={"surface-card"}
 									sx={{
 										textAlign: "center",
 										overflow: "hidden",
