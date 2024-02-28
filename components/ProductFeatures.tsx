@@ -51,7 +51,7 @@ export const ProductFeatures = (props: ProductFeaturesProps) => {
 	const stickyColumn = {
 		...stickyColumnWidth,
 		position: "sticky",
-		backgroundColor: `theme-bg !important`,
+		backgroundColor: `background !important`,
 		left: "0px",
 		zIndex: 1,
 	}

@@ -168,10 +168,10 @@ export const ProductOverview = (props: ProductOverviewProps) => {
 											product.isDisabled || product.isBelowDesiredLimits
 												? "not-allowed"
 												: "auto",
-										borderColor: "theme-bg-white",
+										borderColor: "background-white",
 										borderTopWidth: "6px",
 										height: "100%",
-										backgroundColor: "theme-bg-white",
+										backgroundColor: "background-white",
 										p: [4, 4, 6],
 										boxShadow: "lg",
 										...(product.cardStyle ?? {}),
